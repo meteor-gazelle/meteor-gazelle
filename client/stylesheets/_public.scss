@@ -1,0 +1,11 @@
+.public-container {
+  @include main-container;
+
+  max-width: 35ex;
+  padding: 20px 35px 20px;
+
+  margin: {
+    right: auto;
+    left: auto;
+  }
+}

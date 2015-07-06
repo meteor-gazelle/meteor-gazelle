@@ -1,0 +1,22 @@
+<template name="userSearch">
+    <div>
+        {{> esInput index="users" placeholder="Search for a user..." }}
+        <button type="button">Go!</button>
+    </div>
+
+    <h3>Search results</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+        </tr>
+        </thead>
+        <tbody>
+            {{#esEach index="users"}}
+                <tr>
+                    <td>{{> username id=_id name=username}}</td>
+                </tr>
+            {{/esEach}}
+        </tbody>
+    </table>
+</template>
