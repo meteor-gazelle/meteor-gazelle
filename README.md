@@ -11,11 +11,11 @@ Contributing and Communications
 
 Take a look at our [Issues and Milestones](https://github.com/meteor-gazelle/meteor-gazelle/issues)
 
-Join #gazelle on the irc.what-network.net if you want to discuss the project.
+Join #gazelle on irc.what-network.net if you want to discuss the project.
 
-Be sure to ping a member of the core team in #gazelle if you're interested in contributing to the project. 
+Be sure to ping a member of the Core team in #gazelle if you're interested in contributing to the project. 
 
-Send a pull request to the meteor-gazelle repository, and it will be reviewed by the Core Team.
+Send a pull request to the meteor-gazelle repository, and it will be reviewed by the Core team.
 
 
 Coding Standards
