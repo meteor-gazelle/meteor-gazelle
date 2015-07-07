@@ -4,13 +4,19 @@ Gazelle
 Gazelle is a web framework geared towards private BitTorrent trackers.
 Gazelle is written in Javascript, using the Meteor framework.
 
-_Note_: This version of Gazelle is still under active development.
+_Note_: This version of Gazelle is under active development.
 
-Contributing
+Contributing and Communications
 ------------
+
+Take a look at our [Issues and Milestones](https://github.com/meteor-gazelle/meteor-gazelle/issues)
+
+Join #gazelle on the irc.what-network.net if you want to discuss the project.
+
+Be sure to ping a member of the core team in #gazelle if you're interested in contributing to the project. 
+
 Send a pull request to the meteor-gazelle repository, and it will be reviewed by the Core Team.
 
-Please ensure each pull request only contains one feature.
 
 Coding Standards
 ----------------
@@ -22,8 +28,7 @@ Dependencies
 
 Installation
 ------------
-[Vagrant](https://github.com/meteor-gazelle/vagrant) allows for a simple installation. The readme
-provides detailed instructions for how to set it up. Vagrant is good if you'd like to run meteor-gazelle
-in a Debian environment.
+After [installing Meteor](https://www.meteor.com/install), clone this repository, create a settings.json file based off of the settings template and run 'meteor run --settings setttings.json'. 
 
-Meteor also provides [installation instructions](https://www.meteor.com/install) for setup without the use of Vagrant.
+[Vagrant](https://github.com/meteor-gazelle/vagrant) allows for a simple installation for a clean development environment. The readme provides detailed instructions for how to set it up. Vagrant is good if you'd like to run meteor-gazelle in a Debian environment.
+
