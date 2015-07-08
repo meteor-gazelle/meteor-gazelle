@@ -1,0 +1,7 @@
+<template name="userClass">
+	{{#if userClass }}
+		{{> quickForm collection="Class" doc=userClass id="userClassEditForm" type="method-update" meteormethod="updateUserClass" }}
+	{{else}}
+		{{> quickForm collection="Class" id="userClassCreateForm" type="method" meteormethod="createUserClass" }}
+	{{/if}}
+</template>
