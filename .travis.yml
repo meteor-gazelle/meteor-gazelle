@@ -1,22 +1,16 @@
 language: node_js
+sudo: false
 node_js:
   - "0.12"
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install -y build-essential curl screen python-software-properties git openjdk-7-jdk
-  - sudo sh -c "curl -sL https://deb.nodesource.com/setup | bash -"
-  - sudo apt-get install -y nodejs
-  - sudo npm -g install npm@2.1.1
-  - wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.deb
-  - sudo dpkg -i elasticsearch-1.4.2.deb
-  - sudo update-rc.d elasticsearch defaults 95 10
-  - sudo /etc/init.d/elasticsearch start
-before_script:
+install:
   - curl https://install.meteor.com/ | sh
-  - sudo npm install -g eslint
-services: 
-  - mongodb
+  - npm install -g eslint
 script:
+  - export PATH="$HOME/.meteor:$PATH"
   - cp settings.json.template settings.json
   - meteor --test
   - eslint .
+
+branches:
+  only:
+    - master
