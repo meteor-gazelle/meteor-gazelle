@@ -10,3 +10,7 @@ script:
   - cp settings.json.template settings.json
   - meteor --test
   - eslint .
+
+branches:
+  only:
+    - master
