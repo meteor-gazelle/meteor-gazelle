@@ -3,6 +3,8 @@ Contributing to meteor-gazelle
 
 Be sure all code written follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide), and has the appropriate test methods.
 
+Specifications can be found in the [docs/specifications](docs/specifications) subdirectory.
+
 Communication
 -------------
 * The [Issues and Milestones](https://github.com/meteor-gazelle/meteor-gazelle/issues) contains items that need to be worked on. Check there for a general overview of what needs to be worked on.
