@@ -2,7 +2,7 @@
 * text=auto
 
 # Shorthand for text files
-[attr]normalizetext   text eol=lf whitespace=trailing-space,tab-in-indent,tabwidth=4
+[attr]normalizetext   text eol=lf whitespace=trailing-space,tab-in-indent,tabwidth=2
 
 #
 # Text files
