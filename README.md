@@ -10,14 +10,9 @@ _Note_: This version of Gazelle is under active development.
 
 Contributing and Communications
 ------------
-
-Be sure all code written follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide), and has the appropriate test methods.
-
-Communication
--------------
 * The [Issues and Milestones](https://github.com/meteor-gazelle/meteor-gazelle/issues) contains items that need to be worked on. Check there for a general overview of what needs to be worked on.
 * IRC
-  * &#35;gazelle on irc.what-network.net is the official meteor-gazelle development channel. All questions should be directed there.
+  * &#35;gazelle on irc.what-network.net is the official meteor-gazelle development channel.
   * If you are looking for something to work on, ping a Core team member (operators in #gazelle).
 
 Submitting a pull request
