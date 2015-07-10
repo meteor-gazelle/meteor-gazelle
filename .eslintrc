@@ -223,7 +223,7 @@
     "no-underscore-dangle": 0,       // disallow dangling underscores in identifiers
     "no-unneeded-ternary": 0,        // disallow the use of Boolean literals in conditional expressions (off by default)
     "no-wrap-func": 0,               // (deprecated) disallow wrapping of non-IIFE statements in parens
-    "object-curly-spacing": 0,       // require or disallow padding inside curly braces (off by default)
+    "object-curly-spacing": [2, "always"],       // require or disallow padding inside curly braces (off by default)
     "one-var": 0,                    // allow or disallow one variable declaration per function (off by default)
     "operator-assignment": 0,        // require assignment operator shorthand where possible or prohibit it entirely (off by default)
     "operator-linebreak": 0,         // enforce operators to be placed before or after line breaks (off by default)
@@ -253,14 +253,7 @@
       "always"
     ],                               // require or disallow space before function opening parenthesis (off by default)
     "space-before-function-parentheses": 0, // (deprecated) require or disallow space before function parentheses (off by default)
-    "space-in-brackets": [2, "always", {
-      "singleValue": false,
-      "objectsInArrays": false,
-      "arraysInArrays": false,
-      "arraysInObjects": false,
-      "objectsInObjects": false,
-      "propertyName": false
-    }],                              // (deprecated) require or disallow spaces inside brackets (off by default)
+    "space-in-brackets": [2, "never"],                              // (deprecated) require or disallow spaces inside brackets (off by default)
     "space-in-parens": [
       0,
       "never"

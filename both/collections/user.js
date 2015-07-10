@@ -6,7 +6,7 @@ User.attachSchema(Schemas.user);
 // On Client and Server
 EasySearch.createSearchIndex('users', {
   'use': 'mongo-db',
-  'field': [ '_id', 'username' ],
+  'field': ['_id', 'username'],
   'collection': User,
   'limit': 20
 });
