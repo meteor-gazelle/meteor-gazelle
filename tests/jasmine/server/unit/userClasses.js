@@ -1,7 +1,6 @@
 beforeEach(function () {
   MeteorStubs.install();
   mock(global, 'UserClass');
-  mock(global, 'Class');
   mock(global, 'User');
   mock(global, 'Roles');
 });
@@ -11,29 +10,23 @@ afterEach(function () {
 });
 
 describe('updateUserClass method', function () {
-  var newClass = {
-    title: 'newTitle',
-    shortTitle: 'NT'
-  };
-
   it('updates all instances of the class', function () {
-    var updatedClass = {};
-    User.update = function (query, modifier, opts) {
-      return {
-        title: modifier.$set['classes.$.title'],
-        shortTitle: modifier.$set['classes.$.shortTitle']
-      };
+    var newClass = {
+      title: 'newTitle',
+      shortTitle: 'NT',
+      secondary: true
     };
-    UserClass.update = function (query, modifier, options) {
-      updatedClass.title = modifier.$set.title;
-      updatedClass.shortTitle = modifier.$set.shortTitle;
+    var updatedClass = {};
+
+    User.update = function (query, modifier, opts) {
+      updatedClass.title = modifier.$set['classes.$.title'];
+      updatedClass.shortTitle = modifier.$set['classes.$.shortTitle'];
+      updatedClass.secondary = modifier.$set['classes.$.secondary'];
     };
 
-    spyOn(User, 'update');
-    spyOn(Class, 'findOne').and.returnValue(newClass);
+    spyOn(UserClass, 'findOne').and.returnValue(newClass);
     Meteor.call('updateUserClass', null, null);
     expect(updatedClass).toEqual(newClass);
-    expect(User.update).toHaveBeenCalled();
   });
 });
 
@@ -46,18 +39,12 @@ describe('createUserClass method', function () {
   };
 
   it('inserts into the database', function () {
-    spyOn(Class, 'findOne').and.returnValue({
+    spyOn(UserClass, 'findOne').and.returnValue({
       _id: 1
     });
-    spyOn(Class, 'insert');
     spyOn(UserClass, 'insert');
     Meteor.call('createUserClass', classInfo);
-    expect(Class.insert).toHaveBeenCalledWith(classInfo);
-    expect(UserClass.insert).toHaveBeenCalledWith({
-      title: classInfo.title,
-      shortTitle: classInfo.shortTitle,
-      classId: Class.findOne(null, null)._id
-    });
+    expect(UserClass.insert).toHaveBeenCalledWith(classInfo);
   });
 });
 
@@ -67,11 +54,9 @@ describe('editUserClasses method', function () {
     Roles.addUsersToRoles = function (userId, roles, group) {
       rolesParam = roles;
     };
-    spyOn(Class, 'findOne').and.returnValue({
-      roles: [ '1', '2', '3' ]
-    });
     spyOn(UserClass, 'findOne').and.returnValue({
-      classId: 1
+      _id: 2,
+      roles: [ '1', '2', '3' ]
     });
     Meteor.call('editUserClasses', {
       userId: 1,
@@ -86,13 +71,11 @@ describe('editUserClasses method', function () {
     var updatedUser = {};
     User.update = function (query, modifier) {
       if (typeof (modifier.$unset) === 'undefined') {
-        updatedUser = modifier.$addToSet.classes;
+        updatedUser = _.pick(modifier.$addToSet.classes, 'classId');
       }
     };
     spyOn(UserClass, 'findOne').and.returnValue({
-      classId: 2
-    });
-    spyOn(Class, 'findOne').and.returnValue({
+      _id: 2,
       roles: [ '1', '2', '3' ]
     });
     Meteor.call('editUserClasses', {

@@ -7,10 +7,10 @@ Template.userEdit.helpers({
           var values = [];
           UserClass.find({}, {
             fields: {
-              'classId': 1
+              '_id': 1
             }
           }).forEach(function (element) {
-            values.push(element.classId);
+            values.push(element._id);
           });
           return (values.length !== 0) ? values : ['none'];
         },
@@ -21,12 +21,12 @@ Template.userEdit.helpers({
             UserClass.find({}, {
               fields: {
                 'title': 1,
-                'classId': 1
+                '_id': 1
               }
             }).forEach(function (element) {
               options.push({
                 label: element.title,
-                value: element.classId
+                value: element._id
               });
             });
             return options;

@@ -21,12 +21,9 @@ Schemas.userWarnings = new SimpleSchema({
   }
 });
 
-Schemas.class = new SimpleSchema({
+Schemas.userClass = new SimpleSchema({
   title: (new SimpleSchemaFields('user class')).title(),
-  shortTitle: {
-    type: String,
-    label: 'The shortened title of the class'
-  },
+  shortTitle: (new SimpleSchemaFields('user class short title')).title(),
   secondary: {
     type: Boolean,
     label: 'Secondary user class',
@@ -39,20 +36,13 @@ Schemas.class = new SimpleSchema({
   }
 });
 
-Schemas.userClass = new SimpleSchema({
-  title: {
-    type: String,
-    label: 'The class title'
-  },
-  shortTitle: {
-    type: String,
-    label: 'The shortened title of the class'
-  },
-  classId: {
-    type: String,
-    label: 'The ID of the class'
-  }
-});
+Schemas.userClassLite = new SimpleSchema([
+  Schemas.userClass.pick([ 'title', 'shortTitle', 'secondary' ]), {
+    classId: {
+      type: String,
+      label: 'The ID of the class'
+    }
+  }]);
 
 Schemas.userStats = new SimpleSchema({
   uploaded: {
@@ -116,7 +106,7 @@ Schemas.user = new SimpleSchema({
     optional: true
   },
   classes: {
-    type: [Schemas.userClass],
+    type: [Schemas.userClassLite],
     label: 'The user\'s classes',
     optional: true
   }

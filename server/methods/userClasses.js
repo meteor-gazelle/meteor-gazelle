@@ -1,28 +1,18 @@
 Meteor.methods({
   updateUserClass: function (modifier, documentId) {
-    Class.update({ _id: documentId }, modifier);
-    var newUserClass = Class.findOne({ _id: documentId });
-    UserClass.update({ classId: documentId }, {
-      $set: {
-        title: newUserClass.title,
-        shortTitle: newUserClass.shortTitle
-      }
-    });
+    UserClass.update({ _id: documentId }, modifier);
+    var newUserClass = UserClass.findOne({ _id: documentId });
     User.update({ 'classes.classId': documentId }, {
       $set: {
         'classes.$.title': newUserClass.title,
-        'classes.$.shortTitle': newUserClass.shortTitle
+        'classes.$.shortTitle': newUserClass.shortTitle,
+        'classes.$.secondary': newUserClass.secondary,
       }
     }, { multi: true });
   },
   createUserClass: function (doc) {
-    Schemas.class.clean(doc);
-    Class.insert(doc);
-    UserClass.insert({
-      title: doc.title,
-      shortTitle: doc.shortTitle,
-      classId: Class.findOne({ title: doc.title }, { _id: 1 })._id
-    });
+    Schemas.userClass.clean(doc);
+    UserClass.insert(doc);
   },
   editUserClasses: function (doc) {
     //TODO: Come up with a better way to handle class deletion
@@ -30,14 +20,15 @@ Meteor.methods({
     Roles.setUserRoles(doc.userId, [], 'class');
     doc.classes.forEach(function (element) {
       var classId = element.classId;
-      var classDoc = UserClass.findOne({ classId: classId });
+      var classDoc = UserClass.findOne({ _id: classId });
       if (!classDoc) {
         console.log('Cannot find class ID: ' + classId);
         return false;
       }
+      classDoc.classId = classDoc._id;
       User.update({ _id: doc.userId }, { $addToSet: { classes: classDoc }});
       Roles.addUsersToRoles(doc.userId,
-        Class.findOne({ _id: classDoc.classId }, { roles: 1 }).roles,
+        UserClass.findOne({ _id: classId }, { fields: { roles: 1 }}).roles,
         'class');
     });
   }
