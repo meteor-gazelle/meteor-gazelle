@@ -14,7 +14,7 @@ Meteor.methods({
     Schemas.userClass.clean(doc);
     UserClass.insert(doc);
   },
-  editUserClasses: function (doc) {
+  updateUsersClasses: function (doc) {
     //TODO: Come up with a better way to handle class deletion
     User.update({ _id: doc.userId }, { $unset: { classes: '' }});
     Roles.setUserRoles(doc.userId, [], 'class');

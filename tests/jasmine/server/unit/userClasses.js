@@ -48,7 +48,7 @@ describe('createUserClass method', function () {
   });
 });
 
-describe('editUserClasses method', function () {
+describe('updateUsersClasses method', function () {
   it('adds appropriate roles', function () {
     var rolesParam = [];
     Roles.addUsersToRoles = function (userId, roles, group) {
@@ -58,7 +58,7 @@ describe('editUserClasses method', function () {
       _id: 2,
       roles: [ '1', '2', '3' ]
     });
-    Meteor.call('editUserClasses', {
+    Meteor.call('updateUsersClasses', {
       userId: 1,
       classes: [{
         classId: 2
@@ -78,7 +78,7 @@ describe('editUserClasses method', function () {
       _id: 2,
       roles: [ '1', '2', '3' ]
     });
-    Meteor.call('editUserClasses', {
+    Meteor.call('updateUsersClasses', {
       userId: 1,
       classes: [{
         classId: 2
