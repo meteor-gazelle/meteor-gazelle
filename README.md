@@ -13,7 +13,7 @@ Contributing and Communications
 * The [Issues and Milestones](https://github.com/meteor-gazelle/meteor-gazelle/issues) contains items that need to be worked on. Check there for a general overview of what needs to be worked on.
 * IRC
   * &#35;gazelle on irc.what-network.net is the official meteor-gazelle development channel.
-  * If you are looking for something to work on, ping a Core team member (operators in #gazelle).
+  * If you are looking for something to work on, ping the core team using !core <message>.
 
 Submitting a pull request
 -------------------------
@@ -29,11 +29,11 @@ All code follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/
 
 Dependencies
 ------------
-* [Meteor](https://www.meteor.com/) 
+* [Meteor](https://www.meteor.com/)
 
 Installation
 ------------
-After [installing Meteor](https://www.meteor.com/install), clone this repository, create a settings.json file based off of the settings template and run 'meteor run --settings setttings.json'. 
+After [installing Meteor](https://www.meteor.com/install), clone this repository, create a settings.json file based off of the settings template and run 'meteor run --settings setttings.json'.
 
 [Vagrant](https://github.com/meteor-gazelle/vagrant) allows for a simple installation for a clean development environment. The readme provides detailed instructions for how to set it up. Vagrant is good if you'd like to run meteor-gazelle in a Debian environment.
- 
+
