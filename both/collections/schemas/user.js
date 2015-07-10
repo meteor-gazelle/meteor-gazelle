@@ -40,7 +40,37 @@ Schemas.userClassLite = new SimpleSchema([
   Schemas.userClass.pick([ 'title', 'shortTitle', 'secondary' ]), {
     classId: {
       type: String,
-      label: 'The ID of the class'
+      label: 'The ID of the class',
+      allowedValues: function () {
+        var values = [];
+        UserClass.find({}, {
+          fields: {
+            '_id': 1
+          }
+        }).forEach(function (element) {
+          values.push(element._id);
+        });
+        return (values.length !== 0) ? values : ['none'];
+      },
+      autoform: {
+        type: 'select',
+        label: false,
+        options: function () {
+          var options = [];
+          UserClass.find({}, {
+            fields: {
+              'title': 1,
+              '_id': 1
+            }
+          }).forEach(function (element) {
+            options.push({
+              label: element.title,
+              value: element._id
+            });
+          });
+          return options;
+        }
+      }
     }
   }]);
 

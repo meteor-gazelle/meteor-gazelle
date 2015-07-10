@@ -31,7 +31,6 @@ Router.map(function () {
     waitOn: function () {
       Meteor.subscribe('users');
       Meteor.subscribe('userClasses');
-      Meteor.subscribe('classes');
     },
     data: {
       user: function () {
