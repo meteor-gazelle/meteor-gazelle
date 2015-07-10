@@ -10,7 +10,8 @@ Communication
 * The [Issues and Milestones](https://github.com/meteor-gazelle/meteor-gazelle/issues) contains items that need to be worked on. Check there for a general overview of what needs to be worked on.
 * IRC
   * &#35;gazelle on irc.what-network.net is the official meteor-gazelle development channel.
-  * If you are looking for something to work on, ping the core team using !core <message>, or create a github issue labeled appropriately.
+  * If you are looking for something to work on, ping the Core team using !core <message>.
+* For questions and discussions related to the project, new issues may be opened (using the appropriate labels).
 
 Submitting a pull request
 -------------------------
