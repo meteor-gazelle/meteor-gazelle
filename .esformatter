@@ -153,7 +153,7 @@
     "removeTrailing": 1,
     "before": {
       "ArrayExpressionOpening": 0,
-      "ArrayExpressionClosing": 1,
+      "ArrayExpressionClosing": 0,
       "ArrayExpressionComma": 0,
       "ArgumentComma": 0,
       "ArgumentList": 0,
@@ -225,7 +225,7 @@
       "WhileStatementClosingBrace": 1
     },
     "after": {
-      "ArrayExpressionOpening": 1,
+      "ArrayExpressionOpening": 0,
       "ArrayExpressionClosing": 0,
       "ArrayExpressionComma": 1,
       "ArgumentComma": 1,

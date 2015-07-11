@@ -172,7 +172,7 @@ SimpleSchemaFields.prototype.leechType = function (extra) {
     defaultValue: function () {
       return 'Regular';
     },
-    allowedValues: [ 'Regular', 'Free Leech', 'Neutral Leech' ]
+    allowedValues: ['Regular', 'Free Leech', 'Neutral Leech']
   });
 };
 
