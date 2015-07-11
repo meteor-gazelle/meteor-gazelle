@@ -34,7 +34,7 @@ Dependencies
 
 Installation
 ------------
-After [installing Meteor](https://www.meteor.com/install), clone this repository, create a settings.json file based off of the settings template and run 'meteor run --settings setttings.json'.
+After [installing Meteor](https://www.meteor.com/install), clone this repository, create a settings.json file based off of the settings template and run `meteor run --settings setttings.json`.
 
 [Vagrant](https://github.com/meteor-gazelle/vagrant) allows for a simple installation for a clean development environment. The readme provides detailed instructions for how to set it up. Vagrant is good if you'd like to run meteor-gazelle in a Debian environment.
 
