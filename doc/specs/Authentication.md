@@ -6,6 +6,10 @@ Author: DutchDude
 
 ### Changelog
 
+**2015-07-11**
+
+* Incorporated feedback from GitHub after public release
+
 **2014-12-31**
 
 * Added second half of use cases
@@ -24,7 +28,7 @@ Author: DutchDude
 
 ## Motivation
 
-What.CD is a walled garden, in which its community shares lots of great content.
+The site is a walled garden, in which its community shares lots of great content.
 To keep the community in great shape and to ensure quality control, the website
 is not publicly accessible. Restricted access ensures that bad people are (mostly)
 kept out and keeps the site community and economy healthy.
@@ -46,19 +50,19 @@ organization achieve its goals." (Wikipedia)
 * Authentication tokens such as passwords should be stored in a non-reversible
   manner.
 * Users should be IP-blocked for an amount of time if they fail authentication
-  or try to reset a password  more than 6 times.
+  or try to reset a password  more than a configurable number of times.
 * Users should be informed of the ways they can reset passwords or bypass
   secondary authentication, even if they have not failed authentication yet.
 * Resets of passwords should expire all active sessions and
   authentication tokens for that user.
-* Password reset links should expire after 24 hours.
+* Password reset links should expire after a set number of hours.
 * Users may set up a secondary means of authenticating. If they have set
   this up, they must be asked to further authenticate once they've authenticated
   using their username and password.
 * If users set up secondary authentication they should be provided with
   a set of one-time passwords to bypass secondary authentication.
 * If a user loses their secondary authentication method and loses their one-time
-  passwords, they will need to visit `#what.cd-disabled` to disable secondary
+  passwords, they will need to contact moderators through IRC to disable secondary
   authentication.
 * Users may have at most one secondary means of authentication.
 * Passwords should abide by the following rules:
@@ -99,7 +103,7 @@ found to be correct the user is identified and logged in to the website.
 **Preconditions:**
 * A user has an account on the website with a corresponding password.
 * The user is not currently logged in.
-* The user has not failed to authenticate more than 6 times already.
+* The user has not failed to authenticate more than a configurable number of times already.
 * The user is not connecting from a blocked IP-block.
 
 **Trigger:** User tries to access a page but they do not currently have
@@ -151,10 +155,10 @@ authentication.
 **Postcondition:**
 * Success
   * The user's session is activated.
-  * If a one-time code is used, the code is invalidated and the user
+  * If a one-time backup code is used, the code is invalidated and the user
     is forwarded to the second-factor configuration page.
 * Failure
-  * The user may not proceed and will need to retry.
+  * The user may not proceed and will need to retry with a fresh token.
 
 **Basic flow:**
 
@@ -311,7 +315,7 @@ code.
 
 * The user should be explained that the second factor cannot be disabled if
   lost, unless the user has a one-time password (Otherwise, the user will
-  need to visit `#what.cd-disabled`).
+  need to visit IRC).
 
 **Functional requirements:**
 
@@ -324,7 +328,7 @@ code.
 * If users set up secondary authentication they should be provided with
   a set of one-time passwords to bypass secondary authentication.
 * If a user loses their secondary authentication method and loses their one-time
-  passwords, they will need to visit `#what.cd-disabled` to disable secondary
+  passwords, they will need to visit IRC to disable secondary
   authentication.
 
 ### 6. The user reviews authorized applications
@@ -375,7 +379,7 @@ retrieve their username or set a new password.
 **Preconditions:**
 
 * The user is not currently logged in.
-* The user has not tried to reset more than 6 times already.
+* The user has not tried to reset more than a configurable number of times already.
 * The user is not connecting from a blocked IP-block.
 * The user has access to the email address they used to set up their account.
 
@@ -397,10 +401,10 @@ retrieve their username or set a new password.
 
 **Business rules:**
 
-* Reset links should expire after 24 hours.
+* Reset links should expire after a set number of hours.
 * This should not disable any configured second factors.
 * Users should be IP-blocked for an amount of time if they fail authentication
-  or try to reset a password  more than 6 times.
+  or try to reset a password  more than a configurable number of times.
 * Users should be informed of the ways they can reset passwords or bypass
   secondary authentication, even if they have not failed authentication yet.
 * Resets of authentication methods should expire all active sessions and
