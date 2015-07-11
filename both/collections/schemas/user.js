@@ -37,7 +37,7 @@ Schemas.userClass = new SimpleSchema({
 });
 
 Schemas.userClassLite = new SimpleSchema([
-  Schemas.userClass.pick([ 'title', 'shortTitle', 'secondary' ]), {
+  Schemas.userClass.pick(['title', 'shortTitle', 'secondary']), {
     classId: {
       type: String,
       label: 'The ID of the class',

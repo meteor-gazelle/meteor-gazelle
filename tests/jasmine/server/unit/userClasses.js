@@ -35,7 +35,7 @@ describe('createUserClass method', function () {
     title: 'classTitle',
     shortTitle: 'CT',
     secondary: false,
-    roles: [ '123', '456' ]
+    roles: ['123', '456']
   };
 
   it('inserts into the database', function () {
@@ -56,7 +56,7 @@ describe('updateUsersClasses method', function () {
     };
     spyOn(UserClass, 'findOne').and.returnValue({
       _id: 2,
-      roles: [ '1', '2', '3' ]
+      roles: ['1', '2', '3']
     });
     Meteor.call('updateUsersClasses', {
       userId: 1,
@@ -64,7 +64,7 @@ describe('updateUsersClasses method', function () {
         classId: 2
       }]
     });
-    expect(rolesParam).toEqual([ '1', '2', '3' ]);
+    expect(rolesParam).toEqual(['1', '2', '3']);
   });
 
   it('adds classes to user', function () {
@@ -76,7 +76,7 @@ describe('updateUsersClasses method', function () {
     };
     spyOn(UserClass, 'findOne').and.returnValue({
       _id: 2,
-      roles: [ '1', '2', '3' ]
+      roles: ['1', '2', '3']
     });
     Meteor.call('updateUsersClasses', {
       userId: 1,
