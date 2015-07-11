@@ -1,13 +1,6 @@
 Template.userEdit.helpers({
   schema: function () {
     return new SimpleSchema({
-      userId: {
-        type: String,
-        autoform: {
-          type: 'hidden',
-          label: false
-        }
-      },
       classes: {
         type: [Schemas.userClassLite.pick(['classId'])]
       }
