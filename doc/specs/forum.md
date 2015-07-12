@@ -2,9 +2,9 @@
 ## Table of contents
 
 1. Motivation
-2. Business rules
-3. Use cases
-4. Data model
+1. Business rules
+1. Use cases
+1. Data model
 
 ## Motivation
 
@@ -233,6 +233,7 @@ Provides a means for users of the site to communicate with each other in a typic
  - The user does not have their posting permissions disabled.
  - The user has access to the thread and forum.
  - The user is not the latest poster in the thread.
+ - The thread is not locked.
  - The user can always post in the thread if they carry the forum moderation or forum management permission.
 
 **Postconditions:**
@@ -243,12 +244,181 @@ Provides a means for users of the site to communicate with each other in a typic
 
 **Basic Flow:**
 
-1. The user navigates to a forum thread.
-2. The user fills out the new post form.
-3. The user submits the new post.
-4. The new post is added to the thread.
+ - The user navigates to a forum thread.
+ - The user fills out the new post form.
+ - The user submits the new post.
+ - The new post is added to the thread.
+
+**Additional functional requirements:**
+
+ - If the user is a forum moderator or forum manager they can optionally mark their post as "important". Posts marked as "important" will be clearly highlighted when reading a forum thread. This is in order to draw more attention to them, for example if it is a general warning to the users posting in the thread.
+
+**Additional non functional requirements:**
+
+### 4.0 Rename a forum thread
+
+**Primary Actor:** A forum moderator.
+
+**Brief:** Sometimes threads are incorrectly named or need to be more aptly named, forum moderators have the ability to do this.
+
+**Trigger:** A forum moderator opens a thread to rename it.
+
+**Preconditions:**
+
+ - The user has the forum moderation or forum management permissions.
+
+**Postconditions:**
+
+ - The thread is renamed.
+
+**Basic Flow:**
+
+1. The user opens a thread.
+2. The user opens the thread management tools.
+3. The user renames the thread.
 
 **Additional functional requirements:**
 
 **Additional non functional requirements:**
 
+
+### 4.1 Move a forum thread
+
+**Primary Actor:** A forum moderator.
+
+**Brief:** Sometimes threads are placed in a the wrong and need to be moved, other times the thread is "trashed" and needs to be moved to the trash forum.
+
+**Trigger:** A forum moderator opens a thread to move it to a different forum.
+
+**Preconditions:**
+
+ - The user has the forum moderation or forum management permissions.
+
+**Postconditions:**
+
+ - The thread is moved.
+ - The number of thread count is incremented and decremented in the respective forums.
+
+**Basic Flow:**
+
+ 1. The user opens a thread.
+ 2. The user opens the thread management tools.
+ 3. The user selects the forum to which the thread should be moved.
+
+**Additional functional requirements:**
+
+**Additional non functional requirements:**
+
+ - When a thread is moved to the trash forum it should be locked.
+ - If a thread is moved to a forum that a subscribed user does not have access to than the user should no longer notifications from their thread subscription.
+
+ ### 4.2 Delete a forum thread.
+
+**Primary Actor:** A forum manager.
+
+**Brief:** Threads are rarely deleted but sometimes they need to be, only forum managers can delete a thread.
+
+**Trigger:** A forum manager opens a thread in order to delete it.
+
+**Preconditions:**
+
+ - The user has the forum management permissions.
+
+**Postconditions:**
+
+ - The thread is deleted.
+ - All posts in the thread are deleted.
+ - Users are unsubscribed from the thread.
+ - The thread count in the forum is updated.
+
+**Basic Flow:**
+
+ 1. The user opens a thread.
+ 2. The user opens the thread management tools.
+ 3. The user presses the delete button.
+ 4. The user confirms that they want to delete the thread.
+
+ ### 4.3 Lock a forum thread.
+
+**Primary Actor:** A forum moderator.
+
+**Brief:** Threads can be optionally locked to prevent users from posting in them.
+
+**Trigger:** A forum moderator opens a thread in order to lock it.
+
+**Preconditions:**
+
+ - The user has the forum moderator or forum management permissions.
+
+**Postconditions:**
+
+ - The thread is locked.
+
+**Basic Flow:**
+
+ 1. The user opens a thread.
+ 2. The user opens the thread management tools.
+ 3. The user locks the thread.
+
+ ### 4.4 Sticky a forum thread.
+
+**Primary Actor:** A forum moderator.
+
+**Brief:** In order to draw more attention to a forum thread, the forum thread can be made "sticky" which will cause it to show up at the top of the list when viewing the threads in a forum.
+
+**Trigger:** A forum moderator opens a thread in order to sticky it.
+
+**Preconditions:**
+
+ - The user has the forum moderator or forum management permissions.
+
+**Postconditions:**
+
+ - The thread is stickied.
+ - The thread is moved to the top of the thread list in a forum.
+
+**Basic Flow:**
+
+ - The user opens a thread.
+ - The user opens the thread management tools.
+ - The user marks the thread as "sticky" the thread.
+
+**Additional functional requirements:**
+
+ - When marking a thread as "sticky" a ranking can be assigned to it in order to customize in which order the sticky thread appears in relation to other sticky threads when viewing a forum.
+
+### 5.0 Edit a post.
+
+**Primary Actor:** A user.
+
+**Brief:** After a post has been created a user should be able to edit the post's contents. A user can only edit their own posts unless they are a forum moderator or forum manager.
+
+**Trigger:** The user opens a thread and navigates to their post in order to edit it.
+
+**Preconditions:**
+
+ - The user has access to the thread and forum.
+ - The user is editing their own post.
+ - If the user is a forum moderator they can edit anybody's post except those made by forum managers.
+ - If a user is a forum manager they can edit anybody's post.
+
+**Postconditions:**
+
+ - The post is edited.
+ - The post's edit history is updated.
+ - The post's author is optionally alerted that their post has been edited.
+
+**Basic Flow:**
+
+ - The user navigates to a thread.
+ - The user navigates to a post.
+ - The user presses edit on a post.
+ - The user submits the edited post.
+
+**Additional functional requirements:**
+
+ - If the user editing a post is a forum moderator or forum manager they can optionally alert the original author of the post that their post has been edited when the edit is submitted.
+
+**Additional non functional requirements:**
+
+ - When a post is edited the previous version is saved in an edit history which can be viewed by forum moderators or forum managers.
