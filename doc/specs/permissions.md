@@ -18,9 +18,9 @@ The site requires certain pages and abilities to be limited to a sub set of user
 
 ## Use cases
 
-### 1.0 Grant a user permission
+### 1.0 Grant a user specific permissions
 
-**Primary Actor:** An administrator.
+**Actor:** An administrator.
 
 **Brief:**  A user can be granted additional permissions by an administrator so they could perform certain actions. 
 
@@ -42,13 +42,10 @@ The site requires certain pages and abilities to be limited to a sub set of user
  3. The administrator drags permissions from the user's enabled permissions to the user's enabled permissions. 
  4. The administrator saves the changes to the user's permissions. 
 
-**Functional requirements:**
-
-**Non Functional requirements:**
 
 ### 1.1 Remove a user permission
 
-**Primary Actor:** An administrator.
+**Actor:** An administrator.
 
 **Brief:**  A user's permissions can be removed by an administrator so they could no longer perform certain actions. 
 
@@ -70,7 +67,6 @@ The site requires certain pages and abilities to be limited to a sub set of user
  3. The administrator selects a permission and removes it. 
  4. The administrator saves the changes to the user's permissions. 
 
-**Functional requirements:**
 
 **Non Functional requirements:**
 
