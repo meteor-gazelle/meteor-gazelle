@@ -81,6 +81,8 @@ The site header is a critical UI element. It provides the user with navigation l
     * New messages
   * Refined search boxes
 
+* If present, the notification summary can be toggled visible/hidden by the user. The notification summary displays the users five most recent notifications as well as the number of unread notifications. Unread notifications are styled differently than read notifications (i.e. bolded) to visually distinguish them.
+
 ## Use cases
 
 ### 1.0 Unified Search
@@ -118,28 +120,7 @@ The site header is a critical UI element. It provides the user with navigation l
 1. If user selects an auto-suggested result, the user is routed to the detailed view of that item (torrent, artist, etc).
 1. User is routed to a search-results view when either the <enter> key is pressed or the "Search" button is clicked.
 
-### 2.0 View Notifications Summary
-
-**Primary Actor:** A user
-
-**Brief:** The user is able to see a summary of their notifications in the header.
-
-**Trigger:** When the user expands the notifications menu
-
-**Postconditions:** The notifications summary is visible
-
-**Basic Flow:**
-
-1. The user clicks on the "expand notifications" button.
-1. A summary of notifications are displayed to the user.
-1. When the user clicks on the "See All Notifications" button, the user is routed to a detailed list of notifications.
-
-**Implementation Notes**
-
-* Read & unread notifications should be styled distinct from one another (i.e. bold all unread notifications)
-* The number of unread notifications needs to appear somewhere in the header (i.e. over the avatar). If there are no unread notifications, this number does not appear.
-
-### 3.0 Custom Links
+### 2.0 Custom Links
 
 **Primary Actor:** A user
 
@@ -153,6 +134,35 @@ The site header is a critical UI element. It provides the user with navigation l
 
 1. Custom links are visible in the header
 1. When user clicks on a custom link, the user is routed to that custom page.
+
+### 2.1 Add Custom Link
+
+**Primary Actor:** A user
+
+**Brief:** The user adds a custom link to the header
+
+**Precondition:** The current route does not appear in the navigation
+
+**Postcondition:** The current route is added to the custom links in the header
+
+**Basic Flow:**
+
+1. User navigates to any route
+1. User expands the "Custom Links" section of the navigation & selects "Add current page"
+
+### 2.2 Remove Custom Link
+
+**Primary Actor:** A user
+
+**Brief:** The user removes a custom link from the header
+
+**Precondition:** The user has at least one custon link in the header
+
+**Postcondition:** The link is removed from the header
+
+**Basic Flow:**
+
+1. User selects the "Remove" button/icon next to desired custom link in the header.
 
 ## Data model
 
