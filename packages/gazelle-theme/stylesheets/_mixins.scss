@@ -159,19 +159,11 @@
   content: $content;
 }
 
-%main-container {
-  background: $color-bg-main-container;
-
-  margin: {
-    top: $layout-gutter;
-    bottom: $layout-gutter;
-  }
-
-  border: {
-    radius: 3px;
-  }
+%dark-box {
+  background: $color-bg-dark-box;
+  color: $color-text-dark-box;
 }
 
-@mixin main-container {
-  @extend %main-container;
+@mixin dark-box {
+  @extend %dark-box;
 }

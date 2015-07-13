@@ -4,18 +4,14 @@ body {
 
 .main-container {
   @include outer-container(100%);
-  @include main-container;
-
-  padding: 20px 15px 20px 35px;
-
-  margin: {
-    right: $layout-gutter;
-    left: $layout-gutter;
-  }
 }
 
 .main-header {
+  @include dark-box;
   @include fill-parent;
+  @include clearfix;
+
+  padding: 1.5em $layout-gutter 0;
 
   .main-nav {
     @include clearfix;
@@ -33,33 +29,24 @@ body {
       float: left;
       margin: 0 3em 0 0;
       padding: 0.75em 0;
-
-      border: {
-        style: none none solid;
-        width: 2px;
-        color: transparent;
-      }
-
-      font: {
-        weight: bold;
-      }
-
-      &--hover {
-        border: {
-          color: $color-text-emphasis;
-        }
-      }
     }
 
     &__link {
       &:link,
       &:visited,
       &:hover {
-        color: $color-text;
-
         text: {
           decoration: none;
         }
+      }
+
+      &:link,
+      &:visited {
+        color: $color-text-dark-box;
+      }
+
+      &:hover {
+        color: $color-text-emphasis;
       }
     }
   }
@@ -69,11 +56,15 @@ body {
   float: left;
   margin: 0;
 
+  font: {
+    weight: normal;
+  }
+
   &__link {
     &:link,
     &:visited,
     &:hover {
-      color: $color-text;
+      color: $color-text-dark-box;
 
       text: {
         decoration: none;
@@ -183,6 +174,10 @@ body {
     &__value {
       display: inline-block;
       margin: 0;
+
+      font: {
+        weight: bold;
+      }
     }
   }
 }
@@ -191,8 +186,7 @@ body {
   @include fill-parent;
 
   clear: both;
-  background: $color-bg-main-content;
-  padding: 1em 2ex;
+  padding: 1em $layout-gutter;
 
   box: {
     sizing: border-box;
