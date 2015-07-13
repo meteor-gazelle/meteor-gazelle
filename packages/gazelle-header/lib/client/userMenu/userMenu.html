@@ -1,0 +1,32 @@
+<template name="userMenu">
+    <div class="{{classNames}}" role="menu">
+        <div class="user-menu__username__container">
+            <div class="user-menu__username">{{currentUser.username}}</div>
+
+            <dl class="user-menu__stats">
+                <dt class="user-menu__stats__label">Up</dt>
+                <dd class="user-menu__stats__value">XX</dd>
+
+                <dt class="user-menu__stats__label">Down</dt>
+                <dd class="user-menu__stats__value">XX</dd>
+
+                <dt class="user-menu__stats__label">Ratio</dt>
+                <dd class="user-menu__stats__value">XX</dd>
+
+                <dt class="user-menu__stats__label">Required</dt>
+                <dd class="user-menu__stats__value">XX</dd>
+            </dl>
+        </div>
+
+        <div class="user-menu__avatar__container">
+            <div class="user-menu__avatar" role="button"
+                 aria-expanded="{{ariaExpanded}}"><!-- TODO Avatar Img Here --></div>
+
+            <ul class="user-menu__menu" role="menu">
+                <li class="user-menu__menu__item">
+                    <a id="user-menu__menu__item__signout" href="#">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,6 @@
+{
+  "includePaths": [
+    "../../.meteor/local/build/programs/server/assets/packages/wolves_bourbon",
+    "../../.meteor/local/build/programs/server/assets/packages/wolves_neat"
+  ]
+}

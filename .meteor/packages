@@ -23,8 +23,16 @@ useraccounts:unstyled
 sanjo:jasmine
 velocity:html-reporter
 fourseven:scss
-mquandalle:bower
 reactive-var
-maxharris9:classnames
 jquery
 momentjs:moment
+wolves:bourbon
+wolves:neat
+reywood:font-awesome-sass
+
+gazelle-core
+
+# The following packages all depend on gazelle-core
+gazelle-home
+
+maxharris9:classnames
