@@ -7,46 +7,52 @@ body {
 }
 
 .main-header {
-  @include dark-box;
-  @include fill-parent;
-  @include clearfix;
-
-  padding: 1.5em $layout-gutter 0;
-
-  .main-nav {
+  &__container {
+    @include dark-box;
+    @include fill-parent;
     @include clearfix;
 
-    clear: left;
-    float: left;
+    padding: 1.5em $layout-gutter 0;
 
-    &__list {
-      margin: 0;
-      padding: 0;
-      list-style: none none;
+    border: {
+      bottom: 1px solid #909193;
     }
 
-    &__item {
+    .main-nav {
+      @include clearfix;
+
+      clear: left;
       float: left;
-      margin: 0 3em 0 0;
-      padding: 0.75em 0;
-    }
 
-    &__link {
-      &:link,
-      &:visited,
-      &:hover {
-        text: {
-          decoration: none;
+      &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none none;
+      }
+
+      &__item {
+        float: left;
+        margin: 0 2em 0 0;
+        padding: 0.75em 0;
+      }
+
+      &__link {
+        &:link,
+        &:visited,
+        &:hover {
+          text: {
+            decoration: none;
+          }
         }
-      }
 
-      &:link,
-      &:visited {
-        color: $color-text-dark-box;
-      }
+        &:link,
+        &:visited {
+          color: $color-text-dark-box;
+        }
 
-      &:hover {
-        color: $color-text-emphasis;
+        &:hover {
+          color: $color-text-emphasis;
+        }
       }
     }
   }
@@ -74,13 +80,12 @@ body {
 }
 
 .user-menu {
-  @include display(flex);
-  @include align-items(flex-end);
-
   $--inactive: #{&}--inactive;
   $--active: #{&}--active;
   $--animating: #{&}--animating;
 
+  display: flex;
+  align-items: flex-end;
   float: right;
 
   text: {
@@ -89,7 +94,7 @@ body {
 
   &__username {
     margin: 0 0 0.25em;
-    color: $color-text-emphasis;
+    color: $color-text-emphasis-alt;
 
     font: {
       size: 1.15em;
@@ -178,6 +183,108 @@ body {
       font: {
         weight: bold;
       }
+    }
+  }
+}
+
+.secondary-nav {
+  @include display(flex);
+  @include justify-content(space-between);
+  @include align-items(center);
+
+  $__link: #{&}__link;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $layout-gutter;
+  background: linear-gradient(0deg, #d7dadf, #ebecf0 15px);
+
+  border: {
+    width: 1px;
+    style: solid none;
+    color: #fdfeff;
+  }
+
+  &__list {
+    @include clearfix;
+
+    margin: 0;
+    padding: 0.75em 0;
+    list-style: none none;
+  }
+
+  #{$__link} {
+    cursor: pointer;
+
+    font: {
+      size: $font-size-small;
+    }
+
+    &:link,
+    &:visited,
+    &:hover {
+      text: {
+        decoration: none;
+      }
+    }
+
+    &:link,
+    &:visited {
+      color: $color-text;
+    }
+
+    &:hover {
+      color: $color-text-emphasis;
+    }
+  }
+
+  &__item {
+    float: left;
+    margin: 0 1em 0 0;
+
+    &--upload {
+      #{$__link} {
+        font: {
+          weight: bold;
+        }
+
+        text: {
+          transform: uppercase;
+        }
+      }
+    }
+
+    &--profile {
+      #{$__link} {
+        margin: {
+          left: 1em;
+        }
+
+        font: {
+          style: italic;
+        }
+      }
+    }
+
+    &--signout {
+      border: {
+        left: 1px solid $color-text;
+      }
+
+      padding: {
+        left: 1em;
+      }
+
+      font: {
+        weight: bold;
+      }
+    }
+  }
+
+  &__search {
+    text: {
+      align: right;
     }
   }
 }
@@ -285,6 +392,61 @@ body {
     &__label {
       &:after {
         content: ':';
+      }
+    }
+  }
+}
+
+.search-box {
+  display: flex;
+  flex-wrap: no-wrap;
+  align-items: stretch;
+  background: $color-bg-search-box;
+
+  &__input {
+    border: none;
+    padding: 5px;
+    background: transparent;
+    color: $color-white;
+
+    &::placeholder {
+      color: $color-white;
+
+      font: {
+        weight: bold;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button {
+    white-space: nowrap;
+    border: none;
+    background: $color-text-emphasis-alt;
+    color: $color-white;
+
+    padding: 0.25em 2em;
+
+    font: {
+      weight: bold;
+      style: italic;
+      size: $font-size-small;
+    }
+
+    &:hover {
+      background: $color-text-emphasis;
+    }
+
+    &:before {
+      @include icon($fa-var-search);
+
+      color: $color-text;
+
+      font: {
+        style: normal;
       }
     }
   }
