@@ -43,11 +43,13 @@
 }
 
 @mixin slide-start {
+  visibility: hidden;
   opacity: 0;
   transform: translateY(-15%);
 }
 
 @mixin slide-stop {
+  visibility: visible;
   opacity: 1;
   transform: translateY(0);
 }

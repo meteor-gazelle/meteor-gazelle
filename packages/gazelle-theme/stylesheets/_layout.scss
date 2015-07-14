@@ -138,7 +138,7 @@ body {
     }
 
     #{$--inactive} & {
-      opacity: 0;
+      @include slide-start;
     }
 
     #{$--inactive}#{$--animating} & {
