@@ -16,7 +16,10 @@ Npm.depends({
 Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
-  api.use(['fourseven:scss']);
+  api.use([
+    'fourseven:scss',
+    'gazelle-core'
+  ]);
 
   api.addFiles([
     'scss.json',
@@ -61,7 +64,12 @@ Package.onUse(function (api) {
     'fonts/Lato_Regular/Lato-Regular.eot',
     'fonts/Lato_Regular/Lato-Regular.svg',
     'fonts/Lato_Regular/Lato-Regular.ttf',
-    'fonts/Lato_Regular/Lato-Regular.woff'
+    'fonts/Lato_Regular/Lato-Regular.woff',
+    'fonts/Merriweather_Light/Merriweather-Light.eot',
+    'fonts/Merriweather_Light/Merriweather-Light.svg',
+    'fonts/Merriweather_Light/Merriweather-Light.ttf',
+    'fonts/Merriweather_Light/Merriweather-Light.woff',
+    'images/bg-header-footer-lg.png'
   ], 'client');
 });
 

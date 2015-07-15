@@ -4,7 +4,8 @@ $fonts: (
   Lato Italic:        Lato_Italic/Lato-Italic,
   Lato Light:         Lato_Light/Lato-Light,
   Lato Light Italic:  Lato_Light_Italic/Lato-LightItalic,
-  Lato Regular:       Lato_Regular/Lato-Regular
+  Lato Regular:       Lato_Regular/Lato-Regular,
+  Merriweather Light: Merriweather_Light/Merriweather-Light
 );
 
 @each $name, $path in $fonts {

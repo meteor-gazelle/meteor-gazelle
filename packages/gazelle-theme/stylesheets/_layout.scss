@@ -1,3 +1,10 @@
+$footer-height: rem(220px);
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: $color-bg-body;
 }
@@ -27,10 +34,23 @@ em strong {
 
 .main-container {
   @include outer-container(100%);
+
+  position: relative;
+  min-height: 100%;
+}
+
+%header-footer-background {
+  background: {
+    image: url('#{$path-images}/bg-header-footer-lg.png?1');
+    repeat: no-repeat;
+    position: center top;
+    size: cover;
+  }
 }
 
 .main-header {
   &__container {
+    @extend %header-footer-background;
     @include dark-box;
     @include fill-parent;
     @include clearfix;
@@ -322,7 +342,7 @@ em strong {
   @include fill-parent;
 
   clear: both;
-  padding: 1em $layout-gutter;
+  padding: 1em $layout-gutter ($footer-height + 1rem);
 
   box: {
     sizing: border-box;
@@ -330,12 +350,16 @@ em strong {
 }
 
 .main-footer {
-  clear: both;
-  color: $color-text-subdued;
+  @extend %header-footer-background;
 
-  margin: {
-    top: 3em;
-  }
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  height: $footer-height;
+  padding: 2rem 0;
+  color: $color-text-subdued;
 
   font: {
     size: $font-size-small;
@@ -346,8 +370,7 @@ em strong {
   }
 
   .main-nav {
-    margin: 1em 0;
-    color: $color-text;
+    margin: 1.5em 0;
 
     &__list {
       margin: 0;
@@ -357,25 +380,11 @@ em strong {
 
     &__item {
       display: inline-block;
-      margin: 0;
+      margin: 0 3ex;
       padding: 0;
-
-      font: {
-        weight: bold;
-      }
 
       text: {
         transform: uppercase;
-      }
-
-      &:before {
-        content: '•';
-        display: inline-block;
-        margin: 0 1.5ex;
-
-        font: {
-          size: $font-size-small;
-        }
       }
 
       &:first-child {
@@ -389,7 +398,7 @@ em strong {
       &:link,
       &:visited,
       &:hover {
-        color: $color-text;
+        color: $color-text-subdued;
       }
 
       &:link,
@@ -404,6 +413,25 @@ em strong {
           decoration: underline;
         }
       }
+    }
+  }
+
+  &__title {
+    color: $color-text-emphasis-alt;
+
+    font: {
+      size: $font-size-title;
+      family: $font-family-sans-serif-light;
+    }
+  }
+
+  &__copyright,
+  &__activity,
+  &__stats {
+    margin: 0.75em 0;
+
+    font: {
+      family: $font-family-serif;
     }
   }
 

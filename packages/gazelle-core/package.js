@@ -22,6 +22,7 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
+    'lib/client/startup.js',
     'lib/client/templates/layout/layout.html'
   ], 'client');
 
