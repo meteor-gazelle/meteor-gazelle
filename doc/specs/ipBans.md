@@ -207,7 +207,7 @@ Date: 7/15/2015
 
 ## Data model
 
-**LoginAttempts:**
+**Login Attempts:**
 > * The long data type format of the IP address where the failed login attempt originated from.
 > * The string data type format of the IP address where the failed login attempt originated from.
 > * The integer data type of the amount of failed login attempts from the given IP address.
