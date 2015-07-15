@@ -18,8 +18,8 @@ Date: 7/15/2015
 
 ## Business rules
 
-> * Users who have exceeded a certain number of failed login attempts within a given time span must not be allowed to enter the site for a period of time.
-> * Users who have been permanantly banned must not be allowed to enter the site.
+> * Users with the IP address who have exceeded a certain number of failed login attempts within a given time span must not be allowed to enter the site for a period of time.
+> * Users with the IP address who have been permanantly banned must not be allowed to enter the site.
 > * Site administrators with valid credentials and permissions must be able to modify banned IP address records.
 > * Users who are are logged into the site when an administrator bans their IP address must have their session killed.
 
@@ -54,15 +54,15 @@ Date: 7/15/2015
 
 **Primary Actor:** A user
 
-**Brief:** Ensures users who have failed to provide valid credentials to the site over five times within one hour are banned for a total of one hour.
+**Brief:** Ensures users who have failed to provide valid credentials to the site an arbitrary amount of times within one hour are banned for a configurable amount of time.
 
-**Preconditions:** User has provided invalid credentials five times within an hour.
+**Preconditions:** User has provided invalid credentials one less than the arbitrary amount within an hour.
 
 **Trigger:** Users enters invalid credentials one more time within one hour of the most recent attempt.
 
 **Postconditions:**
 
-* The user is banned for one hour.
+* The user is banned for a configurable amount of time.
 
 **Basic Flow:**
 
@@ -119,7 +119,7 @@ Date: 7/15/2015
 
 **Brief:** Ensures adminsitrators can CRUD banned IP addresses.
 
-**Preconditions:** User has site administrator privileges.
+**Preconditions:** User has site administrator and IP banning privileges.
 
 **Trigger:** N/A
 
@@ -129,7 +129,7 @@ Date: 7/15/2015
 
 **Basic Flow:**
 
-1. User with administrator privileges navigates to the banned IP information form.
+1. User with administrator and ip banning privileges navigates to the banned IP information form.
 2. User modifies data.
 3. Data is saved.
 
@@ -139,7 +139,7 @@ Date: 7/15/2015
 
 **Brief:** Ensures adminsitrators can ban an IP address or range of IP addresses.
 
-**Preconditions:** User has site administrator privileges.
+**Preconditions:** User has site administrator and IP banning privileges.
 
 **Trigger:** Administrator clicks the submit button on the form for a new banned IP address.
 
@@ -149,7 +149,7 @@ Date: 7/15/2015
 
 **Basic Flow:**
 
-1. User with administrator privileges navigates to the banned IP information form.
+1. User with administrator and IP banning privileges navigates to the banned IP information form.
 2. User enters relevant data in the form fields and clicks the submit button.
 3. Data is saved.
 
@@ -163,7 +163,7 @@ Date: 7/15/2015
 
 **Brief:** Ensures adminsitrators change the banned IP records within the database.
 
-**Preconditions:** User has site administrator privileges.
+**Preconditions:** User has site administrator and IP banning privileges.
 
 **Trigger:** Administrator changes an existing banned IP record.
 
@@ -173,7 +173,7 @@ Date: 7/15/2015
 
 **Basic Flow:**
 
-1. User with administrator privileges navigates to the banned IP information form.
+1. User with administrator and IP banning privileges navigates to the banned IP information form.
 2. User changes relevant data for a banned IP record.
 3. Data is saved.
 
@@ -187,7 +187,7 @@ Date: 7/15/2015
 
 **Brief:** Ensures adminsitrators can remove a banned IP record from the database.
 
-**Preconditions:** User has site administrator privileges.
+**Preconditions:** User has site administrator and IP banning privileges.
 
 **Trigger:** Administrator clicks the delete button for an existing banned IP record.
 
@@ -197,7 +197,7 @@ Date: 7/15/2015
 
 **Basic Flow:**
 
-1. User with administrator privileges navigates to the banned IP information form.
+1. User with administrator and IP banning privileges navigates to the banned IP information form.
 2. User clicks the delete button for a banned IP record.
 3. Data is removed.
 
