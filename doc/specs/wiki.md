@@ -16,6 +16,7 @@
 > * Articles must be able to be read/write locked based on user class.
 > * Users with the wiki management permission must have full access to all articles.
 > * Article creation must be associated with a permission.
+> * Duplicate aliases, tags, and dedicated terms must be unique.
 
 ## Use cases
 
@@ -97,26 +98,6 @@
 
 * The article editing template must be the same as the article creation template, except with all of the fields filled in.
 
-### 3.1 Previewing articles
-
-**Primary Actor:** A user
-
-**Brief:** When editing an article, previewing ensures that the formatting is correct.
-
-**Preconditions:** The user is creating an article, or is on the edit page of an article.
-
-**Trigger:** The user clicks the preview button.
-
-**Postcondition:**
-
-* The article is rendered in-place, without committing anything to the database.
-
-**Basic Flow:**
-
-1. The user is making changes to an article, or writing a new one.
-2. The preview button is clicked.
-3. The article is rendered in-place, and is presented to the user.
-
 ### 4.0 Adding aliases
 
 **Primary Actor:** A user
@@ -132,17 +113,16 @@
 
 **Postcondition:**
 
-* The alias is added to the article.
+* The alias is added to the article and committed to the database.
 
 **Basic Flow:**
 
 1. The user enters the new alias into the textbox.
 2. The user hits submit, and the alias is added to the article.
 
-**Functional Requirements:**
+**Applicable business rules:**
 
-* When the user hits submit, the system must ensure that the alias isn't a duplicate, and that it is not empty.
-* New aliases are committed to the database.
+### When the user hits submit, the system must ensure that the alias isn't a duplicate, and that it is not empty.
 
 ### 4.1 Removing aliases
 
