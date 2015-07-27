@@ -22,21 +22,10 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-
-    'lib/client/stylesheets/core.scss',
-    'lib/client/stylesheets/default.scss',
-    'lib/client/stylesheets/public.scss',
-    'lib/client/stylesheets/_public.scss',
-    'lib/client/stylesheets/_mixins.scss',
-    'lib/client/stylesheets/_layout.scss',
-    'lib/client/stylesheets/_font-awesome-custom.scss',
-    'lib/client/stylesheets/_layout.scss',
-    'lib/client/stylesheets/_mixins.scss',
     'lib/client/templates/layout/layout.html'
   ], 'client');
 
   api.addFiles([
-    'scss.json',
     'lib/router/config.js'
   ], ['client', 'server']);
 

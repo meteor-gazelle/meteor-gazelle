@@ -22,13 +22,9 @@ velocity:console-reporter
 useraccounts:unstyled
 sanjo:jasmine
 velocity:html-reporter
-fourseven:scss
 reactive-var
 jquery
 momentjs:moment
-wolves:bourbon
-wolves:neat
-reywood:font-awesome-sass
 
 gazelle-core
 
@@ -36,3 +32,4 @@ gazelle-core
 gazelle-home
 
 maxharris9:classnames
+gazelle-theme

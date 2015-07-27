@@ -1,6 +1,12 @@
 {
   "includePaths": [
+    "../../.meteor/local/build/programs/server/assets/packages",
     "../../.meteor/local/build/programs/server/assets/packages/wolves_bourbon",
     "../../.meteor/local/build/programs/server/assets/packages/wolves_neat"
-  ]
+  ],
+
+  "enableAutoprefixer": true,
+  "autoprefixerOptions": {
+    "browsers": ["last 2 versions", "> 5%"]
+  }
 }
