@@ -44,7 +44,7 @@ Package.onUse(function (api) {
 
   api.export([
     'Gazelle'
-  ])
+  ]);
 });
 
 Package.onTest(function (api) {
