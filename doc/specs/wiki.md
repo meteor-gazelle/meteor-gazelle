@@ -116,151 +116,51 @@
 2. The user is presented with a deletion confirmation.
 3. The user clicks yes, and the article is deleted.
 
-### 4.0 Adding aliases
+### 4.0 Managing aliases
 
 **Primary Actor:** A user
 
-**Brief:** Alises allow wiki articles to be easily searched. Managing aliases ensures they are accurate and thorough.
+**Brief:** Aliases allow search terms to map to others, making searching easier.
 
-**Preconditions:**
+**Precondition:** The user has the wiki management permission or the wiki administration permission enabled.
 
-* The user is currently viewing the article.
-* The user has the appropriate user class to edit the article.
+**Trigger:** The user adds or removes an alias.
 
-**Trigger:** The user submits a new alias.
-
-**Postcondition:**
-
-* The alias is added to the article and committed to the database.
+**Postconditions:** N/A
 
 **Basic Flow:**
 
-1. The user types in the new alias.
-2. The user submits the alias, and the alias is added to the article.
+1. The user adds or removes a search alias.
+2. The changes are saved.
 
 **Applicable business rules:**
 
-### When the user hits submit, the system must ensure that the alias isn't a duplicate, and that it is not empty.
+* Aliases must be unique.
 
-### 4.1 Removing aliases
-
-**Primary Actor:** A user
-
-**Brief:** Aliases must be able to ensure relevancy and accuracy.
-
-**Preconditions:**
-
-* The user is currently viewing the article.
-* The user has the appropriate user class to edit the article.
-
-**Trigger:** The user chooses to delete an alias.
-
-**Postcondition:**
-
-* The alias is removed.
-
-**Basic Flow:**
-
-1. The user chooses to delete an alias.
-2. The user is promted with a confirmation window.
-3. The alias is removed.
-
-**Functional Requirements:**
-
-* The alias must be removed from the database.
-
-### 4.2 A user can view the article's aliases
+### 5.0 Users must be able to search the wiki
 
 **Primary Actor:** A user
 
-**Brief:** Users must be able to view the article's aliases.
+**Brief:** The wiki must be able to be searched in order to find articles.
 
-**Preconditions:**
+**Precondition:** N/A
 
-* The user must have the appropriate user class to view the article, or have the wiki administration permission enabled.
+**Trigger:** The user enters a search query.
 
-**Trigger:** The user navigates to the article's page.
-
-**Postconditions:** The aliases are rendered.
-
-**Basic Flow:**
-
-1. The user navigates to the article's page.
-2. The aliases are rendered.
-  2a. If the user is able to edit the article, options must be present to delete an alias, and to view the user that added each alias.
-
-### 5.0 Wiki search with dedicated term
-
-**Primary Actor:** A user
-
-**Brief:** Setting dedicated search words will make finding the desired article easier and faster.
-
-**Preconditions:** N/A
-
-**Trigger:** The user searches for a dedicated term.
-
-**Postconditions:** The article matching the dedicated term is found.
+**Postcondition:** The found article is returned, or a list is returned.
 
 **Basic Flow:**
 
 1. The user enters a search query.
-2. The database is searched for a single article with the unique dedicated term.
-3. The user is redirected to the found article.
+2. First, dedicated terms are checked. If a dedicated term is found, the article is automatically returned.
+3. Second, aliases are checked. If an alias matches a dedicated term, it is returned.
+  3a. If the alias matches a tag, both the original search term and the alias are checked in the next step.
+4. Third, tags are checked. Both the alias and original search term are checked for matching tags.
+  4a. If a single result is found, it is returned. If multiple are found, they are returned and presented to the user.
 
 **Functional Requirements:**
 
-* Dedicated terms must be unique.
-* The search must only return articles the user has permission to read.
-
-### 5.1 Wiki search with aliases
-
-**Primary Actor:** A user
-
-**Brief:** Searching wiki aliases is essential to finding articles faster.
-
-**Preconditions:** The alias radio button is selected on the search page.
-
-**Trigger:** A user enters a search query, and hits enter.
-
-**Postconditions:** The article is displayed, or a list if multiple are found.
-
-**Basic Flow:**
-
-1. The user types in a query, and hits enter.
-2. The found article is rendered.
-
-**Alternate Flow:**
-
-If multiple results are found:
-
-1. The user types in a query, and hits enter.
-2. A paginated list of results is printed, including the title, last updated date, and the user that last edited the article.
-
-**Functional Requirements:**
-
-* The search query must be broken into individual words. Each wiki article title and alias must be searched for a matching word. If a match word is found, the article is returned.
-* The search must only return articles the user has permission to read.
-
-### 5.2 Wiki search with tags
-
-**Primary Actor:** A user
-
-**Brief:** Searching with tags allows users to find articles on a broader topic.
-
-**Precondition:** The tags radio button is selected on the search page.
-
-**Trigger:** The user types in a query and hits enter.
-
-**Postcondition:** A paginated list of results is rendered.
-
-**Basic Flow:**
-
-1. The user types in a query, and hits enter.
-2. A paginated list of articles is printed, including the title, last updated date, and the user that last edited the article.
-
-**Functional Requirements:**
-
-* The search must only return articles the user has permission to read.
+* Only articles the user can view must be returned.
 
 ### 6.0 Article comments
 
@@ -367,6 +267,7 @@ If multiple results are found:
 **Functional Requirements:**
 
 * Duplicate or blank tags must be ignored.
+* A new revision must be created when a tag is added.
 
 ### 7.1 Removing article tags
 
@@ -384,6 +285,31 @@ If multiple results are found:
 
 1. The user clicks the X button next to a tag.
 2. The tag is deleted.
+
+**Functional Requirements:**
+
+* A new revision must be created when a tag is removed.
+
+### 8.0 Managing an article's dedicated terms
+
+**Primary Actor:** A user
+
+**Brief:** Dedicated terms allow common searches to resolve to the correct article.
+
+**Precondition:** The user has the appropriate class to edit the article and has the wiki management permission enabled, or has the wiki administration permission enabled.
+
+**Trigger:** The user adds or removes a dedicated term from an article.
+
+**Postcondition:**  N/A
+
+**Basic Flow:**
+
+1. The user adds or removes a dedicated term from an article.
+2. The update is saved.
+
+**Applicable business rules:**
+
+* Dedicated terms must be unique across all articles.
 
 ## Data model
 
@@ -404,10 +330,6 @@ If multiple results are found:
   * The revision body.
   * The timestamp of the revision date.
   * The ID of the user that authored the revision.
-* An aliases subdocument, containing:
-  * The title of the alias.
-  * The ID of the user that added the alias.
-  * The timestamp of when the alias was added.
 * A tags subdocument, containing:
   * The tag name.
   * The ID of the user that added the tag.
@@ -418,3 +340,9 @@ If multiple results are found:
   * The ID of the user that last edited the comment.
   * The timestamp of when the comment was created.
   * The timestamp of when the comment was last edited.
+
+  **Wiki Aliases**
+  * The search term.
+  * The aliased term.
+  * The ID of the user that added the alias.
+  * The timestamp of when the alias was added.
