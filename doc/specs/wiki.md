@@ -14,9 +14,9 @@
 ## Business rules
 
 > * Articles must be able to be read/write locked based on user class.
-> * Users with the wiki management permission must have full access to all articles.
+> * Users with the wiki administration permission must have full access to all articles.
 > * Article creation must be associated with a permission.
-> * Duplicate aliases, tags, and dedicated terms must be unique.
+> * Duplicate aliases, tags, and dedicated terms must be unique and not empty.
 
 ## Use cases
 
@@ -26,7 +26,7 @@
 
 **Brief:** Users must be able to create wiki articles in order to share knowledge with other users.
 
-**Preconditions:** The user must have the wiki creation permission or the wiki management permission enabled.
+**Preconditions:** The user must have the wiki creation permission, the wiki management permission, or the wiki administration permission enabled.
 
 **Trigger:** When the user clicks the link to create an article.
 
@@ -38,13 +38,12 @@
 
 1. The user clicks the link to create an article.
 2. The template is generated, containing a title and section textarea.
-3. The user fills out the fields and user class read/edit restrictions, and hits submit.
+3. The user fills out the fields and user class read/edit restrictions, and submits the article.
 
 **Non-Functional Requirements**
 
-* BBCode must be stored in the database and rendered at page load
-* Each section must have a [+] button to add another section.
-* Each section must have a [++] button to add a sub-section.
+* Each section must have a method to add another section.
+* Each section must have a method to add a sub-section.
 
 ### 2.0 Viewing an article
 
@@ -52,13 +51,11 @@
 
 **Brief:** Wiki articles must be able to be viewed.
 
-**Preconditions:** The user has the appropriate user class to read the article, or has the wiki management permission enabled.
+**Preconditions:** The user has the appropriate user class to read the article, or has the wiki administration permission.
 
 **Trigger:** The user navigates to the article's URL.
 
-**Postcondition:**
-
-* The article is rendered.
+**Postcondition:** N/A
 
 **Basic Flow:**
 
@@ -76,9 +73,9 @@
 
 **Brief:** Editing articles allows mistakes and misinformation to be corrected, and current information to be expanded upon.
 
-**Preconditions:** The user has the appropriate user class to edit the article, or has the wiki management permission enabled.
+**Preconditions:** The user has the appropriate user class to edit the article and has the wiki management permission enabled, or has the wiki administration permission enabled.
 
-**Trigger:** The user clicks the edit link on the article's page.
+**Trigger:** The user selects to edit the article.
 
 **Postcondition:**
 
@@ -86,17 +83,38 @@
 
 **Basic Flow:**
 
-1. The user clicks the edit link on the article's page.
-2. The user clicks submit.
+1. The user selects to edit the article, and makes the desired changes.
+2. The user submits the changes.
 3. The changes are saved to the database, and the user is redirected to the updated article.
 
 **Functional Requirements:**
 
 * The article's revision history must be updated with the changes.
-
-**Non-Functional Requirements:**
-
 * The article editing template must be the same as the article creation template, except with all of the fields filled in.
+* The title and body fields must be editable by the user.
+
+### 3.1 Deleting an article
+
+**Primary Actor:** A user
+
+**Brief:** Just as articles can be edited, they must also be deleted.
+
+**Preconditions:**
+
+* The user is viewing the article.
+* The user has the appropriate user class to edit the article and has the wiki management permission enabled, or has the wiki administration permission enabled.
+
+**Trigger:** The user performs the article deletion action.
+
+**Postcondition:**
+
+* The article is deleted.
+
+**Basic Flow:**
+
+1. The user performs the article deletion action.
+2. The user is presented with a deletion confirmation.
+3. The user clicks yes, and the article is deleted.
 
 ### 4.0 Adding aliases
 
@@ -109,7 +127,7 @@
 * The user is currently viewing the article.
 * The user has the appropriate user class to edit the article.
 
-**Trigger:** The user clicks the submit button next to the alias textbox.
+**Trigger:** The user submits a new alias.
 
 **Postcondition:**
 
@@ -117,8 +135,8 @@
 
 **Basic Flow:**
 
-1. The user enters the new alias into the textbox.
-2. The user hits submit, and the alias is added to the article.
+1. The user types in the new alias.
+2. The user submits the alias, and the alias is added to the article.
 
 **Applicable business rules:**
 
@@ -135,7 +153,7 @@
 * The user is currently viewing the article.
 * The user has the appropriate user class to edit the article.
 
-**Trigger:** The user clicks the X button next to an alias.
+**Trigger:** The user chooses to delete an alias.
 
 **Postcondition:**
 
@@ -143,8 +161,9 @@
 
 **Basic Flow:**
 
-1. The user clicks the X button next to an alias.
-2. The alias is removed.
+1. The user chooses to delete an alias.
+2. The user is promted with a confirmation window.
+3. The alias is removed.
 
 **Functional Requirements:**
 
@@ -156,17 +175,19 @@
 
 **Brief:** Users must be able to view the article's aliases.
 
-**Preconditions:** N/A
+**Preconditions:**
+
+* The user must have the appropriate user class to view the article, or have the wiki administration permission enabled.
 
 **Trigger:** The user navigates to the article's page.
 
-**Postconditions:** The aliases are rendered with the appropriate buttons.
+**Postconditions:** The aliases are rendered.
 
 **Basic Flow:**
 
 1. The user navigates to the article's page.
 2. The aliases are rendered.
-  2a. If the user is able to edit an article, the X button must be rendered next to each alias to delete the alias, and the U button must be rendered to view the user that added the alias.
+  2a. If the user is able to edit the article, options must be present to delete an alias, and to view the user that added each alias.
 
 ### 5.0 Wiki search with dedicated term
 
@@ -189,6 +210,7 @@
 **Functional Requirements:**
 
 * Dedicated terms must be unique.
+* The search must only return articles the user has permission to read.
 
 ### 5.1 Wiki search with aliases
 
@@ -217,6 +239,7 @@ If multiple results are found:
 **Functional Requirements:**
 
 * The search query must be broken into individual words. Each wiki article title and alias must be searched for a matching word. If a match word is found, the article is returned.
+* The search must only return articles the user has permission to read.
 
 ### 5.2 Wiki search with tags
 
@@ -234,6 +257,10 @@ If multiple results are found:
 
 1. The user types in a query, and hits enter.
 2. A paginated list of articles is printed, including the title, last updated date, and the user that last edited the article.
+
+**Functional Requirements:**
+
+* The search must only return articles the user has permission to read.
 
 ### 6.0 Article comments
 
@@ -258,7 +285,9 @@ If multiple results are found:
 
 **Brief:** Comments must be able to be added to articles.
 
-**Precondition:** The user has the wiki comment permission or the wiki management permission enabled.
+**Precondition:**
+
+* The user has the appropriate user class to view the article and has the wiki comment permission or the wiki management permission enabled, or has the wiki administration permission enabled.
 
 **Trigger:** The user clicks submit on the comment page.
 
@@ -280,7 +309,7 @@ If multiple results are found:
 
 **Brief:** Comments will sometimes be innapropriate. These comments need to be edited.
 
-**Precondition:** The user has the wiki management permission enabled, or is the author of the comment.
+**Precondition:** The user has the wiki management permission enabled, is the author of the comment, or has the wiki administration permission enabled.
 
 **Trigger:** The user clicks the edit button above a comment.
 
@@ -298,11 +327,11 @@ If multiple results are found:
 
 ### 6.3 Deleting Wiki Comments
 
-**Primary Actor:** Wiki manager
+**Primary Actor:** A user
 
 **Brief:** Sometimes wiki comments need to be deleted.
 
-**Precondition:** N/A
+**Precondition:** The user has the wiki management permission or the wiki administration permission enabled.
 
 **Trigger:** The manager clicks the delete button above a comment.
 
@@ -324,7 +353,7 @@ If multiple results are found:
 
 **Brief:** Similar to the aliasing system, tagging allows users to search for articles on a broader topic.
 
-**Precondition:** The user has the appropriate user class to edit the article, or has the wiki management permission enabled.
+**Precondition:** The user has the appropriate user class to edit the article, or has the wiki administration permission enabled.
 
 **Trigger:** The user saves a tag on an article.
 
@@ -345,7 +374,7 @@ If multiple results are found:
 
 **Brief:** Tags must be able to be removed for accuracy.
 
-**Precondition:** The user has the appropriate user class to edit the article, or has the wiki management permission enabled.
+**Precondition:** The user has the appropriate user class to edit the article and has the wiki management permission enabled, or has the wiki administration permission enabled.
 
 **Trigger:** The user clicks the X button next to a tag.
 
