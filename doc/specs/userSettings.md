@@ -22,7 +22,10 @@ Provides a means for users of the site to configure and personalise their usage 
 
 ## Business rules.
 
-Users can configure settings for:
+ - A user can only edit the own settings
+ - Administrators with the right permissions can edit another user's settings.
+
+Settings can be configured for:
 
 * **Site Appearance**: Stylesheets and fonts.
 
@@ -48,10 +51,6 @@ Users can configure settings for:
 
 **Trigger:** User wants to change a setting.
 
-**Preconditions:**
-
- - The user can only change their own settings.
-
 **Postconditions:**
 
  - The user's settings are updated.
@@ -62,3 +61,22 @@ Users can configure settings for:
  1. The user navigates to their own settings page.
  2. The user changes the setting to the desired value.
  4. The user saves the changes to their settings.
+
+### Administrator changes another user's setting
+
+**Actor:** Administrator.
+
+**Brief:**  An administrator can change another user's settings.
+
+**Trigger:** Administrator wants to change a user's setting.
+
+**Postconditions:**
+
+ - The user's settings are updated.
+ - The user's log is updated.
+
+**Basic Flow:**
+
+ 1. The administrator navigates to the user's settings page.
+ 2. The administrator changes the setting to the desired value.
+ 4. The administrator saves the changes to the user's settings.
