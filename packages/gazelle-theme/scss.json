@@ -1,8 +1,8 @@
 {
   "includePaths": [
-    "../../.meteor/local/build/programs/server/assets/packages",
-    "../../.meteor/local/build/programs/server/assets/packages/wolves_bourbon",
-    "../../.meteor/local/build/programs/server/assets/packages/wolves_neat"
+    ".npm/package/node_modules",
+    ".npm/package/node_modules/bourbon/app/assets/stylesheets",
+    ".npm/package/node_modules/bourbon-neat/app/assets/stylesheets"
   ],
 
   "enableAutoprefixer": true,
