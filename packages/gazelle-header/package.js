@@ -28,7 +28,10 @@ Package.onUse(function (api) {
     'lib/client/userMenu/userMenu.js',
     'lib/client/header/header.html',
     'lib/client/header/header.js',
-
+    'lib/client/searchBox/searchBox.html',
+    'lib/client/searchBox/searchBox.js',
+    'lib/client/secondaryNav/secondaryNav.html',
+    'lib/client/secondaryNav/secondaryNav.js'
   ], ['client']);
 
 });

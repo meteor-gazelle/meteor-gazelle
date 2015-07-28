@@ -1,9 +1,12 @@
 <template name="header">
-    <header class="main-header" role="banner">
-        <h1 class="main-title">
-            <a class="main-title__link" href="/home">Gazelle</a>
-        </h1>
+  <header class="main-header" role="banner">
+    <div class="main-header__container">
+      <h1 class="main-title">
+        <a class="main-title__link" href="/home">{{siteName}}</a>
+      </h1>
       {{>userMenu}}
       {{>nav}}
-    </header>
+    </div>
+    {{>secondaryNav}}
+  </header>
 </template>

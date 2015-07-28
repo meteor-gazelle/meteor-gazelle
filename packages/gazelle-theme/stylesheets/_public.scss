@@ -1,6 +1,10 @@
-.public-container {
-  @include main-container;
+body {
+  font: {
+    family: $font-family-base;
+  }
+}
 
+.public-container {
   max-width: 35ex;
   padding: 20px 35px 20px;
 

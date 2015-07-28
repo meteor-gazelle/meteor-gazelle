@@ -43,11 +43,13 @@
 }
 
 @mixin slide-start {
+  visibility: hidden;
   opacity: 0;
   transform: translateY(-15%);
 }
 
 @mixin slide-stop {
+  visibility: visible;
   opacity: 1;
   transform: translateY(0);
 }
@@ -159,19 +161,11 @@
   content: $content;
 }
 
-%main-container {
-  background: $color-bg-main-container;
-
-  margin: {
-    top: $layout-gutter;
-    bottom: $layout-gutter;
-  }
-
-  border: {
-    radius: 3px;
-  }
+%dark-box {
+  background: $color-bg-dark-box;
+  color: $color-text-dark-box;
 }
 
-@mixin main-container {
-  @extend %main-container;
+@mixin dark-box {
+  @extend %dark-box;
 }

@@ -1,64 +1,100 @@
+$footer-height: rem(220px);
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: $color-bg-body;
 }
 
+strong {
+  font: {
+    weight: bold;
+    family: $font-family-sans-serif-bold;
+  }
+}
+
+em {
+  font: {
+    style: italic;
+    family: $font-family-sans-serif-italic;
+  }
+}
+
+strong em,
+em strong {
+  font: {
+    style: italic;
+    weight: bold;
+    family: $font-family-sans-serif-bold-italic;
+  }
+}
+
 .main-container {
   @include outer-container(100%);
-  @include main-container;
 
-  padding: 20px 15px 20px 35px;
+  position: relative;
+  min-height: 100%;
+}
 
-  margin: {
-    right: $layout-gutter;
-    left: $layout-gutter;
+%header-footer-background {
+  background: {
+    image: url('#{$path-images}/bg-header-footer-lg.png?1');
+    repeat: no-repeat;
+    position: center top;
+    size: cover;
   }
 }
 
 .main-header {
-  @include fill-parent;
-
-  .main-nav {
+  &__container {
+    @extend %header-footer-background;
+    @include dark-box;
+    @include fill-parent;
     @include clearfix;
 
-    clear: left;
-    float: left;
+    padding: 1.5em $layout-gutter 0;
 
-    &__list {
-      margin: 0;
-      padding: 0;
-      list-style: none none;
+    border: {
+      bottom: 1px solid #909193;
     }
 
-    &__item {
+    .main-nav {
+      @include clearfix;
+
+      clear: left;
       float: left;
-      margin: 0 3em 0 0;
-      padding: 0.75em 0;
 
-      border: {
-        style: none none solid;
-        width: 2px;
-        color: transparent;
+      &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none none;
       }
 
-      font: {
-        weight: bold;
+      &__item {
+        float: left;
+        margin: 0 2em 0 0;
+        padding: 0.75em 0;
       }
 
-      &--hover {
-        border: {
-          color: $color-text-emphasis;
+      &__link {
+        &:link,
+        &:visited,
+        &:hover {
+          text: {
+            decoration: none;
+          }
         }
-      }
-    }
 
-    &__link {
-      &:link,
-      &:visited,
-      &:hover {
-        color: $color-text;
+        &:link,
+        &:visited {
+          color: $color-text-dark-box;
+        }
 
-        text: {
-          decoration: none;
+        &:hover {
+          color: $color-text-emphasis;
         }
       }
     }
@@ -69,11 +105,16 @@ body {
   float: left;
   margin: 0;
 
+  font: {
+    weight: normal;
+    family: $font-family-sans-serif-light;
+  }
+
   &__link {
     &:link,
     &:visited,
     &:hover {
-      color: $color-text;
+      color: $color-text-dark-box;
 
       text: {
         decoration: none;
@@ -83,13 +124,12 @@ body {
 }
 
 .user-menu {
-  @include display(flex);
-  @include align-items(flex-end);
-
   $--inactive: #{&}--inactive;
   $--active: #{&}--active;
   $--animating: #{&}--animating;
 
+  display: flex;
+  align-items: flex-end;
   float: right;
 
   text: {
@@ -97,11 +137,12 @@ body {
   }
 
   &__username {
-    margin: 0 0 0.25em;
-    color: $color-text-emphasis;
+    margin: 0 0 0.5em;
+    color: $color-text-emphasis-alt;
 
     font: {
-      size: 1.15em;
+      size: 1.35em;
+      family: $font-family-sans-serif-light;
     }
   }
 
@@ -147,7 +188,7 @@ body {
     }
 
     #{$--inactive} & {
-      opacity: 0;
+      @include slide-start;
     }
 
     #{$--inactive}#{$--animating} & {
@@ -183,6 +224,116 @@ body {
     &__value {
       display: inline-block;
       margin: 0;
+
+      font: {
+        weight: bold;
+        family: $font-family-sans-serif-bold;
+      }
+    }
+  }
+}
+
+.secondary-nav {
+  @include display(flex);
+  @include justify-content(space-between);
+  @include align-items(center);
+
+  $__link: #{&}__link;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $layout-gutter;
+  background: linear-gradient(0deg, #d7dadf, #ebecf0 15px);
+
+  border: {
+    width: 1px;
+    style: solid none;
+    color: #fdfeff;
+  }
+
+  &__list {
+    @include clearfix;
+
+    margin: 0;
+    padding: 0.75em 0;
+    list-style: none none;
+  }
+
+  #{$__link} {
+    cursor: pointer;
+
+    font: {
+      size: $font-size-small;
+    }
+
+    &:link,
+    &:visited,
+    &:hover {
+      text: {
+        decoration: none;
+      }
+    }
+
+    &:link,
+    &:visited {
+      color: $color-text;
+    }
+
+    &:hover {
+      color: $color-text-emphasis;
+    }
+  }
+
+  &__item {
+    float: left;
+    margin: 0 1em 0 0;
+
+    &--upload {
+      #{$__link} {
+        font: {
+          weight: bold;
+          family: $font-family-sans-serif-bold;
+        }
+
+        text: {
+          transform: uppercase;
+        }
+      }
+    }
+
+    &--profile {
+      #{$__link} {
+        margin: {
+          left: 1em;
+        }
+
+        font: {
+          style: italic;
+          family: $font-family-sans-serif-italic;
+        }
+      }
+    }
+
+    &--signout {
+      border: {
+        left: 1px solid $color-text;
+      }
+
+      padding: {
+        left: 1em;
+      }
+
+      font: {
+        weight: bold;
+        family: $font-family-sans-serif-bold;
+      }
+    }
+  }
+
+  &__search {
+    text: {
+      align: right;
     }
   }
 }
@@ -191,8 +342,7 @@ body {
   @include fill-parent;
 
   clear: both;
-  background: $color-bg-main-content;
-  padding: 1em 2ex;
+  padding: 1em $layout-gutter ($footer-height + 1rem);
 
   box: {
     sizing: border-box;
@@ -200,12 +350,16 @@ body {
 }
 
 .main-footer {
-  clear: both;
-  color: $color-text-subdued;
+  @extend %header-footer-background;
 
-  margin: {
-    top: 3em;
-  }
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  height: $footer-height;
+  padding: 2rem 0;
+  color: $color-text-subdued;
 
   font: {
     size: $font-size-small;
@@ -216,8 +370,7 @@ body {
   }
 
   .main-nav {
-    margin: 1em 0;
-    color: $color-text;
+    margin: 1.5em 0;
 
     &__list {
       margin: 0;
@@ -227,25 +380,11 @@ body {
 
     &__item {
       display: inline-block;
-      margin: 0;
+      margin: 0 3ex;
       padding: 0;
-
-      font: {
-        weight: bold;
-      }
 
       text: {
         transform: uppercase;
-      }
-
-      &:before {
-        content: '•';
-        display: inline-block;
-        margin: 0 1.5ex;
-
-        font: {
-          size: $font-size-small;
-        }
       }
 
       &:first-child {
@@ -259,7 +398,7 @@ body {
       &:link,
       &:visited,
       &:hover {
-        color: $color-text;
+        color: $color-text-subdued;
       }
 
       &:link,
@@ -277,6 +416,25 @@ body {
     }
   }
 
+  &__title {
+    color: $color-text-emphasis-alt;
+
+    font: {
+      size: $font-size-title;
+      family: $font-family-sans-serif-light;
+    }
+  }
+
+  &__copyright,
+  &__activity,
+  &__stats {
+    margin: 0.75em 0;
+
+    font: {
+      family: $font-family-serif;
+    }
+  }
+
   &__stats {
     margin: 0;
     padding: 0;
@@ -291,6 +449,63 @@ body {
     &__label {
       &:after {
         content: ':';
+      }
+    }
+  }
+}
+
+.search-box {
+  display: flex;
+  flex-wrap: no-wrap;
+  align-items: stretch;
+  background: $color-bg-search-box;
+
+  &__input {
+    border: none;
+    padding: 5px;
+    background: transparent;
+    color: $color-white;
+
+    &::placeholder {
+      color: $color-white;
+
+      font: {
+        weight: bold;
+        family: $font-family-sans-serif-bold;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button {
+    white-space: nowrap;
+    border: none;
+    background: $color-text-emphasis-alt;
+    color: $color-white;
+
+    padding: 0.25em 2em;
+
+    font: {
+      weight: bold;
+      style: italic;
+      size: $font-size-small;
+      family: $font-family-sans-serif-bold-italic;
+    }
+
+    &:hover {
+      background: $color-text-emphasis;
+    }
+
+    &:before {
+      @include icon($fa-var-search);
+
+      color: $color-text;
+
+      font: {
+        style: normal;
       }
     }
   }
