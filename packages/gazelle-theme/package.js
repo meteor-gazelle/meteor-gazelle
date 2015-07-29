@@ -21,8 +21,6 @@ Package.onUse(function (api) {
     'wolves:neat',
     'reywood:font-awesome-sass',
     'johnantoni:meteor-normalize',
-    'fourseven:scss',
-    'gazelle-core'
   ]);
 
   api.addFiles([
