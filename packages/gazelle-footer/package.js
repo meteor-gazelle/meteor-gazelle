@@ -10,7 +10,8 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   var packages = [
-    'gazelle-lib'
+    'gazelle-lib',
+    'momentjs:moment'
   ];
 
   api.use(packages);

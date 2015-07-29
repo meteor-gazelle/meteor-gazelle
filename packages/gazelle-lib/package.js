@@ -15,23 +15,14 @@ Package.onUse(function (api) {
     'aldeed:collection2',
     'aldeed:simple-schema',
     'iron:router',
-    'alanning:roles',
     'dburles:collection-helpers',
-    'accounts-ui',
     'accounts-password',
     'zimme:iron-router-auth',
-    'ongoworks:security',
-    'velocity:console-reporter',
-    'useraccounts:unstyled',
-    'sanjo:jasmine',
-    'velocity:html-reporter',
-    'fourseven:scss',
     'reactive-var',
-    'wolves:bourbon',
-    'wolves:neat',
-    'reywood:font-awesome-sass',
-    'johnantoni:meteor-normalize',
-    'maxharris9:classnames'
+    'jquery',
+    'maxharris9:classnames',
+    'fourseven:scss',
+    'accounts-ui',
   ];
 
   api.use(packages);

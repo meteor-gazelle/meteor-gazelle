@@ -17,6 +17,10 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   api.use([
+    'wolves:bourbon',
+    'wolves:neat',
+    'reywood:font-awesome-sass',
+    'johnantoni:meteor-normalize',
     'fourseven:scss',
     'gazelle-core'
   ]);

@@ -9,27 +9,16 @@ aldeed:autoform
 aldeed:collection2
 aldeed:simple-schema
 iron:router
-alanning:roles
 dburles:collection-helpers
-accounts-ui
 accounts-password
 zimme:iron-router-auth
-fabienb4:autoform-semantic-ui
-matteodem:easy-search
-anti:fake
-ongoworks:security
-velocity:console-reporter
-useraccounts:unstyled
-sanjo:jasmine
-velocity:html-reporter
 reactive-var
 jquery
-momentjs:moment
+maxharris9:classnames
+fourseven:scss
+accounts-ui
+
 
 gazelle-core
-
-# The following packages all depend on gazelle-core
 gazelle-home
-
-maxharris9:classnames
 gazelle-theme

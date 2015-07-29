@@ -11,6 +11,7 @@ Package.onUse(function (api) {
 
   var packages = [
     'gazelle-lib',
+    'useraccounts:unstyled'
   ];
 
   api.use(packages);
