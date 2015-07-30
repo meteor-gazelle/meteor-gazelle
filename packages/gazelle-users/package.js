@@ -22,4 +22,10 @@ Package.onUse(function (api) {
 });
 
 Package.onTest(function (api) {
+  api.use([
+    'tinytest',
+    'gazelle-users'
+  ], ['client', 'server']);
+
+  api.addFiles('tests/server.js', 'server');
 });

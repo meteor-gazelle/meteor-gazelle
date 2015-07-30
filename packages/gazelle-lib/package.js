@@ -11,7 +11,7 @@ Package.onUse(function (api) {
 
   var packages = [
     'meteor-platform',
-    'aldeed:autoform',
+    'aldeed:autoform@5.3.2',
     'aldeed:collection2',
     'aldeed:simple-schema',
     'iron:router',
@@ -23,6 +23,7 @@ Package.onUse(function (api) {
     'maxharris9:classnames',
     'fourseven:scss',
     'accounts-ui',
+    'useraccounts:core'
   ];
 
   api.use(packages);

@@ -17,8 +17,9 @@ jquery
 maxharris9:classnames
 fourseven:scss
 accounts-ui
-
+useraccounts:core
 
 gazelle-core
 gazelle-home
 gazelle-theme
+tinytest

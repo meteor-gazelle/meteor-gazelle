@@ -5,10 +5,11 @@ node_js:
 install:
   - curl https://install.meteor.com/ | sh
   - npm install -g eslint
+  - npm install -g spacejam
 script:
   - export PATH="$HOME/.meteor:$PATH"
   - cp settings.json.template settings.json
-  - meteor --test
+  - spacejam test-packages
   - eslint .
 
 branches:
