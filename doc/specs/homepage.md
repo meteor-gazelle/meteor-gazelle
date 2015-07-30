@@ -1,15 +1,5 @@
 # Homepage
 
-## Metadata
-
-Author: sneakysneaky
-
-### Changelog
-
-**2015-07-15**
-
-* Inititial version
-
 ## Table of contents
 
 1. Motiviation
@@ -59,13 +49,13 @@ All empty sections are not visible. The user may personalize their homepage by a
 
 **Postconditions:**
 
-* Success
-  * Section is now visible in the user's homepage in the desired column
+* Section is now visible in the user's homepage in the desired column
 
 **Basic flow:**
 
 1. The user clicks the add button/icon in the desired column on the homepage.
-1. The user is asked which section they would like to add. The user selects the desired section.
+2. The user is asked which section they would like to add. The user selects the desired section.
+  * Only sections that do not exist on the homepage will be presented to the user. Sections that are already on the homepage will not appear.
 
 ### 1.1 Remove a homepage section
 
@@ -81,15 +71,14 @@ All empty sections are not visible. The user may personalize their homepage by a
 
 **Postconditions:**
 
-* Success
-  * Section is now removed from the homepage
+ * Section is now removed from the homepage
 
 **Basic flow:**
 
 1. The user clicks the remove button/icon on the desired section
-1. The user is asked to confirm their choice.
+2. The user is asked to confirm their choice.
 
-### Re-order homepage sections:
+### 1.2 Re-order homepage sections:
 
 **Primary Actor:** User
 
@@ -103,8 +92,7 @@ All empty sections are not visible. The user may personalize their homepage by a
 
 **Postconditions:**
 
-* Success
-  * All sections appear in the desired order in the desired columns
+* All sections appear in the desired order in the desired columns
 
 **Basic flow:**
 
@@ -113,6 +101,7 @@ All empty sections are not visible. The user may personalize their homepage by a
 ## Data model
 
 * Homepage Section
+  * User
   * Column
   * Sequence
   * Contents
