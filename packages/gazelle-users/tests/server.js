@@ -1,3 +1,3 @@
-Tinytest.add('Users - createNewUser', function(test) {
+Tinytest.add('Users - createNewUser', function (test) {
 
 });

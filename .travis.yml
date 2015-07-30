@@ -1,5 +1,5 @@
 language: node_js
-sudo: false
+sudo: required
 node_js:
   - "0.12"
 install:
@@ -10,6 +10,9 @@ script:
   - cp settings.json.template settings.json
   - eslint .
   - spacejam test-packages
+
+before_install:
+  - "curl -L http://git.io/ejPSng | /bin/sh"
 
 branches:
   only:
