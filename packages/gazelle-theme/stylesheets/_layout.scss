@@ -11,14 +11,12 @@ body {
 
 strong {
   font: {
-    weight: bold;
     family: $font-family-sans-serif-bold;
   }
 }
 
 em {
   font: {
-    style: italic;
     family: $font-family-sans-serif-italic;
   }
 }
@@ -26,8 +24,6 @@ em {
 strong em,
 em strong {
   font: {
-    style: italic;
-    weight: bold;
     family: $font-family-sans-serif-bold-italic;
   }
 }
@@ -141,7 +137,7 @@ em strong {
     color: $color-text-emphasis-alt;
 
     font: {
-      size: 1.35em;
+      size: 1.375em;
       family: $font-family-sans-serif-light;
     }
   }
@@ -156,13 +152,13 @@ em strong {
       vertical-align: bottom;
 
       font: {
-        size: 0.8em;
+        size: $font-size-small;
       }
     }
   }
 
   &__avatar {
-    $avatar-size: 65px;
+    $avatar-size: 66px;
 
     display: inline-block;
     margin: 0 0 0 1em;
@@ -226,7 +222,6 @@ em strong {
       margin: 0;
 
       font: {
-        weight: bold;
         family: $font-family-sans-serif-bold;
       }
     }
@@ -292,7 +287,6 @@ em strong {
     &--upload {
       #{$__link} {
         font: {
-          weight: bold;
           family: $font-family-sans-serif-bold;
         }
 
@@ -309,7 +303,6 @@ em strong {
         }
 
         font: {
-          style: italic;
           family: $font-family-sans-serif-italic;
         }
       }
@@ -325,7 +318,6 @@ em strong {
       }
 
       font: {
-        weight: bold;
         family: $font-family-sans-serif-bold;
       }
     }
@@ -462,7 +454,7 @@ em strong {
 
   &__input {
     border: none;
-    padding: 5px;
+    padding: 0.375em;
     background: transparent;
     color: $color-white;
 
@@ -470,7 +462,6 @@ em strong {
       color: $color-white;
 
       font: {
-        weight: bold;
         family: $font-family-sans-serif-bold;
       }
     }
@@ -489,8 +480,6 @@ em strong {
     padding: 0.25em 2em;
 
     font: {
-      weight: bold;
-      style: italic;
       size: $font-size-small;
       family: $font-family-sans-serif-bold-italic;
     }

@@ -102,7 +102,7 @@
 
 %dropdown-menu-base {
   position: relative;
-  padding: 10px;
+  padding: 0.625em;
   background: $color-bg-menu;
   color: $color-white;
 
@@ -121,7 +121,7 @@
 
 @mixin dropdown-menu ($arrow-x: 50%, $arrow-from: left) {
   $arrow-width: 10px;
-  $arrow-height: 5px;
+  $arrow-height: 6px;
 
   @extend %dropdown-menu-base;
 
