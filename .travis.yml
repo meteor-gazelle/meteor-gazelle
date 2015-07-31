@@ -9,7 +9,7 @@ script:
   - export PATH="$HOME/.meteor:$PATH"
   - cp settings.json.template settings.json
   - eslint .
-  - spacejam test-packages
+  - spacejam test-packages --settings settings.json
 
 before_install:
   - "curl -L http://git.io/ejPSng | /bin/sh"
