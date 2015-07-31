@@ -1,9 +1,15 @@
 Template.userEdit.helpers({
-  //add you helpers here
+  schema: function () {
+    return new SimpleSchema({
+      classes: {
+        type: [Schemas.userClassLite.pick(['classId'])]
+      }
+    });
+  }
 });
 
 Template.userEdit.events({
-  //add your events here
+  //add your statement here
 });
 
 Template.userEdit.onCreated(function () {
@@ -17,4 +23,3 @@ Template.userEdit.onRendered(function () {
 Template.userEdit.onDestroyed(function () {
   //add your statement here
 });
-

@@ -30,6 +30,7 @@ Router.map(function () {
     template: 'userEdit',
     waitOn: function () {
       Meteor.subscribe('users');
+      Meteor.subscribe('userClasses');
     },
     data: {
       user: function () {
