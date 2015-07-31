@@ -20,9 +20,9 @@ Submitting a pull request
 -------------------------
 * [Fork](https://github.com/meteor-gazelle/meteor-gazelle/fork) the repository, and switch to a new branch using `git checkout -b <branch_name>`.
 * Make your changes, and submit a [new pull request](https://github.com/meteor-gazelle/meteor-gazelle/compare). Be detailed in the pull request's description.
-  * Be sure to select the appropriate issues/milestones for your pull request.
+  * Be sure to select the appropriate labels/milestones for your pull request.
+  * If your pull request applies to an issue, be sure to mention it in the description.
 * The new pull request will be broadcasted in #gazelle, and the Core team will review it and leave feedback.
-
 
 Coding Standards
 ----------------
