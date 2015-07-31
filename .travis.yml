@@ -11,6 +11,9 @@ script:
   - eslint .
   - spacejam test-packages --settings settings.json
 
+before_install:
+  - "curl -L http://git.io/ejPSng | /bin/sh"
+
 branches:
   only:
     - master
