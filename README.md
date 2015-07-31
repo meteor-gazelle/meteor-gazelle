@@ -15,14 +15,15 @@ Contributing and Communications
   * &#35;gazelle on irc.what-network.net is the official meteor-gazelle development channel.
   * If you are looking for something to work on, ping the Core team using !core <message>.
 * For questions and discussions related to the project, new issues may be opened (using the appropriate labels).
+* [Trello](https://trello.com/b/XXzk9boI/meteor-gazelle) is used for high-level project planning. It is used by the Core team to plan out upcoming ideas and features.
 
 Submitting a pull request
 -------------------------
 * [Fork](https://github.com/meteor-gazelle/meteor-gazelle/fork) the repository, and switch to a new branch using `git checkout -b <branch_name>`.
 * Make your changes, and submit a [new pull request](https://github.com/meteor-gazelle/meteor-gazelle/compare). Be detailed in the pull request's description.
-  * Be sure to select the appropriate issues/milestones for your pull request.
+  * Be sure to select the appropriate labels/milestones for your pull request.
+  * If your pull request applies to an issue, be sure to mention it in the description.
 * The new pull request will be broadcasted in #gazelle, and the Core team will review it and leave feedback.
-
 
 Coding Standards
 ----------------
