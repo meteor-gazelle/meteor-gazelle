@@ -3,6 +3,7 @@ sudo: required
 node_js:
   - "0.10"
 install:
+  - curl https://install.meteor.com | /bin/sh
   - npm install -g eslint
   - npm install -g spacejam
 script:
@@ -10,10 +11,6 @@ script:
   - cp settings.json.template settings.json
   - eslint .
   - spacejam test-packages --settings settings.json
-
-before_install:
-  - "curl -L http://git.io/ejPSng | /bin/sh"
-
 branches:
   only:
     - master
