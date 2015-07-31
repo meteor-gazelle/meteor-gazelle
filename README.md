@@ -38,3 +38,7 @@ After [installing Meteor](https://www.meteor.com/install), clone this repository
 
 [Vagrant](https://github.com/meteor-gazelle/vagrant) allows for a simple installation for a clean development environment. The readme provides detailed instructions for how to set it up. Vagrant is good if you'd like to run meteor-gazelle in a Debian environment.
 
+Running tests
+------------
+npm install -g spacejam
+spacejam test-packages

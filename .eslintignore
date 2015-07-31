@@ -1,3 +1,5 @@
 .meteor/**
 tests/jasmine/server/unit/package-stubs.js
 tests/jasmine/server/unit/packageMocksSpec.js
+phantom_runner.js
+start_test.js

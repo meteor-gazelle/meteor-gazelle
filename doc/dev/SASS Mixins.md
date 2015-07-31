@@ -26,4 +26,4 @@ The following SASS mixins are available for use in SASS stylesheets.
 * `icon ($content)`: A font-awesome icon.
   * `$content`: The icon character. Usually a `$fa-var-` variable. See [font-awesome-sass variables](https://github.com/FortAwesome/font-awesome-sass/blob/master/assets/stylesheets/font-awesome/_variables.scss).
 
-* `main-container`: Shared styles for the main content container.
+* `dark-box`: Shared styles for the "dark box", used by header & footer.

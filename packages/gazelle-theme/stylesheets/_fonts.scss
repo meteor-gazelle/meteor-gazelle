@@ -1,0 +1,17 @@
+$fonts: (
+  'Lato Bold':          Lato_Bold/Lato-Bold,
+  'Lato Bold Italic':   Lato_Bold_Italic/Lato-BoldItalic,
+  'Lato Italic':        Lato_Italic/Lato-Italic,
+  'Lato Light':         Lato_Light/Lato-Light,
+  'Lato Light Italic':  Lato_Light_Italic/Lato-LightItalic,
+  'Lato Regular':       Lato_Regular/Lato-Regular,
+  'Merriweather Light': Merriweather_Light/Merriweather-Light
+);
+
+@each $name, $path in $fonts {
+  @include font-face(
+    $name,
+    '/packages/gazelle-theme/fonts/#{$path}',
+    $file-formats: eot woff ttf svg
+  );
+}
