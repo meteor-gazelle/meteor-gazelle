@@ -22,10 +22,10 @@ Package.onUse(function (api) {
 });
 
 Package.onTest(function (api) {
-  api.use([
-    'tinytest',
-    'gazelle-users'
-  ], ['client', 'server']);
+
+  //TODO: Why is this causing the tests to stall?
+  //api.use('gazelle-users', ['client', 'server']);
+  api.use('tinytest', ['client', 'server']);
 
   api.addFiles('tests/server.js', 'server');
 });
