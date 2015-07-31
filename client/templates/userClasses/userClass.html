@@ -1,0 +1,20 @@
+<template name="userClass">
+	{{#if userClasses }}
+    <table>
+        <thead>
+          <tr>
+              <td>Class Title</td>
+              <td>Short Title</td>
+              <td>Secondary Class</td>
+          </tr>
+        </thead>
+		{{#each userClasses}}
+        <tr>
+            {{> quickForm collection="UserClass" doc=this id=this._id type="method-update" meteormethod="updateUserClass" }}
+        </tr>
+    {{/each}}
+    </table>
+	{{else}}
+		{{> quickForm collection="UserClass" id="userClassCreateForm" type="method" meteormethod="createUserClass" }}
+	{{/if}}
+</template>
