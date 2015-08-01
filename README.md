@@ -41,5 +41,5 @@ After [installing Meteor](https://www.meteor.com/install), clone this repository
 
 Running tests
 ------------
-npm install -g spacejam
-spacejam test-packages
+    npm install -g spacejam
+    spacejam test-packages
