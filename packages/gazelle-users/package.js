@@ -14,11 +14,12 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
-    'lib/users.js',
-    'lib/methods.js'
+    'lib/config.js',
+    'lib/schema.js',
+    'lib/model.js'
   ], ['client', 'server']);
 
-  api.export(['User']);
+  api.export('Users');
 });
 
 Package.onTest(function (api) {

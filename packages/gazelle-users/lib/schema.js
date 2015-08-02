@@ -11,5 +11,6 @@ Gazelle.schemas.user = new SimpleSchema({
   }
 });
 
-User = new Mongo.Collection('user');
-User.attachSchema(Gazelle.schemas.user);
+var collection = new Mongo.Collection('user');
+collection.attachSchema(Gazelle.schemas.user);
+Users._collection = collection;
