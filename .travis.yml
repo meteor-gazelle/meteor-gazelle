@@ -9,8 +9,8 @@ install:
 script:
   - export PATH="$HOME/.meteor:$PATH"
   - cp settings.json.template settings.json
-  - eslint .
-  - spacejam test-packages --settings settings.json
+  - ./run_tests.sh -l
+  - ./run_tests.sh -t
 
 branches:
   only:
