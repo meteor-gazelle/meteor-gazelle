@@ -23,9 +23,11 @@ Package.onUse(function (api) {
 
 Package.onTest(function (api) {
 
-  //TODO: Why is this causing the tests to stall?
-  //api.use('gazelle-users', ['client', 'server']);
-  api.use('tinytest', ['client', 'server']);
+  api.use('gazelle-lib', ['server']);
+  api.use('gazelle-users', ['server']);
+  api.use('tinytest', ['server']);
+  api.use('practicalmeteor:chai', ['server']);
+  api.use('practicalmeteor:sinon', ['server']);
 
   api.addFiles('tests/server.js', 'server');
 });
