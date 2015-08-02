@@ -26,6 +26,8 @@ gazelle-core@0.0.1
 gazelle-footer@0.0.1
 gazelle-header@0.0.1
 gazelle-lib@0.0.1
+gazelle-permissions@0.0.1
+gazelle-schema@0.0.1
 gazelle-theme@0.0.1
 gazelle-users@0.0.1
 geojson-utils@1.0.3

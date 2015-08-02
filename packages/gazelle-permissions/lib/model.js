@@ -1,0 +1,5 @@
+Permissions = {
+  can: function() {
+
+  }
+}
