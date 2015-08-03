@@ -25,8 +25,15 @@ Package.onUse(function (api) {
     'lib/model.js'
   ], ['client', 'server']);
 
-  api.export('Permissions');
+  api.export(['Permissions', 'SitePermissions'])
 });
 
 Package.onTest(function (api) {
+  api.use('gazelle-lib', ['server']);
+  api.use('gazelle-permissions', ['server']);
+  api.use('tinytest', ['server']);
+  api.use('practicalmeteor:chai', ['server']);
+  api.use('practicalmeteor:sinon', ['server']);
+
+  api.addFiles('tests/server.js', 'server');
 });
