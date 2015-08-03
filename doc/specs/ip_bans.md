@@ -204,23 +204,3 @@ Date: 7/15/2015
 **Functional Requirements:**
 
 * Banned IP data is removed from the database.
-
-## Data model
-
-**Login Attempts:**
-> * The long data type format of the IP address where the failed login attempt originated from.
-> * The string data type format of the IP address where the failed login attempt originated from.
-> * The integer data type of the amount of failed login attempts from the given IP address.
-> * The date time data type of the most recent failed login attempt.
-> * The date time data type of when the record was created.
-> * The date time data type of when the record is to expire.
-
-**Banned IPs:**
-> * The long data type format of the IP address that is to be banned, or the beginning of the IP address range which is banned.
-> * The string data type format of the IP address that is to be banned, or the beginning of the IP address range which is banned.
-> * The long data type format of the end of the IP address range that is to be banned; optional.
-> * The string data type format of the end of the IP address range that is to be banned; optional.
-> * The string data type format of any relevant notes pertaining to the banned IP address.
-> * The date time data type of when the banned IP record was created.
-> * The string data type format of the user id which created the banned IP record.
-> * The date time data type format of when the record is to expire.
