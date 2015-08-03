@@ -1,14 +1,4 @@
-# Authentication system
-
-## Metadata
-
-Author: flaming
-
-### Changelog
-
-**2015-08-02**
-
-* Initial version
+ends system
 
 ## Table of contents
 
@@ -23,32 +13,93 @@ In a world with pseudonyms and nonstatic avatars rather than names and static fa
 
 ## Business rules
 
-* Only User X can see User X's friend list.
-* On every user profile page (excluding the logged-in user's own), there is an "Add friend" link. This is the primary method of adding friends.
-  * This is not a facebook-style friend *request* system. If User X clicks the "Add friend" link on User Y's profile, then User Y is added to User X's friend list; no acknowledgement of this action is provided to User Y.
-* If the logged-in user is already friends with the user, this is instead a "Remove friend" link.
-* User X can add User Y to his/her friends list by navigating to User Y's user profile and clicking the "Add Friend" button.
-* On the dedicated "Friends" page (navigable through the header "Friends" link), a list of the user's friends is provided. Each list element, listing friend X, contains the following:
-  * X's user info: username, user class, ratio, upload amount, download amount
-  * X's avatar
-  * An editable text box labelled "Notes" containing any saved notes on X, along with an "Update" button which saves the box's current text.
-  * A "Remove friend" button, which functions the same as clicking the "Remove friend" button on X's profile, but returns the user to this page ("Friends") rather than X's profile
-  * A "Send message" button, which initiates composing an inbox message to X
-  * A "Send Rippy" button, which initiates composing a Rippy to X
+* No information about User X's friend list, including the friend list as a whole as well as individual friend management actions taken by User X, shall be visible to anyone but User X him/herself.
+* User X can have his/her access to the Friends system removed by staff.
 
 ## Use cases
 
-### 1. Editing notes
+### 1.1 Adding friends
 
-**Primary Actor:** A user
+**Primary actor:** User X
 
-**Brief:** User X (the logged-in user) wishes to edit his saved notes for his friend Y.
+**Brief:** X can add friends to his/her friends list.
+
+**Trigger:** User X navigates to User Y's profile
+
+**Preconditions:**
+
+* X is not already friends with Y
+* X does not have his access to the friends functionality disabled
+
+**Postconditions:**
+* Y is added to X's friend list 
+
+**Basic flow:**
+
+1. X navigates to Y's user profile
+2. X clicks the "Add friend" link on Y's profile
+
+**Applicable business rules:**
+
+* This action does not notify User Y in any way
+
+### 1.2 Removing friends
+**Primary actor:** User X
+
+**Brief:** X can remove an arbitrary friend, say user Y, from his/her friends list.
+
+**Trigger:** User X navigates to User Y's profile, **or** User X navigates to "Friends" page
+
+**Preconditions:**
+* X is already friends with Y
+* X does not have his access to the friends functionality disabled
+
+**Postconditions:**
+* Y is no longer on X's friend list
+
+**Basic flow:**
+1. X clicks "Remove friend" link on Y's profile, or the "Remove Friend" link for Y on the "Friends" page
+
+**Applicable business rules:**
+
+* This action does not notify User Y in any way
+
+### 2 Displaying friend list
+
+**Primary actor:** User X
+
+**Brief:** X would like to see a list of all his friend, as well as notes saved about them
+
+**Trigger:** X clicks the "Friends" link in the site header
+
+**Preconditions:**
+
+* X does not have his access to the friends feature disabled
+
+**Postconditions:**
+* List of friends is displayed. Each list element (for friend Y) includes:
+  * Y's user info: username, user class, ratio, upload amount, download amount
+  * Y's avatar
+  * An editable text box labelled "Notes" containing any saved notes on Y, along with an "Update" button which saves the box's current text.
+  * A "Remove friend" button
+  * A "Send message" button, which initiates composing an inbox message to Y
+  * A "Send Rippy" button, which initiates composing a Rippy to Y
+
+**Basic flow:**
+
+1. User navigates to Friends page
+
+### 2.1 Editing notes
+
+**Primary Actor:** User X
+
+**Brief:** X wishes to edit his saved notes for his friend Y.
 
 **Preconditions:**
 
 * User Y should be in User X's friend list already
 
-**Trigger:** User X receives Secret Santa scarf in mail from User Y
+**Trigger:** X navigates to "Friends" page
 
 **Postconditions:**
 
@@ -56,12 +107,9 @@ In a world with pseudonyms and nonstatic avatars rather than names and static fa
 
 **Basic Flow:**
 
-1. User navigates to "Friends" page
 1. User edits the "Notes" text box pertaining to user Y
 1. User clicks the "Update" button next to this text box
 
-## Data model
+**Applicable business rules:**
 
-*   Friend list `Schema`
-  * `_id: {type: Number, ref: 'users'}` (ID of the logged in user)
-  * Friends: `Array` of `{id: Number, notes: String}` elements
+* This action does not notify User Y in any way
