@@ -20,10 +20,9 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-    'lib/config.js',
     'lib/schema.js',
-    'lib/model.js'
-  ], ['client', 'server']);
+    'lib/permissions.js'
+  ], ['server']);
 
   api.export(['Permissions', 'SitePermissions'])
 });

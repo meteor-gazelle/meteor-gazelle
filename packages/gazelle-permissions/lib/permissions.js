@@ -16,12 +16,20 @@ SitePermissions = {
       }
     }
   }
-}
+};
 
 Permissions = {
-  can: function () {
-
+  enabled: function(userId, obj) {
+    return Meteor.call('permissions/enabled', userId, obj);
+  },
+  disabled: function(obj) {
+    return Meteor.call('permissions/disabled', userId, obj);
   }
 };
 
-
+Meteor.methods({
+  'permissions/enabled': function(userId, obj) {
+  },
+  'permissions/disabled': function(userId, obj) {
+  }
+});
