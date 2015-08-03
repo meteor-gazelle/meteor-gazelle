@@ -163,16 +163,3 @@ The site header is a critical UI element. It provides the user with navigation l
 **Basic Flow:**
 
 1. User selects the "Remove" button/icon next to desired custom link in the header.
-
-## Data model
-
-* Authenticated user information
-  * Username
-  * Avatar
-  * Uploaded
-  * Downloaded
-  * Ratio
-  * Required Ratio
-  * Number of Notifications
-* Current route / page
-* Notifications
