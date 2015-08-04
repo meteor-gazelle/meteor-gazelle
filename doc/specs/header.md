@@ -1,15 +1,5 @@
 # Site Header
 
-## Metadata
-
-Author: sneakysneaky
-
-### Changelog
-
-**2015-07-13**
-
-* Initial version
-
 ## Table of contects
 
 1. Motivation
