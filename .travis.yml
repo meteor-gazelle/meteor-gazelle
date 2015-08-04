@@ -15,14 +15,3 @@ script:
 branches:
   only:
     - master
-
-notifications:
-  irc:
-    channels:
-      - "irc.what-network.net#gazelle"
-    template:
-      - "Build %{build_number} %{result}: %{build_url}"
-    on_success: change
-    on_failure: always
-    use_notice: false
-    skip_join: false
