@@ -1,14 +1,4 @@
-# Site Header
-
-## Metadata
-
-Author: sneakysneaky
-
-### Changelog
-
-**2015-07-13**
-
-* Initial version
+# Collages
 
 ## Table of contects
 
@@ -18,147 +8,133 @@ Author: sneakysneaky
 
 ## Motivation
 
-The site header is a critical UI element. It provides the user with navigation links to the rest of the site, displays basic user info, and provides additional site branding.
+The collage system is an important feature.
+It provides an orthogonal way to either artist page or tagging system to organise Album, based (mostly) on Facts.
 
 ## Business rules
 
-* The header is only visible to authenticated users.
-* The header visually appears the same on all pages. The navigation elements may vary from page to page, & only to indicate the current page.
-
-* The following UI elements are accessible on all screen sizes. Elements may be initially hidden for ease of use, but all elements can be accessed without navigating to another page.
-  * Site Title (Gazelle)
-  * Primary navigation routes
-    * Torrents
-      * All torrents
-      * Collages
-      * Notifications
-    * Requests
-    * Help
-      * All torrents
-      * Collages
-      * Notifications
-    * Forums
-    * IRC
-    * Store
-    * Donate
-  * Secondary Navigation
-    * Inbox
-    * New Upload
-    * Uploads
-    * Statistics
-    * Bookmarks
-    * Notifications
-    * Subscriptions
-    * Comments
-    * Friends
-    * Invite
-    * Edit Profile
-    * Logout
-    * Custom links
-  * Basic user statistics
-    * Username
-    * Uploaded
-    * Downloaded
-    * Ratio
-    * Required Ratio
-    * Number of invites
-  * New Notifications Count
-  * Unified search box
-
-* The following UI elements are optional & may be hidden on smaller screen sizes for ease of use.
-  * Navigation to refined torrent filters
-    * Music
-    * Applications
-    * Literary
-    * Learning
-    * Comedy
-    * Comics
-  * User Avatar
-  * Notification summaries
-    * Torrent notifications
-    * Forum notifications
-    * New messages
-  * Refined search boxes
-
-* If present, the notification summary can be toggled visible/hidden by the user. The notification summary displays the users five most recent notifications as well as the number of unread notifications. Unread notifications are styled differently than read notifications (i.e. bolded) to visually distinguish them.
+* Collage contains albums
+* Collage should be suscribable
+* Collage system should only permit the creation of a collage if:
+  * the user rank is higher enough,
+  * the collage has enough torrents (today rules fix the min. number to 3)
+* Collage system should encourage users:
+ * Choosing a explicit and descriptive name to their collage
+ * Filling missing coverart for the album in their
+ * Rather contributing to existing collage than creating a new
+* Above a certain rank, or due to being generous (donation) users may receive "Personal Collage" that they can manage based on their opinions.
+* Access to content and actions can be controlled via permission settings
 
 ## Use cases
 
-### 1.0 Unified Search
+### 1.0 Search collage
 
 **Primary Actor:** A user
 
-**Brief:** The user is able to search torrents, artists, labels, requests, forums, logs, & users via a single input.
+**Brief:** The user is able to search collage.
 
-**Triger:** When the user inputs into the unified search box
+**Triger:** When the user inputs into the unified search box or the refined search box or a dedicated page.
 
-**Postconditions:** Unified search results are displayed.
-
-**Basic Flow:**
-
-1. The user inputs a search query into the unified search box.
-1. Auto-suggested search results are displayed as the user types.
-1. If user selects an auto-suggested result, the user is routed to the detailed view of that item (torrent, artist, etc).
-1. User is routed to a search-results view when either the <enter> key is pressed or the "Search" button is clicked.
-
-### 1.1 Refined Search
-
-**Primary Actor:** A user
-
-**Brief:** The user is able to search torrents, artists, labels, requests, forums, logs, & users via individual search inputs.
-
-**Trigger:** When the user clicks the "expand search" icon.
-
-**Postconditions:** Refined search results are displayed.
+**Postconditions:** Collage
 
 **Basic Flow:**
 
-1. The user clicks the "expand search query" icon/button (i.e. hamburger). Individual search fields for torrents, artists, labels, requests, forums, logs, & users appear.
-1. The user inputs a search query into the one of the search boxes.
-1. Auto-suggested search results are displayed as the user types.
-1. If user selects an auto-suggested result, the user is routed to the detailed view of that item (torrent, artist, etc).
-1. User is routed to a search-results view when either the <enter> key is pressed or the "Search" button is clicked.
+1. TBD
 
-### 2.0 Custom Links
+### 2.0 Create "personal" Collage
 
-**Primary Actor:** A user
+**Primary Actor:** An user that receive the possibility to create collage
 
-**Brief:** The user is able view & navigate to the custom links that they are created.
+**Brief:**  TBD
 
-**Preconditions:** User has added custom links in their profile.
+**Trigger:** TBD
 
-**Postconditions:** Custom links are visible to the user.
+**Postconditions:** TBD
 
 **Basic Flow:**
 
-1. Custom links are visible in the header
-1. When user clicks on a custom link, the user is routed to that custom page.
+1. TBD
 
-### 2.1 Add Custom Link
+### 2.1 Create non "personal" Collage
 
-**Primary Actor:** A user
+**Primary Actor:** An user that has the possibility to create collage
 
-**Brief:** The user adds a custom link to the header
+**Brief:**  TBD
 
-**Precondition:** The current route does not appear in the navigation
+**Trigger:** TBD
 
-**Postcondition:** The current route is added to the custom links in the header
-
-**Basic Flow:**
-
-1. User navigates to any route
-1. User expands the "Custom Links" section of the navigation & selects "Add current page"
-
-### 2.2 Remove Custom Link
-
-**Primary Actor:** A user
-
-**Brief:** The user removes a custom link from the header
-
-**Precondition:** The user has at least one custon link in the header
-
-**Postcondition:** The link is removed from the header
+**Postconditions:** TBD
 
 **Basic Flow:**
 
-1. User selects the "Remove" button/icon next to desired custom link in the header.
+1. TBD
+
+### 3.0 Add an album to one collage
+
+**Primary Actor:** An user that receive the possibility to modify the content of a collage
+
+**Brief:**  TBD
+
+**Trigger:** TBD
+
+**Postconditions:** TBD
+
+**Basic Flow:**
+
+1. TBD
+
+### 3.1 Remove an album to one collage
+
+**Primary Actor:** An user that receive the possibility to modify the content of a collage
+
+**Brief:**  TBD
+
+**Trigger:** TBD
+
+**Postconditions:** TBD
+
+**Basic Flow:**
+
+1. TBD
+
+### 3.2 Modify the title of one collage
+
+**Primary Actor:** A moderator
+
+**Brief:**  TBD
+
+**Trigger:** TBD
+
+**Postconditions:** TBD
+
+**Basic Flow:**
+
+1. TBD
+
+### 4 Display the content of a collage
+
+**Primary Actor:** An user
+
+**Brief:**  TBD
+
+**Trigger:** TBD
+
+**Postconditions:** TBD
+
+**Basic Flow:**
+
+1. TBD
+
+### 4 Suscribe to a collage
+
+**Primary Actor:** An user
+
+**Brief:**  TBD
+
+**Trigger:** TBD
+
+**Postconditions:** TBD
+
+**Basic Flow:**
+
+1. TBD
