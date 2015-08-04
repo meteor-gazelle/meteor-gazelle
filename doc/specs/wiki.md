@@ -5,18 +5,20 @@
 1. Motivation
 2. Business rules
 3. Use cases
-4. Data model
 
 ## Motivation
 
->The site contains a variety of users with a vast wealth of knowledge. The wiki is a place where users can put their knowledge to work, and write articles for users to use. These may be supplementary to other documents on the site, or standalone documents such as guides.
+The site contains a variety of users with a vast wealth of knowledge. The wiki is a place where users can put their knowledge to work, and write articles for users to use. These may be supplementary to other documents on the site, or standalone documents such as guides.
 
 ## Business rules
 
-> * Articles must be able to be read/write locked based on user class.
-> * Users with the wiki administration permission must have full access to all articles.
-> * Article creation must be associated with a permission.
-> * Duplicate aliases, tags, and dedicated terms must be unique and not empty.
+* Articles must be able to be read/write locked based on user class.
+* Users with the wiki administration permission must have full access to all articles.
+* Article creation must be associated with a permission.
+* Aliases, tags, and dedicated terms must be unique.
+* Articles must have a revision history, with the ability to roll back to a previous revision by a user
+  with the wiki administration permission.
+* Articles must be able to be commented on, and it must be associated with a permission.
 
 ## Use cases
 
@@ -28,7 +30,7 @@
 
 **Preconditions:** The user must have the wiki creation permission, the wiki management permission, or the wiki administration permission enabled.
 
-**Trigger:** When the user clicks the link to create an article.
+**Trigger:** The user chooses to create an article.
 
 **Postconditions:**
 
@@ -36,14 +38,23 @@
 
 **Basic Flow:**
 
-1. The user clicks the link to create an article.
-2. The template is generated, containing a title and section textarea.
-3. The user fills out the fields and user class read/edit restrictions, and submits the article.
+1. The user navigates to the wiki and chooses to create an article.
+2. The template is generated, containing a title and section textarea, as well as ways to add other sections/sub-sections.
+3. The user fills out the template and user class read/edit restrictions, and submits the article.
 
 **Non-Functional Requirements**
 
-* Each section must have a method to add another section.
-* Each section must have a method to add a sub-section.
+* Each template section must have a method to add another section.
+* Each template section must have a method to add a sub-section.
+
+**Functional Requirements**
+
+* BBCode/Markdown that changes the font size must be removed from the article text upon submission.
+
+**Miscellaneous:**
+
+* A "section" is a section of a wiki article, used for organizing info and generating the table of contents.
+* The template, by default, renders a single section for the user to fill out, with the option to add more sections and sub-sections.
 
 ### 2.0 Viewing an article
 
@@ -162,92 +173,7 @@
 
 * Only articles the user can view must be returned.
 
-### 6.0 Article comments
-
-**Primary Actor:** A user
-
-**Brief:** Sometimes, articles are out of date or have broken images. Having a comments/discussion section can help editors fix things that are incorrect and add new information.
-
-**Precondition:** The user is viewing an article.
-
-**Trigger:** The user clicks the comments link on an article's page.
-
-**Postconditions:** The comments are rendered.
-
-**Basic Flow:**
-
-1. The user clicks the comments link on an article's page.
-2. The comments are rendered.
-
-### 6.1 Adding a comment to an article
-
-**Primary Actor:** A user
-
-**Brief:** Comments must be able to be added to articles.
-
-**Precondition:**
-
-* The user has the appropriate user class to view the article and has the wiki comment permission or the wiki management permission enabled, or has the wiki administration permission enabled.
-
-**Trigger:** The user clicks submit on the comment page.
-
-**Postcondition:** The comment is posted.
-
-**Basic Flow:**
-
-1. The user navigates to the comments page for an article.
-2. The user types in their comment and hits submit.
-3. The page is refreshed, displaying the newly added comment.
-
-**Functional Requirements:**
-
-* The comment is saved in database.
-
-### 6.2 Editing Wiki Comments
-
-**Primary Actor:** A user
-
-**Brief:** Comments will sometimes be innapropriate. These comments need to be edited.
-
-**Precondition:** The user has the wiki management permission enabled, is the author of the comment, or has the wiki administration permission enabled.
-
-**Trigger:** The user clicks the edit button above a comment.
-
-**Postcondition:** The edited comment is saved.
-
-**Basic Flow:**
-
-1. The user clicks the edit button above a wiki comment.
-2. The user edits the comment.
-3. The user clicks save, and the changes are saved to the database.
-
-**Functional Requirements:**
-
-* When the change is saved, the document must be updated with the user ID that edited the comment, and the timestamp of the edit time.
-
-### 6.3 Deleting Wiki Comments
-
-**Primary Actor:** A user
-
-**Brief:** Sometimes wiki comments need to be deleted.
-
-**Precondition:** The user has the wiki management permission or the wiki administration permission enabled.
-
-**Trigger:** The manager clicks the delete button above a comment.
-
-**Postcondition:** The comment is deleted.
-
-**Basic Flow:**
-
-1. The manager clicks the delete button above a comment.
-2. The manager is prompted with a confirmation window, ensuring they actually want to delete the comment.
-3. The comment is deleted if the manager clicks yes.
-
-**Functional Requirements:**
-
-* The corresponding comment's document must be deleted from the database.
-
-### 7.0 Tagging articles
+### 6.0 Tagging articles
 
 **Primary Actor:** A user
 
@@ -269,7 +195,7 @@
 * Duplicate or blank tags must be ignored.
 * A new revision must be created when a tag is added.
 
-### 7.1 Removing article tags
+### 6.1 Removing article tags
 
 **Primary Actor:** A user
 
@@ -290,7 +216,7 @@
 
 * A new revision must be created when a tag is removed.
 
-### 8.0 Managing an article's dedicated terms
+### 7.0 Managing an article's dedicated terms
 
 **Primary Actor:** A user
 
@@ -310,39 +236,3 @@
 **Applicable business rules:**
 
 * Dedicated terms must be unique across all articles.
-
-## Data model
-
-**Wiki Articles:**
-* The title of the article.
-* The ID of the user that created the article.
-* An array of unique dedicated terms.
-* The timestamp of the article creation time.
-* The timestamp of the last edit time.
-* A sections subdocument, containing:
-  * The title of the section.
-  * The body of the section.
-  * A sub-section document, containing:
-    * The title of the sub-section.
-    * The body of the sub-section.
-* A revisions subdocument, containing:
-  * The revision title.
-  * The revision body.
-  * The timestamp of the revision date.
-  * The ID of the user that authored the revision.
-* A tags subdocument, containing:
-  * The tag name.
-  * The ID of the user that added the tag.
-  * The timestamp of when the tag was added.
-* A comments subdocument, containing:
-  * The ID of the user that added the comment.
-  * The comment body.
-  * The ID of the user that last edited the comment.
-  * The timestamp of when the comment was created.
-  * The timestamp of when the comment was last edited.
-
-  **Wiki Aliases**
-  * The search term.
-  * The aliased term.
-  * The ID of the user that added the alias.
-  * The timestamp of when the alias was added.
