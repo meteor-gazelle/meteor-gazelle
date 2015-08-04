@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'gazelle-home',
+  name: 'meteor-gazelle-footer',
   version: '0.0.1',
-  summary: 'The home page of meteor-gazelle.',
+  summary: 'The site footer.',
   documentation: 'README.md',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
@@ -10,12 +10,18 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   var packages = [
-    'gazelle-core'
+    'meteor-gazelle-lib',
+    'momentjs:moment'
   ];
 
   api.use(packages);
 
   api.imply(packages);
+
+  api.addFiles([
+    'lib/client/footer/footer.html',
+    'lib/client/footer/footer.js'
+  ], ['client']);
 
 });
 
