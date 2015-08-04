@@ -1,7 +1,8 @@
 Package.describe({
-  name: 'gazelle-footer',
+  name: 'meteor-gazelle-schema',
   version: '0.0.1',
-  summary: 'The site footer.',
+  summary: 'Helps generate schema consumed by meteor-gazelle packages. To \
+            be used alongside the meteor-simple-schema package.',
   documentation: 'README.md',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
@@ -9,20 +10,11 @@ Package.describe({
 Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
-  var packages = [
-    'gazelle-lib',
-    'momentjs:moment'
-  ];
-
-  api.use(packages);
-
-  api.imply(packages);
-
   api.addFiles([
-    'lib/client/footer/footer.html',
-    'lib/client/footer/footer.js'
-  ], ['client']);
+    'gazelleSchema.js'
+  ], ['client', 'server']);
 
+  api.export('GazelleSchema');
 });
 
 Package.onTest(function (api) {
