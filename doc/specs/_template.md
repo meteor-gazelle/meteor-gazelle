@@ -1,16 +1,5 @@
 # Authentication system
 
-## Metadata
-
-Author: DutchDude
-
-### Changelog
-
-**2015-07-09**
-
-* Initial version
-* Something you changed
-
 ## Table of contents
 
 1. Motivation

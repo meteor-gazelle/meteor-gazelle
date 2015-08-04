@@ -1,10 +1,5 @@
 # IP Tools
 
-## Metadata
-
-Author: Rhomes
-Date: 7/15/2015
-
 ## Table of contents
 
 1. Motivation
