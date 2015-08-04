@@ -20,7 +20,6 @@ It provides an orthogonal way to either artist page or tagging system to organis
   * the collage has enough torrents (today rules fix the min. number to 3)
 * Collage system should inform users that:
  * a similar collage exist : so one can contribute to rather creating a new one
-* Access to content and actions can be controlled via permission settings
 
 ## Use cases
 
