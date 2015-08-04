@@ -3,5 +3,6 @@
         "site" : {
             "name": "Gazelle"
         }
-    }
+    },
+    "MAX_LOGIN_ATTEMPTS": 5
 }

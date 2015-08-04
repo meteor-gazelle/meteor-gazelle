@@ -7,6 +7,16 @@ if (Meteor.isServer) {
     });
     return user;
   });
+
+  Accounts.validateLoginAttempt(function (options) {
+    try {
+      var validLogin = Meteor.call('validateLogin', options.allowed, options.connection.clientAddress);
+    } catch (ex) {
+      throw ex;
+    }
+
+    return validLogin;
+  })
 }
 
 AccountsTemplates.configureRoute('signIn', {
