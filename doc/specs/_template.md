@@ -16,7 +16,6 @@ Author: DutchDude
 1. Motivation
 1. Business rules
 1. Use cases
-1. Data model
 
 ## Motivation
 
