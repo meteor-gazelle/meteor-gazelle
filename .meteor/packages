@@ -19,7 +19,7 @@ fourseven:scss
 accounts-ui
 useraccounts:core
 
-meteor-gazelle:core
-meteor-gazelle:home
-meteor-gazelle:theme
+gazelle-core
+gazelle-home
+gazelle-theme
 tinytest
