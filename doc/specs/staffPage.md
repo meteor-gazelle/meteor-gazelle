@@ -5,7 +5,6 @@
 1. Motivation
 2. Business rules
 3. Use cases
-4. Data model
 
 ## Motivation
 
@@ -37,7 +36,7 @@
 2. The staff page is generated, including the username hyperlink and the user's staff page description.
 ### 2.0 User editing their staff page description
 
-**Primary Actor:** A user that qualifies for a staff page description
+**Primary Actor:** A user that belongs to a user class that is displayed on the staff page.
 
 **Brief:** Staff members must be able to edit the staff page description that shows up next to their username on the staff page.
 
@@ -150,12 +149,3 @@
 
 1. The user clears the staff page description textarea.
 2. The user clicks save.
-
-## Data Model
-
-**User Classes:**
-> * If the class is staff or not.
-> * Staff page description.
-
-**Users:**
-> * Staff page description.
