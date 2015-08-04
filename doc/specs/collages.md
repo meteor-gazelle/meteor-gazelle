@@ -13,16 +13,13 @@ It provides an orthogonal way to either artist page or tagging system to organis
 
 ## Business rules
 
-* Collage contains albums
-* Collage should be suscribable
+* Collage could regroup artists, torrents, torrents group, requests, labels
+* Collage should be subscribable
 * Collage system should only permit the creation of a collage if:
-  * the user rank is higher enough,
+  * the user is allowed to create collage,
   * the collage has enough torrents (today rules fix the min. number to 3)
-* Collage system should encourage users:
- * Choosing a explicit and descriptive name to their collage
- * Filling missing coverart for the album in their
- * Rather contributing to existing collage than creating a new
-* Above a certain rank, or due to being generous (donation) users may receive "Personal Collage" that they can manage based on their opinions.
+* Collage system should inform users that:
+ * a similar collage exist : so one can contribute to rather creating a new one
 * Access to content and actions can be controlled via permission settings
 
 ## Use cases
