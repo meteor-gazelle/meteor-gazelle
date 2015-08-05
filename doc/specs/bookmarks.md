@@ -13,8 +13,8 @@ or requests made on the website
 
 ## Business rules
 
-* Users are able to bookmark a torrent group, artist, collage, or reqyest.
-* Users are able to remove booksmarks
+* Users are able to bookmark a torrent group, artist, collage, or request.
+* Users are able to remove bookmarks
 * Users are able to sort bookmarks in ascending or descending order based on different fields.
 * Users can receive notifications about certain bookmarks. 
 
@@ -41,7 +41,7 @@ or requests made on the website
  - Each "row" for the torrent group should appear as it would on the artist page
 
  
-#### 1.1 Adding a Torrent Bookmark
+#### 1.1 Adding a Torrent Group Bookmark
 
 **Primary Actor:** Any user.
 
@@ -130,7 +130,7 @@ torrent ranking will be spliced from the overall bookmark list.
  
 **Primary Actor:** Any user.
 
-**Brief:** Allows the user to remove all torent groups that have already been snatched.
+**Brief:** Allows the user to remove all torrent groups that have already been snatched.
 
 **Trigger:** The user wishes to prune their torrent group bookmark list of snatched torrents.
 
@@ -144,7 +144,7 @@ torrent ranking will be spliced from the overall bookmark list.
 **Additional functional requirements:** 
  - The server should check each bookmark to see if the torrent has been snatched and remove bookmarks 
  of torrent groups that have been. 
- - The server should splice the rankings accordingly if booksmarks are removed. 
+ - The server should splice the rankings accordingly if bookmarks are removed. 
 
 **Additional non-functional requirements:**
  - The displayed table should be updated to reflect the changes from the removal. 
@@ -588,4 +588,3 @@ like they can on the requests page.
  
 **Additional non-functional requirements:** 
  - The displayed table should reflect the above result set. 
- 
