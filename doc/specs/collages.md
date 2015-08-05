@@ -23,6 +23,16 @@ It provides an orthogonal way to either artist page or tagging system to organis
 
 ## Use cases
 
+### 0.0 Display the content of a collage
+
+**Primary Actor:** A user
+
+**Brief:**  The content of collage must be displayed
+
+**Trigger:** The user navigates to a collage
+
+**Postconditions:** The content of collage is displayed
+
 ### 1.0 Search collage
 
 **Primary Actor:** A user
@@ -31,49 +41,32 @@ It provides an orthogonal way to either artist page or tagging system to organis
 
 **Triger:** When the user inputs into the unified search box or the refined search box or a dedicated page.
 
-**Postconditions:** Collage
+**Postconditions:** A table containing the results of the search is displayed
 
-**Basic Flow:**
 
-1. TBD
-
-### 2.0 Create "personal" Collage
+### 2.0 Create an empty Collage
 
 **Primary Actor:** An user that receive the possibility to create collage
 
-**Brief:**  TBD
+**Brief:**  The user is able to create a new collage
 
-**Trigger:** TBD
+**Trigger:** The user clicks on new collage button and fill the form
 
-**Postconditions:** TBD
-
-**Basic Flow:**
-
-1. TBD
-
-### 2.1 Create non "personal" Collage
-
-**Primary Actor:** An user that has the possibility to create collage
-
-**Brief:**  TBD
-
-**Trigger:** TBD
-
-**Postconditions:** TBD
+**Postconditions:** A page displaying the new empty collage that must be filled with min 3 contents to become public
 
 **Basic Flow:**
 
 1. TBD
 
-### 3.0 Add an album to one collage
+### 3.0 Add a content to one collage
 
 **Primary Actor:** An user that receive the possibility to modify the content of a collage
 
-**Brief:**  TBD
+**Brief:**  The user is able to create add content to the collage
 
-**Trigger:** TBD
+**Trigger:** The user click on adding a content and fill a form that link to the content
 
-**Postconditions:** TBD
+**Postconditions:** The content is added to the collage
 
 **Basic Flow:**
 
@@ -83,11 +76,11 @@ It provides an orthogonal way to either artist page or tagging system to organis
 
 **Primary Actor:** An user that receive the possibility to modify the content of a collage
 
-**Brief:**  TBD
+**Brief:** The user is able to create remove content to the collage
 
-**Trigger:** TBD
+**Trigger:** The user navigates to management pages and click on remove
 
-**Postconditions:** TBD
+**Postconditions:** The content is removed
 
 **Basic Flow:**
 
@@ -95,7 +88,9 @@ It provides an orthogonal way to either artist page or tagging system to organis
 
 ### 3.2 Modify the title of one collage
 
-**Primary Actor:** A moderator
+**Primary Actor:**
+* A moderator
+* The creator of the collage
 
 **Brief:**  TBD
 
@@ -107,11 +102,12 @@ It provides an orthogonal way to either artist page or tagging system to organis
 
 1. TBD
 
-### 4 Display the content of a collage
+
+### 4 Subscribe to a collage
 
 **Primary Actor:** An user
 
-**Brief:**  TBD
+**Brief:** The user is able to subscribe to a collage
 
 **Trigger:** TBD
 
@@ -121,11 +117,25 @@ It provides an orthogonal way to either artist page or tagging system to organis
 
 1. TBD
 
-### 4 Suscribe to a collage
+### 5 Bookmark to a collage
 
 **Primary Actor:** An user
 
-**Brief:**  TBD
+**Brief:** The user is able to bookmark a collage
+
+**Trigger:** TBD
+
+**Postconditions:** TBD
+
+**Basic Flow:**
+
+1. TBD
+
+### 6 Comment to a collage
+
+**Primary Actor:** An user
+
+**Brief:**  The user is able comment a collage
 
 **Trigger:** TBD
 
