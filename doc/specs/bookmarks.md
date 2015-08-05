@@ -22,8 +22,26 @@ or requests made on the website
 
 ### 1. Torrent Group Bookmarking
 
+#### 1.0 Viewing All Bookmarked Torrent Groups
 
-#### 1.0 Adding a Torrent Bookmark
+**Primary Actor:** Any user.
+
+**Brief:** Allows the user to view their torrent group bookmarks.
+
+**Trigger:** The user wants to view torrent group bookmarks.
+
+**Preconditions:** The user has already bookmarked at least one torrent group. 
+
+**Basic Flow:**
+ 1. The user navigates to the Bookmarks page.
+ 2. The user clicks on the Torrents hyperlink.
+
+**Additional non-functional requirements:** 
+ - There is a cover art section. 
+ - Each "row" for the torrent group should appear as it would on the artist page
+
+ 
+#### 1.1 Adding a Torrent Bookmark
 
 **Primary Actor:** Any user.
 
@@ -48,7 +66,7 @@ or requests made on the website
  -  The hyperlink text is updated to "Remove Bookmark"
  
  
-#### 1.1 Removing a Torrent Group Bookmark
+#### 1.2 Removing a Torrent Group Bookmark
 
 **Primary Actor:** Any user.
 
@@ -87,7 +105,7 @@ torrent ranking will be spliced from the overall bookmark list.
  - The torrent group listing should be removed from the page. 
  
  
-#### 1.2 Managing Bookmarked Torrent Groups
+#### 1.3 Managing Bookmarked Torrent Groups
 
 **Primary Actor:** Any user.
 
@@ -108,7 +126,7 @@ torrent ranking will be spliced from the overall bookmark list.
  - The user should be redirected to the bookmarked torrent groups page after the changes have saved.
  
  
-#### 1.3 Remove Snatched Bookmarked Torrent Groups
+#### 1.4 Remove Snatched Bookmarked Torrent Groups
  
 **Primary Actor:** Any user.
 
@@ -132,27 +150,49 @@ torrent ranking will be spliced from the overall bookmark list.
  - The displayed table should be updated to reflect the changes from the removal. 
  
  
-#### 1.4 Viewing All Bookmarked Torrent Groups
+#### 1.5 Setting a Note on a Torrent Group
 
 **Primary Actor:** Any user.
 
-**Brief:** Allows the user to view their torrent group bookmarks.
+**Brief:** Allows the user to set a personal note on the torrent group.
 
-**Trigger:** The user wants to view torrent group bookmarks.
+**Trigger:** The user wants to set a reminder/note to remember why a torrent group was bookmarked. 
 
-**Preconditions:** The user has already bookmarked at least one torrent group. 
+**Preconditions:** The user must have already bookmarked the torrent group they want to make a note for.
 
-**Basic Flow:**
- 1. The user navigates to the Bookmarks page.
- 2. The user clicks on the Torrents hyperlink.
+**Basic Flow:** 
 
-**Additional non-functional requirements:** 
- - There is a cover art section. 
+ 1. The user navigates to the Bookmarks page for torrent groups.
+ 2. The user clicks "Set Note" for the respective torrent group.
+ 3. The user enters and submits a note.
 
+**Additional non-functional requirements:**
+ - The torrent group should show the note on hover in the main table. 
+ 
+ 
 
 ### 2. Artist Bookmarking
 
-#### 2.0 Adding an Artist Bookmark
+#### 2.0 Viewing All Bookmarked Artists
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows the user to view artist bookmarks.
+
+**Trigger:** The user wants to view artist bookmarks.
+
+**Preconditions:** The user has already bookmarked at least one artist. 
+
+**Basic Flow:**
+ 1. The user navigates to the Bookmarks page.
+ 2. The user clicks on the Artists hyperlink.
+
+**Additional non-functional requirements:** 
+ - The table displayed has the following columns: Artist Name, Number of Torrent Groups
+ - The column for Artist Name should be hyperlinked to the appropriate artist page.
+ 
+
+#### 2.1 Adding an Artist Bookmark
 
 **Primary Actor:** Any user.
 
@@ -177,7 +217,7 @@ torrent ranking will be spliced from the overall bookmark list.
  -  The hyperlink text is updated to "Remove Bookmark"
  
  
-#### 2.1 Removing an Artist Bookmark
+#### 2.2 Removing an Artist Bookmark
 
 **Primary Actor:** Any user.
 
@@ -216,7 +256,7 @@ notifications were set, the notifications will be removed.
  - The artist row should be removed from the page. 
  
  
-#### 2.2 Enabling Notifications for Bookmarked Artists
+#### 2.3 Enabling Notifications for Bookmarked Artists
 
 **Primary Actor:** Any user.
 
@@ -239,7 +279,7 @@ notifications were set, the notifications will be removed.
  - The "Notify of new uploads" hyperlink should now read "Do not notify of new uploads". 
 
  
-#### 2.3 Disabling Notification for Bookmarked Artists
+#### 2.4 Disabling Notification for Bookmarked Artists
  
 **Primary Actor:** Any user.
 
@@ -260,24 +300,6 @@ notifications were set, the notifications will be removed.
 
 **Additional non-functional requirements:**
  - The "Notify of new uploads" hyperlink should now read "Notify of new uploads". 
- 
- 
-#### 2.4 Viewing All Bookmarked Artists
-
-**Primary Actor:** Any user.
-
-**Brief:** Allows the user to view artist bookmarks.
-
-**Trigger:** The user wants to view artist bookmarks.
-
-**Preconditions:** The user has already bookmarked at least one artist. 
-
-**Basic Flow:**
- 1. The user navigates to the Bookmarks page.
- 2. The user clicks on the Artists hyperlink.
-
-**Additional non-functional requirements:** 
- - The table displayed has the following columns: Artist Name, Number of Torrent Groups
  
  
 #### 2.5 Sorting All Bookmarked Artist Rows 
@@ -306,23 +328,264 @@ notifications were set, the notifications will be removed.
  - The table order should be sorted based on the user selection and logic above. 
 
  
+### 3. Collage Bookmarking
+
+#### 3.0 Viewing All Bookmarked Artists
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows the user to view collage bookmarks.
+
+**Trigger:** The user wants to view collage bookmarks.
+
+**Preconditions:** The user has already bookmarked at least one collage. 
+
+**Basic Flow:**
+ 1. The user navigates to the Bookmarks page.
+ 2. The user clicks on the Collage hyperlink.
+
+**Additional non-functional requirements:** 
+ - The table displayed has the following columns: Category, Collage, Torrents, Subscribers, Updated, Author
+ - The Category, Collage, and Author columns should have fields that are hyperlinked to their respective pages.
+ 
+
+#### 3.1 Adding a Collage Bookmark
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows a user to add a bookmark for a collage.
+
+**Trigger:** The user wishes to bookmark a collage.
+
+**Preconditions:** The user has not already bookmarked the collage
+
+**Postconditions:** The collage is now bookmarked for that user
+
+**Basic Flow:**
+
+ 1. The user navigates to the collage page.
+ 2. The user clicks the "Bookmark" hyperlink.
+ 3. The collage is bookmarked for that user.
+ 
+**Additional functional requirements:**
+ - The hyperlink function should also change to that of removing the bookmark
+
+**Additional non-functional requirements:** 
+ -  The hyperlink text is updated to "Remove Bookmark"
  
  
+#### 3.2 Removing a Collage Bookmark
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows a user to remove a bookmark for a collage.
+
+**Trigger:** The user wishes to remove the bookmark for a collage.
+
+**Preconditions:** The user has already bookmarked the collage.
+
+**Postconditions:** The collage is no longer bookmarked for that user.
+
+**Basic Flow:** 
+
+ 1. The user navigates to the collage page.
+ 2. The user clicks the "Remove Bookmark" hyperlink.
+ 3. The collage bookmark is removed.
+
+**Additional functional requirements:** 
+ - The hyperlink function should also change to that of adding a bookmark.
+
+**Additional non-functional requirements:**
+ - The hyperlink text is updated to "Bookmark" 
+ 
+ **Alternate Flow:**
+ 
+ 1. The user has navigated to the Bookmarks page for Collages.
+ 2. The user clicks the "Remove Bookmark" hyperlink.
+ 3. The collage bookmark is removed.
+ 
+**Additional non-functional requirements:**
+ - The collage row should be removed from the page. 
  
  
+#### 3.3 Sorting All Bookmarked Collage Rows 
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows the user to sort the rows of a bookmark collection based on different fields.
+
+**Trigger:** The user wants to sort by Category, Collage Name, Number of Torrents, 
+Subscribers, or Author Name
+
+**Preconditions:** The user has already bookmarked at least two collages. 
+
+**Basic Flow:**
+ 1. The user navigates to the Bookmarks page for collages.
+ 2. The user clicks on the column title.
+
+**Additional functional requirements:**
+ - If a column is not currently being used for sorting all other column sorts are removed and 
+ it is the table is sorted in descending order by that column.
+ - If the column is currently used for descending order, the order is now set to 
+ ascending order for that column.
+ - If the column is currently used for ascending order, the order is now set to 
+ descending order for that column.
+ 
+**Additional non-functional requirements:** 
+ - The table order should be sorted based on the user selection and logic above. 
  
  
+### 4. Request Bookmarking
+
+#### 4.0 Viewing All Bookmarked Artists
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows the user to view request bookmarks.
+
+**Trigger:** The user wants to view request bookmarks.
+
+**Preconditions:** The user has already bookmarked at least one request. 
+
+**Basic Flow:**
+ 1. The user navigates to the Bookmarks page.
+ 2. The user clicks on the request hyperlink.
+
+**Additional non-functional requirements:** 
+ - The table displayed has the following columns: Request Name/Year, Votes, Bounty, 
+ Filled, Filled by, Requested by, Created, Last Vote
+ - The Request Name/Year, Filled by, and Requested by columns should have fields that are hyperlinked to their respective pages.
+ 
+
+#### 4.1 Adding a request Bookmark
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows a user to add a bookmark for a request.
+
+**Trigger:** The user wishes to bookmark a request.
+
+**Preconditions:** The user has not already bookmarked the request
+
+**Postconditions:** The request is now bookmarked for that user
+
+**Basic Flow:**
+
+ 1. The user navigates to the request page.
+ 2. The user clicks the "Bookmark" hyperlink.
+ 3. The request is bookmarked for that user.
+ 
+**Additional functional requirements:**
+ - The hyperlink function should also change to that of removing the bookmark
+
+**Additional non-functional requirements:** 
+ -  The hyperlink text is updated to "Remove Bookmark"
  
  
+#### 4.2 Removing a request Bookmark
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows a user to remove a bookmark for a request.
+
+**Trigger:** The user wishes to remove the bookmark for a request.
+
+**Preconditions:** The user has already bookmarked the request.
+
+**Postconditions:** The request is no longer bookmarked for that user.
+
+**Basic Flow:** 
+
+ 1. The user navigates to the request page.
+ 2. The user clicks the "Remove Bookmark" hyperlink.
+ 3. The request bookmark is removed.
+
+**Additional functional requirements:** 
+ - The hyperlink function should also change to that of adding a bookmark.
+
+**Additional non-functional requirements:**
+ - The hyperlink text is updated to "Bookmark" 
+ 
+ **Alternate Flow:**
+ 
+ 1. The user has navigated to the Bookmarks page for requests.
+ 2. The user clicks the "Remove Bookmark" hyperlink.
+ 3. The request bookmark is removed.
+ 
+**Additional non-functional requirements:**
+ - The request row should be removed from the page. 
  
  
+#### 4.3 Sorting All Bookmarked Request Rows 
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows the user to sort the rows of a bookmark collection based on different fields.
+
+**Trigger:** The user wants to sort by Year, Votes, Bounty, Filled, Requested by, 
+Created, or Last Vote
+
+**Preconditions:** The user has already bookmarked at least two collages. 
+
+**Basic Flow:**
+ 1. The user navigates to the Bookmarks page for collages.
+ 2. The user clicks on the column title.
+
+**Additional functional requirements:**
+ - If a column is not currently being used for sorting all other column sorts are removed and 
+ it is the table is sorted in descending order by that column.
+ - If the column is currently used for descending order, the order is now set to 
+ ascending order for that column.
+ - If the column is currently used for ascending order, the order is now set to 
+ descending order for that column.
+ 
+**Additional non-functional requirements:** 
+ - The table order should be sorted based on the user selection and logic above. 
  
  
+#### 4.4 Remove Filled Bookmarked Requests
  
+**Primary Actor:** Any user.
+
+**Brief:** Allows the user to remove all requests that have already been filled.
+
+**Trigger:** The user wishes to prune their torrent group bookmark list of filled requests.
+
+**Preconditions:** The user should have at least one Request bookmarked.
+
+**Basic Flow:** 
+
+ 1. The user navigates to the Bookmarks page for Requests.
+ 2. The user clicks "Remove Filled"
+
+**Additional functional requirements:** 
+ - The server should check each bookmark to see if the Request has been filled and remove bookmarks 
+ of Requests that have been. 
+
+**Additional non-functional requirements:**
+ - The displayed table should be updated to reflect the changes from the removal. 
  
+#### 4.5 Search Request Bookmarks
+
+**Primary Actor:** Any user.
+
+**Brief:** Allows the user to search through all bookmarked requests 
+like they can on the requests page.
+
+**Trigger:** The user wishes to find a request using some field like request type, name, etc.
+
+**Preconditions:** There is at least one request bookmarked.
+
+**Basic Flow:**
+
+ 1. The user navigates to the Bookmarks page for Requests
+ 2. The user sets their filter using the same search menu as that which is found
+ on the requests landing page.
+ 3. The user clicks a search requests button.
  
+**Additional functional requirements:**
+ - The server should return a narrowed result set based on the filter
  
- 
- 
- 
+**Additional non-functional requirements:** 
+ - The displayed table should reflect the above result set. 
  
