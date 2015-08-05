@@ -16,7 +16,7 @@ if (Meteor.isServer) {
     }
 
     return validLogin;
-  })
+  });
 }
 
 AccountsTemplates.configureRoute('signIn', {
