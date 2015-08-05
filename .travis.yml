@@ -6,6 +6,7 @@ install:
   - curl https://install.meteor.com | /bin/sh
   - npm install -g eslint
   - npm install -g spacejam
+  - gem install scss-lint
 script:
   - export PATH="$HOME/.meteor:$PATH"
   - cp settings.json.template settings.json
