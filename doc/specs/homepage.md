@@ -5,7 +5,6 @@
 1. Motiviation
 2. Business rules
 3. Use cases
-4. Data model
 
 ## Motivation
 
