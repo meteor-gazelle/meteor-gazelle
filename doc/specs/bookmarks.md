@@ -13,8 +13,8 @@ or requests made on the website
 
 ## Business rules
 
-* Users are able to bookmark a torrent group, artist, collage, or reqyest.
-* Users are able to remove booksmarks
+* Users are able to bookmark a torrent group, artist, collage, or request.
+* Users are able to remove bookmarks
 * Users are able to sort bookmarks in ascending or descending order based on different fields.
 * Users can receive notifications about certain bookmarks. 
 
@@ -588,4 +588,3 @@ like they can on the requests page.
  
 **Additional non-functional requirements:** 
  - The displayed table should reflect the above result set. 
- 
