@@ -7,11 +7,12 @@ body {
 
 body {
   background: $color-bg-body;
-  line-height: 1.5;
 
   font: {
     family: $font-family-base;
   }
+
+  line-height: 1.5;
 }
 
 strong {
@@ -36,67 +37,69 @@ em strong {
 .main-container {
   @include outer-container(100%);
 
-  position: relative;
   min-height: 100%;
+  position: relative;
 }
 
 %header-footer-background {
   background: {
     image: url('#{$path-images}/bg-header-footer-lg.png?1');
-    repeat: no-repeat;
     position: center top;
+    repeat: no-repeat;
     size: cover;
   }
 }
 
 .main-header {
   &__container {
+    $_color-border: #909193;
+
     @extend %header-footer-background;
     @include dark-box;
     @include fill-parent;
     @include clearfix;
 
-    padding: 1.5em $layout-gutter 0;
-
     border: {
-      bottom: 1px solid #909193;
+      bottom: 1px solid $_color-border;
     }
 
-    .main-nav {
-      @include clearfix;
+    padding: 1.5em $layout-gutter 0;
+  }
 
-      clear: left;
+  .main-nav {
+    @include clearfix;
+
+    clear: left;
+    float: left;
+
+    &__list {
+      list-style: none none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__item {
       float: left;
+      margin: 0 2em 0 0;
+      padding: 0 0 0.75em;
+    }
 
-      &__list {
-        margin: 0;
-        padding: 0;
-        list-style: none none;
+    &__link {
+      &:link,
+      &:visited,
+      &:hover {
+        text: {
+          decoration: none;
+        }
       }
 
-      &__item {
-        float: left;
-        margin: 0 2em 0 0;
-        padding: 0 0 0.75em;
+      &:link,
+      &:visited {
+        color: $color-text-dark-box;
       }
 
-      &__link {
-        &:link,
-        &:visited,
-        &:hover {
-          text: {
-            decoration: none;
-          }
-        }
-
-        &:link,
-        &:visited {
-          color: $color-text-dark-box;
-        }
-
-        &:hover {
-          color: $color-text-emphasis;
-        }
+      &:hover {
+        color: $color-text-emphasis;
       }
     }
   }
@@ -104,12 +107,13 @@ em strong {
 
 .main-title {
   float: left;
-  margin: 0;
 
   font: {
-    weight: normal;
     family: $font-family-sans-serif-light;
+    weight: normal;
   }
+
+  margin: 0;
 
   &__link {
     &:link,
@@ -129,8 +133,8 @@ em strong {
   $--active: #{&}--active;
   $--animating: #{&}--animating;
 
-  display: flex;
   align-items: flex-end;
+  display: flex;
   float: right;
   padding: 0.25em 0 0;
 
@@ -139,51 +143,53 @@ em strong {
   }
 
   &__username {
-    margin: 0 0 0.375rem;
     color: $color-text-emphasis-alt;
 
     font: {
-      size: 1.375em;
       family: $font-family-sans-serif-light;
+      size: 1.375em;
     }
+
+    margin: 0 0 0.375rem;
   }
 
   &__avatar__container {
-    position: relative;
     cursor: pointer;
+    position: relative;
 
     &:after {
       @include icon($fa-var-chevron-down);
 
-      vertical-align: bottom;
-
       font: {
         size: $font-size-small;
       }
+
+      vertical-align: bottom;
     }
   }
 
   &__avatar {
-    $avatar-size: 66px;
+    $_avatar-size: 66px;
 
-    display: inline-block;
-    margin: 0 0 0 1em;
-    width: $avatar-size;
-    height: $avatar-size;
     background: $color-bg-grey;
-    vertical-align: top;
 
     border: {
       radius: 50%;
     }
+
+    display: inline-block;
+    height: $_avatar-size;
+    margin: 0 0 0 1em;
+    vertical-align: top;
+    width: $_avatar-size;
   }
 
   &__menu {
     @include dropdown-menu(12px, right);
 
+    list-style: none none;
     position: absolute;
     right: 0;
-    list-style: none none;
 
     text: {
       align: left;
@@ -207,15 +213,15 @@ em strong {
   }
 
   &__stats {
-    margin: 0;
-
     font: {
       size: $font-size-small;
     }
 
+    margin: 0;
+
     &__label {
-      display: inline-block;
       color: $color-text-subdued;
+      display: inline-block;
       margin: 0 0 0 1em;
 
       &:after {
@@ -225,11 +231,12 @@ em strong {
 
     &__value {
       display: inline-block;
-      margin: 0;
 
       font: {
         family: $font-family-sans-serif-bold;
       }
+
+      margin: 0;
     }
   }
 }
@@ -240,25 +247,29 @@ em strong {
   @include align-items(center);
 
   $__link: #{&}__link;
+  $_color-bg-gradient-start: #d7dadf;
+  $_color-bg-gradient-end: #ebecf0;
+  $_color-border: #fdfeff;
+
+  align-items: center;
+  background: linear-gradient(0deg, $_color-bg-gradient-start, $_color-bg-gradient-end 15px);
+
+  border: {
+    color: $_color-border;
+    style: solid none;
+    width: 1px;
+  }
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 0 $layout-gutter;
-  background: linear-gradient(0deg, #d7dadf, #ebecf0 15px);
-
-  border: {
-    width: 1px;
-    style: solid none;
-    color: #fdfeff;
-  }
 
   &__list {
     @include clearfix;
 
+    list-style: none none;
     margin: 0;
     padding: 0.75em 0;
-    list-style: none none;
   }
 
   #{$__link} {
@@ -288,9 +299,9 @@ em strong {
 
   &__item {
     float: left;
+    line-height: 1;
     margin: 0 1em 0 0;
     padding: 0 0 0.125em;
-    line-height: 1;
 
     &--upload {
       #{$__link} {
@@ -306,12 +317,12 @@ em strong {
 
     &--profile {
       #{$__link} {
-        margin: {
-          left: 1em;
-        }
-
         font: {
           family: $font-family-sans-serif-italic;
+        }
+
+        margin: {
+          left: 1em;
         }
       }
     }
@@ -321,12 +332,12 @@ em strong {
         left: 1px solid $color-text;
       }
 
-      padding: {
-        left: 1em;
-      }
-
       font: {
         family: $font-family-sans-serif-bold;
+      }
+
+      padding: {
+        left: 1em;
       }
     }
   }
@@ -341,29 +352,30 @@ em strong {
 .main-content {
   @include fill-parent;
 
-  clear: both;
-  padding: 1em $layout-gutter ($footer-height + 1rem);
-
   box: {
     sizing: border-box;
   }
+
+  clear: both;
+  padding: 1em $layout-gutter ($footer-height + 1rem);
 }
 
 .main-footer {
   @extend %header-footer-background;
 
-  position: absolute;
-  left: 0;
-  right: 0;
   bottom: 0;
   box-sizing: border-box;
-  height: $footer-height;
-  padding: 2rem 0;
   color: $color-text-subdued;
 
   font: {
     size: $font-size-small;
   }
+
+  height: $footer-height;
+  left: 0;
+  padding: 2rem 0;
+  position: absolute;
+  right: 0;
 
   text: {
     align: center;
@@ -373,9 +385,9 @@ em strong {
     margin: 1.5em 0;
 
     &__list {
+      list-style: none none;
       margin: 0;
       padding: 0;
-      list-style: none none;
     }
 
     &__item {
@@ -387,10 +399,8 @@ em strong {
         transform: uppercase;
       }
 
-      &:first-child {
-        &:before {
-          display: none;
-        }
+      &:first-child:before {
+        display: none;
       }
     }
 
@@ -420,19 +430,19 @@ em strong {
     color: $color-text-emphasis-alt;
 
     font: {
-      size: $font-size-title;
       family: $font-family-sans-serif-light;
+      size: $font-size-title;
     }
   }
 
   &__copyright,
   &__activity,
   &__stats {
-    margin: 0.75em 0;
-
     font: {
       family: $font-family-serif;
     }
+
+    margin: 0.75em 0;
   }
 
   &__stats {
@@ -455,17 +465,17 @@ em strong {
 }
 
 .search-box {
-  display: flex;
-  flex-wrap: no-wrap;
   align-items: stretch;
   background: $color-bg-search-box;
+  display: flex;
+  flex-wrap: nowrap;
 
   &__input {
-    border: none;
+    background: transparent;
+    border: 0;
+    color: $color-white;
     height: 1em;
     padding: 0.375em;
-    background: transparent;
-    color: $color-white;
 
     &::placeholder {
       color: $color-white;
@@ -481,17 +491,17 @@ em strong {
   }
 
   &__button {
-    white-space: nowrap;
-    border: none;
     background: $color-text-emphasis-alt;
+    border: 0;
     color: $color-white;
 
-    padding: 0.25em 2em;
-
     font: {
-      size: $font-size-small;
       family: $font-family-sans-serif-bold-italic;
+      size: $font-size-small;
     }
+
+    padding: 0.25em 2em;
+    white-space: nowrap;
 
     &:hover {
       background: $color-text-emphasis;
