@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'meteor-gazelle-home',
+  name: 'meteor-gazelle:home',
   version: '0.0.1',
   summary: 'The home page of meteor-gazelle.',
   documentation: 'README.md',
@@ -10,7 +10,7 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   var packages = [
-    'meteor-gazelle-core'
+    'meteor-gazelle:core'
   ];
 
   api.use(packages);

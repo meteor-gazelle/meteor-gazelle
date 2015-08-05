@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'meteor-gazelle-lib',
+  name: 'meteor-gazelle:lib',
   version: '0.0.1',
   summary: 'meteor-gazelle internal packages.',
   documentation: 'README.md',

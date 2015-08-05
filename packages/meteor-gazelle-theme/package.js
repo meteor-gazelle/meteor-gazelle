@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'meteor-gazelle-theme',
+  name: 'meteor-gazelle:theme',
   version: '0.0.1',
   summary: 'meteor-gazelle default theme',
   documentation: 'README.md',
