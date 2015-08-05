@@ -91,90 +91,64 @@ torrent ranking will be spliced from the overall bookmark list.
 
 **Primary Actor:** Any user.
 
-**Brief:** Allows the user to enable notifications for a bookmarked artist.
+**Brief:** Allows the user to manage the rankings of bookmarked torrent groups.
 
-**Trigger:** The user wishes to receive notifications about new uploads for a bookmarked artist.
+**Trigger:** The user wants to sort the bookmarked torrent groups based on personal ranking.
 
-**Preconditions:** The user has already bookmarked the artist.
-
-**Basic Flow:** 
-
- 1. The user navigates to the Bookmarks page for artists.
- 2. The user clicks "Notify of new uploads" in the target artists row.
-
-**Additional functional requirements:** 
- - Upload notifications for that artist should be enabled for the user. 
- - The hyperlink function should be changed to that of disabling notifications. 
-
-**Additional non-functional requirements:**
- - The "Notify of new uploads" hyperlink should now read "Do not notify of new uploads". 
-
- 
-#### 2.3 Disabling Notification for Bookmarked Artists
- 
-**Primary Actor:** Any user.
-
-**Brief:** Allows the user to disable notifications for a bookmarked artist.
-
-**Trigger:** The user no longer wishes to receive notifications about new uploads for a bookmarked artist.
-
-**Preconditions:** The user has already enabled upload notifications for the artist.
+**Preconditions:** The user has already bookmarked at least one torrent group.
 
 **Basic Flow:** 
 
- 1. The user navigates to the Bookmarks page for artists.
- 2. The user clicks "Do not notify of new uploads" in the target artists row.
+ 1. The user navigates to the Bookmarks page for Torrents.
+ 2. The user clicks "Manage Torrents".
+ 3. The user makes changes to bookmarked torrent group rankings and submits the changes.
 
 **Additional functional requirements:** 
- - Upload notifications for that artist should be disabled for the user. 
- - The hyperlink function should be changed to that of enabling notifications. 
+ - The ranking changes should be written to the database.
+ - The user should be redirected to the bookmarked torrent groups page after the changes have saved.
+ 
+ 
+#### 1.3 Remove Snatched Bookmarked Torrent Groups
+ 
+**Primary Actor:** Any user.
+
+**Brief:** Allows the user to remove all torent groups that have already been snatched.
+
+**Trigger:** The user wishes to prune their torrent group bookmark list of snatched torrents.
+
+**Preconditions:** The user should have at least one Torrent Group bookmarked.
+
+**Basic Flow:** 
+
+ 1. The user navigates to the Bookmarks page for torrent groups.
+ 2. The user clicks "Remove Snatched"
+
+**Additional functional requirements:** 
+ - The server should check each bookmark to see if the torrent has been snatched and remove bookmarks 
+ of torrent groups that have been. 
+ - The server should splice the rankings accordingly if booksmarks are removed. 
 
 **Additional non-functional requirements:**
- - The "Notify of new uploads" hyperlink should now read "Notify of new uploads". 
+ - The displayed table should be updated to reflect the changes from the removal. 
  
  
-#### 2.4 Viewing All Bookmarked Artists
+#### 1.4 Viewing All Bookmarked Torrent Groups
 
 **Primary Actor:** Any user.
 
-**Brief:** Allows the user to view artist bookmarks.
+**Brief:** Allows the user to view their torrent group bookmarks.
 
-**Trigger:** The user wants to view artist bookmarks.
+**Trigger:** The user wants to view torrent group bookmarks.
 
-**Preconditions:** The user has already bookmarked at least one artist. 
+**Preconditions:** The user has already bookmarked at least one torrent group. 
 
 **Basic Flow:**
  1. The user navigates to the Bookmarks page.
- 2. The user clicks on the Artists hyperlink.
+ 2. The user clicks on the Torrents hyperlink.
 
 **Additional non-functional requirements:** 
- - The table displayed has the following columns: Artist Name, Number of Torrent Groups
- 
- 
-#### 2.4 Sorting All Bookmarked Artist Rows 
+ - There is a cover art section. 
 
-**Primary Actor:** Any user.
-
-**Brief:** Allows the user to sort the rows of a bookmark collection based on different fields.
-
-**Trigger:** The user wants to sort by Artist Name, or Number of Torrent Groups.
-
-**Preconditions:** The user has already bookmarked at least two artists. 
-
-**Basic Flow:**
- 1. The user navigates to the Bookmarks page for artists.
- 2. The user clicks on the column title.
-
-**Additional functional requirements:**
- - If a column is not currently being used for sorting all other column sorts are removed and 
- it is the table is sorted in descending order by that column.
- - If the column is currently used for descending order, the order is now set to 
- ascending order for that column.
- - If the column is currently used for ascending order, the order is now set to 
- descending order for that column.
- 
-**Additional non-functional requirements:** 
- - The table order should be sorted based on the user selection and logic above. 
 
 ### 2. Artist Bookmarking
 
