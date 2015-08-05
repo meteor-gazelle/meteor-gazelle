@@ -11,7 +11,7 @@ $fonts: (
 @each $name, $path in $fonts {
   @include font-face(
     $name,
-    '/packages/gazelle-theme/fonts/#{$path}',
+    '#{$path-package}/fonts/#{$path}',
     $file-formats: eot woff ttf svg
   );
 }
