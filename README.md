@@ -27,7 +27,8 @@ Submitting a pull request
 
 Coding Standards
 ----------------
-All code follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide).
+* All JavaScript code follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide).
+* All CSS code complies to [BEM](http://getbem.com/) standards.
 
 Dependencies
 ------------
