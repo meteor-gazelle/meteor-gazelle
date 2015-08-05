@@ -3,9 +3,9 @@
 ## Table of contents
 
 1. Motiviation
-1. Business rules
-1. Use cases
-1. Data model
+2. Business rules
+3. Use cases
+4. Data model
 
 ## Motivation
 
@@ -97,11 +97,3 @@ All empty sections are not visible. The user may personalize their homepage by a
 **Basic flow:**
 
 1. User drag & drops the section to the desired location by the sections header or handle icon.
-
-## Data model
-
-* Homepage Section
-  * User
-  * Column
-  * Sequence
-  * Contents
