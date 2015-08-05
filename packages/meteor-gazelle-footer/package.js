@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'meteor-gazelle-footer',
+  name: 'meteor-gazelle:footer',
   version: '0.0.1',
   summary: 'The site footer.',
   documentation: 'README.md',
@@ -10,7 +10,7 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   var packages = [
-    'meteor-gazelle-lib',
+    'meteor-gazelle:lib',
     'momentjs:moment'
   ];
 
