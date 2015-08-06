@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'meteor-gazelle-users',
+  name: 'meteor-gazelle:users',
   version: '0.0.1',
   summary: 'Base functionality for users.',
   documentation: 'README.md',
@@ -10,7 +10,7 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   api.use([
-    'meteor-gazelle-lib'
+    'meteor-gazelle:lib'
   ]);
 
   api.addFiles([
@@ -23,8 +23,8 @@ Package.onUse(function (api) {
 
 Package.onTest(function (api) {
 
-  api.use('meteor-gazelle-lib', ['server']);
-  api.use('meteor-gazelle-users', ['server']);
+  api.use('meteor-gazelle:lib', ['server']);
+  api.use('meteor-gazelle:users', ['server']);
   api.use('tinytest', ['server']);
   api.use('practicalmeteor:chai', ['server']);
   api.use('practicalmeteor:sinon', ['server']);
