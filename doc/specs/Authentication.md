@@ -1,30 +1,10 @@
 # Authentication system
 
-## Metadata
-
-Author: DutchDude
-
-### Changelog
-
-**2015-07-11**
-
-* Incorporated feedback from GitHub after public release
-
-**2014-12-31**
-
-* Added second half of use cases
-* Added a bunch of business rules
-
-**2014-12-24**
-
-* Initial draft with first half
-
 ## Table of contents
 
 1. Motivation
 1. Business rules
 1. Use cases
-1. Data model
 
 ## Motivation
 
@@ -89,7 +69,7 @@ These use cases describe various ways the authentication system will interact.
 3. User allows an application to use their account.
 4. User modifies their password
 5. User configures additional authentication
-6. User reviews authorized applications
+6. User reviews authorized applications and active sessions
 7. User resets their password.
 8. A moderator reviews security settings
 
@@ -331,36 +311,40 @@ code.
   passwords, they will need to visit IRC to disable secondary
   authentication.
 
-### 6. The user reviews authorized applications
+### 6. The user reviews authorized applications and active sessions
 
-**Primary actor:** User
+**Primary actor:** User or a moderator
 
 **Brief:** The users should be able to review authentication tokens,
 and be allowed to revoke any currently authorized authentication tokens.
+Moderators can do this to any user
 
 **Trigger:** The user indicates they want to review the authentication tokens
+The moderator indicates he/she wants to do this for some user.
 
 **Postconditions:**
 
 * Any deactivated applications will need to re-authenticate to continue to be
   able to access the user's account.
+* Any ended session will no longer be valid.
 
 **Basic Flow:**
 
-1. The user indicates they want to review authorized applications
-1. The site displays a list of applications the user has previously authorized.
-1. The user might choose to deactivate any application:
+1. The user indicates they want to review authorized applications and currently active sessions
+1. The site displays a list of applications the user has previously authorized and the currently active sessions of that user.
+1. The user might choose to deactivate any application or end any active session.
 1. If so the site asks for confirmation.
 1. The user confirms
-1. The application is deactivated.
+1. The application is deactivated or the session is expired.
 
 **Functional requirements:**
 
 * Currently authorized applications should be listed at the top, sorted by
   activation date.
 * The name of the app and the date the app was last used should be displayed.
-* Already deactivated authorizations should be listed at the bottom of the list,
+* Already deactivated authorizations should be listed at the bottom of the list of active authorisations,
   to preserve the ability to audit account access.
+* Already expired sessions should be listed at the bottom of the list of sessions.
 
 **Non-functional requirements:**
 
