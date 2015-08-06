@@ -1,5 +1,10 @@
 # Bookmarks
 
+## Metadata
+
+Author: killasnake0-wcd
+
+
 ## Table of contents
 
 1. Motivation
