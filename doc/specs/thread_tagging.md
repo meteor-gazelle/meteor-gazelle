@@ -20,13 +20,15 @@ streamlined, and to help keep certain forums on topic.
   * A user that belongs to a user class given tag editing permission on a per-forum basis
 * Labels and tags must be chosen from pre-approved lists. The list will be maintained by
   users with the tag administration permission enabled.
-* Each tagging enabled forum must have unique label and tag lists.
+* Each tagging enabled forum must have unique labels and tags.
 * Labels are broad categories that describe a thread in general terms, and must have a
   limit of one per thread.
 * A label must be selected before tags are selected.
 * Tags are smaller, more granular categories that describe a thread, and must have a
-  configurable limit per thread.
+  configurable limit per thread. The limit is defined in the settings file.
 * Forums must be able to be configured to have tagging enabled or disabled.
+* Threads must have the ability to be tag locked, preventing further tag and label
+  editing.
 
 ## Use Cases
 
@@ -63,7 +65,9 @@ must be presented in a neat and readable manner.
 **Brief:** When viewing a thread in a tagging-enabled forum, the tags and labels must be
 clearly visible.
 
-**Preconditions:** N/A
+**Preconditions:**
+
+* The user has permission to view the forum.
 
 **Trigger:** The user opens the thread.
 
@@ -137,11 +141,11 @@ with a choice of a label and tags.
 
 ### 4.0 Tag locking a thread
 
-**Primary Actor:** A user with the tag administration permission enabled
+**Primary Actor:** A user
 
 **Brief:** Threads must be able to be thread locked to prevent any further editing.
 
-**Preconditions:** N/A
+**Preconditions:** The user has the tag administration permission enabled.
 
 **Trigger:** The user selects the option to tag lock the thread.
 
@@ -175,7 +179,7 @@ much quicker and easier.
 
 **Functional Requirements:**
 
-* The user must be able to search by labels, tags, or any permutation of the two.
+* The user must be able to search by labels, tags, or any combination of the two.
 
 ### 6.0 Editing a forum's unique tag and label list
 
@@ -194,22 +198,3 @@ must be able to be modified.
 
 1. The user selects to edit the forum's labels and tags.
 2. The user makes their changes, and saves them.
-
-### 6.0 Moving or trashing a tagged thread
-
-**Primary Actor:** A user with the forum moderation permission enabled.
-
-**Brief:** When tagged threads are moved or trashed, certain things have
-to happen to ensure the tags aren't completely lost.
-
-**Preconditions:** N/A
-
-**Postcondition:** The labels/tags are written to the thread's notes.
-
-**Basic Flow:**
-
-1. The user selects to trash or move the thread.
-
-**Functional Requirements:**
-
-* The labels and tags must be removed from the thread, and written to the notes.
