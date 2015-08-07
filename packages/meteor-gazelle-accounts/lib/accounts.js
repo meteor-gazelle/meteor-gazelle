@@ -9,8 +9,10 @@ if (Meteor.isServer) {
   });
 
   Accounts.validateLoginAttempt(function (options) {
+    var validLogin;
+
     try {
-      var validLogin = Meteor.call('validateLogin', options.allowed, options.connection.clientAddress);
+     validLogin = IpManager.validateLogin(options.allowed, options.connection.clientAddress);
     } catch (ex) {
       throw ex;
     }

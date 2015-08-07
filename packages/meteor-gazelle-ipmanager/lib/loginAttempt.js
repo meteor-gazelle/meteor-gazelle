@@ -15,7 +15,7 @@ Gazelle.schemas.loginAttempt = new SimpleSchema({
     type: Date,
     label: 'The date in which the login attempt expires'
   },
-  createdAt: Gazelle.schemas.createdAt()
+  //createdAt: Gazelle.schemas.createdAt()
 });
 
 LoginAttempt = new Mongo.Collection('loginAttempt');

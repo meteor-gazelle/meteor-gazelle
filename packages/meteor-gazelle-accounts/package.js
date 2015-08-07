@@ -10,8 +10,9 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   var packages = [
-    'meteor-gazelle:lib',
-    'useraccounts:unstyled'
+    'meteor-gazelle-lib',
+    'useraccounts:unstyled',
+    'meteor-gazelle-ipmanager'
   ];
 
   api.use(packages);

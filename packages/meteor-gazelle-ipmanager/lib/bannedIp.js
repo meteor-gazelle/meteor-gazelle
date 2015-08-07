@@ -17,9 +17,9 @@ Gazelle.schemas.bannedIp = new SimpleSchema({
     label: 'The end of the IP range to ban',
     optional: true
   },
-  notes: Gazelle.schemas.description({label: "The banned ips notes"}),
-  createdAt: Gazelle.schemas.createdAt(),
-  createdBy: Gazelle.schemas.createdBy(),
+  //notes: Gazelle.schemas.description({label: "The banned ips notes"}),
+  //createdAt: Gazelle.schemas.createdAt(),
+  //createdBy: Gazelle.schemas.createdBy(),
   expireOn: {
     type: Date,
     label: 'The date in which the ip ban expires',
