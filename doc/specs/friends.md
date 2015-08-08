@@ -1,4 +1,4 @@
-ends system
+#Friends system
 
 ## Table of contents
 
@@ -13,7 +13,7 @@ In a world with pseudonyms and nonstatic avatars rather than names and static fa
 ## Business rules
 
 * No information about User X's friend list, including the friend list as a whole as well as individual friend management actions taken by User X, shall be visible to anyone but User X him/herself.
-* User X can have his/her access to the Friends system removed by staff.
+* User X can have his/her access to the Friends system removed by staff (i.e., there is a staff-modifiable "Friends System Access" permissions flag on every user account.)
 
 ## Use cases
 
