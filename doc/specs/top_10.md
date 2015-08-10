@@ -3,8 +3,8 @@
 ## Table of contents
 
 1. Motivation
-1. Business rules
-1. Use cases
+2. Business rules
+3. Use cases
 
 ## Motivation
 
@@ -37,9 +37,9 @@ Users are notified of the top 10 most popular albums on the website. Users can v
 
 **Basic Flow:**
 
- - The actor navigates to their settings.
- - The actor toggles Top 10 from disabled to enabled.
- - The actor saves their settings.
+ 1. The actor navigates to their settings.
+ 2. The actor toggles Top 10 from disabled to enabled.
+ 3. The actor saves their settings.
 
 ### 1.1 - Disabling the Top 10
 
@@ -59,9 +59,9 @@ Users are notified of the top 10 most popular albums on the website. Users can v
 
 **Basic Flow:**
 
-- The actor navigates to their settings.
-- The actor toggles Top 10 from enabled to disabled.
-- The actor saves their settings.
+1. The actor navigates to their settings.
+2. The actor toggles Top 10 from enabled to disabled.
+3. The actor saves their settings.
 
 ### 2.0 - Viewing the Top 10
 
@@ -81,7 +81,7 @@ Users are notified of the top 10 most popular albums on the website. Users can v
 
 **Basic Flow:**
 
- - The actor navigates to their homepage.
+ 1. The actor navigates to their homepage.
 
 ### 3.0 - Changing the Top 10 Time Range
 
@@ -101,6 +101,6 @@ Users are notified of the top 10 most popular albums on the website. Users can v
 
 **Basic Flow:**
 
-- The actor navigates to their homepage.
-- The user clicks the dropdown arrow in the upper-right corner of the Top 10 widget/module.
-- The user selects an option from the past day, past week, past month, or all-time.
+1. The actor navigates to their homepage.
+2. The user clicks the dropdown arrow in the upper-right corner of the Top 10 widget/module.
+3. The user selects an option from the past day, past week, past month, or all-time.
