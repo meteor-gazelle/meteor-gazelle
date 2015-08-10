@@ -51,17 +51,17 @@ Users are notified of the top 10 most popular albums on the website. Users can v
 
 **Preconditions:**
 
-- The actor has the Top 10 widget/module enabled in their settings.
+ - The actor has the Top 10 widget/module enabled in their settings.
 
 **Postconditions:**
 
-- The Top 10 widget/module is disabled and hidden on the actor's homepage.
+ - The Top 10 widget/module is disabled and hidden on the actor's homepage.
 
 **Basic Flow:**
 
-1. The actor navigates to their settings.
-2. The actor toggles Top 10 from enabled to disabled.
-3. The actor saves their settings.
+ 1. The actor navigates to their settings.
+ 2. The actor toggles Top 10 from enabled to disabled.
+ 3. The actor saves their settings.
 
 ### 2.0 - Viewing the Top 10
 
@@ -93,14 +93,14 @@ Users are notified of the top 10 most popular albums on the website. Users can v
 
 **Preconditions:**
 
-- The actor has the Top 10 widget/module enabled in their settings.
+ - The actor has the Top 10 widget/module enabled in their settings.
 
 **Postconditions:**
 
-- The Top 10 updates to show the appropriate albums for the selected time range.
+ - The Top 10 updates to show the appropriate albums for the selected time range.
 
 **Basic Flow:**
 
-1. The actor navigates to their homepage.
-2. The user clicks the dropdown arrow in the upper-right corner of the Top 10 widget/module.
-3. The user selects an option from the past day, past week, past month, or all-time.
+ 1. The actor navigates to their homepage.
+ 2. The user clicks the dropdown arrow in the upper-right corner of the Top 10 widget/module.
+ 3. The user selects an option from the past day, past week, past month, or all-time.
