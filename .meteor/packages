@@ -25,3 +25,4 @@ meteor-gazelle:theme
 tinytest
 jagi:astronomy
 jagi:astronomy-timestamp-behavior
+useraccounts:iron-routing

@@ -24,6 +24,7 @@ Package.onUse(function (api) {
     'fourseven:scss',
     'accounts-ui',
     'useraccounts:core',
+    'useraccounts:iron-routing',
     'jagi:astronomy',
     'jagi:astronomy-timestamp-behavior'
   ];
