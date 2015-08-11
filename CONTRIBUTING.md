@@ -41,3 +41,4 @@ git config --local user.email
 git config --local user.signingkey
 ```
 * Consider using a VPN or [Tor](https://torproject.org) for additional anonimity. Don't forget to proxy any `git` operations as well.
+ * Using proxies might cause GitHub to ban your account for a little while because they suspect abuse. Contacting support usually resolves this in a couple of days.
