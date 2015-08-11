@@ -27,10 +27,6 @@ Users are notified of the top 10 most popular items on the website. Users can vi
 
 **Trigger:** The user wants to modify their Top 10 setting.
 
-**Preconditions:**
-
- - None
-
 **Postconditions:**
 
  - The Top 10 widget is modified to the user's selection.
@@ -69,10 +65,6 @@ Users are notified of the top 10 most popular items on the website. Users can vi
 
 **Trigger:** The user visits the Top 10 page.
 
-**Preconditions:**
-
- - None
-
 **Postconditions:**
 
  - The Top 10 items are displayed.
@@ -88,10 +80,6 @@ Users are notified of the top 10 most popular items on the website. Users can vi
 **Brief:**  The Top 10 is updated to display the appropriate items for the selected date range.
 
 **Trigger:** The user selects to change the date range of the Top 10 widget or Top 10 page.
-
-**Preconditions:**
-
- - None
 
 **Postconditions:**
 
