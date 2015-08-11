@@ -24,7 +24,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'lib/routes.js'
-  ], ['client', 'server']);
+  ]);
 
 });
 

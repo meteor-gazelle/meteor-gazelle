@@ -30,7 +30,7 @@ Package.onUse(function (api) {
     'lib/config.js'
   ], ['client', 'server']);
 
-  api.export('ApplicationController', ['client', 'server']);
+  api.export('ApplicationController');
 
 });
 

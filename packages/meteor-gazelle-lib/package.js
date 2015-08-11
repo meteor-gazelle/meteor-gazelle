@@ -33,7 +33,7 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-    'lib/core.js',
+    'lib/gazelle.js',
     'lib/collections.js'
   ], ['client', 'server']);
 
