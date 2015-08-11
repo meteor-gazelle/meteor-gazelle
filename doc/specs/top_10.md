@@ -8,7 +8,7 @@
 
 ## Motivation
 
-Users are notified of the top 10 most popular items on the website. Users can view the list in a homepage widget. Users can see the most popular items by past day, past week, past month, and all-time.
+Users are notified of the top 10 most popular items on the website. Users can view the list in a homepage widget or on a separate dedicated page. Users can see the most popular items by past day, past week, past month, and all-time.
 
 ## Business rules
 
@@ -19,7 +19,7 @@ Users are notified of the top 10 most popular items on the website. Users can vi
 
 ## Use cases
 
-### 1.0 - Modifying the Top 10
+### 1.0 - Modifying the Top 10 widget
 
 **Actor:** A user.
 
@@ -41,7 +41,7 @@ Users are notified of the top 10 most popular items on the website. Users can vi
  2. The user chooses their preference for the Top 10 widget.
  3. The user saves their settings.
 
-### 2.0 - Viewing the Top 10
+### 2.0 - Viewing the Top 10 widget
 
 **Actor:** A user.
 
@@ -61,17 +61,37 @@ Users are notified of the top 10 most popular items on the website. Users can vi
 
  1. The user navigates to their homepage.
 
-### 3.0 - Changing the Top 10 Date Range
+### 3.0 - Viewing the Top 10 page
+
+**Actor:** A user.
+
+**Brief:**  The Top 10 is displayed in order to notify the user of popular items.
+
+**Trigger:** The user visits the Top 10 page.
+
+**Preconditions:**
+
+ - None
+
+**Postconditions:**
+
+ - The Top 10 items are displayed.
+
+**Basic Flow:**
+
+ 1. The user navigates to the Top 10 page.
+
+### 4.0 - Changing the Top 10 Date Range
 
 **Actor:** A user.
 
 **Brief:**  The Top 10 is updated to display the appropriate items for the selected date range.
 
-**Trigger:** The user selects to change the date range of the Top 10 widget.
+**Trigger:** The user selects to change the date range of the Top 10 widget or Top 10 page.
 
 **Preconditions:**
 
- - The user has the Top 10 widget enabled in their settings.
+ - None
 
 **Postconditions:**
 
@@ -79,6 +99,6 @@ Users are notified of the top 10 most popular items on the website. Users can vi
 
 **Basic Flow:**
 
- 1. The user navigates to their homepage.
- 2. The user changes the date range of the Top 10 widget.
- 3. The Top 10 widget updates with appropriate items.
+ 1. The user navigates to the page.
+ 2. The user changes the date range of the Top 10.
+ 3. The Top 10 updates with appropriate items.
