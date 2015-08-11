@@ -8,99 +8,77 @@
 
 ## Motivation
 
-Users are notified of the top 10 most popular albums on the website. Users can view the list in a homepage widget/module. Users can see the most popular albums by past day, past week, past month, and all-time.
+Users are notified of the top 10 most popular items on the website. Users can view the list in a homepage widget. Users can see the most popular items by past day, past week, past month, and all-time.
 
 ## Business rules
 
 - Users can enable or disable the top 10 list from displaying on their homepage.
-- Each item in the list must display the album's title, artist, and release year.
-- The top album must also display the album cover art.
-- The list will be automatically updated periodically (12-24 hours?) by a ranking algorithm.
+- Each item in the list must contain information relevant to the item.
+- The list will be automatically updated by a ranking algorithm.
+- The list update interval will be configured in the settings.json file.
 
 ## Use cases
 
-### 1.0 - Enabling the Top 10
+### 1.0 - Modifying the Top 10
 
 **Actor:** A user.
 
-**Brief:**  The Top 10 is enabled for display on the actor's homepage.
+**Brief:**  The user wants to enable or disable the Top 10 for display on their homepage.
 
-**Trigger:** The actor wants to enable the Top 10.
-
-**Preconditions:**
-
- - The actor has the Top 10 widget/module disabled in their settings.
-
-**Postconditions:**
-
- - The Top 10 widget/module is enabled and shown on the actor's homepage.
-
-**Basic Flow:**
-
- 1. The actor navigates to their settings.
- 2. The actor toggles Top 10 from disabled to enabled.
- 3. The actor saves their settings.
-
-### 1.1 - Disabling the Top 10
-
-**Actor:** A user.
-
-**Brief:**  The Top 10 is disabled for display on the actor's homepage.
-
-**Trigger:** The actor wants to disable the Top 10.
+**Trigger:** The user wants to modify their Top 10 setting.
 
 **Preconditions:**
 
- - The actor has the Top 10 widget/module enabled in their settings.
+ - None
 
 **Postconditions:**
 
- - The Top 10 widget/module is disabled and hidden on the actor's homepage.
+ - The Top 10 widget is modified to the user's selection.
 
 **Basic Flow:**
 
- 1. The actor navigates to their settings.
- 2. The actor toggles Top 10 from enabled to disabled.
- 3. The actor saves their settings.
+ 1. The user navigates to their settings.
+ 2. The user chooses their preference for the Top 10 widget.
+ 3. The user saves their settings.
 
 ### 2.0 - Viewing the Top 10
 
 **Actor:** A user.
 
-**Brief:**  The Top 10 is displayed in order to notify the user of popular albums.
+**Brief:**  The Top 10 is displayed in order to notify the user of popular items.
 
-**Trigger:** The actor visits their homepage.
+**Trigger:** The user visits their homepage.
 
 **Preconditions:**
 
- - The actor has the Top 10 widget/module enabled in their settings.
+ - The user has the Top 10 widget enabled in their settings.
 
 **Postconditions:**
 
- - The Top 10 albums are displayed in a sidebar widget/module on the actor's homepage.
+ - The Top 10 items are displayed in a widget on the user's homepage.
 
 **Basic Flow:**
 
- 1. The actor navigates to their homepage.
+ 1. The user navigates to their homepage.
 
-### 3.0 - Changing the Top 10 Time Range
+### 3.0 - Changing the Top 10 Date Range
 
 **Actor:** A user.
 
-**Brief:**  The Top 10 is updated to display the appropriate albums for the selected time range.
+**Brief:**  The Top 10 is updated to display the appropriate items for the selected date range.
 
-**Trigger:** The actor clicks on the dropdown arrow in the upper-right corner of the Top 10 widget/module.
+**Trigger:** The user selects to change the date range of the Top 10 widget.
 
 **Preconditions:**
 
- - The actor has the Top 10 widget/module enabled in their settings.
+ - The user has the Top 10 widget enabled in their settings.
 
 **Postconditions:**
 
- - The Top 10 updates to show the appropriate albums for the selected time range.
+ - The Top 10 updates to show the appropriate items for the selected date range.
 
 **Basic Flow:**
 
- 1. The actor navigates to their homepage.
- 2. The user clicks the dropdown arrow in the upper-right corner of the Top 10 widget/module.
- 3. The user selects an option from the past day, past week, past month, or all-time.
+ 1. The user navigates to their homepage.
+ 2. The user changes the date range of the Top 10 widget.
+ 3. The Top 10 widget updates with appropriate items.
