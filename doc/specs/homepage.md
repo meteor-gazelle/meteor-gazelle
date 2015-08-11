@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-1. Motiviation
+1. Motivation
 2. Business rules
 3. Use cases
 
@@ -14,7 +14,7 @@ The homepage is the initial landing page for all authenticated users. It provide
 
 The homepage is a collection of customizable sections. A section is a small block of content, limited in scope. The user may personalize their homepage by adding, removing, & re-ordering sections. Sections that would otherwise appear empty do not appear.
 
-In addition, a "Site News" section appears at the top. It is used for critical announcmenets for hte site. If the "Site News" section contains content, then the section appears at the top of the page & cannot be removed. Otherwise, the section does not appear.
+In addition, a "Site News" section appears at the top. It is used for critical announcements for the site. If the "Site News" section contains content, then the section appears at the top of the page & cannot be removed. Otherwise, the section does not appear.
 
 Some examples of sections a user may want to add to their site might be:
 
@@ -30,7 +30,7 @@ Some examples of sections a user may want to add to their site might be:
 
 * **Random Album**: A random album on the site. Displays album title, artist, year, & cover art. Links to album page.
 
-* **Site Statistics**: Summary of the site's statistics. Displays data transfered, number of torrents uploaded, number of new users, number of forum posts, & number of requests filled. Data can be displayed for the past seven days, month, or year.
+* **Site Statistics**: Summary of the site's statistics. Displays data transferred, number of torrents uploaded, number of new users, number of forum posts, & number of requests filled. Data can be displayed for the past seven days, month, or year.
 
 ## Use cases
 
