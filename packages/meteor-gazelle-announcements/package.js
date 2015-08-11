@@ -15,6 +15,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'lib/model.js',
+    'lib/routes.js'
   ], ['client', 'server']);
 
   api.export(['Announcement']);

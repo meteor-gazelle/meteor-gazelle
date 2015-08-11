@@ -17,6 +17,15 @@ Package.onUse(function (api) {
 
   api.imply(packages);
 
+  api.addFiles([
+      'lib/home.html',
+      'lib/home.js',
+    ], ['client']);
+
+  api.addFiles([
+    'lib/routes.js'
+  ], ['client', 'server']);
+
 });
 
 Package.onTest(function (api) {
