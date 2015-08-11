@@ -19,6 +19,11 @@ if (Meteor.isServer) {
 
     return validLogin;
   });
+
+  Accounts.onLogin(function (user) {
+    console.log(user);
+    IpManager.upsertUserConnection(user.connection.clientAddress);
+  });
 }
 
 AccountsTemplates.configureRoute('signIn', {

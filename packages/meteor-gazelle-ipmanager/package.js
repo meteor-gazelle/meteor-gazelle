@@ -10,14 +10,13 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   api.use([
-    'mizzao:user-status',
     'meteor-gazelle-lib'
   ]);
 
   api.addFiles([
     'lib/loginAttempt.js',
-    'lib/functions.js',
     'lib/bannedIp.js',
+    'lib/userConnection.js',
     'lib/methods.js'
   ], ['client', 'server']);
 

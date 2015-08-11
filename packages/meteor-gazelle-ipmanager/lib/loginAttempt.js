@@ -1,4 +1,6 @@
-Gazelle.schemas.loginAttempt = new SimpleSchema({
+Schemas = {};
+
+Schemas.loginAttempt = new SimpleSchema({
   ip: {
     type: Number,
     label: 'The ip address where the login attempt originated.'
@@ -24,4 +26,4 @@ if (Meteor.isServer) {
   LoginAttempt._ensureIndex({'expireOn': 1}, {expireAfterSeconds: 0});
 }
 
-LoginAttempt.attachSchema(Gazelle.schemas.loginAttempt);
+LoginAttempt.attachSchema(Schemas.loginAttempt);

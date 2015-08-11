@@ -1,4 +1,7 @@
-Gazelle.schemas.bannedIp = new SimpleSchema({
+// TODO(rhomes) This should go in IpManager.schemas?
+Schemas = {};
+
+Schemas.bannedIp = new SimpleSchema({
   startIp: {
     type: Number,
     label: 'The start of the IP range to ban'
@@ -33,4 +36,4 @@ if (Meteor.isServer) {
   BannedIp._ensureIndex({'expireOn': 1}, {expireAfterSeconds: 0});
 }
 
-BannedIp.attachSchema(Gazelle.schemas.bannedIp);
+BannedIp.attachSchema(Schemas.bannedIp);

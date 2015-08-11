@@ -1,14 +1,47 @@
 IpManager = {
   validateLogin: function (allowed, ipAddr) {
+    return Meteor.call('validateLogin', allowed, ipAddr);
+  },
+  upsertUserConnection: function (ipAddr) {
+    return Meteor.call('upsertUserConnection', ipAddr);
+  },
+  ip2long: function (ipAddr) {
+    var i = 0;
+    ipAddr = ipAddr.match(
+      /^([1-9]\d*|0[0-7]*|0x[\da-f]+)(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?$/i
+    );
+    if (!ipAddr) {
+      return false;
+    }
+
+    ipAddr[0] = 0;
+    for (i = 1; i < 5; i += 1) {
+      ipAddr[0] += !! ((ipAddr[i] || '')
+        .length);
+      ipAddr[i] = parseInt(ipAddr[i]) || 0;
+    }
+
+    ipAddr.push(256, 256, 256, 256);
+
+    ipAddr[4 + ipAddr[0]] *= Math.pow(256, 4 - ipAddr[0]);
+    if (ipAddr[1] >= ipAddr[5] || ipAddr[2] >= ipAddr[6] || ipAddr[3] >= ipAddr[7] || ipAddr[4] >= ipAddr[8]) {
+      return false;
+    }
+    return ipAddr[1] * (ipAddr[0] === 1 || 16777216) + ipAddr[2] * (ipAddr[0] <= 2 || 65536) + ipAddr[3] * (ipAddr[0] <= 3 || 256) + ipAddr[4] * 1;
+  }
+};
+
+Meteor.methods({
+  validateLogin: function (allowed, ipAddr) {
+    if (Meteor.call('validateIpBanned', ipAddr)) {
+      throw new Meteor.Error(403, 'You are banned');
+    }
+
     if (!allowed) {
-      var currentAttemptCount = this.validateLoginAttempts(ipAddr);
+      var currentAttemptCount = Meteor.call('validateLoginAttempts', ipAddr);
 
       if (currentAttemptCount >= Meteor.settings.MAX_LOGIN_ATTEMPTS) {
-        this.banIpAddress(ipAddr, 'Exceeded login attempts');
-      }
-
-      if (this.validateIpBanned(ipAddr)) {
-        throw new Meteor.Error(403, 'You are banned');
+        Meteor.call('banIpAddress', ipAddr, 'Exceeded login attempts');
       }
 
       return false;
@@ -27,7 +60,7 @@ IpManager = {
       attempts = 1;
 
       var newLoginAttempt = {
-        ip: ip2long(ipAddr),
+        ip: IpManager.ip2long(ipAddr),
         ipStr: ipAddr,
         attempts: attempts,
         expireOn: expirationDate
@@ -46,7 +79,7 @@ IpManager = {
     return attempts;
   },
   validateIpBanned: function (ipAddr) {
-    var ipAddressAsLong = ip2long(ipAddr);
+    var ipAddressAsLong = IpManager.ip2long(ipAddr);
 
     var specificBannedIp = BannedIp.findOne({startIp: ipAddressAsLong});
     var bannedByRange = BannedIp.findOne({startIp: {$lte: ipAddressAsLong}, endIp: {$gte: ipAddressAsLong}});
@@ -58,19 +91,19 @@ IpManager = {
     var expirationDate = new Date();
     expirationDate.setHours(expirationDate.getHours() + 1);
     var bannedIp = {
-      startIp: ip2long(ipAddr),
+      startIp: IpManager.ip2long(ipAddr),
       startIpStr: ipAddr,
       notes: notes,
       expireOn: expirationDate
     };
 
     BannedIp.insert(bannedIp);
-    this.logoutConnectedUsersByIp(ipAddr);
+    Meteor.call('logoutConnectedUsersByIp', ipAddr);
   },
   logoutConnectedUsersByIp: function (ipAddr) {
     // TODO(rhomes) need to take into account for banned ranges
-    UserStatus.connections.find({ipAddr: ipAddr}).forEach(function (onlineUserStatus) {
-      Meteor.users.update(onlineUserStatus.userId, {
+    UserConnection.find({ipAddr: ipAddr}).forEach(function (userConnection) {
+      Meteor.users.update(userConnection.userId, {
         $set: {
           'resume.loginTokens': [],
           'services.resume.loginTokens': [],
@@ -78,18 +111,8 @@ IpManager = {
         }
       });
     });
-  }
-};
-
-Meteor.methods({
-  'ipmanager/validateLogin': function (allowed, ipAddr) {
   },
-  'ipmanager/validateLoginAttempts': function (ipAddr) {
-  },
-  'ipmanager/validateIpBanned': function (ipAddr) {
-  },
-  'ipmanager/banIpAddress': function (ipAddr, notes) {
-  },
-  'ipmanager/logoutConnectedUsersByIp': function (ipAddr) {
+  upsertUserConnection: function (ipAddr) {
+    // TODO(rhomes) implementation
   }
 });
