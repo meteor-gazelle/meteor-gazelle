@@ -3,7 +3,7 @@ Contributing to meteor-gazelle
 
 Be sure all code written follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide), and has the appropriate test methods.
 
-Specifications can be found in the [docs/specifications](docs/specifications) subdirectory.
+Specifications can be found in the [doc/specs](doc/specs) subdirectory.
 
 Communication
 -------------
