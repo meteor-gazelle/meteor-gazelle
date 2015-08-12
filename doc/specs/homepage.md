@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-1. Motiviation
+1. Motivation
 2. Business rules
 3. Use cases
 
@@ -12,9 +12,11 @@ The homepage is the initial landing page for all authenticated users. It provide
 
 ## Business rules.
 
-The homepage contains the following sections:
+The homepage is a collection of customizable sections. A section is a small block of content, limited in scope. The user may personalize their homepage by adding, removing, & re-ordering sections. Sections that would otherwise appear empty do not appear.
 
-* **Site News**: An announcement containing critical information about the site. This section must appear at the top of the page & may not be removed by the user.
+In addition, a "Site News" section appears at the top. It is used for critical announcements for the site. If the "Site News" section contains content, then the section appears at the top of the page & cannot be removed. Otherwise, the section does not appear.
+
+Some examples of sections a user may want to add to their site might be:
 
 * **Notifications**: A summary of the current user's notifications. Displays a maximum of five notifications at a time. Each notifications details may be expanded/collapsed. A user may hide the notification on this screen. Finally, the user may navigate to the notifications page.
 
@@ -28,9 +30,7 @@ The homepage contains the following sections:
 
 * **Random Album**: A random album on the site. Displays album title, artist, year, & cover art. Links to album page.
 
-* **Site Statistics**: Summary of the site's statistics. Displays data transfered, number of torrents uploaded, number of new users, number of forum posts, & number of requests filled. Data can be displayed for the past seven days, month, or year.
-
-All empty sections are not visible. The user may personalize their homepage by adding, removing, & re-ordering section. However, the "Site News" section must appear at the top & cannot be removed.
+* **Site Statistics**: Summary of the site's statistics. Displays data transferred, number of torrents uploaded, number of new users, number of forum posts, & number of requests filled. Data can be displayed for the past seven days, month, or year.
 
 ## Use cases
 
