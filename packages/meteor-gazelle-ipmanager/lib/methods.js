@@ -67,8 +67,7 @@ Meteor.methods({
       };
 
       LoginAttempt.insert(newLoginAttempt);
-    }
-    else {
+    } else {
       attempts = loginAttemptsByIp.attempts + 1;
       LoginAttempt.update(
         {_id: loginAttemptsByIp._id},
@@ -87,6 +86,7 @@ Meteor.methods({
     return (specificBannedIp !== undefined || bannedByRange !== undefined);
   },
   banIpAddress: function (ipAddr, notes) {
+    // TODO(rhomes) take ranges into account
     // TODO(rhomes) Default values
     var expirationDate = new Date();
     expirationDate.setHours(expirationDate.getHours() + 1);
@@ -100,19 +100,37 @@ Meteor.methods({
     BannedIp.insert(bannedIp);
     Meteor.call('logoutConnectedUsersByIp', ipAddr);
   },
-  logoutConnectedUsersByIp: function (ipAddr) {
-    // TODO(rhomes) need to take into account for banned ranges
-    UserConnection.find({ipAddr: ipAddr}).forEach(function (userConnection) {
-      Meteor.users.update(userConnection.userId, {
-        $set: {
-          'resume.loginTokens': [],
-          'services.resume.loginTokens': [],
-          'profile.forceLogOut': true
-        }
+  logoutConnectedUsersByIp: function (startIpAddr, endIpAddr) {
+    if (endIpAddr) {
+      UserConnection.find({ipAddr: {$gte: startIpAddr}, ipAddr: {$lte: endIpAddr}}).forEach(function (userConnection) {
+        Meteor.call('logoutUser', userConnection.userId);
       });
+    } else {
+      UserConnection.find({ipAddr: ipAddr}).forEach(function (userConnection) {
+        Meteor.call('logoutUser', userConnection.userId);
+      });
+    }
+  },
+  logoutUser: function (userId) {
+    Meteor.users.update(userId, {
+      $set: {
+        'resume.loginTokens': [],
+        'services.resume.loginTokens': [],
+        'profile.forceLogOut': true
+      }
     });
   },
-  upsertUserConnection: function (ipAddr) {
-    // TODO(rhomes) implementation
+  upsertUserConnection: function (userId, ipAddr, fullUA) {
+    var userConnection = UserConnection.findOne({ip: ipAddr, userId: userId});
+
+    if (userConnection === undefined) {
+      UserConnection.insert({
+        ip: IpManager.ip2long(ipAddr),
+        userId: userId,
+        fullUA: fullUA
+      });
+    } else {
+
+    }
   }
 });

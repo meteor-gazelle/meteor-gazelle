@@ -21,8 +21,8 @@ if (Meteor.isServer) {
   });
 
   Accounts.onLogin(function (user) {
-    console.log(user);
-    IpManager.upsertUserConnection(user.connection.clientAddress);
+    //console.log(user);
+    IpManager.upsertUserConnection(user._id, user.connection.clientAddress, user.connection.httpHeaders.user-agent);
   });
 }
 
