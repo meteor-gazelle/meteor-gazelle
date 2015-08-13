@@ -27,7 +27,8 @@ Submitting a pull request
 
 Coding Standards
 ----------------
-All code follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide).
+* All JavaScript code follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide).
+* All CSS code complies to [BEM](http://getbem.com/) standards.
 
 Dependencies
 ------------
@@ -45,7 +46,7 @@ Running tests
     curl https://install.meteor.com | /bin/sh
     npm install -g spacejam eslint
     export PATH="$HOME/.meteor:$PATH"
-    cp settings.json.template setting.json
+    cp settings.json.template settings.json
 
     # actually run tests
     ./run_tests.sh

@@ -3,7 +3,7 @@ Contributing to meteor-gazelle
 
 Be sure all code written follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide), and has the appropriate test methods.
 
-Specifications can be found in the [docs/specifications](docs/specifications) subdirectory.
+Specifications can be found in the [doc/specs](doc/specs) subdirectory.
 
 Communication
 -------------
@@ -27,3 +27,18 @@ Submitting a pull request
   * Be sure to select the appropriate labels/milestones for your pull request.
   * If your pull request applies to an issue, be sure to mention it in the description.
 * The new pull request will be broadcasted in #gazelle, and the Core team will review it and leave feedback.
+
+Privacy Considerations
+----------------------
+
+You might not want to have your real name linked with this project. Here we provide some hints that should help contributing under a pseudonym.
+
+* If you want to participate in the discussion, create pull requests, or edit the wiki, consider creating a separate GitHub user account. We cannot delete any pull requests or issues made in the bug tracker.
+* If you're using git for other projects as well, check if commits you make on this project use your real name. GitHub uses the email address in commit to associate them to your account. The relevant configuration options are listed below. The used email address does not need to be real. If you need to fix commits you've already made, see `git commit --amend --reset-author`.
+```
+git config --local user.name
+git config --local user.email
+git config --local user.signingkey
+```
+* Consider using a VPN or [Tor](https://torproject.org) for additional anonimity. Don't forget to proxy any `git` operations as well.
+ * Using proxies might cause GitHub to ban your account for a little while because they suspect abuse. Contacting support usually resolves this in a couple of days.

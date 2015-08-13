@@ -29,4 +29,5 @@ $layout-gutter: 1.875em;
 
 $animation-slide-offset: -15%;
 
-$path-images: '/packages/gazelle-theme/images';
+$path-package: '/packages/meteor-gazelle_theme';
+$path-images: '#{$path-package}/images';

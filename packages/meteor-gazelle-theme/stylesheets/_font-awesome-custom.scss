@@ -1,4 +1,4 @@
-$fa-font-path: '/packages/gazelle-theme/.npm/package/node_modules/font-awesome/fonts/';
+$fa-font-path: '#{$path-package}/.npm/package/node_modules/font-awesome/fonts/';
 
 @import 'font-awesome/scss/variables';
 @import 'font-awesome/scss/mixins';
