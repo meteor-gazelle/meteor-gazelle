@@ -55,6 +55,6 @@ Running tests
     # optionally, just lint
     ./run_tests.sh -l
 
-    # install git hook to automatically run test suite before pushing to remote
+    # (optional) install git hook to automatically run test suite before pushing to remote
     cd doc/dev/
     ./install_git_hooks.sh
