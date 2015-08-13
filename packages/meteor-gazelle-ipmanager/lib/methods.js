@@ -1,9 +1,9 @@
 IpManager = {
   validateLogin: function (allowed, ipAddr) {
-    return Meteor.call('validateLogin', allowed, ipAddr);
+    return Meteor.call('ipmanager/validateLogin', allowed, ipAddr);
   },
   upsertUserConnection: function (ipAddr) {
-    return Meteor.call('upsertUserConnection', ipAddr);
+    return Meteor.call('ipmanager/upsertUserConnection', ipAddr);
   },
   ip2long: function (ipAddr) {
     var i = 0;
@@ -32,16 +32,16 @@ IpManager = {
 };
 
 Meteor.methods({
-  validateLogin: function (allowed, ipAddr) {
-    if (Meteor.call('validateIpBanned', ipAddr)) {
+  'ipmanager/validateLogin': function (allowed, ipAddr) {
+    if (Meteor.call('ipmanager/ipIsBanned', ipAddr)) {
       throw new Meteor.Error(403, 'You are banned');
     }
 
     if (!allowed) {
-      var currentAttemptCount = Meteor.call('validateLoginAttempts', ipAddr);
+      var currentAttemptCount = Meteor.call('ipmanager/validateLoginAttempts', ipAddr);
 
       if (currentAttemptCount >= Meteor.settings.MAX_LOGIN_ATTEMPTS) {
-        Meteor.call('banIpAddress', ipAddr, 'Exceeded login attempts');
+        Meteor.call('ipmanager/banIpAddress', ipAddr, 'Exceeded login attempts');
       }
 
       return false;
@@ -49,69 +49,58 @@ Meteor.methods({
 
     return true;
   },
-  validateLoginAttempts: function (ipAddr) {
-    var attempts;
+  'ipmanager/validateLoginAttempts': function (ipAddr) {
+    var loginAttemptsByIp = LoginAttempts.findOne({ipStr: ipAddr});
 
-    var loginAttemptsByIp = LoginAttempt.findOne({ipStr: ipAddr});
     if (loginAttemptsByIp === undefined) {
-      // TODO(rhomes) default values
-      var expirationDate = new Date();
-      expirationDate.setHours(expirationDate.getHours() + 1);
-      attempts = 1;
-
-      var newLoginAttempt = {
-        ip: IpManager.ip2long(ipAddr),
-        ipStr: ipAddr,
-        attempts: attempts,
-        expireOn: expirationDate
-      };
-
-      LoginAttempt.insert(newLoginAttempt);
+      loginAttemptsByIp = new LoginAttempt({ipStr: ipAddr});
+      loginAttemptsByIp.save();
     } else {
-      attempts = loginAttemptsByIp.attempts + 1;
-      LoginAttempt.update(
-        {_id: loginAttemptsByIp._id},
-        {$set: {attempts: attempts}}
-      );
+      loginAttemptsByIp.attempts++;
+      loginAttemptsByIp.save();
     }
 
-    return attempts;
+    return loginAttemptsByIp.attempts;
   },
-  validateIpBanned: function (ipAddr) {
+  'ipmanager/ipIsBanned': function (ipAddr) {
     var ipAddressAsLong = IpManager.ip2long(ipAddr);
 
-    var specificBannedIp = BannedIp.findOne({startIp: ipAddressAsLong});
-    var bannedByRange = BannedIp.findOne({startIp: {$lte: ipAddressAsLong}, endIp: {$gte: ipAddressAsLong}});
+    var specificBannedIp = BannedIps.findOne({startIp: ipAddressAsLong});
+    var bannedByRange = BannedIps.findOne({startIp: {$lte: ipAddressAsLong}, endIp: {$gte: ipAddressAsLong}});
 
     return (specificBannedIp !== undefined || bannedByRange !== undefined);
   },
-  banIpAddress: function (ipAddr, notes) {
-    // TODO(rhomes) take ranges into account
-    // TODO(rhomes) Default values
-    var expirationDate = new Date();
-    expirationDate.setHours(expirationDate.getHours() + 1);
-    var bannedIp = {
-      startIp: IpManager.ip2long(ipAddr),
-      startIpStr: ipAddr,
-      notes: notes,
-      expireOn: expirationDate
-    };
-
-    BannedIp.insert(bannedIp);
-    Meteor.call('logoutConnectedUsersByIp', ipAddr);
-  },
-  logoutConnectedUsersByIp: function (startIpAddr, endIpAddr) {
+  'ipmanager/banIpAddress': function (notes, startIpAddr, endIpAddr) {
+    var bannedIp;
     if (endIpAddr) {
-      UserConnection.find({ipAddr: {$gte: startIpAddr}, ipAddr: {$lte: endIpAddr}}).forEach(function (userConnection) {
-        Meteor.call('logoutUser', userConnection.userId);
+      bannedIp = new BannedIp({
+        startIpStr: ipAddr,
+        endIpStr: endIpAddr,
+        notes: notes
+      });
+    } else {
+      bannedIp = new BannedIp({
+        startIpStr: ipAddr,
+        notes: notes
+      });
+    }
+
+    bannedIp.save();
+
+    Meteor.call('ipmanager/logoutConnectedUsersByIp', startIpAddr, endIpAddr);
+  },
+  'ipmanager/logoutConnectedUsersByIp': function (startIpAddr, endIpAddr) {
+    if (endIpAddr) {
+      UserConnection.find({ipAddr: {$gte: startIpAdddr}, ipAddr: {$lte: endIpAddr}}).forEach(function (userConnection) {
+        Meteor.call('ipmanager/logoutUser', userConnection.userId);
       });
     } else {
       UserConnection.find({ipAddr: ipAddr}).forEach(function (userConnection) {
-        Meteor.call('logoutUser', userConnection.userId);
+        Meteor.call('ipmanager/logoutUser', userConnection.userId);
       });
     }
   },
-  logoutUser: function (userId) {
+  'ipmanager/logoutUser': function (userId) {
     Meteor.users.update(userId, {
       $set: {
         'resume.loginTokens': [],
@@ -120,17 +109,19 @@ Meteor.methods({
       }
     });
   },
-  upsertUserConnection: function (userId, ipAddr, fullUA) {
-    var userConnection = UserConnection.findOne({ip: ipAddr, userId: userId});
+  'ipmanager/upsertUserConnection': function (userId, ipAddr, fullUA) {
+    var userConnection = UserConnections.findOne({ip: ipAddr, userId: userId});
 
     if (userConnection === undefined) {
-      UserConnection.insert({
+      userConnection = new UserConnection({
         ip: IpManager.ip2long(ipAddr),
         userId: userId,
         fullUA: fullUA
       });
     } else {
-
+      userConnection.fullUA = fullUA;
     }
+
+    userConnection.save();
   }
 });

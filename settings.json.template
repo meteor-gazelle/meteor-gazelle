@@ -4,5 +4,7 @@
             "name": "Gazelle"
         }
     },
-    "MAX_LOGIN_ATTEMPTS": 5
+    "MAX_LOGIN_ATTEMPTS": 5,
+    "LOGIN_ATTEMPTS_EXCEEDED_TIMEOUT": 1,
+    "INVALID_LOGIN_COUNTER_TIMEOUT": 1
 }

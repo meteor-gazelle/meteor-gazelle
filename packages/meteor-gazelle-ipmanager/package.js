@@ -10,13 +10,14 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   api.use([
-    'meteor-gazelle-lib'
+    'meteor-gazelle-lib',
+    'jagi:astronomy'
   ]);
 
   api.addFiles([
-    'lib/loginAttempt.js',
-    'lib/bannedIp.js',
-    'lib/userConnection.js',
+    'lib/loginAttempts.js',
+    'lib/bannedIps.js',
+    'lib/userConnections.js',
     'lib/methods.js'
   ], ['client', 'server']);
 
