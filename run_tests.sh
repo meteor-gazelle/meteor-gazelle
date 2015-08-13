@@ -2,24 +2,6 @@
 
 set -eu
 
-ls scripts/githooks | while read line; do
-    if [ ! -f ./.git/hooks/$line ]; then
-        touch ./.git/hooks/$line;
-    fi;
-
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-       hasher="md5 -r";
-    else
-       hasher=md5sum;
-    fi;
-
-    if [ "`${hasher} ./.git/hooks/$line | cut -f 1 -d " "`" != "`${hasher} ./scripts/githooks/$line | cut -f 1 -d " "`" ]; then
-        cp ./scripts/githooks/$line ./.git/hooks/$line;
-        chmod ugo+rx ./.git/hooks/$line;
-        echo "Installing $line hook";
-    fi;
-done;
-
 function usage {
   echo "Usage $0 [OPTION]..."
   echo "Run meteor-gazelle test suite(s)"
