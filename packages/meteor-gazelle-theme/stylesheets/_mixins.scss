@@ -7,31 +7,31 @@
 }
 
 %arrow-up-base {
-  width: 0;
-  height: 0;
-
   border: {
-    style: none solid solid;
+    left: {
+      color: transparent;
+    }
 
     right: {
       color: transparent;
     }
 
-    left: {
-      color: transparent;
-    }
+    style: none solid solid;
   }
+
+  height: 0;
+  width: 0;
 }
 
 @mixin arrow-up ($color, $width, $height: $width) {
   @extend %arrow-up-base;
 
   border: {
-    width: 0 ( $width / 2 ) $height;
-
     bottom: {
       color: $color;
     }
+
+    width: 0 ($width / 2) $height;
   }
 }
 
@@ -89,11 +89,11 @@
 %slide-up {
   @extend %slide-base;
 
-  opacity: 0;
-
   animation: {
     name: slide-up;
   }
+
+  opacity: 0;
 }
 
 @mixin slide-up {
@@ -101,10 +101,10 @@
 }
 
 %dropdown-menu-base {
-  position: relative;
-  padding: 0.625em;
   background: $color-bg-menu;
   color: $color-white;
+  padding: 0.625em;
+  position: relative;
 
   a {
     &:link,
@@ -130,9 +130,9 @@
     @include arrow-up($color-bg-menu, $arrow-width, $arrow-height);
 
     display: block;
+    margin: $arrow-height 0 0;
     position: absolute;
     top: -2 * $arrow-height;
-    margin: $arrow-height 0 0 0;
     transform: translateX(-50%);
 
     #{$arrow-from}: $arrow-x;

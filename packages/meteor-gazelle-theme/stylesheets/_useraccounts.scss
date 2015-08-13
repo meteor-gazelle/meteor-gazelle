@@ -20,12 +20,13 @@
   .at-error {
     @include slide-down;
 
-    padding: 0 0.625em;
     background: $color-bg-error;
 
     border: {
       radius: 4px;
     }
+
+    padding: 0 0.625em;
 
     p {
       margin: 0.25em 0;
