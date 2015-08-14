@@ -1,8 +1,8 @@
 var collection = new Mongo.Collection('announcements');
 
 // TODO(ajax) Investigate validation
-// TOOD(ajax) Add user classes
-// TOOD(ajax) Announcement create hook
+// TODO(ajax) Add user classes
+// TODO(ajax) Announcement create hook
 Announcement = Astro.Class({
   'name': 'Announcement',
   'collection': collection,
@@ -40,7 +40,7 @@ Announcement = Astro.Class({
 });
 
 Meteor.methods({
-  'announcements/create': function(doc){
+  'announcements/upsert': function(doc){
     check(doc, Schemas.create);
 
     announcement = new Announcement();

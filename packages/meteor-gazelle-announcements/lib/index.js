@@ -1,5 +1,11 @@
+var pages = new Meteor.Pagination('announcements', {
+  itemTemplate: 'announcement'
+});
+
 Template.index.helpers({
-    //add you helpers here
+    pages: function() {
+      return pages;
+    }
 });
 
 Template.index.events({

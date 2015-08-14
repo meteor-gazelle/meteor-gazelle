@@ -27,7 +27,8 @@ Package.onUse(function (api) {
     'useraccounts:iron-routing',
     'jagi:astronomy',
     'jagi:astronomy-timestamp-behavior',
-    'jagi:astronomy-validators'
+    'jagi:astronomy-validators',
+    'jagi:astronomy-behaviors',
   ];
 
   api.use(packages);

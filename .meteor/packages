@@ -28,3 +28,5 @@ jagi:astronomy
 jagi:astronomy-timestamp-behavior
 useraccounts:iron-routing
 jagi:astronomy-validators
+jagi:astronomy-behaviors
+alethes:pages@1.8.4
