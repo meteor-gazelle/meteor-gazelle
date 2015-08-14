@@ -10,14 +10,24 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   api.use([
-    'meteor-gazelle:lib'
+    'meteor-gazelle:core'
   ]);
 
   api.addFiles([
+    'lib/index.html',
+    'lib/index.js',
+    'lib/create.html',
+    'lib/create.js'
+  ], ['client']);
+
+  api.addFiles([
+    'lib/config.js',
+    'lib/schemas.js',
     'lib/model.js',
     'lib/routes.js'
-  ], ['client', 'server']);
+  ]);
 
+  //TODO(ajax) Remove considering unit tests.
   api.export(['Announcement']);
 });
 

@@ -22,7 +22,9 @@ useraccounts:core
 meteor-gazelle:core
 meteor-gazelle:home
 meteor-gazelle:theme
+meteor-gazelle:announcements
 tinytest
 jagi:astronomy
 jagi:astronomy-timestamp-behavior
 useraccounts:iron-routing
+jagi:astronomy-validators
