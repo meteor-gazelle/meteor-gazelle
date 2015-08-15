@@ -15,6 +15,21 @@ LoginAttempt = Astro.Class({
     expireOn: 'date',
     createdAt: 'date'
   },
+  validators: {
+    ip: [
+      Validators.required(),
+      Validators.number()
+
+    ],
+    ipStr: [
+      Validators.required(),
+      Validators.string()
+    ],
+    expireOn: [
+      Validators.required(),
+      Validators.date()
+    ]
+  },
   methods: {
     resolveIp: function () {
       if (this.ipStr && !this.ip) {
@@ -24,7 +39,7 @@ LoginAttempt = Astro.Class({
     setExpireOn: function () {
       if (!this.expireOn) {
         var expirationDate = new Date();
-        expirationDate.setHours(expirationDate.getHours() + Meteor.settings.INVALID_LOGIN_COUNTER_TIMEOUT);
+        expirationDate.setHours(expirationDate.getHours() + Meteor.settings.INVALID_LOGIN_COUNTER_TIMEOUT_ONEHOUR);
         this.expireOn = expirationDate;
       }
     }

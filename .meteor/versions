@@ -35,6 +35,8 @@ iron:middleware-stack@1.0.9
 iron:router@1.0.9
 iron:url@1.0.9
 jagi:astronomy@0.12.1
+jagi:astronomy-validators@0.10.8
+jagi:reactive-map@0.2.2
 jquery@1.11.3_2
 json@1.0.3
 launch-screen@1.0.2

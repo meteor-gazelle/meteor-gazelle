@@ -34,14 +34,14 @@ IpManager = {
 Meteor.methods({
   'ipmanager/validateLogin': function (allowed, ipAddr) {
     if (Meteor.call('ipmanager/ipIsBanned', ipAddr)) {
-      throw new Meteor.Error(403, 'You are banned');
+      throw new Meteor.Error(403, Meteor.settings.USER_BANNED_ERRORMSG);
     }
 
     if (!allowed) {
       var currentAttemptCount = Meteor.call('ipmanager/validateLoginAttempts', ipAddr);
 
       if (currentAttemptCount >= Meteor.settings.MAX_LOGIN_ATTEMPTS) {
-        Meteor.call('ipmanager/banIpAddress', ipAddr, 'Exceeded login attempts');
+        Meteor.call('ipmanager/banIpAddress', Meteor.settings.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG, ipAddr);
       }
 
       return false;
@@ -54,11 +54,13 @@ Meteor.methods({
 
     if (loginAttemptsByIp === undefined) {
       loginAttemptsByIp = new LoginAttempt({ipStr: ipAddr});
-      loginAttemptsByIp.save();
     } else {
       loginAttemptsByIp.attempts++;
-      loginAttemptsByIp.save();
     }
+
+    Meteor.call('ipmanager/saveLoginAttempt', loginAttemptsByIp, function (err) {
+      loginAttemptsByIp.catchValidationException(err);
+    });
 
     return loginAttemptsByIp.attempts;
   },
@@ -66,7 +68,10 @@ Meteor.methods({
     var ipAddressAsLong = IpManager.ip2long(ipAddr);
 
     var specificBannedIp = BannedIps.findOne({startIp: ipAddressAsLong});
-    var bannedByRange = BannedIps.findOne({startIp: {$lte: ipAddressAsLong}, endIp: {$gte: ipAddressAsLong}});
+    var bannedByRange = BannedIps.findOne({
+      startIp: {$lte: ipAddressAsLong},
+      endIp: {$gte: ipAddressAsLong}
+    });
 
     return (specificBannedIp !== undefined || bannedByRange !== undefined);
   },
@@ -74,24 +79,29 @@ Meteor.methods({
     var bannedIp;
     if (endIpAddr) {
       bannedIp = new BannedIp({
-        startIpStr: ipAddr,
+        startIpStr: startIpAddr,
         endIpStr: endIpAddr,
         notes: notes
       });
     } else {
       bannedIp = new BannedIp({
-        startIpStr: ipAddr,
+        startIpStr: startIpAddr,
         notes: notes
       });
     }
 
-    bannedIp.save();
+    Meteor.call('ipmanager/saveBannedIp', bannedIp, function (err) {
+      bannedIp.catchValidationException(err);
+    });
 
     Meteor.call('ipmanager/logoutConnectedUsersByIp', startIpAddr, endIpAddr);
   },
   'ipmanager/logoutConnectedUsersByIp': function (startIpAddr, endIpAddr) {
     if (endIpAddr) {
-      UserConnection.find({ipAddr: {$gte: startIpAdddr}, ipAddr: {$lte: endIpAddr}}).forEach(function (userConnection) {
+      UserConnection.find({
+        ipAddr: {$gte: startIpAdddr},
+        ipAddr: {$lte: endIpAddr}
+      }).forEach(function (userConnection) {
         Meteor.call('ipmanager/logoutUser', userConnection.userId);
       });
     } else {
@@ -123,5 +133,21 @@ Meteor.methods({
     }
 
     userConnection.save();
+  },
+  'ipmanager/saveBannedIp': function (bannedIp) {
+    if (bannedIp.validate()) {
+      bannedIp.save();
+      return bannedIp;
+    }
+
+    bannedIp.throwValidationException();
+  },
+  'ipmanager/saveLoginAttempt': function (loginAttempt) {
+    if (loginAttempt.validate()) {
+      loginAttempt.save();
+      return loginAttempt;
+    }
+
+    loginAttempt.throwValidationException();
   }
 });
