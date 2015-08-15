@@ -1,7 +1,7 @@
 Package.describe({
   name: 'meteor-gazelle:createdby',
   version: '0.0.1',
-  summary: 'Base functionality for tracking who edits documents.',
+  summary: 'Base functionality for createdby.',
   documentation: 'README.md',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
@@ -15,19 +15,11 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
-    'lib/schemas.js',
-    'lib/model.js',
-    'lib/routes.js'
+    'lib/model.js'
   ]);
 
-  //TODO(ajax) Remove considering unit tests.
-  api.export(['Announcement']);
+  api.export(['CreatedBy']);
 });
 
 Package.onTest(function (api) {
-
-  api.use('meteor-gazelle:announcements', ['server']);
-  api.use('tinytest', ['server']);
-
-  api.addFiles('tests/server.js', 'server');
 });
