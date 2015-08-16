@@ -1,7 +1,7 @@
 Astro.createBehavior({
   name: 'createdBy',
   events: {
-    addbehavior: function(behaviorData) {
+    addbehavior: function (behaviorData) {
       var self = this;
 
       self.addFields({
@@ -16,17 +16,17 @@ Astro.createBehavior({
       });
 
       self.addEvents({
-        beforeInsert: function() {
+        beforeInsert: function () {
           self.createdBy = Meteor.userId();
         },
-        beforeUpdate: function() {
+        beforeUpdate: function () {
           self.updatedBy.push(Meteor.userId());
         }
-      })
+      });
     },
-    initclass: function(schemaDefinition) {
+    initclass: function (schemaDefinition) {
       self.createdBy = Meteor.userId();
       self.updatedBy = [];
     }
   }
-})
+});
