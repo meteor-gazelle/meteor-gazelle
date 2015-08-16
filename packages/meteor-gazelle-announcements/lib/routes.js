@@ -1,8 +1,8 @@
 AnnouncementsController = ApplicationController.extend({
-  index: function() {
+  index: function () {
     this.render('index');
   },
-  create: function() {
+  create: function () {
     this.render('create');
   }
 });

@@ -22,7 +22,8 @@ Announcement = Astro.Class({
   validators: {
     'title': Validators.required(),
     'body': Validators.required(),
-    'type': Validators.choice([AnnouncementType.news, AnnouncementType.blog])
+    'type': Validators.choice([AnnouncementType.news, AnnouncementType.blog]),
+    'createdBy': Validators.required()
   },
   index: {
     'title': {
@@ -40,7 +41,7 @@ Announcement = Astro.Class({
 });
 
 Meteor.methods({
-  'announcements/create': function(doc){
+  'announcements/create': function (doc) {
     check(doc, Schemas.create);
 
     announcement = new Announcement();
