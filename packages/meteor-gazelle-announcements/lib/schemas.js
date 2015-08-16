@@ -12,6 +12,11 @@ Schemas.create = new SimpleSchema({
   type: {
     type: String,
     label: 'The announcement\'s type',
-    allowedValues: [AnnouncementType.news, AnnouncementType.blog]
+    autoform: {
+      options: {
+        news: 'Site News',
+        blog: 'Site Blog'
+      }
+    }
   }
 });

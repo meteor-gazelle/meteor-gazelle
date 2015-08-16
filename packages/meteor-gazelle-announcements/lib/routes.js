@@ -1,8 +1,16 @@
 AnnouncementsController = ApplicationController.extend({
-  index: function() {
+  waitOn: function () {
+    return Meteor.subscribe('announcements');
+  },
+  data: function () {
+    return {
+      announcements: Announcements.find()
+    }
+  },
+  index: function () {
     this.render('index');
   },
-  create: function() {
+  create: function () {
     this.render('create');
   }
 });

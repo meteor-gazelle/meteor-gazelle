@@ -14,18 +14,23 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
-    'lib/index.html',
-    'lib/index.js',
-    'lib/create.html',
-    'lib/create.js'
-  ], ['client']);
-
-  api.addFiles([
     'lib/config.js',
     'lib/schemas.js',
     'lib/model.js',
     'lib/routes.js'
   ]);
+
+  api.addFiles([
+    'lib/templates/index.html',
+    'lib/templates/index.js',
+    'lib/templates/create.html',
+    'lib/templates/create.js',
+    'lib/templates/announcement.html'
+  ], ['client']);
+
+  api.addFiles([
+    'lib/publications.js'
+  ], ['server']);
 
   //TODO(ajax) Remove considering unit tests.
   api.export(['Announcement']);

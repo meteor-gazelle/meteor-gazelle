@@ -1,11 +1,13 @@
-var collection = new Mongo.Collection('announcements');
-
-// TODO(ajax) Investigate validation
 // TODO(ajax) Add user classes
 // TODO(ajax) Announcement create hook
+// TODO(ajax) Add createdBy behavior
+
+Announcements = new Mongo.Collection('announcements');
+Gazelle.announcements = Announcements;
+
 Announcement = Astro.Class({
   'name': 'Announcement',
-  'collection': collection,
+  'collection': Announcements,
   fields: {
     'title': {
       type: 'string',
@@ -16,7 +18,7 @@ Announcement = Astro.Class({
       default: 'New announcement body'
     },
     'type': {
-      type: 'string',
+      type: 'string'
     }
   },
   validators: {

@@ -1,1 +1,1 @@
-Gazelle.schemas = {};
+Gazelle.collections = {};

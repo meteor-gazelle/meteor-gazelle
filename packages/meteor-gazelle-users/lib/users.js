@@ -1,4 +1,6 @@
-Gazelle.schemas.user = new SimpleSchema({
+Schemas = {};
+
+Schemas.user = new SimpleSchema({
   username: {
     type: String,
     label: 'The user\'s name.',
@@ -12,4 +14,4 @@ Gazelle.schemas.user = new SimpleSchema({
 });
 
 User = new Mongo.Collection('user');
-User.attachSchema(Gazelle.schemas.user);
+User.attachSchema(Schemas.user);
