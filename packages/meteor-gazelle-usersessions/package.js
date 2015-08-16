@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'meteor-gazelle-ipmanager',
+  name: 'meteor-gazelle-usersessions',
   version: '0.0.1',
-  summary: 'Base functionality for managing connecting ip addresses.',
+  summary: 'Base functionality for managing user sessions.',
   documentation: 'README.md',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
@@ -16,12 +16,11 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
-    'lib/loginAttempts.js',
-    'lib/bannedIps.js',
+    'lib/userSessions.js',
     'lib/methods.js'
   ], ['client', 'server']);
 
-  api.export(['IpManager']);
+  api.export(['UserSessionsManager']);
 });
 
 Package.onTest(function (api) {

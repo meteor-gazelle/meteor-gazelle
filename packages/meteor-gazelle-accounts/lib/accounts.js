@@ -21,8 +21,7 @@ if (Meteor.isServer) {
   });
 
   Accounts.onLogin(function (user) {
-    // TODO(rhomes) wtf fix issue with these parameters??
-    IpManager.upsertUserConnection(user._id, user.connection.clientAddress, user.connection.httpHeaders['user-agent']);
+    UserSessionsManager.createUserSession(user.user._id, user.connection.clientAddress, user.connection.httpHeaders['user-agent']);
   });
 }
 

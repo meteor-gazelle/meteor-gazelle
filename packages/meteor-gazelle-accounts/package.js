@@ -12,7 +12,8 @@ Package.onUse(function (api) {
   var packages = [
     'meteor-gazelle-lib',
     'useraccounts:unstyled',
-    'meteor-gazelle-ipmanager'
+    'meteor-gazelle-ipmanager',
+    'meteor-gazelle-usersessions'
   ];
 
   api.use(packages);

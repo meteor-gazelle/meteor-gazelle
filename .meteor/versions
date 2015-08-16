@@ -55,6 +55,7 @@ meteor-gazelle-ipmanager@0.0.1
 meteor-gazelle-lib@0.0.1
 meteor-gazelle-theme@0.0.1
 meteor-gazelle-users@0.0.1
+meteor-gazelle-usersessions@0.0.1
 meteor-platform@1.2.2
 minifiers@1.1.5
 minimongo@1.0.8

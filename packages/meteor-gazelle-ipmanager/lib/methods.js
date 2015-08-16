@@ -2,9 +2,6 @@ IpManager = {
   validateLogin: function (allowed, ipAddr) {
     return Meteor.call('ipmanager/validateLogin', allowed, ipAddr);
   },
-  upsertUserConnection: function (ipAddr) {
-    return Meteor.call('ipmanager/upsertUserConnection', ipAddr);
-  },
   ip2long: function (ipAddr) {
     var i = 0;
     ipAddr = ipAddr.match(
@@ -118,21 +115,6 @@ Meteor.methods({
         'profile.forceLogOut': true
       }
     });
-  },
-  'ipmanager/upsertUserConnection': function (userId, ipAddr, fullUA) {
-    var userConnection = UserConnections.findOne({ip: ipAddr, userId: userId});
-
-    if (userConnection === undefined) {
-      userConnection = new UserConnection({
-        ip: IpManager.ip2long(ipAddr),
-        userId: userId,
-        fullUA: fullUA
-      });
-    } else {
-      userConnection.fullUA = fullUA;
-    }
-
-    userConnection.save();
   },
   'ipmanager/saveBannedIp': function (bannedIp) {
     if (bannedIp.validate()) {
