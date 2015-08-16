@@ -8,46 +8,102 @@
 
 ## Motivation
 
-User log can act as an audit trail of a user.
+User log is where notable events or messages are recorded. These can be:
+* User actions.
+* Administrator actions or messages against the user.
+* System events impacting the user.
 
 ## Business Rules
 
-* Any action initiated by the user will be recorded in the user log. These may include:
-  * Downloading a torrent
-  * Changing their settings
-  * Subscribing to a forum thread
-  * Filling a request
-  * etc...
-* Any action initiated by an administrator that impacts a user. These may include:
-  * Administrator changing settings on behalf of a user
-  * Administrator changing the user's class
-  * Administrator moving a user's forum thread
-  * etc...
-* Any action initiated by the system that impacts a user. These may include:
-  * Class change due to criteria being met
-  * Warning issued due to download:upload ratio being too low
-  * etc...
-
+* Messages in the user log are subject to visibility permissions through tagging.
+  * Messages with a tag are subject to that tag's viability restrictions.
+* Messages can be filtered by date, time, tag, user and message.
 
 ## Use Cases
 
 ### 1.0 Viewing the user log
 
-**Primary Actor:** A user
+#### 1.1 As a user
 
-**Brief:** The user log must be present and accurate.
+**Primary Actor:** A user.
 
-**Preconditions:** N/A
+**Brief:** The user log is visible to the user.
+
+**Preconditions:**
+* The user log contains messages with varying tags.
 
 **Trigger:** User wants to see their own user log.
 
-**Postconditions:** N/A
+**Postconditions:**
+* No messages outside of the user's permissions were shown.
 
 **Basic Flow:**
 
 1. The user navigates to their user log page.
+2. The user log messages are displayed.
 
-**Non-Functional Requirements:**
+#### 1.2 As an administrator
 
-* User log is up-to-date.
-* User log is complete and accurate.
+**Primary Actor:** An administrator.
+
+**Brief:** The user log is visible to the administrator.
+
+**Preconditions:**
+* The user log contains messages with varying tags.
+
+**Trigger:** Administrator wants to view a user's log.
+
+**Postconditions:**
+* No messages outside of the administrator's permissions were shown.
+
+**Basic Flow:**
+
+1. The administrator navigates to the user's log page.
+2. The user log messages are displayed.
+
+**Non-Functional Requirements:** N/A
+
+### 2.0 Filtering the log
+
+**Primary Actor:** A user.
+
+**Brief:** The filtered results of the user log are filtered correctly.
+
+**Preconditions:**
+* The user log contains messages with varying tags.
+
+**Trigger:** User wants to view messages on a specific date.
+
+**Postconditions:**
+* No messages outside of the user's permissions were shown.
+
+**Basic Flow:**
+
+1. The user navigates to their user log page.
+2. The filter is set to the desired day.
+3. Filtered messages from the log are displayed.
+
+**Non-Functional Requirements:** N/A
+
+### 3.0 Adding messages to the log
+
+**Primary Actor:** An administrator.
+
+**Brief:** Messages can be added to the log by an administrator.
+
+**Preconditions:**
+* The administrator has the required permissions to add messages to a user's log.
+
+**Trigger:** Administrator wants to add a message into a user's log.
+
+**Postconditions:**
+* Message was able to
+
+**Basic Flow:**
+
+1. The administrator navigates to the user's log page.
+2. The administrator adds a message.
+3. The administrator selects a tag.
+4. The message is recorded.
+
+**Non-Functional Requirements:** N/A
