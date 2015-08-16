@@ -21,7 +21,10 @@ IpManager = {
     ipAddr.push(256, 256, 256, 256);
 
     ipAddr[4 + ipAddr[0]] *= Math.pow(256, 4 - ipAddr[0]);
-    if (ipAddr[1] >= ipAddr[5] || ipAddr[2] >= ipAddr[6] || ipAddr[3] >= ipAddr[7] || ipAddr[4] >= ipAddr[8]) {
+    if (ipAddr[1] >= ipAddr[5]
+        || ipAddr[2] >= ipAddr[6]
+        || ipAddr[3] >= ipAddr[7]
+        || ipAddr[4] >= ipAddr[8]) {
       return false;
     }
     return ipAddr[1] * (ipAddr[0] === 1 || 16777216) + ipAddr[2] * (ipAddr[0] <= 2 || 65536) + ipAddr[3] * (ipAddr[0] <= 3 || 256) + ipAddr[4] * 1;
@@ -47,10 +50,10 @@ Meteor.methods({
     return true;
   },
   'ipmanager/validateLoginAttempts': function (ipAddr) {
-    var loginAttemptsByIp = LoginAttempts.findOne({ipStr: ipAddr});
+    var loginAttemptsByIp = LoginAttempts.findOne({ ipStr: ipAddr });
 
     if (loginAttemptsByIp === undefined) {
-      loginAttemptsByIp = new LoginAttempt({ipStr: ipAddr});
+      loginAttemptsByIp = new LoginAttempt({ ipStr: ipAddr });
     } else {
       loginAttemptsByIp.attempts++;
     }
@@ -64,10 +67,10 @@ Meteor.methods({
   'ipmanager/ipIsBanned': function (ipAddr) {
     var ipAddressAsLong = IpManager.ip2long(ipAddr);
 
-    var specificBannedIp = BannedIps.findOne({startIp: ipAddressAsLong});
+    var specificBannedIp = BannedIps.findOne({ startIp: ipAddressAsLong });
     var bannedByRange = BannedIps.findOne({
-      startIp: {$lte: ipAddressAsLong},
-      endIp: {$gte: ipAddressAsLong}
+      startIp: { $lte: ipAddressAsLong },
+      endIp: { $gte: ipAddressAsLong }
     });
 
     return (specificBannedIp !== undefined || bannedByRange !== undefined);
@@ -96,13 +99,13 @@ Meteor.methods({
   'ipmanager/logoutConnectedUsersByIp': function (startIpAddr, endIpAddr) {
     if (endIpAddr) {
       UserConnection.find({
-        ipAddr: {$gte: startIpAdddr},
-        ipAddr: {$lte: endIpAddr}
+        ipAddr: { $gte: startIpAdddr },
+        ipAddr: { $lte: endIpAddr }
       }).forEach(function (userConnection) {
         Meteor.call('ipmanager/logoutUser', userConnection.userId);
       });
     } else {
-      UserConnection.find({ipAddr: ipAddr}).forEach(function (userConnection) {
+      UserConnection.find({ ipAddr: ipAddr }).forEach(function (userConnection) {
         Meteor.call('ipmanager/logoutUser', userConnection.userId);
       });
     }

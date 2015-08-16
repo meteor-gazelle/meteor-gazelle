@@ -6,7 +6,7 @@ UserSessionsManager = {
 
 Meteor.methods({
   'usersessions/createUserSession': function (userId, ipAddr, fullUA) {
-    var userSession = UserSessions.findOne({ip: ipAddr, userId: userId});
+    var userSession = UserSessions.findOne({ ip: ipAddr, userId: userId });
 
     if (userSession === undefined) {
       userSession = new UserSession({

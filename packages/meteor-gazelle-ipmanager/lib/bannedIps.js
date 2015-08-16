@@ -78,6 +78,6 @@ BannedIp = Astro.Class({
 });
 
 if (Meteor.isServer) {
-  BannedIps._ensureIndex({'expireOn': 1}, {expireAfterSeconds: 0});
+  BannedIps._ensureIndex({ 'expireOn': 1 }, { expireAfterSeconds: 0 });
 }
 

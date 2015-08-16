@@ -19,7 +19,6 @@ LoginAttempt = Astro.Class({
     ip: [
       Validators.required(),
       Validators.number()
-
     ],
     ipStr: [
       Validators.required(),
@@ -53,5 +52,5 @@ LoginAttempt = Astro.Class({
 });
 
 if (Meteor.isServer) {
-  LoginAttempts._ensureIndex({'expireOn': 1}, {expireAfterSeconds: 0});
+  LoginAttempts._ensureIndex({ 'expireOn': 1 }, { expireAfterSeconds: 0 });
 }
