@@ -61,6 +61,8 @@ User log is where notable events or messages are recorded. These can be:
 1. The administrator navigates to the user's log page.
 2. The user log messages are displayed.
 
+**Non-functional Requirements**
+* When there are no user log messages, the log is empty.
 
 ### 2.0 Filtering the log
 
