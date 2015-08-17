@@ -42,9 +42,9 @@ User log is where notable events or messages are recorded. These can be:
 1. The user navigates to their user log page.
 2. The user log messages are displayed.
 
-#### 1.2 As an administrator
+#### 1.2 As a user with administration permission
 
-**Primary Actor:** An administrator.
+**Primary Actor:** A user with the user log administration permission.
 
 **Brief:** The user log is visible to the administrator.
 
@@ -61,7 +61,6 @@ User log is where notable events or messages are recorded. These can be:
 1. The administrator navigates to the user's log page.
 2. The user log messages are displayed.
 
-**Non-Functional Requirements:** N/A
 
 ### 2.0 Filtering the log
 
@@ -83,13 +82,12 @@ User log is where notable events or messages are recorded. These can be:
 2. The filter is set to the desired day.
 3. Filtered messages from the log are displayed.
 
-**Non-Functional Requirements:** N/A
 
 ### 3.0 Adding messages to the log
 
-**Primary Actor:** An administrator.
+**Primary Actor:** A user with the user log administration permission.
 
-**Brief:** Messages can be added to the log by an administrator.
+**Brief:** Messages can be added to the log by a user with administration permission.
 
 **Preconditions:**
 * The administrator has the required permissions to add messages to a user's log.
@@ -97,7 +95,7 @@ User log is where notable events or messages are recorded. These can be:
 **Trigger:** Administrator wants to add a message into a user's log.
 
 **Postconditions:**
-* Message was able to
+* Message was persisted into the user log.
 
 **Basic Flow:**
 
@@ -105,5 +103,3 @@ User log is where notable events or messages are recorded. These can be:
 2. The administrator adds a message.
 3. The administrator selects a tag.
 4. The message is recorded.
-
-**Non-Functional Requirements:** N/A
