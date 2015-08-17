@@ -25,8 +25,8 @@ Package.onUse(function (api) {
 });
 
 Package.onTest(function (api) {
-  api.use('meteor-gazelle-lib', ['server']);
-  api.use('meteor-gazelle-users', ['server']);
+  api.use('meteor-gazelle:lib', ['server']);
+  api.use('meteor-gazelle:users', ['server']);
   api.use('tinytest', ['server']);
   api.use('practicalmeteor:chai', ['server']);
   api.use('practicalmeteor:sinon', ['server']);
