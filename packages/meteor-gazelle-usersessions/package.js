@@ -24,7 +24,6 @@ Package.onUse(function (api) {
 });
 
 Package.onTest(function (api) {
-
   api.use('meteor-gazelle-lib', ['server']);
   api.use('meteor-gazelle-users', ['server']);
   api.use('tinytest', ['server']);
