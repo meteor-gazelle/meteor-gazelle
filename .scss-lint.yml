@@ -1,0 +1,20 @@
+scss_files: '*.scss'
+
+exclude:
+  - '.meteor/*'
+  - '**/.npm/**'
+
+linters:
+  LeadingZero:
+    style: include_zero
+
+  NameFormat:
+    allow_leading_underscore: false,
+    convention: ^((_{0,2})|(-{2}))[a-z][a-z0-9-]+$
+    convention_explanation: 'Hyphenated BEM'
+
+  NestingDepth:
+    max_depth: 4
+
+  SelectorFormat:
+    convention: hyphenated_BEM

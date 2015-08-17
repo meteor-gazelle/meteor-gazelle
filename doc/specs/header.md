@@ -1,21 +1,10 @@
 # Site Header
 
-## Metadata
-
-Author: sneakysneaky
-
-### Changelog
-
-**2015-07-13**
-
-* Initial version
-
 ## Table of contects
 
 1. Motivation
 1. Business rules
 1. Use cases
-1. Data model
 
 ## Motivation
 
@@ -163,16 +152,3 @@ The site header is a critical UI element. It provides the user with navigation l
 **Basic Flow:**
 
 1. User selects the "Remove" button/icon next to desired custom link in the header.
-
-## Data model
-
-* Authenticated user information
-  * Username
-  * Avatar
-  * Uploaded
-  * Downloaded
-  * Ratio
-  * Required Ratio
-  * Number of Notifications
-* Current route / page
-* Notifications

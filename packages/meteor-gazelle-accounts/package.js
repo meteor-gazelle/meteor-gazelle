@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'gazelle-footer',
+  name: 'meteor-gazelle:accounts',
   version: '0.0.1',
-  summary: 'The site footer.',
+  summary: 'Internal package used to interface with Meteor Accounts',
   documentation: 'README.md',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
@@ -10,8 +10,8 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   var packages = [
-    'gazelle-lib',
-    'momentjs:moment'
+    'meteor-gazelle:lib',
+    'useraccounts:unstyled'
   ];
 
   api.use(packages);
@@ -19,9 +19,12 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-    'lib/client/footer/footer.html',
-    'lib/client/footer/footer.js'
-  ], ['client']);
+    'lib/client/templates/login.html'
+  ], 'client');
+
+  api.addFiles([
+    'lib/accounts.js'
+  ], ['client', 'server']);
 
 });
 

@@ -44,10 +44,14 @@ function run_tests {
 function run_lint {
   # ensure environment is set up
   which eslint > /dev/null || fail "eslint command not found; run 'npm install -g eslint' to install eslint"
+  which scss-lint > /dev/null || fail "scss-lint command not found; run gem install scss-lint to install scss-lint"
 
   # do the thing
   echo "Running eslint..."
   eslint .
+
+  echo "Running scss-lint..."
+  scss-lint .
 }
 
 process_options $@

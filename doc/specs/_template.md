@@ -1,22 +1,10 @@
 # Authentication system
 
-## Metadata
-
-Author: DutchDude
-
-### Changelog
-
-**2015-07-09**
-
-* Initial version
-* Something you changed
-
 ## Table of contents
 
 1. Motivation
 1. Business rules
 1. Use cases
-1. Data model
 
 ## Motivation
 
@@ -134,18 +122,3 @@ password.
 **Applicable business rules:**
 
 * Password requirements (see above)
-
-## Data model
-
-What data should be tracked.
-
-**Example:**
-> * Users are identified a user name
-> * User have a password
-> * Users may have several application authorizations
-> * Application authorizations have a name, date registered, date last used,
-    status (active?) and contain the corresponding code.
-> * Users may have a secondary means of authentication.
-> * If users have a secondary means of authentication, they have backup codes.
-> * Application authorization requests consist of the app name, the date the
-    request was initiated, the unique authentication request code and the nonce.
