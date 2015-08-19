@@ -47,9 +47,10 @@ organization achieve its goals." (Wikipedia)
 * Users may have at most one secondary means of authentication.
 * Passwords should abide by the following rules:
   * They should be at least 8 characters loong
-  * They should contain at least 1 lowercase character
-  * They should contain at least 1 uppercase character
-  * They should contain at least 1 number or 1 symbol character
+  * If a password is shorter than 20 characters:
+    * They should contain at least 1 lowercase character
+    * They should contain at least 1 uppercase character
+    * They should contain at least 1 number or 1 symbol character
   * They should not have a maximum length less than 50 characters
 * Moderators should be able to disable two-factor authentication for users.
 * Moderators should be able to require users to change their password.
