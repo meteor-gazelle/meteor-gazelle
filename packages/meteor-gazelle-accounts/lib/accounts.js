@@ -12,7 +12,7 @@ if (Meteor.isServer) {
     var validLogin;
 
     try {
-     validLogin = IpManager.validateLogin(options.allowed, options.connection.clientAddress);
+      validLogin = IpManager.validateLogin(options.allowed, options.connection.clientAddress);
     } catch (ex) {
       throw ex;
     }

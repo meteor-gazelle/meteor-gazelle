@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'meteor-gazelle:usersessions',
+  name: 'meteor-gazelle:user-sessions',
   version: '0.0.1',
   summary: 'Base functionality for managing user sessions.',
   documentation: 'README.md',

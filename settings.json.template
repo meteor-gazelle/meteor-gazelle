@@ -3,10 +3,5 @@
         "site" : {
             "name": "Gazelle"
         }
-    },
-    "MAX_LOGIN_ATTEMPTS": 5,
-    "LOGIN_ATTEMPTS_EXCEEDED_TIMEOUT_ONEHOUR": 1,
-    "INVALID_LOGIN_COUNTER_TIMEOUT_ONEHOUR": 1,
-    "LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG": "Maximum failed attempts reached",
-    "USER_BANNED_ERRORMSG": "You are banned"
+    }
 }

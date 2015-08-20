@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'meteor-gazelle:ipmanager',
+  name: 'meteor-gazelle:ip-manager',
   version: '0.0.1',
   summary: 'Base functionality for managing connecting ip addresses.',
   documentation: 'README.md',
@@ -11,6 +11,7 @@ Package.onUse(function (api) {
 
   api.use([
     'meteor-gazelle:lib',
+    'meteor-gazelle:user-sessions',
     'jagi:astronomy',
     'jagi:astronomy-validators'
   ]);
@@ -21,7 +22,7 @@ Package.onUse(function (api) {
     'lib/methods.js'
   ], ['client', 'server']);
 
-  api.export(['IpManager']);
+  api.export(['IpManager', 'IpUtils']);
 });
 
 Package.onTest(function (api) {

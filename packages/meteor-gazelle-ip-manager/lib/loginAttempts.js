@@ -3,11 +3,7 @@ LoginAttempt = Astro.Class({
   name: 'LoginAttempt',
   collection: LoginAttempts,
   fields: {
-    ip: {
-      type: 'number',
-      index: 1
-    },
-    ipStr: 'string',
+    ip: 'number',
     attempts: {
       type: 'number',
       default: 1
@@ -15,14 +11,18 @@ LoginAttempt = Astro.Class({
     expireOn: 'date',
     createdAt: 'date'
   },
+  indexes: {
+    ipIdx: {
+      fields: {
+        ip: 1
+      },
+      options: {}
+    }
+  },
   validators: {
     ip: [
       Validators.required(),
       Validators.number()
-    ],
-    ipStr: [
-      Validators.required(),
-      Validators.string()
     ],
     expireOn: [
       Validators.required(),
@@ -30,27 +30,16 @@ LoginAttempt = Astro.Class({
     ]
   },
   methods: {
-    resolveIp: function () {
-      if (this.ipStr && !this.ip) {
-        this.ip = IpManager.ip2long(this.ipStr);
-      }
-    },
     setExpireOn: function () {
       if (!this.expireOn) {
         var expirationDate = new Date();
-        expirationDate.setHours(expirationDate.getHours() + Meteor.settings.INVALID_LOGIN_COUNTER_TIMEOUT_ONEHOUR);
+        expirationDate.setHours(expirationDate.getHours() + IpManager.INVALID_LOGIN_COUNTER_TIMEOUT_ONEHOUR);
         this.expireOn = expirationDate;
       }
-    }
-  },
-  events: {
-    beforeinsert: function () {
-      this.resolveIp();
-      this.setExpireOn();
+    },
+    incrementInvalidLoginAttempt: function () {
+      this.attempts++;
+      this.expireOn.setHours(this.expireOn.getHours() + IpManager.INVALID_LOGIN_COUNTER_TIMEOUT_ONEHOUR);
     }
   }
 });
-
-if (Meteor.isServer) {
-  LoginAttempts._ensureIndex({ 'expireOn': 1 }, { expireAfterSeconds: 0 });
-}
