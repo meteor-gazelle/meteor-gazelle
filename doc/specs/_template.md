@@ -10,7 +10,7 @@
 
 **Example:**
 
->The site is a walled garden, in which its community shares lots of great content.
+The site is a walled garden, in which its community shares lots of great content.
 To keep the community in great shape and to ensure quality control, the website
 is not publicly accessible. Restricted access ensures that bad people are (mostly)
 kept out and keeps the site community and economy healthy.
@@ -22,10 +22,10 @@ They are not technical requirements, but specify what is needed to "help the
 organization achieve its goals." (Wikipedia)
 
 **Example:**
-> * For each user, it should be recorded when they last accessed the site.
-> * The devices from which a user logs in should be recorded. This information
+* For each user, it should be recorded when they last accessed the site.
+* The devices from which a user logs in should be recorded. This information
     should include user agent, source IP address, authentication method and time.
-> * The age of a password should be recorded in the database.
+* The age of a password should be recorded in the database.
 
 ## Use cases
 
