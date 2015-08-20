@@ -26,6 +26,7 @@ ease.
 * Each system that uses the tagging packge must have the option to force tags to be chosen from
   a pre-defined set. (i.e. a forum limiting users to tags relevant to the forum)
 * Each system that uses the tagging package must have tag editing permissions specific to the system.
+* Parent and child tags must not be identical.
 
 ## Use cases
 
