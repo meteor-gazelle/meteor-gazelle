@@ -11,6 +11,12 @@ events.beforeInsert = function () {
     // Set value for createdBy field.
     this.set(behaviorData.createdByFieldName, Meteor.userId());
   }
+
+  // If the "hasCreatedAtField" option is set.
+  if (behaviorData.hasCreatedAtField) {
+    // Set createdAt field.
+    this.set(behaviorData.createdAtFieldName, new Date());
+  }
 };
 
 events.beforeUpdate = function () {
@@ -23,21 +29,16 @@ events.beforeUpdate = function () {
     // We only set the "updatedAt" field if there are any changes.
     if (_.size(this.getModified())) {
       // Set value for the "updatedAt" field.
-      this.set(behaviorData.updatedFieldName, new Date());
+      this.set(behaviorData.updatedByFieldName, Meteor.userId());
+    }
+  }
+
+  // If the "hasUpdatedAtField" option is set.
+  if (behaviorData.hasUpdatedAtField) {
+    // We only set the "updatedAt" field if there are any changes.
+    if (_.size(this.getModified())) {
+      // Set value for the "updatedAt" field.
+      this.set(behaviorData.updatedAtFieldName, new Date());
     }
   }
 };
-
-
-this.addEvents({
-  beforeInsert: function () {
-    if ( behaviorData.hasCreatedByField ) {
-      this.createdByFieldName = Meteor.userId();
-    }
-  },
-  beforeUpdate: function () {
-    if ( behaviorData.hasCreatedByField ) {
-      this.updatedByFieldName.push(Meteor.userId());
-    }
-  }
-});
