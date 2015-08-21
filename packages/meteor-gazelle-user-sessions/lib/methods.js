@@ -2,8 +2,8 @@ UserSessionsManager = {
   createUserSession: function (userId, ipAddr, fullUA) {
     Meteor.call('usersessions/createUserSession', userId, ipAddr, fullUA);
   },
-  logoutConnectedUsersByIp: function (startIpAddr, endIpAddr, callback) {
-    Meteor.call('usersessions/logoutConnectedUsersByIp', startIpAddr, endIpAddr, callback);
+  logoutConnectedUsersByIp: function (startIpAddr, endIpAddr) {
+    Meteor.call('usersessions/logoutConnectedUsersByIp', startIpAddr, endIpAddr);
   }
 };
 
@@ -13,7 +13,7 @@ Meteor.methods({
 
     if (userSession === undefined) {
       userSession = new UserSession({
-        ip: IpUtils.ip2long(ipAddr),
+        ip: Ip.toBuffer(ipAddr),
         userId: userId,
         fullUA: fullUA
       });
@@ -26,17 +26,16 @@ Meteor.methods({
       }
     }
   },
-  'usersessions/logoutConnectedUsersByIp': function (startIpAddr, endIpAddr, callback) {
-    // TODO how do we want to utilize the callback here?
-    if (endIpAddr) {
-      UserConnection.find({
-        ipAddr: { $gte: startIpAdddr },
-        ipAddr: { $lte: endIpAddr }
+  'usersessions/logoutConnectedUsersByIp': function (startIpAddrBuf, endIpAddrBuf) {
+    if (endIpAddrBuf) {
+      UserSessions.find({
+        ipAddr: { $gte: startIpAddrBuf },
+        ipAddr: { $lte: endIpAddrBuf }
       }).forEach(function (userConnection) {
         Meteor.call('usersessions/logoutUser', userConnection.userId);
       });
     } else {
-      UserConnection.find({ ipAddr: ipAddr }).forEach(function (userConnection) {
+      UserSessions.find({ ipAddr: ipAddr }).forEach(function (userConnection) {
         Meteor.call('usersessions/logoutUser', userConnection.userId);
       });
     }

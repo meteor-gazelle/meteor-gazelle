@@ -3,7 +3,7 @@ LoginAttempt = Astro.Class({
   name: 'LoginAttempt',
   collection: LoginAttempts,
   fields: {
-    ip: 'number',
+    ip: 'object',
     attempts: {
       type: 'number',
       default: 1
@@ -22,7 +22,7 @@ LoginAttempt = Astro.Class({
   validators: {
     ip: [
       Validators.required(),
-      Validators.number()
+      Validators.object()
     ],
     expireOn: [
       Validators.required(),

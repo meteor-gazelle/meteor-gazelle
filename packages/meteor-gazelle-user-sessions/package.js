@@ -11,6 +11,7 @@ Package.onUse(function (api) {
 
   api.use([
     'meteor-gazelle:lib',
+    'meteor-gazelle:ip',
     'jagi:astronomy',
     'jagi:astronomy-validators'
   ]);

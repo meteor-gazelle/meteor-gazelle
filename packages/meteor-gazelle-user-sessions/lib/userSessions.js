@@ -3,7 +3,7 @@ UserSession = Astro.Class({
   name: 'UserSession',
   collection: UserSessions,
   fields: {
-    ip: 'number',
+    ip: 'object',
     userId: 'string',
     fullUA: 'string',
     createdAt: 'date'
@@ -20,7 +20,7 @@ UserSession = Astro.Class({
   validators: {
     ip: [
       Validators.required(),
-      Validators.number()
+      Validators.object()
     ],
     userId: [
       Validators.required(),

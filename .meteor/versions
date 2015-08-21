@@ -51,6 +51,7 @@ meteor-gazelle:core@0.0.1
 meteor-gazelle:footer@0.0.1
 meteor-gazelle:header@0.0.1
 meteor-gazelle:home@0.0.1
+meteor-gazelle:ip@0.3.3
 meteor-gazelle:ip-manager@0.0.1
 meteor-gazelle:lib@0.0.1
 meteor-gazelle:theme@0.0.1

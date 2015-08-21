@@ -12,6 +12,7 @@ Package.onUse(function (api) {
   api.use([
     'meteor-gazelle:lib',
     'meteor-gazelle:user-sessions',
+    'meteor-gazelle:ip',
     'jagi:astronomy',
     'jagi:astronomy-validators'
   ]);
@@ -22,7 +23,7 @@ Package.onUse(function (api) {
     'lib/methods.js'
   ], ['client', 'server']);
 
-  api.export(['IpManager', 'IpUtils']);
+  api.export('IpManager');
 });
 
 Package.onTest(function (api) {

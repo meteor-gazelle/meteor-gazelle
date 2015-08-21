@@ -3,13 +3,12 @@ BannedIp = Astro.Class({
   name: 'BannedIp',
   collection: BannedIps,
   fields: {
-    startIp: 'number',
-    endIp: 'number',
+    startIp: 'object',
+    endIp: 'object',
     notes: 'string',
     expireOn: 'date',
     createdAt: 'date',
-    createdBy: 'string',
-    isIpv6: 'boolean'
+    createdBy: 'string'
   },
   indexes: {
     startIpEndIpIdx: {
@@ -23,9 +22,9 @@ BannedIp = Astro.Class({
   validators: {
     startIp: [
       Validators.required(),
-      Validators.number()
+      Validators.object()
     ],
-    endIp: Validators.number(),
+    endIp: Validators.object(),
     notes: Validators.string(),
     expireOn: Validators.date()
   },
