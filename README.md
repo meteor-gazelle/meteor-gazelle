@@ -29,6 +29,7 @@ Coding Standards
 ----------------
 * All JavaScript code follows the [Meteor style guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide).
 * All CSS code complies to [BEM](http://getbem.com/) standards.
+* All MongoDB styles follow the [Mongo Guidelines](https://github.com/meteor-gazelle/meteor-gazelle/blob/doc/mongostandards/doc/dev/mongo_guidelines.md).
 
 Dependencies
 ------------
