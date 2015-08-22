@@ -18,7 +18,8 @@ Package.onUse(function (api) {
   api.addFiles([
     ['lib/package.js',
      'lib/behavior/behavior.js',
-     'lib/behavior/events.js']);
+     'lib/behavior/events.js']
+  ]);
 
   api.export(['CreatedBy']);
 });
