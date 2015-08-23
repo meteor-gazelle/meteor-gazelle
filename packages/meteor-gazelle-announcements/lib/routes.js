@@ -4,7 +4,7 @@ AnnouncementsController = ApplicationController.extend({
   },
   data: function () {
     return {
-      announcements: Announcements.find()
+      announcements: Announcements.find({}, {sort: {createdAt: -1}})
     }
   },
   index: function () {
