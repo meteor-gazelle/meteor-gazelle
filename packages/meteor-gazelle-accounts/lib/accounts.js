@@ -9,14 +9,22 @@ if (Meteor.isServer) {
   });
 
   Accounts.validateLoginAttempt(function (options) {
-    var validLogin;
     // TODO(rhomes) why is this being called twice on the server?
     console.log('validateLoginAttempt called');
 
-    try {
-      validLogin = IpManager.validateLogin(options.allowed, options.connection.clientAddress);
-    } catch (ex) {
-      throw ex;
+    var validLogin = options.allowed;
+    var ipAddr = options.connection.clientAddress;
+    if (IpManager.isBannedIp(ipAddr)) {
+      throw new Meteor.Error(403, IpManager.USER_BANNED_ERRORMSG);
+    }
+
+    if (!validLogin) {
+      IpManager.upsertLoginAttempt(ipAddr);
+
+      if (IpManager.exceededLoginAttempts(ipAddr)) {
+        IpManager.banIpAddress(IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG, ipAddr);
+        throw new Meteor.Error(403, IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG);
+      }
     }
 
     return validLogin;

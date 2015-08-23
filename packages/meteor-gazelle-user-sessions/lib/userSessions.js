@@ -9,7 +9,13 @@ UserSession = Astro.Class({
     createdAt: 'date'
   },
   indexes: {
-    ipUserId: {
+    ipIdx: {
+      fields: {
+        ip: 1
+      },
+      options: {}
+    },
+    ipUserIdIdx: {
       fields: {
         ip: 1,
         userId: 1

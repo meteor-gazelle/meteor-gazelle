@@ -97,19 +97,13 @@ Tinytest.add('IpManager - isBannedIp - true returned for within expiration date'
 });
 
 // IpManager.exceededLoginAttempts unit tests
-Tinytest.add('IpManager - exceededLoginAttempts - false return, failed attempt created', function (test) {
+Tinytest.add('IpManager - exceededLoginAttempts - false return when no record exists', function (test) {
   var ipAddr = '127.0.0.1';
 
   test.isFalse(IpManager.exceededLoginAttempts(ipAddr));
-
-  var loginAttemptCreated = LoginAttempts.findOne({
-    ip: Ip.toBuffer(ipAddr)
-  });
-
-  test.isNotUndefined(loginAttemptCreated);
 });
 
-Tinytest.add('IpManager - exceededLoginAttempts - false return, failed attempt incremented', function (test) {
+Tinytest.add('IpManager - exceededLoginAttempts - false return when record exists, under max attempt count', function (test) {
   var ipAddr = '127.0.0.1';
   var ipAddrBuf = Ip.toBuffer(ipAddr);
   var failedLoginAttempt = new LoginAttempt({
@@ -118,7 +112,6 @@ Tinytest.add('IpManager - exceededLoginAttempts - false return, failed attempt i
   failedLoginAttempt.save();
 
   test.isFalse(IpManager.exceededLoginAttempts(ipAddr));
-  test.equal(LoginAttempt.findOne({ ip: ipAddrBuf }).attempts, 2);
 });
 
 Tinytest.add('IpManager - exceededLoginAttempts - true return', function (test) {
@@ -132,33 +125,25 @@ Tinytest.add('IpManager - exceededLoginAttempts - true return', function (test) 
   test.isTrue(IpManager.exceededLoginAttempts(ipAddr));
 });
 
-// IpManager.validateLogin unit tests
-Tinytest.add('IpManager - validateLogin - error thrown when ip is banned', function (test) {
+// IpManager.upsertLoginAttempt
+Tinytest.add('upsertLoginAttempt - login attempt created when none exists', function (test) {
   var ipAddr = '127.0.0.1';
-  var bannedIp = new BannedIp({ ip: Ip.toBuffer(ipAddr) });
-  bannedIp.save();
 
-  test.throws(IpManager.validateLogin(false, ipAddr), new Meteor.error(401, IpManager.USER_BANNED_ERRORMSG));
+  IpManager.upsertLoginAttempt(ipAddr);
+
+  test.isNotUndefined(LoginAttempts.findOne({ ip: Ip.toBuffer(ipAddr) }));
 });
 
-Tinytest.add('IpManager - validateLogin - false returned when failed login attempts exceeded', function (test) {
+Tinytest.add('upsertLoginAttempt - login attempt incremented when one exists', function (test) {
   var ipAddr = '127.0.0.1';
   var ipAddrBuf = Ip.toBuffer(ipAddr);
   var failedLoginAttempt = new LoginAttempt({
-    ip: ipAddrBuf,
-    attempts: IpManager.MAX_LOGIN_ATTEMPTS
+    ip: ipAddrBuf
   });
   failedLoginAttempt.save();
 
-  test.isFalse(IpManager.validateLogin(false, ipAddr));
+  IpManager.upsertLoginAttempt(ipAddr);
 
-  var bannedIp = BannedIps.findOne({
-    startIp: ipAddrBuf
-  });
-  test.isNotUndefined(bannedIp);
-  test.isEqual(bannedIp.notes, IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG);
-});
-
-Tinytest.add('IpManager - validateLogin - true returned when user can login', function (test) {
-  test.isTrue(IpManager.validateLogin(true, '127.0.0.1'));
+  var expectedFailedLoginAttemptCount = LoginAttempts.findOne({ ip: ipAddrBuf }).attempts;
+  test.isEqual(failedLoginAttempt.attempts + 1, expectedFailedLoginAttemptCount);
 });

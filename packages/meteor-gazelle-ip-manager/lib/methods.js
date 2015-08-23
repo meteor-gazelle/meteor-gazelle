@@ -1,9 +1,9 @@
 IpManager = {
-  validateLogin: function (allowed, ipAddr) {
-    return Meteor.call('ipmanager/validateLogin', allowed, ipAddr);
+  upsertLoginAttempt: function (ipAddr) {
+    Meteor.call('ipmanager/upsertLoginAttempt', ipAddr);
   },
   exceededLoginAttempts: function (ipAddr) {
-    return Meteor.call('ipmanager/exceededLoginAttempts', allowed, ipAddr);
+    return Meteor.call('ipmanager/exceededLoginAttempts', ipAddr);
   },
   isBannedIp: function (ipAddr) {
     return Meteor.call('ipmanager/isBannedIp', ipAddr);
@@ -19,19 +19,7 @@ IpManager = {
 };
 
 Meteor.methods({
-  'ipmanager/validateLogin': function (allowed, ipAddr) {
-    if (Meteor.call('ipmanager/isBannedIp', ipAddr)) {
-      throw new Meteor.Error(403, IpManager.USER_BANNED_ERRORMSG);
-    }
-
-    if (!allowed && Meteor.call('ipmanager/exceededLoginAttempts', ipAddr)) {
-      // Ban ip and throw a 403 and a new message?
-      Meteor.call('ipmanager/banIpAddress', IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG, ipAddr);
-    }
-
-    return allowed;
-  },
-  'ipmanager/exceededLoginAttempts': function (ipAddr) {
+  'ipmanager/upsertLoginAttempt': function (ipAddr) {
     var ipAddrBuf = Ip.toBuffer(ipAddr);
     var loginAttempt = LoginAttempts.findOne({ ip: ipAddrBuf });
 
@@ -48,8 +36,12 @@ Meteor.methods({
       // TODO replace with logging when a logging framework is decided upon
       console.log(loginAttempt.getValidationErrors());
     }
+  },
+  'ipmanager/exceededLoginAttempts': function (ipAddr) {
+    var loginAttempt = LoginAttempts.findOne({ ip: Ip.toBuffer(ipAddr) });
+    var attempts = loginAttempt ? loginAttempt.attempts : 0;
 
-    return (loginAttempt.attempts >= IpManager.MAX_LOGIN_ATTEMPTS);
+    return (attempts >= IpManager.MAX_LOGIN_ATTEMPTS);
   },
   'ipmanager/isBannedIp': function (ipAddr) {
     var ipAddrBuf = Ip.toBuffer(ipAddr);
