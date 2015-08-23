@@ -4,16 +4,20 @@ UserSessionsManager = {
   },
   logoutConnectedUsersByIp: function (startIpAddr, endIpAddr) {
     Meteor.call('usersessions/logoutConnectedUsersByIp', startIpAddr, endIpAddr);
+  },
+  logoutUser: function (userId) {
+    Meteor.call('usersessions/logoutUser', userId);
   }
 };
 
 Meteor.methods({
   'usersessions/createUserSession': function (userId, ipAddr, fullUA) {
-    var userSession = UserSessions.findOne({ ip: ipAddr, userId: userId });
+    var ipAddrBuf = Ip.toBuffer(ipAddr);
+    var userSession = UserSessions.findOne({ ip: ipAddrBuf, userId: userId });
 
-    if (userSession === undefined) {
+    if (!userSession) {
       userSession = new UserSession({
-        ip: Ip.toBuffer(ipAddr),
+        ip: ipAddrBuf,
         userId: userId,
         fullUA: fullUA
       });
@@ -26,16 +30,16 @@ Meteor.methods({
       }
     }
   },
-  'usersessions/logoutConnectedUsersByIp': function (startIpAddrBuf, endIpAddrBuf) {
-    if (endIpAddrBuf) {
+  'usersessions/logoutConnectedUsersByIp': function (startIpAddr, endIpAddr) {
+    if (endIpAddr) {
       UserSessions.find({
-        ipAddr: { $gte: startIpAddrBuf },
-        ipAddr: { $lte: endIpAddrBuf }
+        ipAddr: { $gte: Ip.toBuffer(startIpAddr) },
+        ipAddr: { $lte: Ip.toBuffer(endIpAddr) }
       }).forEach(function (userConnection) {
         Meteor.call('usersessions/logoutUser', userConnection.userId);
       });
     } else {
-      UserSessions.find({ ipAddr: ipAddr }).forEach(function (userConnection) {
+      UserSessions.find({ ipAddr: Ip.toBuffer(startIpAddr) }).forEach(function (userConnection) {
         Meteor.call('usersessions/logoutUser', userConnection.userId);
       });
     }

@@ -23,7 +23,9 @@ Package.onUse(function (api) {
     'maxharris9:classnames',
     'fourseven:scss',
     'accounts-ui',
-    'useraccounts:core'
+    'useraccounts:core',
+    'jagi:astronomy',
+    'jagi:astronomy-validators'
   ];
 
   api.use(packages);

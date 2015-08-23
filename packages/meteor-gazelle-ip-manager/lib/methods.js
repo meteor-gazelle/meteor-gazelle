@@ -2,12 +2,20 @@ IpManager = {
   validateLogin: function (allowed, ipAddr) {
     return Meteor.call('ipmanager/validateLogin', allowed, ipAddr);
   },
+  exceededLoginAttempts: function (ipAddr) {
+    return Meteor.call('ipmanager/exceededLoginAttempts', allowed, ipAddr);
+  },
+  isBannedIp: function (ipAddr) {
+    return Meteor.call('ipmanager/isBannedIp', ipAddr);
+  },
+  banIpAddress: function (notes, startIpAddr, endIpAddr) {
+    Meteor.call('ipmanager/banIpAddress', notes, startIpAddr, endIpAddr);
+  },
   MAX_LOGIN_ATTEMPTS: 5,
   LOGIN_ATTEMPTS_EXCEEDED_TIMEOUT_ONEHOUR: 1,
   INVALID_LOGIN_COUNTER_TIMEOUT_ONEHOUR: 1,
-  LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG: "Maximum failed attempts reached",
-  USER_BANNED_ERRORMSG: "You are banned",
-  AUTOMATED_BAN: "Automated ban by server"
+  LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG: 'Maximum failed attempts reached',
+  USER_BANNED_ERRORMSG: 'You are banned'
 };
 
 Meteor.methods({
@@ -17,7 +25,8 @@ Meteor.methods({
     }
 
     if (!allowed && Meteor.call('ipmanager/exceededLoginAttempts', ipAddr)) {
-      Meteor.call('ipmanager/banIpAddress', IpManager.AUTOMATED_BAN, IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG, ipAddr);
+      // Ban ip and throw a 403 and a new message?
+      Meteor.call('ipmanager/banIpAddress', IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG, ipAddr);
     }
 
     return allowed;
@@ -69,11 +78,10 @@ Meteor.methods({
 
     return ipIsBanned;
   },
-  'ipmanager/banIpAddress': function (createdBy, notes, startIpAddr, endIpAddr) {
+  'ipmanager/banIpAddress': function (notes, startIpAddr, endIpAddr) {
     var bannedIp = new BannedIp({
       startIp: Ip.toBuffer(startIpAddr),
-      notes: notes,
-      createdBy: createdBy
+      notes: notes
     });
 
     if (endIpAddr) {

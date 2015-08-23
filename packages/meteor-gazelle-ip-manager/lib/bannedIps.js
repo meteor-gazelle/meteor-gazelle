@@ -11,6 +11,12 @@ BannedIp = Astro.Class({
     createdBy: 'string'
   },
   indexes: {
+    startIpIdx: {
+      fields: {
+        startIp: 1
+      },
+      options: {}
+    },
     startIpEndIpIdx: {
       fields: {
         startIp: 1,

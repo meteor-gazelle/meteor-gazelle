@@ -11,9 +11,7 @@ Package.onUse(function (api) {
 
   api.use([
     'meteor-gazelle:lib',
-    'meteor-gazelle:ip',
-    'jagi:astronomy',
-    'jagi:astronomy-validators'
+    'meteor-gazelle:ip'
   ]);
 
   api.addFiles([
@@ -21,15 +19,16 @@ Package.onUse(function (api) {
     'lib/methods.js'
   ], ['client', 'server']);
 
-  api.export(['UserSessionsManager']);
+  api.export('UserSessionsManager');
 });
 
 Package.onTest(function (api) {
-  api.use('meteor-gazelle:lib', ['server']);
-  api.use('meteor-gazelle:users', ['server']);
-  api.use('tinytest', ['server']);
-  api.use('practicalmeteor:chai', ['server']);
-  api.use('practicalmeteor:sinon', ['server']);
+  api.use('meteor-gazelle:lib');
+  api.use('meteor-gazelle:user-sessions');
+  api.use('tinytest');
+  api.use('practicalmeteor:chai');
+  api.use('practicalmeteor:sinon');
 
   api.addFiles('tests/server.js', 'server');
 });
+

@@ -10,6 +10,8 @@ if (Meteor.isServer) {
 
   Accounts.validateLoginAttempt(function (options) {
     var validLogin;
+    // TODO(rhomes) why is this being called twice on the server?
+    console.log('validateLoginAttempt called');
 
     try {
       validLogin = IpManager.validateLogin(options.allowed, options.connection.clientAddress);
@@ -21,6 +23,8 @@ if (Meteor.isServer) {
   });
 
   Accounts.onLogin(function (user) {
+    // TODO(rhomes) why is this being called twice on the server?
+    console.log('onLogin event called');
     UserSessionsManager.createUserSession(user.user._id, user.connection.clientAddress, user.connection.httpHeaders['user-agent']);
   });
 }
