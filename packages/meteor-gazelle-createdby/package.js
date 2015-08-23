@@ -15,11 +15,10 @@ Package.onUse(function (api) {
     'jagi:astronomy-timestamp-behavior'
   ]);
 
-  api.addFiles([
-    ['lib/package.js',
-     'lib/behavior/behavior.js',
+  api.addFiles(
+    ['lib/behavior/behavior.js',
      'lib/behavior/events.js']
-  ]);
+  );
 
   api.export(['CreatedBy']);
 });
