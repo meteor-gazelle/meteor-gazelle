@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'meteor-gazelle:createdby',
+  name: 'meteor-gazelle:astronomy-createdby-behavior',
   version: '0.0.1',
   summary: 'Base functionality for createdby.',
   documentation: 'README.md',
@@ -15,10 +15,10 @@ Package.onUse(function (api) {
     'jagi:astronomy-timestamp-behavior'
   ]);
 
-  api.addFiles(
-    ['lib/behavior/behavior.js',
-     'lib/behavior/events.js']
-  );
+  api.addFiles([
+    'lib/behavior/behavior.js',
+    'lib/behavior/events.js'
+  ]);
 
   api.export(['CreatedBy']);
 });

@@ -6,21 +6,13 @@ Astro.createBehavior({
     hasCreatedByField: true,
     createdByFieldName: 'createdBy',
     hasUpdatedByField: true,
-    updatedByFieldName: 'updatedBy',
-    hasCreatedAtField: true,
-    createdAtFieldName: 'createdAt',
-    hasUpdatedAtField: true,
-    updatedAtFieldName: 'updatedAt'
+    updatedByFieldName: 'updatedBy'
   },
   validators: {
     'hasCreatedByField': Validators.boolean(),
     'createdByFieldName': Validators.string(),
     'hasUpdatedByField': Validators.boolean(),
-    'updatedByFieldName': Validators.string(),
-    'hasCreatedAtField': Validators.boolean(),
-    'createdAtFieldName': Validators.string(),
-    'hasUpdatedAtField': Validators.boolean(),
-    'updatedAtFieldName': Validators.string()
+    'updatedByFieldName': Validators.string()
   },
   events: {
     addbehavior: function (behaviorData) {
@@ -38,21 +30,6 @@ Astro.createBehavior({
       if (_.isUndefined(behaviorData.updatedByFieldName)) {
         behaviorData.updatedByFieldName = behavior.options.updatedByFieldName;
       }
-      if (_.isUndefined(behaviorData.hasCreatedAtField)) {
-        behaviorData.hasCreatedAtField = behavior.options.hasCreatedAtField;
-      }
-      if (_.isUndefined(behaviorData.CreatedAtFieldName)) {
-        behaviorData.createdAtFieldName = behavior.options.CreatedAtFieldName;
-      }
-      if (_.isUndefined(behaviorData.hasUpdatedAtField)) {
-        behaviorData.hasUpdatedAtField = behavior.options.hasUpdatedAtField;
-      }
-      if (_.isUndefined(behaviorData.updatedAtFieldName)) {
-        behaviorData.updatedAtFieldName = behavior.options.updatedAtFieldName;
-      }
-
-      // Check validity of options.
-      checks.behaviorData.call(this, behaviorData);
 
       // Add created field to the this if not disabled.
       if (behaviorData.hasCreatedByField) {
@@ -74,30 +51,6 @@ Astro.createBehavior({
         // Add field of "string" type.
         this.addField(updatedByFieldName, {
           type: 'string',
-          default: null
-        });
-      }
-
-      // Add createdAt field to the this if not disabled.
-      if (behaviorData.hasCreatedAtField) {
-        // Get createdAt field name (can be overridden by user).
-        var createdAtFieldName = behaviorData.CreatedAtFieldName;
-
-        // Add field of "date" type.
-        this.addField(createdAtFieldName, {
-          type: 'date',
-          default: null
-        });
-      }
-
-      // Add updatedAt field to the this if not disabled.
-      if (behaviorData.hasUpdatedAtField) {
-        // Get updatedAt field name (can be overridden At user).
-        var updatedAtFieldName = behaviorData.updatedAtFieldName;
-
-        // Add field of "date" type.
-        this.addField(updatedAtFieldName, {
-          type: 'date',
           default: null
         });
       }

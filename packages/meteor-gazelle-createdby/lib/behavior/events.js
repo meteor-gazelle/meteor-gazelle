@@ -4,7 +4,7 @@ events = {};
 events.beforeInsert = function () {
   // Find a class on which the behavior had been set.
   var behaviorData = Astro.utils.behaviors.findBehavior(this.constructor,
-                                                        'createdby');
+                                          'astronomy-createdby-behavior');
 
   // If the "hasCreatedByField" option is set.
   if (behaviorData.hasCreatedByField) {
@@ -12,33 +12,24 @@ events.beforeInsert = function () {
     this.set(behaviorData.createdByFieldName, Meteor.userId());
   }
 
-  // If the "hasCreatedAtField" option is set.
-  if (behaviorData.hasCreatedAtField) {
-    // Set createdAt field.
-    this.set(behaviorData.createdAtFieldName, new Date());
+  // Set so the updatedBy field is never null.
+  if (behaviorData.hasUpdatedByField) {
+    // Set value for updatedBy field.
+    this.set(behaviorData.updatedByFieldName, Meteor.userId());
   }
 };
 
 events.beforeUpdate = function () {
   // Find a class on which the behavior had been set.
   var behaviorData = Astro.utils.behaviors.findBehavior(this.constructor,
-                                                        'createdby');
+                                          'astronomy-createdby-behavior');
 
   // If the "hasUpdatedByField" option is set.
   if (behaviorData.hasUpdatedByField) {
-    // We only set the "updatedAt" field if there are any changes.
+    // We only set the "updatedBy" field if there are any changes.
     if (_.size(this.getModified())) {
-      // Set value for the "updatedAt" field.
+      // Set value for the "updatedBy"  field.
       this.set(behaviorData.updatedByFieldName, Meteor.userId());
-    }
-  }
-
-  // If the "hasUpdatedAtField" option is set.
-  if (behaviorData.hasUpdatedAtField) {
-    // We only set the "updatedAt" field if there are any changes.
-    if (_.size(this.getModified())) {
-      // Set value for the "updatedAt" field.
-      this.set(behaviorData.updatedAtFieldName, new Date());
     }
   }
 };
