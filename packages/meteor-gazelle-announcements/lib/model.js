@@ -3,6 +3,7 @@
 // TODO(ajax) Add createdBy behavior
 
 Announcements = new Mongo.Collection('announcements');
+// TODO(ajax) Does it need to be exposed?
 Gazelle.announcements = Announcements;
 
 Announcement = Astro.Class({
