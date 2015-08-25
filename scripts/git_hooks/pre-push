@@ -1,0 +1,9 @@
+echo 'Checking for issues...';
+./run_tests.sh >/dev/null 2>&1;
+if [ $? -ne 0 ];
+then
+    echo '\033[0;41m\033[1;37m ✗  \033[0m Commit stopped as run_tests has found errors - ./run_tests.sh';
+    exit 1;
+else
+    echo 'Done';
+fi;
