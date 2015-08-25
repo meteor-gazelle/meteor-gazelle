@@ -14,7 +14,7 @@ Package.onUse(function (api) {
     'meteor-gazelle:users',
     'meteor-gazelle:accounts',
     'meteor-gazelle:header',
-    'meteor-gazelle:footer'
+    'meteor-gazelle:footer',
   ];
 
   api.use(packages);

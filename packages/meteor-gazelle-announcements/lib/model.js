@@ -12,11 +12,9 @@ Announcement = Astro.Class({
   fields: {
     'title': {
       type: 'string',
-      default: 'New announcement title'
     },
     'body': {
       type: 'string',
-      default: 'New announcement body'
     },
     'type': {
       type: 'string'

@@ -8,18 +8,24 @@ UserClass = Astro.Class({
   fields: {
     'title': {
       type: 'string',
-      default: 'The class title'
     },
     'shortTitle': {
       type: 'string',
-      default: 'The shortened class title'
     },
-    'ranking': {
+    'rank': {
       type: 'number'
     },
     'secondary': {
       type: 'boolean',
-      default: false
+    },
+    // TODO(ajax) How to validate permissions are valid?
+    'permissions.$': {
+      type: 'array',
+      default: []
+    },
+    'permissions.$': {
+      // (ajax) Should this be string or object?
+      type: 'string'
     }
   },
   validators: {

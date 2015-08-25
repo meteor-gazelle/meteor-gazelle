@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'meteor-gazelle:user-permissions',
+  name: 'meteor-gazelle:user-classes',
   version: '0.0.1',
-  summary: 'User permissions and classes',
+  summary: 'User classes',
   documentation: 'README.md',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
@@ -14,7 +14,14 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
-  ], ['client', 'server']);
+    'lib/schemas.js',
+    'lib/model.js',
+    'lib/routes.js'
+  ]);
+
+  api.addFiles([
+    'lib/publications.js',
+  ], 'server');
 
 });
 

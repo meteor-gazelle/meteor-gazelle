@@ -28,7 +28,8 @@ Package.onUse(function (api) {
     'jagi:astronomy',
     'jagi:astronomy-timestamp-behavior',
     'jagi:astronomy-validators',
-    'jagi:astronomy-behaviors'
+    'jagi:astronomy-behaviors',
+    'msavin:mongol'
   ];
 
   api.use(packages);
