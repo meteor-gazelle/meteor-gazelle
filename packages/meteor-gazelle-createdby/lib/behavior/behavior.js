@@ -31,7 +31,7 @@ Astro.createBehavior({
         behaviorData.updatedByFieldName = behavior.options.updatedByFieldName;
       }
 
-      // Add created field to the this if not disabled.
+      // Add created field to this if not disabled.
       if (behaviorData.hasCreatedByField) {
         // Get created field name (can be overridden by user).
         var createdByFieldName = behaviorData.CreatedByFieldName;
@@ -43,15 +43,15 @@ Astro.createBehavior({
         });
       }
 
-      // Add updated field to the this if not disabled.
+      // Add updated field to this if not disabled.
       if (behaviorData.hasUpdatedByField) {
         // Get updated field name (can be overridden by user).
         var updatedByFieldName = behaviorData.updatedByFieldName;
 
         // Add field of "string" type.
         this.addField(updatedByFieldName, {
-          type: 'string',
-          default: null
+          type: 'array',
+          default: []
         });
       }
 

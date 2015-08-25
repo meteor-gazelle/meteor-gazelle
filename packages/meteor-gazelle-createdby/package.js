@@ -11,8 +11,7 @@ Package.onUse(function (api) {
 
   api.use([
     'meteor-gazelle:core',
-    'jagi:astronomy',
-    'jagi:astronomy-timestamp-behavior'
+    'jagi:astronomy'
   ]);
 
   api.addFiles([
@@ -24,4 +23,11 @@ Package.onUse(function (api) {
 });
 
 Package.onTest(function (api) {
-});
+  api.use('meteor-gazelle:core', ['server']);
+  api.use('jagi:astronomy', ['server']);
+  api.use('tinytest', ['server']);
+  api.use('useraccounts:iron-routing', ['server']);
+
+  api.addFiles('lib/tests/server.js', 'server');
+  api.addFiles('lib/tests/createdByTester.js', 'server');
+}); 
