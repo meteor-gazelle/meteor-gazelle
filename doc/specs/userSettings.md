@@ -1,20 +1,8 @@
-# User Settings
-
-## Metadata
-
-Author: Tick
-
-### Changelog
-
-**2015-07-28**
-
-* Initial version
-
 ## Table of contents
 
 1. Motivation
-1. Business rules
-1. Use cases
+2. Business rules
+3. Use cases
 
 ## Motivation
 
@@ -22,30 +10,29 @@ Provides a means for users of the site to configure and personalise their usage 
 
 ## Business rules.
 
- - A user can only edit the own settings
- - Administrators with the right permissions can edit another user's settings.
+ * A user can only edit their own settings, unless they have the user_settings_administration permission enabled.
 
 Settings can be configured for:
 
 * **Site Appearance**: Stylesheets and fonts.
 
-* **Torrents**: Appearance of search results and cover art.
+* **Torrents**: Appearance of search results and artwork.
 
-* **Community**: Forums, inbox, avatars and Rippy.
+* **Community**: Forums, inbox, and avatars.
 
-* **Notifications**: News announcements, inbox messages, announcements, forum threads, torrent notifications, etc...
+* **Notifications**: News announcements, inbox messages, announcements, forum threads, torrent notifications, etc.
 
-* **Personal**: Avatar, Last.fm and title.
+* **Personal**: Avatar and title.
 
-* **Paranoia**: Profile elements to display to other users - Posts, comments, requests, torrents, etc...
+* **Paranoia**: Profile elements to display to other users - Posts, comments, requests, torrents, etc.
 
 * **Access**: Password, email address and passkey.
 
 ## Use cases
 
-### User changes own setting
+### 1.0 User changes own setting
 
-**Actor:** User.
+**Actor:** A user
 
 **Brief:**  A user can change their own settings to interact with the site differently.
 
@@ -60,15 +47,21 @@ Settings can be configured for:
 
  1. The user navigates to their own settings page.
  2. The user changes the setting to the desired value.
- 4. The user saves the changes to their settings.
+ 3. The user saves the changes to their settings.
 
-### Administrator changes another user's setting
+**Notes:**
+  * See [authentication specs](Authentication.md) for more information regarding changing passwords, two-factor
+    authentication, etc.
 
-**Actor:** Administrator.
+### 1.1 User changing another user's settings
 
-**Brief:**  An administrator can change another user's settings.
+**Actor:** A user
 
-**Trigger:** Administrator wants to change a user's setting.
+**Brief:**  An user with the proper permission can change another user's settings
+
+**Trigger:** User wants to change another user's setting.
+
+**Precondition:** The user has the user_settings_administration permission enabled.
 
 **Postconditions:**
 
@@ -77,6 +70,10 @@ Settings can be configured for:
 
 **Basic Flow:**
 
- 1. The administrator navigates to the user's settings page.
- 2. The administrator changes the setting to the desired value.
- 4. The administrator saves the changes to the user's settings.
+ 1. The user navigates to the user's settings page.
+ 2. The user changes the setting to the desired value.
+ 3. The user saves the changes to the user's settings.
+
+**Notes:**
+  * See [authentication specs](Authentication.md) for more information regarding changing passwords, two-factor
+    authentication, etc.
