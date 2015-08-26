@@ -5,7 +5,6 @@ CreatedByTester = Astro.Class({
   fields: {
     postContent: 'string'
   },
-  // Validators not should be added by the behavior.
   behaviors: [
     'createdby'
   ]
