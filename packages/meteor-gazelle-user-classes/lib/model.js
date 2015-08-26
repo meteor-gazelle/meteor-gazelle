@@ -35,3 +35,11 @@ UserClass = Astro.Class({
   },
   behaviors: ['timestamp']
 });
+
+Meteor.methods({
+  'userClasses/insert': function(doc) {
+    check(doc, Forms.userClass);
+    var userClass = new UserClass();
+    user
+  }
+})

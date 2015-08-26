@@ -1,6 +1,6 @@
-Schemas = {};
+Forms = {};
 
-Schemas.userClass = new SimpleSchema({
+Forms.userClass = new SimpleSchema({
   title: {
     type: String,
     label: 'The user class title'

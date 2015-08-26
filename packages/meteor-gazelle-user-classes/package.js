@@ -14,13 +14,18 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
-    'lib/schemas.js',
+    'lib/forms.js',
     'lib/model.js',
     'lib/routes.js'
   ]);
 
   api.addFiles([
-    'lib/publications.js',
+    'lib/templates/userClassesManagement.html',
+    'lib/templates/userClassesManagement.js'
+  ], 'client');
+
+  api.addFiles([
+    'lib/publications.js'
   ], 'server');
 
 });

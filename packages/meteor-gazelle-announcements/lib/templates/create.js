@@ -1,7 +1,5 @@
 Template.create.helpers({
-  createForm: function() {
-    return Schemas.create;
-  }
+  createForm: Schemas.create
 });
 
 Template.create.events({
