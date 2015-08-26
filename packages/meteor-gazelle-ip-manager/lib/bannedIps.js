@@ -7,7 +7,6 @@ BannedIp = Astro.Class({
     endIp: 'object',
     notes: 'string',
     expireOn: 'date',
-    createdAt: 'date',
     createdBy: 'string'
   },
   indexes: {
@@ -30,17 +29,18 @@ BannedIp = Astro.Class({
       Validators.required(),
       Validators.object()
     ],
-    endIp: Validators.object(),
-    notes: Validators.string(),
-    expireOn: Validators.date()
+    endIp: Validators.or([
+      Validators.object(),
+      Validators.null()
+    ]),
+    notes: Validators.or([
+      Validators.string(),
+      Validators.null()
+    ]),
+    expireOn: Validators.or([
+      Validators.date(),
+      Validators.null()
+    ])
   },
-  methods: {
-    setExpireOn: function () {
-      if (!this.expireOn) {
-        var expirationDate = new Date();
-        expirationDate.setHours(expirationDate.getHours() + IpManager.LOGIN_ATTEMPTS_EXCEEDED_TIMEOUT_ONEHOUR);
-        this.expireOn = expirationDate;
-      }
-    }
-  }
+  behaviors: ['timestamp']
 });

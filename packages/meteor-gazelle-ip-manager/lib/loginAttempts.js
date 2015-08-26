@@ -8,8 +8,7 @@ LoginAttempt = Astro.Class({
       type: 'number',
       default: 1
     },
-    expireOn: 'date',
-    createdAt: 'date'
+    expireOn: 'date'
   },
   indexes: {
     ipIdx: {
@@ -27,19 +26,11 @@ LoginAttempt = Astro.Class({
     expireOn: [
       Validators.required(),
       Validators.date()
+    ],
+    attempts: [
+      Validators.required(),
+      Validators.number()
     ]
   },
-  methods: {
-    setExpireOn: function () {
-      if (!this.expireOn) {
-        var expirationDate = new Date();
-        expirationDate.setHours(expirationDate.getHours() + IpManager.INVALID_LOGIN_COUNTER_TIMEOUT_ONEHOUR);
-        this.expireOn = expirationDate;
-      }
-    },
-    incrementInvalidLoginAttempt: function () {
-      this.attempts++;
-      this.expireOn.setHours(this.expireOn.getHours() + IpManager.INVALID_LOGIN_COUNTER_TIMEOUT_ONEHOUR);
-    }
-  }
+  behaviors: ['timestamp']
 });

@@ -5,8 +5,7 @@ UserSession = Astro.Class({
   fields: {
     ip: 'object',
     userId: 'string',
-    fullUA: 'string',
-    createdAt: 'date'
+    fullUA: 'string'
   },
   indexes: {
     ipIdx: {
@@ -36,5 +35,6 @@ UserSession = Astro.Class({
       Validators.required(),
       Validators.string()
     ]
-  }
+  },
+  behaviors: ['timestamp']
 });

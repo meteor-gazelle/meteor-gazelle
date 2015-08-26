@@ -1,41 +1,58 @@
-// IpManager.banIpAddress unit tests
-Tinytest.add('IpManager - banIpAddress - record created for specific ban', function (test) {
-  // AAA pattern lol
-  // Arrange
+// IpManager.upsertBannedIp unit tests
+Tinytest.add('IpManager - upsertBannedIp - record created for specific ban', function (test) {
   var ipAddr = '127.0.0.1';
   var notes = 'China going ham';
+  var expireOn = new Date();
   var ipAddrBuf = Ip.toBuffer(ipAddr);
 
-  // Act
-  IpManager.banIpAddress(notes, ipAddr);
+  IpManager.upsertBannedIp(notes, ipAddr, null, expireOn);
 
-  // Assert
   var bannedIp = BannedIps.findOne({
     startIp: ipAddrBuf
   });
   test.isNotUndefined(bannedIp);
-  test.isEqual(bannedIp.notes, notes);
+  test.isEqual(bannedIp.get('notes'), notes);
 });
 
-Tinytest.add('IpManager - banIpAddress - record created for range ban', function (test) {
-  // AAA pattern lol
-  // Arrange
+Tinytest.add('IpManager - upsertBannedIp - record created for range ban', function (test) {
   var startIpAddr = '127.0.0.1';
   var endIpAddr = '127.0.0.5';
   var notes = 'Something clever';
+  var expireOn = new Date();
   var startIpAddrBuf = Ip.toBuffer(startIpAddr);
   var endIpAddrBuf = Ip.toBuffer(endIpAddr);
 
-  // Act
-  IpManager.banIpAddress(notes, startIpAddr, endIpAddr);
+  IpManager.upsertBannedIp(notes, startIpAddr, endIpAddr, expireOn);
 
-  // Assert
   var bannedIp = BannedIps.findOne({
     startIp: startIpAddrBuf,
     endIp: endIpAddrBuf
   });
   test.isNotUndefined(bannedIp);
-  test.isEqual(bannedIp.notes, notes);
+  test.isEqual(bannedIp.get('notes'), notes);
+});
+
+Tinytest.add('IpManager - upsertBannedIp - existing record updated', function (test) {
+  var ipAddr = '127.0.0.1';
+  var initialNotes = 'Initial notes';
+  var updatedNotes = 'Updated notes';
+  var initalExpireOn = new Date();
+  var updatedExpireOn = initialExpireOn.getHours() + 1;
+  var ipAddrBuf = Ip.toBuffer(ipAddr);
+
+  existingBannedIp = new BannedIp({
+    startIp: ipAddrBuf,
+    notes: initialNotes,
+    expireOn: initalExpireOn
+  });
+  existingBannedIp.save();
+
+  IpManager.upsertBannedIp(updatedNotes, ipAddr, null, updatedExpireOn);
+
+  var bannedIp = BannedIps.findOne({ startIp: startIpAddrBuf });
+  test.isNotUndefined(bannedIp);
+  test.isEqual(bannedIp.get('notes'), updatedNotes);
+  test.isEqual(bannedIp.get('expireOn'), updatedExpireOn);
 });
 
 // IpManager.isBannedIp unit tests
@@ -87,6 +104,7 @@ Tinytest.add('IpManager - isBannedIp - true returned for within expiration date'
   var bannedIpAddr = '127.0.0.1';
   var expirationDate = new Date();
   expirationDate.setHours(expirationDate.getHours() + 1);
+
   var bannedIp = new BannedIp({
     startIp: Ip.toBuffer(bannedIpAddr),
     expireOn: expirationDate
@@ -103,11 +121,25 @@ Tinytest.add('IpManager - exceededLoginAttempts - false return when no record ex
   test.isFalse(IpManager.exceededLoginAttempts(ipAddr));
 });
 
+Tinytest.add('IpManager - exceededLoginAttempts - false return when record exists but has expired', function (test) {
+  var ipAddr = '127.0.0.1';
+  var expiredDate = new Date(1969);
+
+  failedLoginAttempt = new LoginAttempt({
+    ip: Ip.toBuffer(ipAddr),
+    expireOn: expiredDate
+  });
+  failedLoginAttempt.save();
+
+  test.isFalse(IpManager.exceededLoginAttempts(ipAddr));
+});
+
 Tinytest.add('IpManager - exceededLoginAttempts - false return when record exists, under max attempt count', function (test) {
   var ipAddr = '127.0.0.1';
   var ipAddrBuf = Ip.toBuffer(ipAddr);
   var failedLoginAttempt = new LoginAttempt({
-    ip: ipAddrBuf
+    ip: ipAddrBuf,
+    expireOn: IpManager.createExpirationDate(IpManager.ONE_HOUR)
   });
   failedLoginAttempt.save();
 
@@ -118,7 +150,8 @@ Tinytest.add('IpManager - exceededLoginAttempts - true return', function (test) 
   var ipAddr = '127.0.0.1';
   var failedLoginAttempt = new LoginAttempt({
     ip: Ip.toBuffer(ipAddr),
-    attempts: IpManager.MAX_LOGIN_ATTEMPTS
+    attempts: IpManager.MAX_LOGIN_ATTEMPTS,
+    expireOn: IpManager.createExpirationDate(IpManager.ONE_HOUR)
   });
   failedLoginAttempt.save();
 
@@ -128,13 +161,17 @@ Tinytest.add('IpManager - exceededLoginAttempts - true return', function (test) 
 // IpManager.upsertLoginAttempt
 Tinytest.add('upsertLoginAttempt - login attempt created when none exists', function (test) {
   var ipAddr = '127.0.0.1';
+  var expireOn = new Date();
 
-  IpManager.upsertLoginAttempt(ipAddr);
+  IpManager.upsertLoginAttempt(ipAddr, expireOn);
 
-  test.isNotUndefined(LoginAttempts.findOne({ ip: Ip.toBuffer(ipAddr) }));
+  var actualLoginAttempt = LoginAttempts.findOne({ ip: Ip.toBuffer(ipAddr) });
+  test.isNotUndefined(actualLoginAttempt);
+  test.isEqual(expireOn, actualLoginAttempt.get('expireOn'));
+  test.isEqual(1, actualLoginAttempt.get('attempts'));
 });
 
-Tinytest.add('upsertLoginAttempt - login attempt incremented when one exists', function (test) {
+Tinytest.add('upsertLoginAttempt - login attempt attempts incremented when one exists', function (test) {
   var ipAddr = '127.0.0.1';
   var ipAddrBuf = Ip.toBuffer(ipAddr);
   var failedLoginAttempt = new LoginAttempt({

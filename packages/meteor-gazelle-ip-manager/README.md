@@ -1,6 +1,7 @@
 ## Ip Manager
 ### About
 This package provides various validation and management capabilities for ip addresses connecting to the website.
+With this package you can track failed login attempts, ban specific or ranges of ip addresses, check connecting clients for banned status.
 
 ### Usage
 #### isBannedIp

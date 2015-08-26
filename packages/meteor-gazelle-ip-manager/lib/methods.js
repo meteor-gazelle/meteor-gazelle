@@ -1,6 +1,9 @@
 IpManager = {
-  upsertLoginAttempt: function (ipAddr) {
-    Meteor.call('ipmanager/upsertLoginAttempt', ipAddr);
+  createExpirationDate: function (additionalHours) {
+    return Meteor.call('ipmanager/createExpirationDate', additionalHours);
+  },
+  upsertLoginAttempt: function (ipAddr, expireOn) {
+    Meteor.call('ipmanager/upsertLoginAttempt', ipAddr, expireOn);
   },
   exceededLoginAttempts: function (ipAddr) {
     return Meteor.call('ipmanager/exceededLoginAttempts', ipAddr);
@@ -8,26 +11,42 @@ IpManager = {
   isBannedIp: function (ipAddr) {
     return Meteor.call('ipmanager/isBannedIp', ipAddr);
   },
-  banIpAddress: function (notes, startIpAddr, endIpAddr) {
-    Meteor.call('ipmanager/banIpAddress', notes, startIpAddr, endIpAddr);
+  upsertBannedIp: function (notes, startIpAddr, endIpAddr, expireOn) {
+    Meteor.call('ipmanager/upsertBannedIp', notes, startIpAddr, endIpAddr, expireOn);
   },
   MAX_LOGIN_ATTEMPTS: 5,
-  LOGIN_ATTEMPTS_EXCEEDED_TIMEOUT_ONEHOUR: 1,
-  INVALID_LOGIN_COUNTER_TIMEOUT_ONEHOUR: 1,
+  ONE_HOUR: 1,
   LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG: 'Maximum failed attempts reached',
   USER_BANNED_ERRORMSG: 'You are banned'
 };
 
 Meteor.methods({
-  'ipmanager/upsertLoginAttempt': function (ipAddr) {
+  'ipmanager/createExpirationDate': function (additionalHours) {
+    var expirationDate = new Date();
+    expirationDate.setHours(expirationDate.getHours() + additionalHours);
+    return expirationDate;
+  },
+  'ipmanager/upsertLoginAttempt': function (ipAddr, expireOn) {
     var ipAddrBuf = Ip.toBuffer(ipAddr);
     var loginAttempt = LoginAttempts.findOne({ ip: ipAddrBuf });
 
     if (!loginAttempt) {
-      loginAttempt = new LoginAttempt({ ip: ipAddrBuf });
-      loginAttempt.setExpireOn();
+      loginAttempt = new LoginAttempt({
+        ip: ipAddrBuf,
+        expireOn: expireOn
+      });
     } else {
-      loginAttempt.incrementInvalidLoginAttempt();
+      if
+      // if expire on is less than now
+        // reset the attempts
+        // set the expireOn
+      // else
+        // increment attempts
+        // set the expireOn
+      loginAttempt.set({
+        attempts: loginAttempt.attempts + 1,
+        expireOn: expireOn
+      });
     }
 
     if (loginAttempt.validate()) {
@@ -38,8 +57,11 @@ Meteor.methods({
     }
   },
   'ipmanager/exceededLoginAttempts': function (ipAddr) {
-    var loginAttempt = LoginAttempts.findOne({ ip: Ip.toBuffer(ipAddr) });
-    var attempts = loginAttempt ? loginAttempt.attempts : 0;
+    var loginAttempt = LoginAttempts.findOne({
+      ip: Ip.toBuffer(ipAddr),
+      expireOn: { $gte: new Date() }
+    });
+    var attempts = loginAttempt ? loginAttempt.get('attempts'): 0;
 
     return (attempts >= IpManager.MAX_LOGIN_ATTEMPTS);
   },
@@ -51,7 +73,7 @@ Meteor.methods({
       $and: [
         { startIp: ipAddrBuf },
         {
-          $or: [{ expireOn: { $gte: currentDate }}, { expireOn: { $exists: false }}]
+          $or: [{ expireOn: { $gte: currentDate }}, { expireOn: null }]
         }
       ]
     });
@@ -62,7 +84,7 @@ Meteor.methods({
           { startIp: { $lte: ipAddrBuf }},
           { endIp: { $gte: ipAddrBuf }},
           {
-            $or: [{ expireOn: { $gte: currentDate }}, { expireOn: { $exists: false }}]
+            $or: [{ expireOn: { $gte: currentDate }}, { expireOn: null }]
           }
         ]
       });
@@ -70,15 +92,22 @@ Meteor.methods({
 
     return ipIsBanned;
   },
-  'ipmanager/banIpAddress': function (notes, startIpAddr, endIpAddr) {
-    var bannedIp = new BannedIp({
-      startIp: Ip.toBuffer(startIpAddr),
-      notes: notes
-    });
+  'ipmanager/upsertBannedIp': function (notes, startIpAddr, endIpAddr, expireOn) {
+    var args = { startIp: Ip.toBuffer(startIpAddr) };
 
     if (endIpAddr) {
-      bannedIp.endIp = Ip.toBuffer(endIpAddr);
+      args.endIp = Ip.toBuffer(endIpAddr);
     }
+
+    var bannedIp = BannedIps.findOne(args);
+    if (!bannedIp) {
+      bannedIp = new BannedIp(args);
+    }
+
+    bannedIp.set({
+      notes: notes,
+      expireOn: expireOn
+    });
 
     if (bannedIp.validate()) {
       bannedIp.save();
@@ -90,3 +119,4 @@ Meteor.methods({
     UserSessionsManager.logoutConnectedUsersByIp(startIpAddr, endIpAddr);
   }
 });
+

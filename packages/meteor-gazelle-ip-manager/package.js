@@ -1,7 +1,7 @@
 Package.describe({
   name: 'meteor-gazelle:ip-manager',
   version: '0.0.1',
-  summary: 'Base functionality for managing connecting ip addresses.',
+  summary: 'Package for managing connecting ip addresses.',
   documentation: 'README.md',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
@@ -19,7 +19,7 @@ Package.onUse(function (api) {
     'lib/loginAttempts.js',
     'lib/bannedIps.js',
     'lib/methods.js'
-  ], ['client', 'server']);
+  ], 'server');
 
   api.export('IpManager');
 });

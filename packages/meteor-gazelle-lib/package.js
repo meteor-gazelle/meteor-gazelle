@@ -25,7 +25,9 @@ Package.onUse(function (api) {
     'accounts-ui',
     'useraccounts:core',
     'jagi:astronomy',
-    'jagi:astronomy-validators'
+    'jagi:astronomy-validators',
+    'jagi:astronomy-behaviors',
+    'jagi:astronomy-timestamp-behavior'
   ];
 
   api.use(packages);

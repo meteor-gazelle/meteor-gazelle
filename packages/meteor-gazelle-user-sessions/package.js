@@ -1,7 +1,7 @@
 Package.describe({
   name: 'meteor-gazelle:user-sessions',
   version: '0.0.1',
-  summary: 'Base functionality for managing user sessions.',
+  summary: 'Package for managing user sessions.',
   documentation: 'README.md',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
@@ -17,7 +17,7 @@ Package.onUse(function (api) {
   api.addFiles([
     'lib/userSessions.js',
     'lib/methods.js'
-  ], ['client', 'server']);
+  ], 'server');
 
   api.export('UserSessionsManager');
 });
