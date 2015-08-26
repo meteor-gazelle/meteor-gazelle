@@ -1,0 +1,11 @@
+<template name="navItem">
+  <li class={{classNames}}>
+    <a class={{linkClassNames}} href={{url}}>{{title}}</a>
+
+    {{#if hasSubmenu}}
+      <div class={{submenuClassNames}}>
+        {{> navMenu depth=childDepth menu=children}}
+      </div>
+    {{/if}}
+  </li>
+</template>

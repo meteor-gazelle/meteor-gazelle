@@ -10,7 +10,7 @@ linters:
 
   NameFormat:
     allow_leading_underscore: false,
-    convention: ^((_{0,2})|(-{2}))[a-z][a-z0-9-]+$
+    convention: ^(((_{0,2})|(-{2}))[a-z][a-z0-9-]+)+$
     convention_explanation: 'Hyphenated BEM'
 
   NestingDepth:

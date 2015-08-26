@@ -110,11 +110,18 @@
     &:link,
     &:visited,
     &:hover {
-      color: $color-white;
-
       text: {
         decoration: none;
       }
+    }
+
+    &:link,
+    &:visited {
+      color: $color-white;
+    }
+
+    &:hover {
+      color: $color-text-emphasis;
     }
   }
 }
@@ -141,6 +148,7 @@
 
 %dropdown-menu-item {
   margin: 0 0 0.5em;
+  white-space: nowrap;
 }
 
 @mixin dropdown-menu-item {
