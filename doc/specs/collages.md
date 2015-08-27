@@ -9,7 +9,7 @@
 ## Motivation
 
 The collage system is an important feature.
-It provides an orthogonal way to either artist page or tagging system to organise Album, based (mostly) on Facts.
+It provides an orthogonal way to either artist page or tagging system to organise Album, based on objective theme, or, in special case, on subjective preferences.
 
 ## Business rules
 
