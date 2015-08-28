@@ -19,11 +19,10 @@ if (Meteor.isServer) {
     }
 
     if (!validLogin) {
-      IpManager.upsertLoginAttempt(ipAddr, IpManager.createExpirationDate(IpManager.ONE_HOUR));
-
-      if (IpManager.exceededLoginAttempts(ipAddr)) {
-        IpManager.upsertBannedIp(IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG, ipAddr, null, IpManager.createExpirationDate(IpManager.ONE_HOUR));
-        throw new Meteor.Error(403, IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG);
+      try {
+        IpManager.upsertAndCheckLoginAttempts(ipAddr);
+      } catch (err) {
+        throw err;
       }
     }
 

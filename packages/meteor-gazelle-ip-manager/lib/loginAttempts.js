@@ -32,5 +32,15 @@ LoginAttempt = Astro.Class({
       Validators.number()
     ]
   },
+  methods: {
+    setExpireOn: function (additionalHours) {
+      var expirationDate = new Date();
+      expirationDate.setHours(expirationDate.getHours() + additionalHours);
+      this.set('expireOn', expirationDate);
+    },
+    setAttempts: function (attempts) {
+      this.set('attempts', attempts);
+    }
+  },
   behaviors: ['timestamp']
 });
