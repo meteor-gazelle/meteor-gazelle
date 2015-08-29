@@ -1,0 +1,11 @@
+<template name="userClassesManagement">
+  {{#if userClassesExist}}
+    {{#each userClasses}}
+      {{ title }}
+    {{/each}}
+  {{ else }}
+    No user classes have been created.
+  {{/if }}
+  {{> quickForm schema=userClassCreateForm id="user-class-create" type="method" meteormethod='userClasses/insert'}}
+</template>
+

@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'meteor-gazelle:home',
+  name: 'meteor-gazelle:user-class-permissions',
   version: '0.0.1',
-  summary: 'The home page of meteor-gazelle.',
+  summary: 'User permissions',
   documentation: 'README.md',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
@@ -9,22 +9,19 @@ Package.describe({
 Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
-  var packages = [
+  api.use([
     'meteor-gazelle:core'
-  ];
-
-  api.use(packages);
-
-  api.imply(packages);
-
-  api.addFiles([
-      'lib/home.html',
-      'lib/home.js',
-    ], ['client']);
-
-  api.addFiles([
-    'lib/routes.js'
   ]);
+
+  api.addFiles([
+  ]);
+
+  api.addFiles([
+  ], 'client');
+
+  api.addFiles([
+  ], 'server');
+
 
 });
 

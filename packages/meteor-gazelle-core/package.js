@@ -14,7 +14,7 @@ Package.onUse(function (api) {
     'meteor-gazelle:users',
     'meteor-gazelle:accounts',
     'meteor-gazelle:header',
-    'meteor-gazelle:footer'
+    'meteor-gazelle:footer',
   ];
 
   api.use(packages);
@@ -22,13 +22,15 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-    'lib/client/startup.js',
-    'lib/client/templates/layout/layout.html'
+    'lib/site-name.js',
+    'lib/layout.html'
   ], 'client');
 
   api.addFiles([
-    'lib/router/config.js'
+    'lib/config.js'
   ], ['client', 'server']);
+
+  api.export('ApplicationController');
 
 });
 

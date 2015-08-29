@@ -23,14 +23,20 @@ Package.onUse(function (api) {
     'maxharris9:classnames',
     'fourseven:scss',
     'accounts-ui',
-    'useraccounts:core'
+    'useraccounts:core',
+    'useraccounts:iron-routing',
+    'jagi:astronomy',
+    'jagi:astronomy-timestamp-behavior',
+    'jagi:astronomy-validators',
+    'jagi:astronomy-behaviors',
+    'msavin:mongol'
   ];
 
   api.use(packages);
   api.imply(packages);
 
   api.addFiles([
-    'lib/core.js',
+    'lib/gazelle.js',
     'lib/collections.js'
   ], ['client', 'server']);
 
