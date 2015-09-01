@@ -31,6 +31,10 @@ Template.navItem.helpers({
 
   childDepth: function () {
     return Template.currentData().depth + 1;
+  },
+
+  childMaxDepth: function () {
+    return Template.currentData().maxDepth - 1;
   }
 });
 
@@ -68,6 +72,9 @@ function _prefixedClassNames (cssClasses) {
 }
 
 function _hasSubmenu () {
-  var children = Template.currentData().children;
-  return !!children && children.length > 0;
+  var data = Template.currentData();
+  var children = data.children;
+  var depth = data.depth;
+  var maxDepth = data.maxDepth;
+  return !!children && children.length > 0 && depth < maxDepth;
 }
