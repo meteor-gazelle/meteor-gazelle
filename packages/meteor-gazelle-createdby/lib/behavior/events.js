@@ -15,7 +15,9 @@ events.beforeInsert = function () {
   // Set so the updatedBy field is never null.
   if (behaviorData.hasUpdatedByField) {
     // Set value for updatedBy field.
-    this.set(behaviorData.updatedByFieldName, Meteor.userId());
+    var updatedArray = this.get(behaviorData.updatedByFieldName)
+                           .push(Meteor.userId());
+    this.set(behaviorData.updatedByFieldName, updatedArray);
   }
 };
 
