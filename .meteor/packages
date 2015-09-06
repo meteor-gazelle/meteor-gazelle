@@ -27,3 +27,5 @@ jagi:astronomy
 jagi:astronomy-validators
 jagi:astronomy-behaviors
 jagi:astronomy-timestamp-behavior
+velocity:html-reporter
+sanjo:jasmine

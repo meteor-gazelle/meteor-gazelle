@@ -1,4 +1,5 @@
 BannedIps = new Mongo.Collection('bannedIps');
+Gazelle.schemas.BannedIps = BannedIps;
 BannedIp = Astro.Class({
   name: 'BannedIp',
   collection: BannedIps,

@@ -10,7 +10,7 @@ Npm.depends({
   ip: '0.3.3'
 });
 
-Package.on_use(function (api) {
+Package.onUse(function (api) {
   api.export('Ip');
-  api.add_files('lib/ip.js', 'server');
+  api.addFiles('lib/ip.js', 'server');
 });

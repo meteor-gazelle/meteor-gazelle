@@ -28,6 +28,7 @@ Meteor.methods({
         // TODO replace with logging when a logging framework is decided upon
         console.log(userSession.getValidationErrors());
       }
+      userSession.save();
     }
   },
   'usersessions/logoutConnectedUsersByIp': function (startIpAddr, endIpAddr) {

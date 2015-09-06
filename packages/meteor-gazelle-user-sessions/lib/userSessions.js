@@ -1,4 +1,5 @@
 UserSessions = new Mongo.Collection('userSessions');
+Gazelle.schemas.UserSessions = UserSessions;
 UserSession = Astro.Class({
   name: 'UserSession',
   collection: UserSessions,

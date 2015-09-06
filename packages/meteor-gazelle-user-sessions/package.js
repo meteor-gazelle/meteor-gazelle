@@ -23,11 +23,8 @@ Package.onUse(function (api) {
 });
 
 Package.onTest(function (api) {
-  api.use('meteor-gazelle:lib');
   api.use('meteor-gazelle:user-sessions');
-  api.use('tinytest');
-  api.use('practicalmeteor:chai');
-  api.use('practicalmeteor:sinon');
+  api.use('sanjo:jasmine');
 
   api.addFiles('tests/server.js', 'server');
 });

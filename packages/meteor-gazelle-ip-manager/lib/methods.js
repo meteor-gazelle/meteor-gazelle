@@ -5,8 +5,8 @@ IpManager = {
   isBannedIp: function (ipAddr) {
     return Meteor.call('ipmanager/isBannedIp', ipAddr);
   },
-  upsertBannedIp: function (notes, startIpAddr, endIpAddr, expireOn) {
-    Meteor.call('ipmanager/upsertBannedIp', notes, startIpAddr, endIpAddr, expireOn);
+  upsertBannedIp: function (args) {
+    Meteor.call('ipmanager/upsertBannedIp', args);
   },
   LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG: 'Maximum failed attempts reached',
   USER_BANNED_ERRORMSG: 'You are banned'
@@ -36,6 +36,7 @@ Meteor.methods({
       // TODO(rhomes) replace with logging when a logging framework is decided upon
       console.log(loginAttempt.getValidationErrors());
     }
+    loginAttempt.save();
   },
   'ipmanager/exceededLoginAttempts': function (ipAddr) {
     // Locate a non-expired failed LoginAttempt
@@ -43,6 +44,7 @@ Meteor.methods({
       ip: Ip.toBuffer(ipAddr),
       expireOn: { $gte: new Date() }
     });
+
     var attempts = loginAttempt ? loginAttempt.get('attempts'): 0;
 
     return (attempts >= Meteor.settings.MAX_LOGIN_ATTEMPTS);
@@ -55,11 +57,11 @@ Meteor.methods({
       var expireOn = new Date();
       expireOn.setHours(expireOn.getHours() + Meteor.settings.ONE_HOUR);
 
-      IpManager.upsertBannedIp(
-        IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG,
-        ipAddr,
-        null,
-        expireOn);
+      IpManager.upsertBannedIp({
+        startIp: Ip.toBuffer(ipAddr),
+        notes: IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG,
+        expireOn: expireOn
+      });
 
       throw new Meteor.Error(403, IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG);
     }
@@ -91,16 +93,16 @@ Meteor.methods({
       });
     }
 
-    return ipIsBanned;
+    return ipIsBanned !== undefined;
   },
   'ipmanager/upsertBannedIp': function (args) {
+    var startIpAddr = args.startIp;
+    var endIpAddr = args.endIp;
     args.startIp = Ip.toBuffer(args.startIp);
-    var searchArgs = {
-      startIp: args.startIp
-    };
+    var searchArgs = { startIp: args.startIp };
 
     if (args.endIp) {
-      args.endIp = Ip.toBuffer(bannedIp.endIp);
+      args.endIp = Ip.toBuffer(args.endIp);
       searchArgs.endIp = args.endIp;
     }
 
@@ -120,6 +122,7 @@ Meteor.methods({
       // TODO(rhomes) replace with logging when a logging framework is decided upon
       console.log(bannedIp.getValidationErrors());
     }
+    bannedIp.save();
 
     UserSessionsManager.logoutConnectedUsersByIp(startIpAddr, endIpAddr);
   }

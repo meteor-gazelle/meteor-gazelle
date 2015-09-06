@@ -1,4 +1,5 @@
 LoginAttempts = new Mongo.Collection('loginAttempts');
+Gazelle.schemas.LoginAttempts = LoginAttempts;
 LoginAttempt = Astro.Class({
   name: 'LoginAttempt',
   collection: LoginAttempts,
