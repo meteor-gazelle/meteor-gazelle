@@ -30,6 +30,8 @@ Package.onUse(function (api) {
     'lib/router/config.js'
   ], ['client', 'server']);
 
+  api.export('ApplicationController', ['client', 'server']);
+
 });
 
 Package.onTest(function (api) {

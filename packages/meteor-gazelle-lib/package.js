@@ -23,7 +23,8 @@ Package.onUse(function (api) {
     'maxharris9:classnames',
     'fourseven:scss',
     'accounts-ui',
-    'useraccounts:core'
+    'useraccounts:core',
+    'useraccounts:iron-routing'
   ];
 
   api.use(packages);
