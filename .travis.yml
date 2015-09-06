@@ -5,7 +5,7 @@ node_js:
 install:
   - curl https://install.meteor.com | /bin/sh
   - npm install -g eslint
-  - npm install -g spacejam
+  - npm install -g velocity
   - gem install scss-lint
 script:
   - export PATH="$HOME/.meteor:$PATH"

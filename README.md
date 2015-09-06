@@ -45,7 +45,7 @@ Running tests
 ------------
     # one-time setup
     curl https://install.meteor.com | /bin/sh
-    npm install -g spacejam eslint
+    npm install -g velocity eslint
     gem install scss-lint
     export PATH="$HOME/.meteor:$PATH"
     cp settings.json.template settings.json

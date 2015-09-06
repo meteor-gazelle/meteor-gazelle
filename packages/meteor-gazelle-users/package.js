@@ -10,7 +10,7 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   api.use([
-    'meteor-gazelle:lib'
+    'meteor-gazelle:lib@0.0.1'
   ]);
 
   api.addFiles([
@@ -22,12 +22,10 @@ Package.onUse(function (api) {
 });
 
 Package.onTest(function (api) {
+  api.use('meteor-gazelle:lib@0.0.1', ['server']);
+  api.use('meteor-gazelle:users@0.0.1', ['server']);
+  api.use('sanjo:jasmine@0.18.0');
+  api.use('velocity:html-reporter@0.8.2');
 
-  api.use('meteor-gazelle:lib', ['server']);
-  api.use('meteor-gazelle:users', ['server']);
-  api.use('tinytest', ['server']);
-  api.use('practicalmeteor:chai', ['server']);
-  api.use('practicalmeteor:sinon', ['server']);
-
-  api.addFiles('tests/server.js', 'server');
+  api.addFiles('tests/jasmine/server/integration/methodTests.js', 'server');
 });
