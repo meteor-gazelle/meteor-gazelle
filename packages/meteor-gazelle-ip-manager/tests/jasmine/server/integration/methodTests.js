@@ -299,7 +299,7 @@ describe('IpManager', function () {
       var ipAddrBuf = Ip.toBuffer(ipAddr);
       var initialAttempts = 1;
       var futureDate = new Date();
-      futureDate.setHours(futureDate.getHours() + Meteor.settings.ONE_HOUR)
+      futureDate.setHours(futureDate.getHours() + Meteor.settings.ONE_HOUR);
 
       Gazelle.schemas.LoginAttempts.insert({
         ip: ipAddrBuf,
@@ -320,7 +320,7 @@ describe('IpManager', function () {
       var ipAddrBuf = Ip.toBuffer(ipAddr);
       var initialAttempts = Meteor.settings.MAX_LOGIN_ATTEMPTS - 1;
       var futureDate = new Date();
-      futureDate.setHours(futureDate.getHours() + Meteor.settings.ONE_HOUR)
+      futureDate.setHours(futureDate.getHours() + Meteor.settings.ONE_HOUR);
 
       Gazelle.schemas.LoginAttempts.insert({
         ip: ipAddrBuf,
