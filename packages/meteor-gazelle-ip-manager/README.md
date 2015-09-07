@@ -6,24 +6,32 @@ With this package you can track failed login attempts, ban specific or ranges of
 ### Usage
 #### isBannedIp
 Check if a given ip address has been banned.
+Arguments: the string value of the ip address to ban, e.g. '127.0.0.1'.
+Returns: true, if the ip is banned; otherwise, false.
 ```javascript
 var ipIsBanned = IpManager.isBannedIp(ipAddr);
 ```
 
-#### banIpAddress
+#### upsertBannedIp
 Ban a specific ip address or range of ip addresses from the website. This method also calls to the meteor-gazelle:user-sessions package to logout any connected users that fall within the ip address(es) banned.
+Arguments: a JSON object containing the values to ban.
 ```javascript
-IpManager.banIpAddress(notes, startIpAddr, endIpAddr);
+{
+  startIp: '127.0.0.1',
+  endIp: '127.0.0.5', // Optional
+  notes: 'Related notes pertaining to the ban', // Optional
+  expireOn: new Date() // Optional
+}
+```
+Returns: N/A
+```javascript
+IpManager.upsertBannedIp(args);
 ```
 
-#### exceededLoginAttempts
-Check if a given ip address has exceeded the allotted number of login attempts.
+#### upsertAndValidateLoginAttempts
+Upserts a login attempt record for the given ip address while incrementing the attempt count. Also checks if the given ip address has exceeded the allotted number of login attempts.
+Arguments: the string value of the ip address to check, e.g. '127.0.0.1'.
+Returns: true, if the ip has exceeded the maximum attempt count; otherwise, false.
 ```javascript
-var exceededAttemptCount = IpManager.exceededLoginAttempts(ipAddr);
-```
-
-#### upsertLoginAttempt
-Creates a new login attempt document for a given ip address or increments the attempt count of an existing one.
-```javascript
-IpManager.upsertLoginAttempt(ipAddr);
+var ipExceededLoginAttemptCount = IpManager.upsertAndValidateLoginAttempts(ipAddr);
 ```

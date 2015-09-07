@@ -9,30 +9,21 @@ if (Meteor.isServer) {
   });
 
   Accounts.validateLoginAttempt(function (options) {
-    // TODO(rhomes) why is this being called twice on the server?
-    console.log('validateLoginAttempt called');
-
     var validLogin = options.allowed;
     var ipAddr = options.connection.clientAddress;
     if (IpManager.isBannedIp(ipAddr)) {
       throw new Meteor.Error(403, IpManager.USER_BANNED_ERRORMSG);
     }
 
-    if (!validLogin) {
-      try {
-        IpManager.upsertAndCheckLoginAttempts(ipAddr);
-      } catch (err) {
-        throw err;
-      }
+    if (!validLogin && !IpManager.upsertAndValidateLoginAttempts(ipAddr)) {
+      throw new Meteor.Error(403, IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG);
     }
 
     return validLogin;
   });
 
   Accounts.onLogin(function (user) {
-    // TODO(rhomes) why is this being called twice on the server?
-    console.log('onLogin event called');
-    UserSessionsManager.createUserSession(user.user._id, user.connection.clientAddress, user.connection.httpHeaders['user-agent']);
+    UserSessionsManager.upsertUserSession(user.user._id, user.connection.clientAddress, user.connection.httpHeaders['user-agent']);
   });
 }
 

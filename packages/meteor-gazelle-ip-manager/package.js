@@ -30,5 +30,5 @@ Package.onTest(function (api) {
   api.use('meteor-gazelle:ip@0.0.1');
   api.use('sanjo:jasmine@0.15.5');
 
-  api.addFiles('tests/jasmine/server/integration/server.js', 'server');
+  api.addFiles('tests/jasmine/server/integration/methodTests.js', 'server');
 });

@@ -67,14 +67,68 @@ describe('IpManager', function () {
 
       var bannedIp = Gazelle.schemas.BannedIps.findOne({ startIp: Ip.toBuffer(ipAddr) });
 
-      debugger;
       expect(bannedIp).toBeDefined();
       expect(bannedIp.get('notes')).toEqual(updatedNotes);
       expect(bannedIp.get('expireOn')).toEqual(updatedExpireOn);
     });
+
+    it('logs out a connected user', function () {
+      // Clean up Users and UserSessions
+      Meteor.users.remove({});
+      Gazelle.schemas.UserSessions.remove({});
+
+      // Simulate a logged in user
+      var username = 'Test user';
+      var servicesResumeLoginToken = 'services.resume.loginToken';
+      var resumeLoginToken = 'resume.loginToken';
+
+      var user = Meteor.users.insert({
+        username: username,
+        resume: {
+          loginTokens: [resumeLoginToken]
+
+        },
+        services: {
+          resume: {
+            loginTokens: [servicesResumeLoginToken]
+          }
+        },
+        profile: {
+          forceLogOut: false
+        }
+      });
+
+      var ipAddr = '127.0.0.1';
+
+      // Create a user session for the above user
+      Gazelle.schemas.UserSessions.insert({
+        ip: Ip.toBuffer(ipAddr),
+        userId: user,
+        fullUA: 'A full user agent'
+      });
+
+      // Ban the ip address that the above user is connecting from
+      var notes = 'Initial notes';
+      var expireOn = new Date();
+      expireOn.setHours(expireOn.getHours() + Meteor.settings.ONE_HOUR);
+
+      var args = {
+        startIp: ipAddr,
+        notes: notes,
+        expireOn: expireOn
+      };
+
+      IpManager.upsertBannedIp(args);
+
+      user = Meteor.users.findOne({ username: username });
+      expect(user).toBeDefined();
+      expect(user.resume.loginTokens).toEqual([]);
+      expect(user.services.resume.loginTokens).toEqual([]);
+      expect(user.profile.forceLogOut).toEqual(true);
+    });
   });
 
-  describe('isBannedIp', function() {
+  describe('isBannedIp', function () {
     it('returns true when an ip address is specifically banned', function () {
       var expectedBannedIp = '127.0.0.1';
       Gazelle.schemas.BannedIps.insert({ startIp: Ip.toBuffer(expectedBannedIp) });
@@ -229,7 +283,60 @@ describe('IpManager', function () {
     });
   });
 
-  describe('upsertAndCheckLoginAttempts', function () {
+  describe('upsertAndValidateLoginAttempts', function () {
+    it('creates a record when none exist and returns true', function () {
+      var ipAddr = '127.0.0.1';
 
+      var isValid = IpManager.upsertAndValidateLoginAttempts(ipAddr);
+
+      var createdAttempt = Gazelle.schemas.LoginAttempts.findOne({ ip: Ip.toBuffer(ipAddr) });
+      expect(createdAttempt).toBeDefined();
+      expect(isValid).toBe(true);
+    });
+
+    it('increments a record when one exists and returns true when under max attempt count', function () {
+      var ipAddr = '127.0.0.1';
+      var ipAddrBuf = Ip.toBuffer(ipAddr);
+      var initialAttempts = 1;
+      var futureDate = new Date();
+      futureDate.setHours(futureDate.getHours() + Meteor.settings.ONE_HOUR)
+
+      Gazelle.schemas.LoginAttempts.insert({
+        ip: ipAddrBuf,
+        attempts: initialAttempts,
+        expireOn: futureDate
+      });
+
+      var isValid = IpManager.upsertAndValidateLoginAttempts(ipAddr);
+
+      var updatedAttempt = Gazelle.schemas.LoginAttempts.findOne({ ip: ipAddrBuf });
+      expect(updatedAttempt).toBeDefined();
+      expect(updatedAttempt.get('attempts')).toEqual(initialAttempts + 1);
+      expect(isValid).toEqual(true);
+    });
+
+    it('increments a record when one exists, returns false when max attempt count is hit, and banned ip record created', function () {
+      var ipAddr = '127.0.0.1';
+      var ipAddrBuf = Ip.toBuffer(ipAddr);
+      var initialAttempts = Meteor.settings.MAX_LOGIN_ATTEMPTS - 1;
+      var futureDate = new Date();
+      futureDate.setHours(futureDate.getHours() + Meteor.settings.ONE_HOUR)
+
+      Gazelle.schemas.LoginAttempts.insert({
+        ip: ipAddrBuf,
+        attempts: initialAttempts,
+        expireOn: futureDate
+      });
+
+      var isValid = IpManager.upsertAndValidateLoginAttempts(ipAddr);
+
+      var bannedIp = Gazelle.schemas.BannedIps.findOne({ startIp: ipAddrBuf });
+      var updatedAttempt = Gazelle.schemas.LoginAttempts.findOne({ ip: ipAddrBuf });
+
+      expect(bannedIp).toBeDefined();
+      expect(updatedAttempt).toBeDefined();
+      expect(updatedAttempt.get('attempts')).toEqual(initialAttempts + 1);
+      expect(isValid).toEqual(false);
+    });
   });
 });

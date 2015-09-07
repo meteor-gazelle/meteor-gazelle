@@ -1,6 +1,6 @@
 IpManager = {
-  upsertAndCheckLoginAttempts: function (ipAddr) {
-    Meteor.call('ipmanager/upsertAndCheckLoginAttempts', ipAddr);
+  upsertAndValidateLoginAttempts: function (ipAddr) {
+    return Meteor.call('ipmanager/upsertAndValidateLoginAttempts', ipAddr);
   },
   isBannedIp: function (ipAddr) {
     return Meteor.call('ipmanager/isBannedIp', ipAddr);
@@ -36,7 +36,6 @@ Meteor.methods({
       // TODO(rhomes) replace with logging when a logging framework is decided upon
       console.log(loginAttempt.getValidationErrors());
     }
-    loginAttempt.save();
   },
   'ipmanager/exceededLoginAttempts': function (ipAddr) {
     // Locate a non-expired failed LoginAttempt
@@ -49,22 +48,24 @@ Meteor.methods({
 
     return (attempts >= Meteor.settings.MAX_LOGIN_ATTEMPTS);
   },
-  'ipmanager/upsertAndCheckLoginAttempts': function (ipAddr) {
+  'ipmanager/upsertAndValidateLoginAttempts': function (ipAddr) {
+    var isValid = true;
     Meteor.call('ipmanager/upsertLoginAttempt', ipAddr);
 
     // Ip addresses which have exceeded the login attempts are banned
     if (Meteor.call('ipmanager/exceededLoginAttempts', ipAddr)) {
+      isValid = false;
       var expireOn = new Date();
       expireOn.setHours(expireOn.getHours() + Meteor.settings.ONE_HOUR);
 
       IpManager.upsertBannedIp({
-        startIp: Ip.toBuffer(ipAddr),
+        startIp: ipAddr,
         notes: IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG,
         expireOn: expireOn
       });
-
-      throw new Meteor.Error(403, IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG);
     }
+
+    return isValid;
   },
   'ipmanager/isBannedIp': function (ipAddr) {
     var ipAddrBuf = Ip.toBuffer(ipAddr);
@@ -122,7 +123,6 @@ Meteor.methods({
       // TODO(rhomes) replace with logging when a logging framework is decided upon
       console.log(bannedIp.getValidationErrors());
     }
-    bannedIp.save();
 
     UserSessionsManager.logoutConnectedUsersByIp(startIpAddr, endIpAddr);
   }

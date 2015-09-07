@@ -1,52 +1,51 @@
 UserSessionsManager = {
-  createUserSession: function (userId, ipAddr, fullUA) {
-    Meteor.call('usersessions/createUserSession', userId, ipAddr, fullUA);
+  upsertUserSession: function (userId, ipAddr, fullUA) {
+    Meteor.call('usersessions/upsertUserSession', userId, ipAddr, fullUA);
   },
   logoutConnectedUsersByIp: function (startIpAddr, endIpAddr) {
     Meteor.call('usersessions/logoutConnectedUsersByIp', startIpAddr, endIpAddr);
-  },
-  logoutUser: function (userId) {
-    Meteor.call('usersessions/logoutUser', userId);
   }
 };
 
 Meteor.methods({
-  'usersessions/createUserSession': function (userId, ipAddr, fullUA) {
+  'usersessions/upsertUserSession': function (userId, ipAddr, fullUA) {
     var ipAddrBuf = Ip.toBuffer(ipAddr);
     var userSession = UserSessions.findOne({ ip: ipAddrBuf, userId: userId });
 
     if (!userSession) {
       userSession = new UserSession({
         ip: ipAddrBuf,
-        userId: userId,
-        fullUA: fullUA
+        userId: userId
       });
+    }
 
-      if (userSession.validate()) {
-        userSession.save();
-      } else {
-        // TODO replace with logging when a logging framework is decided upon
-        console.log(userSession.getValidationErrors());
-      }
+    userSession.set('fullUA', fullUA);
+
+    if (userSession.validate()) {
       userSession.save();
+    } else {
+      // TODO replace with logging when a logging framework is decided upon
+      console.log(userSession.getValidationErrors());
     }
   },
   'usersessions/logoutConnectedUsersByIp': function (startIpAddr, endIpAddr) {
     if (endIpAddr) {
       UserSessions.find({
-        ipAddr: { $gte: Ip.toBuffer(startIpAddr) },
-        ipAddr: { $lte: Ip.toBuffer(endIpAddr) }
+        ip: { $gte: Ip.toBuffer(startIpAddr) },
+        ip: { $lte: Ip.toBuffer(endIpAddr) }
       }).forEach(function (userConnection) {
         Meteor.call('usersessions/logoutUser', userConnection.userId);
       });
     } else {
-      UserSessions.find({ ipAddr: Ip.toBuffer(startIpAddr) }).forEach(function (userConnection) {
+      UserSessions.find({ ip: Ip.toBuffer(startIpAddr) }).forEach(function (userConnection) {
         Meteor.call('usersessions/logoutUser', userConnection.userId);
       });
     }
   },
   'usersessions/logoutUser': function (userId) {
-    Meteor.users.update(userId, {
+    Meteor.users.update({
+      _id: userId
+    }, {
       $set: {
         'resume.loginTokens': [],
         'services.resume.loginTokens': [],
