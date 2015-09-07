@@ -7,6 +7,24 @@ if (Meteor.isServer) {
     });
     return user;
   });
+
+  Accounts.validateLoginAttempt(function (options) {
+    var validLogin = options.allowed;
+    var ipAddr = options.connection.clientAddress;
+    if (IpManager.isBannedIp(ipAddr)) {
+      throw new Meteor.Error(403, IpManager.USER_BANNED_ERRORMSG);
+    }
+
+    if (!validLogin && !IpManager.upsertAndValidateLoginAttempts(ipAddr)) {
+      throw new Meteor.Error(403, IpManager.LOGIN_ATTEMPTS_EXCEEDED_ERRORMSG);
+    }
+
+    return validLogin;
+  });
+
+  Accounts.onLogin(function (user) {
+    UserSessionsManager.upsertUserSession(user.user._id, user.connection.clientAddress, user.connection.httpHeaders['user-agent']);
+  });
 }
 
 AccountsTemplates.configureRoute('signIn', {

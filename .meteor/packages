@@ -23,3 +23,9 @@ meteor-gazelle:core
 meteor-gazelle:home
 meteor-gazelle:theme
 tinytest
+jagi:astronomy
+jagi:astronomy-validators
+jagi:astronomy-behaviors
+jagi:astronomy-timestamp-behavior
+velocity:html-reporter
+sanjo:jasmine
