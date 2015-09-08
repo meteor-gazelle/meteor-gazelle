@@ -22,4 +22,6 @@ useraccounts:core
 meteor-gazelle:core
 meteor-gazelle:home
 meteor-gazelle:theme
-tinytest
+sanjo:jasmine
+velocity:html-reporter
+useraccounts:iron-routing

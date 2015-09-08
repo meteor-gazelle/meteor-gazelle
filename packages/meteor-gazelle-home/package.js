@@ -10,7 +10,7 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   var packages = [
-    'meteor-gazelle:core'
+    'meteor-gazelle:core@0.0.1'
   ];
 
   api.use(packages);

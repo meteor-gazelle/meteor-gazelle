@@ -10,8 +10,8 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   var packages = [
-    'meteor-gazelle:lib',
-    'momentjs:moment'
+    'meteor-gazelle:lib@0.0.1',
+    'momentjs:moment@2.10.6'
   ];
 
   api.use(packages);
