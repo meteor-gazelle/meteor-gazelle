@@ -1,4 +1,4 @@
-WikiController = ApplicationController.extend({
+WikiController = RouteController.extend({
   waitOn: function () {
     return Meteor.subscribe('announcements');
   },

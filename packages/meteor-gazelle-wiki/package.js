@@ -11,7 +11,7 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
 
   var packages = [
-    'meteor-gazelle:lib',
+    'meteor-gazelle:core',
     'todda00:collection-revisions'
   ];
 
@@ -20,9 +20,29 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-  ]);
+    'lib/articles.js',
+    'lib/methods.js',
+    'lib/routes.js',
+    'lib/schemas.js'
+  ], ['client', 'server']);
+
+  api.addFiles([
+    'lib/templates/article.html',
+    'lib/templates/article.js',
+    'lib/templates/create.html',
+    'lib/templates/create.js',
+    'lib/templates/edit.html',
+    'lib/templates/edit.js',
+    'lib/templates/wiki.html',
+    'lib/templates/wiki.js',
+  ], ['client']);
+
+  api.addFiles([
+    'publications.js'
+  ], ['server']);
 
   api.export('Wiki');
+  api.export('WikiController');
 });
 
 Package.onTest(function (api) {
