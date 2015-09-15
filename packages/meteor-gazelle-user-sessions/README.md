@@ -11,7 +11,7 @@ Arguments:
 * ipAddr: the string value of the ip address of the connecting user, e.g. '127.0.0.1'.
 * fullUA: the string value of the entire user-agent.
 
-Returns: true, if the ip is banned; otherwise, false.
+Returns: N/A
 ```javascript
 IpManager.upsertUserSession(userId, ipAddr, fullUA);
 ```

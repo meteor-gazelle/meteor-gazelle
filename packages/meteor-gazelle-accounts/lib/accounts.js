@@ -22,8 +22,11 @@ if (Meteor.isServer) {
     return validLogin;
   });
 
-  Accounts.onLogin(function (user) {
-    UserSessionsManager.upsertUserSession(user.user._id, user.connection.clientAddress, user.connection.httpHeaders['user-agent']);
+  Accounts.onLogin(function (options) {
+    UserSessionsManager.upsertUserSession(
+      options.user._id,
+      options.connection.clientAddress,
+      options.connection.httpHeaders['user-agent']);
   });
 }
 

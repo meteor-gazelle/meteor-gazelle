@@ -16,10 +16,21 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
-    'lib/loginAttempts.js',
-    'lib/bannedIps.js',
-    'lib/methods.js'
+    'lib/models/loginAttempts.js',
+    'lib/methods.js',
+    'lib/publications.js'
   ], 'server');
+
+  api.addFiles([
+    'lib/templates/index.html',
+    'lib/templates/index.js',
+    'lib/templates/bannedIp.html'
+  ], 'client');
+
+  api.addFiles([
+    'lib/models/bannedIps.js',
+    'lib/routes.js'
+  ], ['client', 'server']);
 
   api.export('IpManager', 'server');
 });
