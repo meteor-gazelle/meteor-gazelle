@@ -1,21 +1,8 @@
 describe('Behavior client tests', function () {
-  var username = 'TestUser';
-  var password = 'testPassword123';
-  var email = 'TestEmail@gmail.com';
-
-  beforeAll(function () {
-    Accounts.createUser({
-      username: username,
-      email: email,
-      password: password
-    });
-  });
+  var testUser = 'TestUser';
 
   beforeEach(function () {
-    Meteor.loginWithPassword({
-      user: username,
-      password: password
-    });
+    spyOn(Meteor, 'userId').and.returnValue(testUser);
   });
 
   describe('applies the createdBy behavior', function () {
@@ -26,7 +13,7 @@ describe('Behavior client tests', function () {
       var testId = Tests.insert({ text: 'Test text' });
 
       var test = Tests.findOne({ _id: testId });
-      expect(test.createdBy).toBeDefined();
+      expect(test.createdBy).toEqual(testUser);
     });
   });
 
@@ -45,7 +32,7 @@ describe('Behavior client tests', function () {
         });
 
       var test = Tests.findOne({ _id: testId });
-      expect(test.updatedBy).toBeDefined();
+      expect(test.updatedBy).toEqual(testUser);
     });
   });
 
@@ -104,7 +91,7 @@ describe('Behavior client tests', function () {
       var testId = Tests.insert({ text: 'Test text' });
 
       var test = Tests.findOne({ _id: testId });
-      expect(test.createdBy).toBeDefined();
+      expect(test.createdBy).toEqual(testUser);
       expect(test.createdAt).toBeDefined();
     });
   });

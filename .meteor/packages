@@ -25,3 +25,4 @@ meteor-gazelle:theme
 sanjo:jasmine
 velocity:html-reporter
 useraccounts:iron-routing
+matb33:collection-hooks
