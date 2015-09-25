@@ -1,4 +1,4 @@
-## meteor-behaviors
+## meteor-gazelle:behaviors
 ### About
 This provides various collection behaviors for any Mongo collection within a Meteor application.
 
