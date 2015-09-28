@@ -1,0 +1,7 @@
+<template name="navMenu">
+  <ul class={{classNames}}>
+    {{#each menu}}
+      {{> navItem depth=depth title=title url=url children=children maxDepth=maxDepth}}
+    {{/each}}
+  </ul>
+</template>
