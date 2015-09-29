@@ -17,7 +17,7 @@ Behaviors.updateAtHistory = function (collection, fieldname) {
   collection.before.update(function (userId, doc, fieldNames, modifier, options) {
     modifier.$set = modifier.$set || {};
 
-    if (doc[fieldname] === undefined || doc[fieldname] == null) {
+    if (doc[fieldname] === undefined || doc[fieldname] === null) {
       modifier.$set[fieldname] = [new Date()];
     } else {
       doc[fieldname].push(new Date());
@@ -43,7 +43,7 @@ Behaviors.updateByHistory = function (collection, fieldname) {
   collection.before.update(function (userId, doc, fieldNames, modifier, options) {
     modifier.$set = modifier.$set || {};
 
-    if (doc[fieldname] === undefined || doc[fieldname] == null) {
+    if (doc[fieldname] === undefined || doc[fieldname] === null) {
       modifier.$set[fieldname] = [userId];
     } else {
       doc[fieldname].push(userId);
