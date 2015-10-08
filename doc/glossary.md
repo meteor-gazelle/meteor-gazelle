@@ -35,7 +35,7 @@
 
 ----
 ### E
-**Edition:** A group of *torrents* representing a *creative work* that is distinguished from other torrents representing the same *creative work* by notable differences, excluding differences in format
+**Edition:** A group of *torrents* representing a *creative work* that is distinguished from other torrents representing the same creative work by notable differences, excluding differences in format
 
 **Edition Date:** The initial date a given edition of a *creative work* was known to be available
 
