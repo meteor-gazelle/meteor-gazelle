@@ -1,6 +1,6 @@
 /* global GazelleSchema :true */
 
-// objA is merged into objB, replacing duplicate keys.
+// obj2 is merged into obj1, replacing duplicate keys.
 function merge (obj2, obj1) {
   for (var k in obj2) {
     try {
