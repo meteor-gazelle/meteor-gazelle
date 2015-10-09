@@ -1,5 +1,6 @@
 describe('Users', function () {
   beforeEach(function () {
+    // Work with a clean database.
     Meteor.users.remove({});
   });
 
@@ -36,7 +37,7 @@ describe('Users', function () {
   });
 
   describe('userCanLogin', function () {
-    it('returns true when a user can login', function () {
+    it('returns true when an existing user can log in', function () {
       var username = 'testuser';
       Meteor.users.insert({
         'username': username,
@@ -46,7 +47,7 @@ describe('Users', function () {
       expect(Meteor.call('userCanLogin', username)).toBe(true);
     });
 
-    it('returns false when a user can', function () {
+    it('returns false when an invalid user cannot log in', function () {
       var existingUser = 'testuser';
       var invalidUser = 'I dont exist';
       Meteor.users.insert({ 'username': existingUser });
