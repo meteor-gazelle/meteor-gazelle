@@ -1,5 +1,6 @@
 describe('Users', function () {
   beforeEach(function () {
+    // Work with a clean database.
     Meteor.users.remove({});
   });
 
