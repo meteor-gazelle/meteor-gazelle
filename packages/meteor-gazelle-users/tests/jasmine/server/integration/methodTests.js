@@ -37,7 +37,7 @@ describe('Users', function () {
   });
 
   describe('userCanLogin', function () {
-    it('returns true when an existing user can log in', function () {
+    it('returns true when an enabled user can log in', function () {
       var username = 'testuser';
       Meteor.users.insert({
         'username': username,
@@ -47,12 +47,28 @@ describe('Users', function () {
       expect(Meteor.call('userCanLogin', username)).toBe(true);
     });
 
-    it('returns false when an invalid user cannot log in', function () {
+    it('returns false when an non-existing user cannot log in', function () {
       var existingUser = 'testuser';
       var invalidUser = 'I dont exist';
       Meteor.users.insert({ 'username': existingUser });
 
       expect(Meteor.call('userCanLogin', invalidUser)).toBe(false);
+    });
+
+    it('returns false when a disabled user cannot log in', function () {
+
+      var existingUser = 'existingUser';
+      var disabledUser = 'disabledUser';
+
+      // Use a non-empty db.
+      Meteor.users.insert({ 'username': existingUser });
+
+      Meteor.users.insert({
+        'username': disabledUser,
+        'enabled': false
+      });
+
+      expect(Meteor.call('userCanLogin', disabledUser)).toBe(false);
     });
   });
 });
