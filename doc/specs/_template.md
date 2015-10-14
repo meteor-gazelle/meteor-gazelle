@@ -1,28 +1,16 @@
 # Authentication system
 
-## Metadata
-
-Author: DutchDude
-
-### Changelog
-
-**2015-07-09**
-
-* Initial version
-* Something you changed
-
 ## Table of contents
 
 1. Motivation
 1. Business rules
 1. Use cases
-1. Data model
 
 ## Motivation
 
 **Example:**
 
->The site is a walled garden, in which its community shares lots of great content.
+The site is a walled garden, in which its community shares lots of great content.
 To keep the community in great shape and to ensure quality control, the website
 is not publicly accessible. Restricted access ensures that bad people are (mostly)
 kept out and keeps the site community and economy healthy.
@@ -34,10 +22,10 @@ They are not technical requirements, but specify what is needed to "help the
 organization achieve its goals." (Wikipedia)
 
 **Example:**
-> * For each user, it should be recorded when they last accessed the site.
-> * The devices from which a user logs in should be recorded. This information
+* For each user, it should be recorded when they last accessed the site.
+* The devices from which a user logs in should be recorded. This information
     should include user agent, source IP address, authentication method and time.
-> * The age of a password should be recorded in the database.
+* The age of a password should be recorded in the database.
 
 ## Use cases
 
@@ -134,18 +122,3 @@ password.
 **Applicable business rules:**
 
 * Password requirements (see above)
-
-## Data model
-
-What data should be tracked.
-
-**Example:**
-> * Users are identified a user name
-> * User have a password
-> * Users may have several application authorizations
-> * Application authorizations have a name, date registered, date last used,
-    status (active?) and contain the corresponding code.
-> * Users may have a secondary means of authentication.
-> * If users have a secondary means of authentication, they have backup codes.
-> * Application authorization requests consist of the app name, the date the
-    request was initiated, the unique authentication request code and the nonce.

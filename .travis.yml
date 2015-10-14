@@ -1,15 +1,17 @@
 language: node_js
 sudo: false
 node_js:
-  - "0.12"
+  - "0.10"
 install:
-  - curl https://install.meteor.com/ | sh
+  - curl https://install.meteor.com | /bin/sh
   - npm install -g eslint
+  - npm install -g velocity-cli
+  - gem install scss-lint
 script:
   - export PATH="$HOME/.meteor:$PATH"
   - cp settings.json.template settings.json
-  - meteor --test
-  - eslint .
+  - ./run_tests.sh -l
+  - ./run_tests.sh -t
 
 branches:
   only:
