@@ -12,7 +12,6 @@ Package.onUse(function (api) {
   var packages = [
     'meteor-gazelle:lib@0.0.1',
     'jquery@1.11.3_2',
-    'reactive-var@1.0.5',
     'underscore@1.0.3',
     'maxharris9:classnames@0.0.1'
   ];
@@ -20,10 +19,6 @@ Package.onUse(function (api) {
   api.use(packages);
 
   api.imply(packages);
-
-  api.addFiles([
-    'lib/methods.js'
-  ], ['client', 'server']);
 
   api.addFiles([
     'lib/client/nav/nav.html',

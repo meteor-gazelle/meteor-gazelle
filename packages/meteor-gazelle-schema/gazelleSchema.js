@@ -1,5 +1,6 @@
 /* global GazelleSchema :true */
 
+// TODO(ajax) Replace custom merge method with underscores' merge method
 // obj2 is merged into obj1, replacing duplicate keys.
 function merge (obj2, obj1) {
   for (var k in obj2) {

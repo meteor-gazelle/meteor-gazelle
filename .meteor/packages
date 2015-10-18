@@ -4,24 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
-aldeed:autoform
-aldeed:collection2
-aldeed:simple-schema
-iron:router
-dburles:collection-helpers
-accounts-password
-zimme:iron-router-auth
-reactive-var
-jquery
-maxharris9:classnames
-fourseven:scss
-accounts-ui
-useraccounts:core
-
-meteor-gazelle:core
-meteor-gazelle:home
-meteor-gazelle:theme
-sanjo:jasmine
-velocity:html-reporter
-useraccounts:iron-routing
+meteor-gazelle:core@0.0.1
+meteor-gazelle:theme@0.0.1
+meteor-gazelle:home@0.0.1

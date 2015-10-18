@@ -14,9 +14,11 @@ Package.onUse(function (api) {
   ];
 
   api.use(packages);
-
   api.imply(packages);
 
+  api.addFiles([
+    'lib/routes.js'
+  ]);
 });
 
 Package.onTest(function (api) {
