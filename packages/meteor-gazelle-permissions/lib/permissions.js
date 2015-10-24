@@ -1,16 +1,91 @@
-Meteor.users.attachSchema(Gazelle.schema.userPermissions);
-Gazelle.collections.UserClasses = UserClasses = new Mongo.Collection('userClasses');
 UserClasses.attachSchema(Gazelle.schema.userClass);
 UserClassesSubs = new SubsManager();
+
+
+UserClasses = (function () {
+  var UserClasses = new Mongo.Collection('userClasses');
+  var subs = new SubsManager();
+
+  return {
+    _collections: {
+      userClasses: UserClasses
+    },
+    _schemas: {
+      userClass: GazelleSchema.collections
+    },
+    _subs: subs
+  }
+})();
+
+Permissions = (function () {
+  var roles = {};
+  var permissions = [];
+
+  /**
+   *
+   * Gets user's permissions sub document
+   *
+   * @param userId The user's id
+   * @returns The permissions sub document on Meteor.user
+   */
+  var getUserPermissions = function (userId) {
+    check(userId, String);
+
+    var results = Meteor.users.findOne(userId, {
+      fields: {
+        permissions: 1
+      }
+    });
+
+    if (results === undefined) {
+      throw new Meteor.Error('User not found');
+    }
+
+    return results.permissions;
+  }
+
+  return {
+    hasRole: function(userId, role) {
+
+    }
+  };
+
+
+})();
+
+
+/**
+ *
+ * Gets user's permissions sub document
+ *
+ * @param userId The user's id
+ * @returns The permissions sub document on Meteor.user
+ */
+var getUserPermissions = function (userId) {
+  check(userId, String);
+
+  var results = Meteor.users.findOne(userId, {
+    fields: {
+      permissions: 1
+    }
+  });
+
+  if (results === undefined) {
+    throw new Meteor.Error('User not found');
+  }
+
+  return results.permissions;
+}
 
 Permissions = {
   permissions: [],
   roles: {},
-  check: function (userId, role, permissions, callbacks) {
+  hasRole: function (userId, role) {
     check(userId, String);
-    check(role, String);
-    check(permissions, [String]);
-
+    debugger;
+    var userPermissions = getUserPermissions(userId);
+  },
+  hasPermission: function (userId, permission) {
     var results = Meteor.users.findOne(userId, {
       fields: {
         permissions: 1
@@ -48,19 +123,12 @@ Permissions = {
   }
 };
 
-Permissions.registerRoles({
-  superuser: {
-    title: "Super User",
-    description: "This role provides super user permissions and is assigned to the first user on the site",
-    permissions: []
-  }
-});
 
 Permissions.registerRoles({
   fireman: {
-    title: "Fireman",
-    description: "Does fireman things",
-    permissions: ["put-out-fires", "save-cats"]
+    title: 'Fireman',
+    description: 'Does fireman things',
+    permissions: ['put-out-fires', 'save-cats']
   }
 });
 
@@ -86,14 +154,45 @@ if (Meteor.isServer) {
     return UserClasses.find();
   });
 
+
+  // This hook runs when new users are created.
+  // The first parameter, 'userId' can be null, use doc._id
   Meteor.users.after.insert(function (userId, doc) {
+    setSuperUser(doc._id);
+    setDefaultClasses(doc._id);
+  });
+
+  /**
+   *
+   * Checks if is first user on the site
+   * if they are then give them the super-user role
+   *
+   * @param userId The user's id
+   */
+  var setSuperUser = function (userId) {
+    var isFirstUser = Meteor.users.find().count() === 1;
+    if (isFirstUser) {
+      Meteor.users.update(
+        {_id: doc._id},
+        {$push: {'permissions.enabledPermissions': 'super-user'}}
+      );
+    }
+  }
+
+  /**
+   * Assigns default classes to the user
+   *
+   * @param userId The user's id
+   */
+  var setDefaultClasses = function (userId) {
     //TODO This can be written with less lines
     var defaultClasses = UserClasses.find({isDefault: true}, {fields: {_id: 1}});
     var classIds = [];
     defaultClasses.forEach(function (defaultClass) {
       classIds.push(defaultClass._id);
     });
-    Meteor.users.update({_id: doc._id}, {$set: {"permissions.classes": classIds}});
-  });
-
+    Meteor.users.update(
+      {_id: doc.userId},
+      {$set: {'permissions.classes': classIds}});
+  };
 }

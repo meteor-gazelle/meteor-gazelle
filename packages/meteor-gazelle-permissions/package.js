@@ -35,3 +35,9 @@ Package.onUse(function (api) {
 
 });
 
+Package.onTest(function (api) {
+  api.use('sanjo:jasmine@0.20.2');
+  api.use('meteor-gazelle:permissions');
+  api.addFiles('tests/permissions-spec.js');
+});
+
