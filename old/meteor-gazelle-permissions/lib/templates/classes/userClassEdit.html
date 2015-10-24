@@ -1,0 +1,8 @@
+<template name="userClassEdit">
+  {{#if isReady}}
+    {{> quickForm collection="Gazelle.collections.UserClasses" doc=userClass id="userClassEditForm" type="update"}}
+    {{> quickRemoveButton collection="Gazelle.collections.UserClasses" _id=userClass._id onSuccess=onSuccessfulDelete}}
+  {{else}}
+      <p>Loading...</p>
+  {{/if}}
+</template>

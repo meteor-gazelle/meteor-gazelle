@@ -1,0 +1,15 @@
+body {
+  font: {
+    family: $font-family-base;
+  }
+}
+
+.public-container {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+
+  max-width: 35ex;
+  padding: 1.25em 2.25em;
+}

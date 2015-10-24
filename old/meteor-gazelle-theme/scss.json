@@ -1,0 +1,13 @@
+{
+  "includePaths": [
+    ".npm/package/node_modules",
+    ".npm/package/node_modules/bourbon/app/assets/stylesheets",
+    ".npm/package/node_modules/bourbon-neat/app/assets/stylesheets",
+    ".npm/package/node_modules/node-normalize-scss"
+  ],
+
+  "enableAutoprefixer": true,
+  "autoprefixerOptions": {
+    "browsers": ["last 2 versions", "> 5%"]
+  }
+}
