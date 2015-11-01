@@ -23,7 +23,7 @@ Package.onUse(function (api) {
     'random',
     'ejson',
     'check',
-    'react',
+    'react@0.14.1_1',
     'ecmascript',
     'reactive-var',
     'kadira:flow-router@2.6.0',
@@ -42,12 +42,16 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-    'lib/gazelle.js',
+    'lib/config.js',
     'lib/callbacks.js',
-    'lib/util.js'
+    'lib/util.js',
+    'lib/router.js'
   ]);
 
   api.export('Gazelle');
+  api.export('AppState');
+  api.export('Router');
+  api.export('Components');
 
 });
 

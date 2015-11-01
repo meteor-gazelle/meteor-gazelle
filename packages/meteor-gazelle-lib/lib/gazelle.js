@@ -1,5 +1,0 @@
-Gazelle = {
-  Schemas: {},
-  Collections: {},
-  Components: {}
-};
