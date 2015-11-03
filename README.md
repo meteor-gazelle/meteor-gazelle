@@ -16,7 +16,6 @@ Contributing and Communications
   * &#35;gazelle on irc.what-network.net is the official meteor-gazelle development channel.
   * If you are looking for something to work on, ping the Core team using !core <message>.
 * For questions and discussions related to the project, new issues may be opened (using the appropriate labels).
-* [Trello](https://trello.com/b/XXzk9boI/meteor-gazelle) is used for high-level project planning. It is used by the Core team to plan out upcoming ideas and features.
 
 Submitting a pull request
 -------------------------
