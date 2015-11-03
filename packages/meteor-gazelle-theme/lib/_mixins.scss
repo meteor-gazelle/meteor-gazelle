@@ -1,0 +1,179 @@
+%no-content {
+  content: '';
+}
+
+@mixin no-content {
+  @extend %no-content;
+}
+
+%arrow-up-base {
+  border: {
+    left: {
+      color: transparent;
+    }
+
+    right: {
+      color: transparent;
+    }
+
+    style: none solid solid;
+  }
+
+  height: 0;
+  width: 0;
+}
+
+@mixin arrow-up ($color, $width, $height: $width) {
+  @extend %arrow-up-base;
+
+  border: {
+    bottom: {
+      color: $color;
+    }
+
+    width: 0 ($width / 2) $height;
+  }
+}
+
+%slide-base {
+  animation: {
+    duration: 0.15s;
+    timing-function: ease-in;
+  }
+}
+
+@mixin slide-start {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-15%);
+}
+
+@mixin slide-stop {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes slide-down {
+  from {
+    @include slide-start;
+  }
+
+  to {
+    @include slide-stop;
+  }
+}
+
+%slide-down {
+  @extend %slide-base;
+
+  animation: {
+    name: slide-down;
+  }
+}
+
+@mixin slide-down {
+  @extend %slide-down;
+}
+
+@keyframes slide-up {
+  from {
+    @include slide-stop;
+  }
+
+  to {
+    @include slide-start;
+  }
+}
+
+%slide-up {
+  @extend %slide-base;
+
+  animation: {
+    name: slide-up;
+  }
+
+  opacity: 0;
+}
+
+@mixin slide-up {
+  @extend %slide-up;
+}
+
+%dropdown-menu-base {
+  background: $color-bg-menu;
+  color: $color-white;
+  padding: 0.625em;
+  position: relative;
+
+  a {
+    &:link,
+    &:visited,
+    &:hover {
+      text: {
+        decoration: none;
+      }
+    }
+
+    &:link,
+    &:visited {
+      color: $color-white;
+    }
+
+    &:hover {
+      color: $color-text-emphasis;
+    }
+  }
+}
+
+@mixin dropdown-menu ($arrow-x: 50%, $arrow-from: left) {
+  $arrow-width: 10px;
+  $arrow-height: 6px;
+
+  @extend %dropdown-menu-base;
+
+  &:before {
+    @include no-content;
+    @include arrow-up($color-bg-menu, $arrow-width, $arrow-height);
+
+    display: block;
+    margin: $arrow-height 0 0;
+    position: absolute;
+    top: -2 * $arrow-height;
+    transform: translateX(-50%);
+
+    #{$arrow-from}: $arrow-x;
+  }
+}
+
+%dropdown-menu-item {
+  margin: 0 0 0.5em;
+  white-space: nowrap;
+}
+
+@mixin dropdown-menu-item {
+  @extend %dropdown-menu-item;
+}
+
+%icon-base {
+  display: inline-block;
+
+  font: {
+    family: FontAwesome;
+  }
+}
+
+@mixin icon ($content) {
+  @extend %icon-base;
+
+  content: $content;
+}
+
+%dark-box {
+  background: $color-bg-dark-box;
+  color: $color-text-dark-box;
+}
+
+@mixin dark-box {
+  @extend %dark-box;
+}
