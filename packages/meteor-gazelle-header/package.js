@@ -17,7 +17,13 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-    'lib/components/Header.jsx'
+    'lib/components/Header.jsx',
+    'lib/components/Nav.jsx',
+    'lib/components/NavItem.jsx',
+    'lib/components/NavMenu.jsx',
+    'lib/components/SearchBox.jsx',
+    'lib/components/SecondaryNav.jsx',
+    'lib/components/UserMenu.jsx'
   ]);
 
 });

@@ -1,9 +1,61 @@
 Components.Footer = React.createClass({
-  render() {
+
+  mixins: [ReactMeteorData],
+
+  getInitialState () {
+    return {
+      // Putting date here so that the date in the footer doesn't update
+      // every time its re-rendered
+      now: moment()
+    };
+  },
+
+  getMeteorData () {
+    return {
+      siteName: Meteor.settings.public.site.name
+    };
+  },
+
+  render () {
+    const { now } = this.state;
+    const { siteName } = this.data;
+    const year = now.format('YYYY');
+    const date = now.format('MMM D YYYY, HH:mm');
+
     return (
-      <div>
-        The site's footer
-      </div>
+      <footer className='main-footer' role='contentinfo'>
+        <div className='main-footer__title'>
+          {siteName}
+        </div>
+
+        <Components.Nav maxDepth={1} />
+
+        <div className='main-footer__copyright'>
+          Site &amp; Design © {year} Gazelle
+        </div>
+
+        <div className='main-footer__activity'>
+          Last Activity: XXXX
+        </div>
+
+        <dl className='main-footer__stats'>
+          <dt className='main-footer__stats__label'>Time</dt>
+          <dd className='main-footer__stats__value'>XXXX</dd>
+
+          <dt className='main-footer__stats__label'>Used</dt>
+          <dd className='main-footer__stats__value'>XXXX</dd>
+
+          <dt className='main-footer__stats__label'>Load</dt>
+          <dd className='main-footer__stats__value'>XXXX</dd>
+
+          <dt className='main-footer__stats__label'>Date</dt>
+          <dd className='main-footer__stats__value'>{date}</dd>
+
+          <dt className='main-footer__stats__label'>Rev</dt>
+          <dd className='main-footer__stats__value'>XXXX</dd>
+        </dl>
+      </footer>
     );
   }
+
 });
