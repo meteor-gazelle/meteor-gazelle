@@ -1,7 +1,10 @@
 $footer-height: rem(220px);
 
 html,
-body {
+body,
+// scss-lint:disable IdSelector
+#react-root {
+// scss-lint:enable IdSelector
   height: 100%;
 }
 
