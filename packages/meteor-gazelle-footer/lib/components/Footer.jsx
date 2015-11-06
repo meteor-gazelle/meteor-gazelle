@@ -1,6 +1,6 @@
-Components.Footer = React.createClass({
+const siteName = Meteor.settings.public.site.name; // TODO: Move to utility
 
-  mixins: [ReactMeteorData],
+Components.Footer = React.createClass({
 
   getInitialState () {
     return {
@@ -10,15 +10,8 @@ Components.Footer = React.createClass({
     };
   },
 
-  getMeteorData () {
-    return {
-      siteName: Meteor.settings.public.site.name
-    };
-  },
-
   render () {
     const { now } = this.state;
-    const { siteName } = this.data;
     const year = now.format('YYYY');
     const date = now.format('MMM D YYYY, HH:mm');
 

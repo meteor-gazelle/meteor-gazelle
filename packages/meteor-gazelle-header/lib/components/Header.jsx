@@ -1,16 +1,8 @@
+const siteName = Meteor.settings.public.site.name; // TODO: Move to utility
+
 Components.Header = React.createClass({
 
-  mixins: [ReactMeteorData],
-
-  getMeteorData () {
-    return {
-      siteName: Meteor.settings.public.site.name
-    };
-  },
-
   render () {
-    const { siteName } = this.data;
-
     return (
       <header className='main-header' role='banner'>
         <div className='main-header__container'>
@@ -28,4 +20,5 @@ Components.Header = React.createClass({
       </header>
     );
   }
+
 });
