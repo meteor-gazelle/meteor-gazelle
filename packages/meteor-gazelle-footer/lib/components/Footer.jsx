@@ -1,4 +1,4 @@
-const siteName = Meteor.settings.public.site.name; // TODO: Move to utility
+const siteName = Meteor.settings.site.name; // TODO: Move to utility
 
 Components.Footer = React.createClass({
 
