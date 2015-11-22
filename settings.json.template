@@ -1,5 +1,7 @@
 {
-  "site": {
-    "name": "Gazelle"
-  }
+    "public" : {
+        "site" : {
+            "name": "Gazelle"
+        }
+    }
 }
