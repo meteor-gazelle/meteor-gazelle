@@ -7,6 +7,7 @@ Package.describe({
 });
 
 
+//TODO(ajax) Go over packages and versions
 Package.onUse(function (api) {
   api.versionsFrom('1.2.0.2');
 
@@ -23,11 +24,11 @@ Package.onUse(function (api) {
     'random',
     'ejson',
     'check',
-    'react@0.14.1_1',
+    'react',
     'ecmascript',
     'reactive-var',
-    'kadira:flow-router@2.6.0',
-    'kadira:react-layout@1.3.0',
+    'kadira:flow-router',
+    'kadira:react-layout@1.5.3',
     'accounts-password@1.1.1',
     'maxharris9:classnames@0.0.1',
     'aldeed:collection2@2.5.0',
@@ -43,13 +44,12 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'lib/config.js',
-    'lib/callbacks.js',
-    'lib/util.js',
-    'lib/router.js'
+    //'lib/callbacks.js',
+    'lib/util.js'
   ]);
 
-  api.export('Gazelle');
-  api.export('AppState');
+  //api.export('Gazelle');
+  //api.export('AppState');
   api.export('Router');
   api.export('Components');
 
