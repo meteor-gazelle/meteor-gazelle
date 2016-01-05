@@ -18,7 +18,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'lib/components/Welcome.jsx',
-    'lib/components/LogIn.jsx',
+    'lib/components/Login.jsx',
     'lib/components/Register.jsx',
     'lib/routes.jsx'
   ]);
