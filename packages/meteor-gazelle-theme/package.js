@@ -6,40 +6,30 @@ Package.describe({
   git: 'https://github.com/meteor-gazelle/meteor-gazelle.git'
 });
 
-Npm.depends({
-  'bourbon': '4.2.3',
-  'bourbon-neat': '1.7.2',
-  'node-normalize-scss': '1.0.3',
-  'font-awesome': '4.3.0'
-});
-
 Package.onUse(function (api) {
-  api.versionsFrom('1.1.0.2');
+
+  api.versionsFrom('1.2.0.2');
 
   api.use([
-    'fourseven:scss@3.2.0',
+    'fourseven:scss@3.4.1',
+    'wolves:bourbon@3.1.0',
+    'wolves:neat@3.1.0',
+    'johnantoni:meteor-normalize@0.0.1',
+    'reywood:font-awesome-sass@4.4.0_1'
   ]);
 
   api.addFiles([
-    'scss.json',
-    'stylesheets/_font-awesome-custom.scss',
-    'stylesheets/_layout.scss',
-    'stylesheets/_mixins.scss',
-    'stylesheets/_public.scss',
-    'stylesheets/_useraccounts.scss',
-    'stylesheets/_variables.scss',
-    'stylesheets/core.scss',
-    'stylesheets/default.scss',
-    'stylesheets/public.scss'
-  ]);
+    'lib/_font-awesome-custom.scss',
+    'lib/_fonts.scss',
+    'lib/_layout.scss',
+    'lib/_mixins.scss',
+    'lib/_public.scss',
+    'lib/_useraccounts.scss',
+    'lib/_variables.scss',
+    'lib/style.scss'
+  ], 'client');
 
-  api.addFiles([
-    '.npm/package/node_modules/font-awesome/fonts/FontAwesome.otf',
-    '.npm/package/node_modules/font-awesome/fonts/fontawesome-webfont.eot',
-    '.npm/package/node_modules/font-awesome/fonts/fontawesome-webfont.svg',
-    '.npm/package/node_modules/font-awesome/fonts/fontawesome-webfont.ttf',
-    '.npm/package/node_modules/font-awesome/fonts/fontawesome-webfont.woff',
-    '.npm/package/node_modules/font-awesome/fonts/fontawesome-webfont.woff2',
+  api.addAssets([
     'fonts/Lato_Bold/Lato-Bold.eot',
     'fonts/Lato_Bold/Lato-Bold.svg',
     'fonts/Lato_Bold/Lato-Bold.ttf',

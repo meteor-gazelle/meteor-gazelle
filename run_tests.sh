@@ -48,7 +48,7 @@ function run_lint {
 
   # do the thing
   echo "Running eslint..."
-  eslint .
+  eslint --ext=js --ext=jsx .
 
   echo "Running scss-lint..."
   scss-lint .
