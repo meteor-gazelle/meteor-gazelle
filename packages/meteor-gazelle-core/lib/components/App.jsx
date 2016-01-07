@@ -3,49 +3,36 @@
 const publicRoutes = ['login', 'register', 'welcome'];
 
 Components.App = React.createClass({
-    mixins: [ReactMeteorData],
-    getMeteorData() {
-      var that = this;
-      if (Meteor.userId()) {
-        console.log("changed");
-      }
-      return {
-        loggingIn: Meteor.loggingIn(),
-        hasUser: !!Meteor.user(),
-        isPublic(route) {
-          return publicRoutes.indexOf(route) > -1;
-        },
-        getView() {
-          let route = FlowRouter.current().route.name;
-          let isLoggedIn = !!Meteor.user();
-          let isPublicRoute = this.isPublic(route);
-          let view = null;
-          if (!isPublicRoute && isLoggedIn) {
-            view = <AuthenticatedView yield={that.props.yield }/>;
-          } else if (isPublicRoute && isLoggedIn) {
-            // Redirect them home
-            FlowRouter.go('/home');
-            //view = <AuthenticatedView yield={<Components.Home />}/>;
-          } else if (isPublicRoute && !isLoggedIn) {
-            view = <PublicView yield={that.props.yield }/>;
-          } else if (!isPublicRoute && !isLoggedIn) {
-            view = <PublicView yield={<Components.Login />}/>;
-          }
-          return view;
-        }
-      };
-    },
-    loading()
-    {
-      return <div className="loading"></div>;
-    },
-    render()
-    {
-      return <div className="app-root">
-        <div className="container">
-          {this.data.loggingIn ? this.loading() : this.data.getView()}
-        </div>
-      </div>;
+  mixins: [ReactMeteorData],
+  getMeteorData() {
+    const isLoggedIn = !!Meteor.userId();
+    const isPublic = FlowRouter.current().route.group === Router.public;
+    let view = null;
+    if (!isLoggedIn && isPublic) {
+      view = <PublicView yield={this.props.yield}/>;
+    } else if (!isLoggedIn && !isPublic) {
+      view = <PublicView yield={<Components.Login />}/>;
+    } else if (isLoggedIn && isPublic) {
+      FlowRouter.go('/');
+      view = <AuthenticatedView yield={<Components.Home />}/>;
+    } else if (isLoggedIn && !isPublic) {
+      view = <AuthenticatedView yield={this.props.yield}/>;
     }
+    return {
+      view: view,
+      isLoggingIn: Meteor.loggingIn()
+    };
+  },
+  loading()
+  {
+    return <div className="loading"></div>;
+  },
+  render()
+  {
+    return <div className="app-root">
+      <div className="container">
+        {this.data.isLoggingIn ? this.loading() : this.data.view}
+      </div>
+    </div>;
   }
-);
+});
