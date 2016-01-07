@@ -1,4 +1,4 @@
-Components.SearchBox = React.createClass({
+SearchBox = React.createClass({
 
   propTypes: {
     placeholder: React.PropTypes.string,

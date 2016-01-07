@@ -22,4 +22,6 @@ Package.onUse(function (api) {
     'lib/components/Footer.jsx'
   ]);
 
+  api.export('Footer');
+
 });

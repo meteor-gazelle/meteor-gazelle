@@ -1,4 +1,4 @@
-Components.Home = React.createClass({
+Home = React.createClass({
   render() {
     return (
       <div>

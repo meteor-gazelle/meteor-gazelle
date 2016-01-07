@@ -1,4 +1,4 @@
-Components.UserMenu = React.createClass({
+UserMenu = React.createClass({
 
   mixins: [ReactMeteorData],
 

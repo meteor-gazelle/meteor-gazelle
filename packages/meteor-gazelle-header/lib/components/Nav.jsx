@@ -1,4 +1,4 @@
-Components.Nav = React.createClass({
+Components.Nav = Nav = React.createClass({
 
   propTypes: {
     maxDepth: React.PropTypes.number
@@ -22,7 +22,7 @@ Components.Nav = React.createClass({
 
     return (
       <nav className='main-nav'>
-        <Components.NavMenu menu={menu} maxDepth={maxDepth} />
+        <NavMenu menu={menu} maxDepth={maxDepth} />
       </nav>
     );
   }

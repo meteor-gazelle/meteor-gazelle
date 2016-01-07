@@ -1,16 +1,18 @@
 //TODO(ajax) Should the page where the user is redirected to be configurable?
 
-Router.authenticated.route('/home', {
+const homeRoutes = FlowRouter.group({ name: 'home' });
+
+homeRoutes.route('/home', {
   name: 'home',
   action: function (params, queryParams) {
-    ReactLayout.render(Components.App, {yield: <Components.Home />});
+    ReactLayout.render(App, {yield: <Home />});
   }
 });
 
-Router.authenticated.route('/test', {
+homeRoutes.route('/test', {
   name: 'test',
   action: function (params, queryParams) {
-    ReactLayout.render(Components.App, {yield: <Test />});
+    ReactLayout.render(App, {yield: <Test />});
   }
 });
 

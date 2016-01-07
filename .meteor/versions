@@ -49,7 +49,6 @@ matb33:collection-hooks@0.8.1
 maxharris9:classnames@0.0.1
 meteor@1.1.10
 meteor-base@1.0.1
-meteor-gazelle:accounts@0.0.1
 meteor-gazelle:core@0.0.1
 meteor-gazelle:footer@0.0.1
 meteor-gazelle:header@0.0.1

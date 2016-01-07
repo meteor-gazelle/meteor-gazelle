@@ -26,4 +26,5 @@ Package.onUse(function (api) {
     'lib/components/UserMenu.jsx'
   ]);
 
+  api.export('Header');
 });

@@ -1,7 +1,9 @@
-Components.SecondaryNav = React.createClass({
+SecondaryNav = React.createClass({
 
   onSignOutClick () {
-    Meteor.logout(); // TODO: Routing
+    Meteor.logout((err) => {
+      FlowRouter.go('/');
+    });
   },
 
   render () {
@@ -80,7 +82,7 @@ Components.SecondaryNav = React.createClass({
         </nav>
 
         <div className='secondary-nav__search'>
-          <Components.SearchBox showButton placeholder='Search Torrents' />
+          <SearchBox showButton placeholder='Search Torrents' />
         </div>
       </div>
     );

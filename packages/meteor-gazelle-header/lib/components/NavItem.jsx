@@ -1,4 +1,4 @@
-Components.NavItem = React.createClass({
+NavItem = React.createClass({
 
   propTypes: {
     children: React.PropTypes.array,
@@ -97,7 +97,7 @@ Components.NavItem = React.createClass({
 
       return (
         <div className={submenuClassNames}>
-          <Components.NavMenu depth={submenuDepth}
+          <NavMenu depth={submenuDepth}
                               maxDepth={submenuMaxDepth}
                               menu={children} />
         </div>

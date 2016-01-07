@@ -1,8 +1,4 @@
-//TODO(ajax) Should this be in the core package or be moved to the lib package?
-//TODO(ajax) Get route titles from flowrouter rather than hardcoding here
-const publicRoutes = ['login', 'register', 'welcome'];
-
-Components.App = React.createClass({
+App = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     const isLoggedIn = !!Meteor.userId();
@@ -11,10 +7,10 @@ Components.App = React.createClass({
     if (!isLoggedIn && isPublic) {
       view = <PublicView yield={this.props.yield}/>;
     } else if (!isLoggedIn && !isPublic) {
-      view = <PublicView yield={<Components.Login />}/>;
+      view = <PublicView yield={<Login />}/>;
     } else if (isLoggedIn && isPublic) {
       FlowRouter.go('/');
-      view = <AuthenticatedView yield={<Components.Home />}/>;
+      view = <AuthenticatedView yield={<Home />}/>;
     } else if (isLoggedIn && !isPublic) {
       view = <AuthenticatedView yield={this.props.yield}/>;
     }

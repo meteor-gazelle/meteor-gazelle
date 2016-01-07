@@ -1,6 +1,6 @@
 const siteName = Meteor.settings.public.site.name; // TODO: Move to utility
 
-Components.Header = React.createClass({
+Header = React.createClass({
 
   render () {
     return (
@@ -12,11 +12,11 @@ Components.Header = React.createClass({
             </a>
           </h1>
 
-          <Components.UserMenu />
-          <Components.Nav />
+          <UserMenu />
+          <Nav />
         </div>
 
-        <Components.SecondaryNav />
+        <SecondaryNav />
       </header>
     );
   }

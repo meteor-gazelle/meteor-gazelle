@@ -1,4 +1,4 @@
-Components.Login = React.createClass({
+Login = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
 
@@ -8,12 +8,7 @@ Components.Login = React.createClass({
     var password = this.refs.password.value.trim();
 
     //TODO(ajax) Meteor lets users login with username or email. Gazelle only allows username. Need to prevent email login.
-    Meteor.loginWithPassword(username, password, function (error) {
-      //let group = FlowRouter.current().route.group.name;
-      //if (group === 'public') {
-      //  FlowRouter.go('/home');
-      //}
-    });
+    Meteor.loginWithPassword(username, password);
   },
   render() {
     return (

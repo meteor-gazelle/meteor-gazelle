@@ -24,4 +24,5 @@ Package.onUse(function (api) {
     'lib/routes.jsx'
   ]);
 
+  api.export('Home');
 });

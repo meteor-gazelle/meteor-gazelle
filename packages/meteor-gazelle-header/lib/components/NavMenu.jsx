@@ -1,4 +1,4 @@
-Components.NavMenu = React.createClass({
+NavMenu = React.createClass({
 
   propTypes: {
     depth: React.PropTypes.number,
@@ -32,7 +32,7 @@ Components.NavMenu = React.createClass({
     const { depth, maxDepth } = this.props;
 
     return (
-      <Components.NavItem key={index}
+      <NavItem key={index}
                           depth={depth}
                           maxDepth={maxDepth}
                           {...item} />

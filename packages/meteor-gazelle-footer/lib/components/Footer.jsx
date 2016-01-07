@@ -1,6 +1,6 @@
 const siteName = Meteor.settings.public.site.name; // TODO: Move to utility
 
-Components.Footer = React.createClass({
+Footer = React.createClass({
 
   getInitialState () {
     return {
