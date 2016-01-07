@@ -20,6 +20,7 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
+    'lib/components/PublicView.jsx',
     'lib/components/AuthenticatedView.jsx',
     'lib/components/App.jsx',
     'lib/routes.jsx'

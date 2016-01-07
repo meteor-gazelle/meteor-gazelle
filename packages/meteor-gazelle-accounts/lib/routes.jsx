@@ -5,7 +5,7 @@ Router.authenticated = FlowRouter.group({name: 'authenticated'});
 Router.public.route('/welcome', {
   name: 'welcome',
   action() {
-    ReactLayout.render(Components.App, {yield: <Welcome />});
+    ReactLayout.render(Components.App, {yield: <Components.Welcome />});
   }
 });
 

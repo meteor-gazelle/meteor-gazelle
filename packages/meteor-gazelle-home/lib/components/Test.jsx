@@ -1,8 +1,8 @@
-Components.Home = React.createClass({
+Test = React.createClass({
   render() {
     return (
       <div>
-        home page
+        test page
       </div>
     );
   }

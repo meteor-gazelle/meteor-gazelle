@@ -20,6 +20,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'lib/components/Home.jsx',
+    'lib/components/Test.jsx',
     'lib/routes.jsx'
   ]);
 

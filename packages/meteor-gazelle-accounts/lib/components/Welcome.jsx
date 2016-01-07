@@ -1,4 +1,4 @@
-Welcome = React.createClass({
+Components.Welcome = React.createClass({
   render() {
     return (
       <div>

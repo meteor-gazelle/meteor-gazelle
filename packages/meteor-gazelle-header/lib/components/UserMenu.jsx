@@ -27,7 +27,12 @@ Components.UserMenu = React.createClass({
   },
 
   onSignOutClick () {
-    Meteor.logout(); // TODO: Routing
+    Meteor.logout(function(err) {
+      debugger;
+      if (!err) {
+        FlowRouter.go('/login');
+      }
+    });
   },
 
   classNames () {
