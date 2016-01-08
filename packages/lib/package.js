@@ -47,6 +47,7 @@ Package.onUse(function (api) {
 
   api.export('Router');
   api.export('Components');
+  api.export('Util');
 
 });
 
