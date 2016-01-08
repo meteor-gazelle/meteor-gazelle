@@ -1,5 +1,5 @@
 AuthenticatedView = React.createClass({
-  render() {
+  render () {
     return (
       <div className='main-container'>
         <Header />
@@ -8,6 +8,6 @@ AuthenticatedView = React.createClass({
         </div>
         <Footer />
       </div>
-    )
+    );
   }
 });

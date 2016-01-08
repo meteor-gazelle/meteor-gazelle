@@ -1,5 +1,5 @@
 Register = React.createClass({
-  handleSubmit(e) {
+  handleSubmit (e) {
     e.preventDefault();
 
     //TODO(ajax) Validation
@@ -9,7 +9,7 @@ Register = React.createClass({
     var password = this.refs.password.value.trim();
 
     //TODO(ajax) Gazelle's user creation process is more complicated than this it will need its own dedicated method.
-    //TODO(ajax) Open ended question - Do we want to configure where the user is taken on registration or login?
+    //TODO(ajax) Open ended question - Do we want to configure where the user is taken on registration and/or login?
     Accounts.createUser({
       email: email,
       username: username,
@@ -21,7 +21,7 @@ Register = React.createClass({
     });
 
   },
-  render() {
+  render () {
     return (
       <form className="registerForm" onSubmit={this.handleSubmit}>
         <input type="text" placeholder="Email" ref="email"/>

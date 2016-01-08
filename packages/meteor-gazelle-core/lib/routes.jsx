@@ -1,4 +1,4 @@
-Router.public = FlowRouter.group({ name: 'public' });
+Router.public = FlowRouter.group({name: 'public'});
 
 Router.public.route('/', {
   name: 'index',
