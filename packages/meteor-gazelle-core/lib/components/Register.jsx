@@ -1,5 +1,5 @@
 Register = React.createClass({
-  handleSubmit (e) {
+  handleSubmit(e) {
     e.preventDefault();
 
     //TODO(ajax) Validation
@@ -21,14 +21,14 @@ Register = React.createClass({
     });
 
   },
-  render () {
+  render() {
     return (
-      <form className="registerForm" onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="Email" ref="email"/>
-        <input type="text" placeholder="Username" ref="username"/>
-        <input type="text" placeholder="Password" ref="password"/>
-        <input type="submit" value="Register"/>
+      <form className="registerForm" onSubmit={ this.handleSubmit }>
+        <input type="text" placeholder="Email" ref="email" />
+        <input type="text" placeholder="Username" ref="username" />
+        <input type="text" placeholder="Password" ref="password" />
+        <input type="submit" value="Register" />
       </form>
-    );
+      );
   }
 });

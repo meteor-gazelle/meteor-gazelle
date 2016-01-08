@@ -1,5 +1,5 @@
 Login = React.createClass({
-  handleSubmit (e) {
+  handleSubmit(e) {
     e.preventDefault();
 
     //TODO(ajax) Add validation
@@ -9,13 +9,13 @@ Login = React.createClass({
     //TODO(ajax) Meteor lets users login with username or email. Gazelle only allows username. Need to prevent email login.
     Meteor.loginWithPassword(username, password);
   },
-  render () {
+  render() {
     return (
-      <form className="loginForm" onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="Username" ref="username"/>
-        <input type="text" placeholder="Password" ref="password"/>
-        <input type="submit" value="Login"/>
+      <form className="loginForm" onSubmit={ this.handleSubmit }>
+        <input type="text" placeholder="Username" ref="username" />
+        <input type="text" placeholder="Password" ref="password" />
+        <input type="submit" value="Login" />
       </form>
-    );
+      );
   }
 });

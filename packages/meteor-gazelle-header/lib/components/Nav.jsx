@@ -4,27 +4,27 @@ Components.Nav = Nav = React.createClass({
     maxDepth: React.PropTypes.number
   },
 
-  getDefaultProps () {
+  getDefaultProps() {
     return {
       maxDepth: 0x7ffffff
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       menu: getMenu()
     };
   },
 
-  render () {
-    const { maxDepth } = this.props;
-    const { menu } = this.state;
+  render() {
+    const {maxDepth} = this.props;
+    const {menu} = this.state;
 
     return (
       <nav className='main-nav'>
-        <NavMenu menu={menu} maxDepth={maxDepth} />
+        <NavMenu menu={ menu } maxDepth={ maxDepth } />
       </nav>
-    );
+      );
   }
 
 });

@@ -8,45 +8,45 @@ NavItem = React.createClass({
     url: React.PropTypes.string.isRequired
   },
 
-  getDefaultProps () {
+  getDefaultProps() {
     return {
       children: null
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       animating: false,
       expanded: false
     };
   },
 
-  onMouseOver () {
+  onMouseOver() {
     this.setState({
       animating: true,
       expanded: true
     });
   },
 
-  onMouseOut () {
+  onMouseOut() {
     this.setState({
       expanded: false
     });
   },
 
-  hasSubmenu () {
-    const { children, depth, maxDepth } = this.props;
+  hasSubmenu() {
+    const {children, depth, maxDepth} = this.props;
     return !!children && children.length > 0 && depth < maxDepth;
   },
 
-  cssPrefix () {
-    const { depth } = this.props;
+  cssPrefix() {
+    const {depth} = this.props;
     const prefix = `main-nav__level${depth}`;
     return prefix;
   },
 
-  classNames () {
-    const { animating, expanded } = this.state;
+  classNames() {
+    const {animating, expanded} = this.state;
     const prefix = this.cssPrefix();
     const hasSubmenu = this.hasSubmenu();
 
@@ -58,36 +58,33 @@ NavItem = React.createClass({
     });
   },
 
-  linkClassNames () {
+  linkClassNames() {
     const prefix = this.cssPrefix();
     return `${prefix}__link`;
   },
 
-  submenuClassNames () {
+  submenuClassNames() {
     const prefix = this.cssPrefix();
     return `${prefix}__submenu`;
   },
 
-  render () {
-    const { title, url } = this.props;
+  render() {
+    const {title, url} = this.props;
     const classNames = this.classNames();
     const linkClassNames = this.linkClassNames();
 
     return (
-      <li className={classNames}
-          onMouseOver={this.onMouseOver}
-          onMouseOut={this.onMouseOut}>
-        <a className={linkClassNames} href={url}>
-          {title}
+      <li className={ classNames } onMouseOver={ this.onMouseOver } onMouseOut={ this.onMouseOut }>
+        <a className={ linkClassNames } href={ url }>
+          { title }
         </a>
-
-        {this.renderSubmenu()}
+        { this.renderSubmenu() }
       </li>
-    );
+      );
   },
 
-  renderSubmenu () {
-    const { children, depth, maxDepth } = this.props;
+  renderSubmenu() {
+    const {children, depth, maxDepth} = this.props;
     const hasSubmenu = this.hasSubmenu();
 
     if (hasSubmenu) {
@@ -96,12 +93,10 @@ NavItem = React.createClass({
       const submenuMaxDepth = maxDepth - 1;
 
       return (
-        <div className={submenuClassNames}>
-          <NavMenu depth={submenuDepth}
-                              maxDepth={submenuMaxDepth}
-                              menu={children} />
+        <div className={ submenuClassNames }>
+          <NavMenu depth={ submenuDepth } maxDepth={ submenuMaxDepth } menu={ children } />
         </div>
-      );
+        );
     }
   }
 

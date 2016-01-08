@@ -62,5 +62,4 @@ Package.onUse(function (api) {
   ], 'client');
 });
 
-Package.onTest(function (api) {
-});
+Package.onTest(function (api) {});

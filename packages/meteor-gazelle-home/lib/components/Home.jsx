@@ -4,6 +4,6 @@ Home = React.createClass({
       <div>
         home page
       </div>
-    );
+      );
   }
 });

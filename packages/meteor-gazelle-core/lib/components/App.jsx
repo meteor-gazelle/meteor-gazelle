@@ -1,6 +1,6 @@
 App = React.createClass({
   mixins: [ReactMeteorData],
-  getMeteorData () {
+  getMeteorData() {
     return {
       // Determines which view to render based on route and logged in user. Reruns whenever user signs in or not.
       view: (() => {
@@ -10,20 +10,20 @@ App = React.createClass({
         let view = null;
         // Not logged in, public route - Render requested view.
         if (!isLoggedIn && isPublic) {
-          view = <PublicView yield={this.props.yield}/>;
+          view = <PublicView yield={ this.props.yield } />;
         }
         // Not logged in, not public route - Render the login form.
         else if (!isLoggedIn && !isPublic) {
-          view = <PublicView yield={<Login />}/>;
+          view = <PublicView yield={ <Login /> } />;
         }
         // Logged in, public route - Adjust url and render the home page.
         else if (isLoggedIn && isPublic) {
           FlowRouter.go('/');
-          view = <AuthenticatedView yield={<Home />}/>;
+          view = <AuthenticatedView yield={ <Home /> } />;
         }
         // Logged in, not public route - Render requested view.
         else if (isLoggedIn && !isPublic) {
-          view = <AuthenticatedView yield={this.props.yield}/>;
+          view = <AuthenticatedView yield={ this.props.yield } />;
         }
         return view;
       })(),
@@ -31,16 +31,14 @@ App = React.createClass({
     };
   },
   //TODO(ajax) Create Loading component
-  loading ()
-  {
+  loading() {
     return <div className="loading"></div>;
   },
-  render ()
-  {
+  render() {
     return <div className="app-root">
-      <div className="container">
-        {this.data.isLoggingIn ? this.loading() : this.data.view}
-      </div>
-    </div>;
+             <div className="container">
+               { this.data.isLoggingIn ? this.loading() : this.data.view }
+             </div>
+           </div>;
   }
 });

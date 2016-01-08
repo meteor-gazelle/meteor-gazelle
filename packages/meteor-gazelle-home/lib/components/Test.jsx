@@ -4,6 +4,6 @@ Test = React.createClass({
       <div>
         test page
       </div>
-    );
+      );
   }
 });
