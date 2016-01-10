@@ -12,7 +12,8 @@ Package.onUse(function (api) {
   var packages = [
     'meteor-gazelle:lib@0.0.1',
     'meteor-gazelle:header@0.0.1',
-    'meteor-gazelle:footer@0.0.1'
+    'meteor-gazelle:footer@0.0.1',
+    'meteor-gazelle:permissions@0.0.1'
   ];
 
   api.use(packages);
