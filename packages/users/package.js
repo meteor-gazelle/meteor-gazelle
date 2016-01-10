@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'meteor-gazelle:permissions',
+  name: 'meteor-gazelle:users',
   version: '0.0.1',
-  summary: 'This package handles user permissions',
+  summary: 'This package handles users',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle',
   documentation: 'README.md'
 });
@@ -17,8 +17,7 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-    'lib/permissions.js'
+    'lib/schema.js'
   ]);
 
-  api.export('Permissions');
 });

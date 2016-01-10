@@ -13,6 +13,7 @@ Package.onUse(function (api) {
     'meteor-gazelle:lib@0.0.1',
     'meteor-gazelle:header@0.0.1',
     'meteor-gazelle:footer@0.0.1',
+    'meteor-gazelle:users@0.0.1',
     'meteor-gazelle:permissions@0.0.1'
   ];
 
