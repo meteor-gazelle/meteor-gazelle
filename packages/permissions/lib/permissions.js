@@ -1,11 +1,15 @@
-// Extend Meteor.user for hasPermission
+let userPermissionsSchema = new SimpleSchema({
+  permissions: {
+    type: Object,
+    optional: true
+  }
+});
 
-//Permissions.register('group').perm
+Meteor.users.attachSchema(userPermissionsSchema);
 
 Permissions = {
   _groups: {},
-  _collections: {
-  },
+  _collections: {},
   register (group) {
     // Check that the group is a string
     check(group, String);

@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'meteor-gazelle:users',
+  name: 'meteor-gazelle:user-classes',
   version: '0.0.1',
-  summary: 'This package handles users',
+  summary: 'This package handles user classes',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle',
   documentation: 'README.md'
 });
@@ -17,10 +17,6 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
-    'lib/schema.js',
-    'lib/user.js'
   ]);
-
-  api.export('User');
 
 });
