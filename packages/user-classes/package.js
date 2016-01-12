@@ -10,16 +10,19 @@ Package.onUse(function (api) {
   api.versionsFrom('1.2.0.2');
 
   var packages = [
-    'meteor-gazelle:lib@0.0.1'
+    'meteor-gazelle:lib@0.0.1',
+    'meteor-gazelle:permissions@0.0.1'
   ];
 
   api.use(packages);
   api.imply(packages);
 
   api.addFiles([
-    'lib/userClasses.js'
+    'lib/userClasses.js',
+    'lib/permissions.js'
   ]);
 
   api.export('UserClasses');
+  api.export('UserClassesPermissions');
 
 });

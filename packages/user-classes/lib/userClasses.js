@@ -1,4 +1,4 @@
-let userClassesSchema = new SimpleSchema({
+let classesSchema = new SimpleSchema({
   title: {
     type: String
   },
@@ -22,8 +22,17 @@ let userClassesSchema = new SimpleSchema({
   }
 });
 
-userClassesCollection = new Meteor.Collection('userClasses');
-userClassesCollection.attachSchema(userClassesSchema);
+let classesCollection = new Meteor.Collection('userClasses');
+classesCollection.attachSchema(classesSchema);
+
+let userClassesSchema = new SimpleSchema({
+  classes: {
+    type: [String],
+    optional: true
+  }
+});
+
+Meteor.users.attachSchema(userClassesSchema);
 
 if (Meteor.isServer) {
   Meteor.publish('user-classes-manage', () => {
@@ -33,13 +42,13 @@ if (Meteor.isServer) {
 }
 
 UserClasses = {
-  _collection: userClassesCollection
+  _collection: classesCollection
 };
 
 UserClasses.methods = {
   createClass: new ValidatedMethod({
     name: 'UserClasses.methods.createClass',
-    validate: userClassesSchema.validator(),
+    validate: classesSchema.validator(),
     run (doc) {
       User.checkLoggedIn(this);
       UserClasses._collection.insert(doc);
@@ -47,7 +56,7 @@ UserClasses.methods = {
   }),
   updateClass: new ValidatedMethod({
     name: 'UserClasses.methods.updateClass',
-    validate: Util.updateValidator(userClassesSchema),
+    validate: Util.updateValidator(classesSchema),
     run (doc) {
       User.checkLoggedIn(this);
       UserClasses._collection.update(doc._id, {
