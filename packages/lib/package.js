@@ -27,14 +27,15 @@ Package.onUse(function (api) {
     'react',
     'ecmascript',
     'reactive-var',
-    'kadira:flow-router',
-    'kadira:react-layout',
     'accounts-password',
+    'kadira:flow-router@2.10.0',
+    'kadira:react-layout@1.5.3',
     'maxharris9:classnames',
-    'aldeed:collection2',
-    'aldeed:simple-schema',
-    'matb33:collection-hooks',
-    'meteorhacks:subs-manager'
+    'aldeed:collection2@2.8.0',
+    'aldeed:simple-schema@1.5.3',
+    'matb33:collection-hooks@0.8.1',
+    'meteorhacks:subs-manager@1.6.3',
+    'mdg:validated-method@1.0.0'
   ];
 
   api.use(packages);

@@ -17,6 +17,9 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.addFiles([
+    'lib/userClasses.js'
   ]);
+
+  api.export('UserClasses');
 
 });

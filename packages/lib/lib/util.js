@@ -10,5 +10,15 @@ Util = {
   },
   getSiteName () {
     return Meteor.settings.public.site.name;
+  },
+  idValidator (id) {
+    return () => check(id, String);
+  },
+  updateValidator (schema) {
+    return new SimpleSchema([new SimpleSchema({
+      '_id': {
+        type: String
+      }
+    }), schema]).validator();
   }
 };
