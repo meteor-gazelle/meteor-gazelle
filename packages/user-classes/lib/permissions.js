@@ -9,6 +9,8 @@ UserClassesPermissions = new PermissionGroup('user-classes', 'User class permiss
   }
 ]);
 
-if (Meteor.isServer) {
-  Permissions.register(UserClassesPermissions);
-}
+Meteor.startup(() => {
+  if (Meteor.isServer) {
+    Permissions.register(UserClassesPermissions);
+  }
+});

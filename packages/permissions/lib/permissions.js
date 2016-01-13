@@ -1,63 +1,29 @@
-let permissionSchema = new SimpleSchema({
-  groupId: {
-    type: String,
-    index: true
+Permissions = {};
+
+Permissions.methods = {};
+
+
+Permissions.methods = {
+  isEnabledPermission (permissions) {
+    return Meteor.call('Permissions.methods.isEnabledPermission', permissions);
   },
-  title: {
-    type: String,
-    index: true
-  },
-  description: {
-    type: String
-  }
-});
-
-let groupSchema = new SimpleSchema({
-  title: {
-    type: String,
-    index: true,
-    unique: true
-  },
-  description: {
-    type: String
-  }
-});
-
-let permissionsCollection = new Meteor.Collection('permissions');
-permissionsCollection.attachSchema(permissionSchema);
-
-let permissionGroupsCollection = new Meteor.Collection('permissionGroups');
-permissionGroupsCollection.attachSchema(groupSchema);
-
-Permissions = {
-  register (permissionGroup) {
-    if (permissionGroup instanceof PermissionGroup) {
-      let group = permissionGroupsCollection.findOne({ title: permissionGroup.title });
-      let groupId = null;
-
-      if (!group) {
-        groupId = permissionGroupsCollection.insert({ title: permissionGroup.title, description: permissionGroup.description });
-      } else {
-        groupId = group._id;
-      }
-
-      for (let key in permissionGroup.permissions) {
-        let description = permissionGroup.permissions[key];
-        /*
-        let permission = permissionsCollection.findOne({ groupId: groupId, title: key });
-        if (!permission) {
-          permissionsCollection.insert({groupId: groupId, title: key, description: description});
-        }*/
-        permissionsCollection.upsert({ groupId: groupId, title: key },
-          { $set : { groupId: groupId, title: key, description: description }});
-      }
-    }
-    else {
-      throw new Meteor.Error('invalid-parameter', 'Permissions.register expects a PermissionGroup');
-    }
+  isDisabledPermission (permissions) {
+    return Meteor.call('Permissions.methods.isDisabledPermission', permissions);
   }
 };
 
+Meteor.methods({
+  'Permissions.methods.isEnabledPermission' (asyncCallback) {
+    User.checkLoggedIn(this);
+    // Check that permissions is an array of strings
+    check(permissions, [String]);
+  },
+  'Permissions.methods.isDisabledPermission' (asyncCallback) {
+    User.checkLoggedIn(this);
+    // Check that permissions is an array of strings
+    check(permissions, [String]);
+  },
+});
 
 /*let userPermissionsSchema = new SimpleSchema({
  permissionsAllowed: {

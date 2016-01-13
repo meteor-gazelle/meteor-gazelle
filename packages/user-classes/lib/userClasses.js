@@ -19,6 +19,10 @@ let classesSchema = new SimpleSchema({
     type: Number,
     defaultValue: 0,
     min: 0
+  },
+  isDefaultClass: {
+    type: Boolean,
+    defaultValue: false
   }
 });
 

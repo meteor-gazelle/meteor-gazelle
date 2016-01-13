@@ -1,3 +1,14 @@
+function validatePermissions(permissions) {
+  // Create an array
+  permissions = Array.isArray(permissions) ? permissions.slice() : [permissions];
+
+  if (_.without(permissions, this.permissions).length > 0) {
+    throw new Meteor.Error('invalid-argument', 'An invalid permission was supplied');
+  }
+
+  return permissions;
+}
+
 PermissionGroup = class PermissionGroup {
   constructor(title, description, permissions) {
     check(title, String);
@@ -30,8 +41,10 @@ PermissionGroup = class PermissionGroup {
       this.permissions[permission.title] = permission.description;
     });
   }
-
-  userCan() {
-
+  userEnabledPermissions(permissions) {
+   permissions = validatePermissions(permissions);
+  }
+  userDisabledPermissions(permissions) {
+    permissions = validatePermissions(permissions);
   }
 };
