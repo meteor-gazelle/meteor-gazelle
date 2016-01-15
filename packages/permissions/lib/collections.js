@@ -1,4 +1,4 @@
-const groupSchema = new SimpleSchema({
+const permissionsSchema = new SimpleSchema({
   title: {
     type: String,
     index: true,
@@ -6,38 +6,44 @@ const groupSchema = new SimpleSchema({
   },
   description: {
     type: String
+  },
+  permissions: {
+    type: [new SimpleSchema({
+      title: {
+        type: String,
+        index: true
+      },
+      description: {
+        type: String
+      }
+    })],
+    index: true,
+    defaultValue: []
   }
 });
-
-const permissionSchema = new SimpleSchema({
-  groupId: {
-    type: String,
-    index: true
-  },
-  title: {
-    type: String,
-    index: true
-  },
-  description: {
-    type: String
-  }
-});
-
-PermissionGroupsCollection = new Meteor.Collection('permissionGroups');
-PermissionGroupsCollection.attachSchema(groupSchema);
 
 PermissionsCollection = new Meteor.Collection('permissions');
-PermissionsCollection.attachSchema(permissionSchema);
+PermissionsCollection.attachSchema(permissionsSchema);
 
+let userPermissionsSubSchema = new SimpleSchema({
+  groupId: {
+    type: String
+  },
+  permissions: {
+    type: [String]
+  }
+});
 
 let userPermissionsSchema = new SimpleSchema({
-  permissionsAllowed: {
-    type: [String],
-    defaultValue: []
+  permissionsEnabled: {
+    type: [userPermissionsSubSchema],
+    optional: true,
+    index: true
   },
-  permissionsDenied: {
-    type: [String],
-    defaultValue: []
+  permissionsDisabled: {
+    type: [userPermissionsSubSchema],
+    optional: true,
+    index: true
   }
 });
 

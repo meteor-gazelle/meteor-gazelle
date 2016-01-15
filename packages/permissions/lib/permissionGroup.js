@@ -16,7 +16,9 @@ PermissionGroup = class PermissionGroup {
 
     this.title = title;
     this.description = description;
-    this.permissions = {};
+    this.permissions = [];
+    // Keeps track of added permission titles to avoid duplicates
+    this.addedPermissions = [];
     this.addPermissions(permissions);
   }
 
@@ -34,17 +36,21 @@ PermissionGroup = class PermissionGroup {
       check(permission.title, String);
       check(permission.description, String);
       // If the permission is a duplicate (already been added to the group) throw an exception
-      if (this.permissions.hasOwnProperty(permission.title)) {
+      if (_.contains(this.addedPermissions, permission.title)) {
         throw new Meteor.Error(`Permission ${permission.title} already in group ${this.title}`);
       }
       // Add the permission
-      this.permissions[permission.title] = permission.description;
+      this.permissions.push(permission);
     });
   }
+
   userEnabledPermissions(permissions) {
-   permissions = validatePermissions(permissions);
+    permissions = validatePermissions(permissions);
+    return Permissions.methods.isEnabledPermissions(this.title, permissions)
   }
+
   userDisabledPermissions(permissions) {
     permissions = validatePermissions(permissions);
+    return Permissions.methods.isDisabledPermissions(this.title, permissions)
   }
 };
