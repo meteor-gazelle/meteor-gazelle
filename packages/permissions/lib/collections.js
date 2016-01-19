@@ -25,23 +25,15 @@ const permissionsSchema = new SimpleSchema({
 PermissionsCollection = new Meteor.Collection('permissions');
 PermissionsCollection.attachSchema(permissionsSchema);
 
-let userPermissionsSubSchema = new SimpleSchema({
-  groupId: {
-    type: String
-  },
-  permissions: {
-    type: [String]
-  }
-});
-
+//TODO(ajax) Consider key names in schema. Should this be a sub document instead?
 let userPermissionsSchema = new SimpleSchema({
   permissionsEnabled: {
-    type: [userPermissionsSubSchema],
+    type: [String],
     optional: true,
     index: true
   },
   permissionsDisabled: {
-    type: [userPermissionsSubSchema],
+    type: [String],
     optional: true,
     index: true
   }

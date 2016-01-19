@@ -34,8 +34,7 @@ Package.onUse(function (api) {
     'aldeed:collection2@2.8.0',
     'aldeed:simple-schema@1.5.3',
     'matb33:collection-hooks@0.8.1',
-    'meteorhacks:subs-manager@1.6.3',
-    'mdg:validated-method@1.0.0'
+    'meteorhacks:subs-manager@1.6.3'
   ];
 
   api.use(packages);
