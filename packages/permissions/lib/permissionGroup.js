@@ -43,14 +43,4 @@ PermissionGroup = class PermissionGroup {
       this.permissions.push(permission);
     });
   }
-
-  userEnabledPermissions(permissions) {
-    permissions = validatePermissions(permissions);
-    return Permissions.methods.isEnabledPermissions(this.title, permissions)
-  }
-
-  userDisabledPermissions(permissions) {
-    permissions = validatePermissions(permissions);
-    return Permissions.methods.isDisabledPermissions(this.title, permissions)
-  }
 };

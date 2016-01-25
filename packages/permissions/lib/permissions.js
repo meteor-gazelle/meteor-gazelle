@@ -26,7 +26,7 @@ Permissions.methods = {
   },
 };
 
-function getOppositeType(type) {
+function getOppositeType (type) {
   return type === ENABLED_PERMISSIONS_FIELD ? DISABLED_PERMISSIONS_FIELD : ENABLED_PERMISSIONS_FIELD;
 }
 
