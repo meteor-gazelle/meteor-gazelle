@@ -17,14 +17,14 @@ Permissions.methods = {
   },
 };
 
+function findGroupByTitle (group) {
+  return PermissionsCollection.findOne({ title: group });
+}
+
 function validate (group, permissions) {
   //TODO(ajax) Need a permission to check that user who is running this method actually has permission to edit permissions
   check(group, String);
   check(permissions, [String]);
-}
-
-function findGroupByTitle (group) {
-  return PermissionsCollection.findOne({ title: group });
 }
 
 function validatePermissionType (type) {
@@ -44,7 +44,7 @@ function validatePermissionExists (group, permissions) {
   }
   // Make sure the passed permissions are a proper subset of the registered permissions
   const permissionTitles = doc.permissions.map(value => value.title);
-  if (_.difference(permissions, doc.permissions).length > 0) {
+  if (_.difference(permissions, permissionTitles).length > 0) {
     throw new Meteor.Error('invalid-arguments', 'Invalid permission');
   }
 }
@@ -75,20 +75,6 @@ function addPermissions (userId, group, permissions, type) {
   validate(group, permissions);
   validatePermissionExists(group, permissions);
 
-  //TODO(ajax) There may be a mongo way of doing this logic more elegantly
-  // Confirm that the provided permissions do not already exist for the user.
-  /*
-   if (type === ENABLED_PERMISSIONS_FIELD) {
-   if (Permissions.hasEnabledPermission(group, permissions)) {
-   throw new Meteor.Error('invalid-arguments', 'User already has permission enabled');
-   }
-   } else {
-   if (Permissions.hasDisabledPermission(group, permissions)) {
-   throw new Meteor.Error('invalid-arguments', 'User already has permission disabled');
-   }
-   }
-   */
-
   const query = {
     $addToSet: {}
   };
@@ -102,7 +88,7 @@ function addPermissions (userId, group, permissions, type) {
 }
 
 function denormalizeGroupAndPermission (group, permission) {
-  //TODO(ajax) Make seperator configurable and potentially a disallowed character
+  //TODO(ajax) Make seperator configurable and potentially a disallowed character in permissions and group titles
   return group + ":" + permission;
 }
 
@@ -120,17 +106,17 @@ Meteor.methods({
     User.checkLoggedIn(this);
     addPermissions(userId, group, permissions, ENABLED_PERMISSIONS_FIELD);
   },
-  'Permissions.methods.removeEnabledPermissions' (group, permissions) {
+  'Permissions.methods.removeEnabledPermissions' (userId, group, permissions) {
     User.checkLoggedIn(this);
-    removePermissions(group, permissions, ENABLED_PERMISSIONS_FIELD);
+    removePermissions(userId, group, permissions, ENABLED_PERMISSIONS_FIELD);
   },
-  'Permissions.methods.addDisabledPermissions' (group, permissions) {
+  'Permissions.methods.addDisabledPermissions' (userId, group, permissions) {
     User.checkLoggedIn(this);
-    addPermissions(group, permissions, DISABLED_PERMISSIONS_FIELD);
+    addPermissions(userId, group, permissions, DISABLED_PERMISSIONS_FIELD);
   },
-  'Permissions.methods.removeDisabledPermissions' (group, permissions) {
+  'Permissions.methods.removeDisabledPermissions' (userId, group, permissions) {
     User.checkLoggedIn(this);
-    removePermissions(group, permissions, DISABLED_PERMISSIONS_FIELD);
+    removePermissions(userId, group, permissions, DISABLED_PERMISSIONS_FIELD);
   }
 });
 

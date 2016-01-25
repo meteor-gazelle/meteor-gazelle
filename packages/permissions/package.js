@@ -23,9 +23,11 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
-    'lib/server/permissions.js'
+    'lib/server/permissions.js',
+    'lib/server/publications.js'
   ], 'server');
 
   api.export('PermissionGroup');
   api.export('Permissions');
+  api.export('PermissionsCollection');
 });
