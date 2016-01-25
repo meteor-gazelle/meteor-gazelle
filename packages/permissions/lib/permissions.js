@@ -15,7 +15,20 @@ Permissions.methods = {
   addEnabledPermissions (userId, group, permission) {
     return Meteor.call('Permissions.methods.addEnabledPermissions', userId, group, permission);
   },
+  removeEnabledPermissions (userId, group, permission) {
+    return Meteor.call('Permissions.methods.removeEnabledPermissions', userId, group, permission);
+  },
+  addDisabledPermissions (userId, group, permission) {
+    return Meteor.call('Permissions.methods.addDisabledPermissions', userId, group, permission);
+  },
+  removeDisabledPermissions (userId, group, permission) {
+    return Meteor.call('Permissions.methods.removeDisabledPermissions', userId, group, permission);
+  },
 };
+
+function getOppositeType(type) {
+  return type === ENABLED_PERMISSIONS_FIELD ? DISABLED_PERMISSIONS_FIELD : ENABLED_PERMISSIONS_FIELD;
+}
 
 function findGroupByTitle (group) {
   return PermissionsCollection.findOne({ title: group });
@@ -69,19 +82,41 @@ function userHasPermission (group, permissions, type) {
 }
 
 function addPermissions (userId, group, permissions, type) {
-  debugger;
-  //TODO(ajax) Any syntatic sugar to avoid passing this? Maybe I'm just being dumb.
   validatePermissionType(type);
   validate(group, permissions);
   validatePermissionExists(group, permissions);
 
+  // Build the query
   const query = {
-    $addToSet: {}
+    $addToSet: {},
+    $pull: {}
   };
 
+  // Denormalize the group and permissions
   const denormalizedPermissions = permissions.map((permission) => denormalizeGroupAndPermission(group, permission));
 
   query.$addToSet[type] = { $each: denormalizedPermissions };
+  // If the permission is being enabled but already exists in the disabled set, remove it from the disabled set.
+  query.$pull[getOppositeType(type)] = { $in : denormalizedPermissions };
+
+  // Update the user's permissions
+  Meteor.users.update(userId, query);
+}
+
+function removePermissions (userId, group, permissions, type) {
+  validatePermissionType(type);
+  validate(group, permissions);
+  validatePermissionExists(group, permissions);
+
+  // Build the query
+  const query = {
+    $pull: {}
+  };
+
+  // Denormalize the group and permissions
+  const denormalizedPermissions = permissions.map((permission) => denormalizeGroupAndPermission(group, permission));
+
+  query.$pull[type] = { $in: denormalizedPermissions };
 
   // Update the user's permissions
   Meteor.users.update(userId, query);
