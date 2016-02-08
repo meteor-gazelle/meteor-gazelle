@@ -27,7 +27,32 @@ Package.onUse(function (api) {
     'lib/server/publications.js'
   ], 'server');
 
+  api.addFiles([
+    'lib/client/subscriptions.js'
+  ], 'client');
+
   api.export('PermissionGroup');
   api.export('Permissions');
+  //TODO(ajax) Does PermissionsCollection need to be exported?
   api.export('PermissionsCollection');
+});
+
+Package.onTest(function (api) {
+  var packages = [
+    'tinytest',
+    'meteor-gazelle:lib',
+    'meteor-gazelle:core',
+    'meteor-gazelle:permissions'
+  ];
+
+  api.use(packages);
+  api.imply(packages);
+
+  api.addFiles([
+    //'tests/server/permissions.js'
+  ], 'server');
+
+  api.addFiles([
+    'tests/client/permissions.js'
+  ]);
 });

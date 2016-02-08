@@ -51,19 +51,12 @@ Permissions.methods = {};
 const ENABLED_PERMISSIONS_FIELD = 'permissionsEnabled';
 const DISABLED_PERMISSIONS_FIELD = 'permissionsDisabled';
 
-// Auto subscribe to userPermissions
-if (Meteor.isClient) {
-  Tracker.autorun(() => {
-    Meteor.subscribe('userPermissions');
-  });
-}
-
 Permissions.methods = {
-  hasEnabledPermission (group, permissions) {
-    return Meteor.call('Permissions.methods.hasEnabledPermission', group, permissions);
+  hasEnabledPermission (group, permissions, callback) {
+    return Meteor.call('Permissions.methods.hasEnabledPermission', group, permissions, callback);
   },
-  hasDisabledPermission (group, permissions) {
-    return Meteor.call('Permissions.methods.hasDisabledPermission', group, permissions);
+  hasDisabledPermission (group, permissions, callback) {
+    return Meteor.call('Permissions.methods.hasDisabledPermission', group, permissions, callback);
   },
   addEnabledPermissions (userId, group, permission) {
     return Meteor.call('Permissions.methods.addEnabledPermissions', userId, group, permission);
@@ -196,7 +189,7 @@ function removePermissions(userId, group, permissions, type) {
   // Denormalize the group and permissions
   const denormalizedPermissions = permissions.map((permission) => denormalizeGroupAndPermission(group, permission));
 
-  query.$pull[type] = {$in: denormalizedPermissions};
+  query.$pull[type] = { $in: denormalizedPermissions };
 
   // Update the user's permissions
   Meteor.users.update(userId, query);
@@ -204,7 +197,7 @@ function removePermissions(userId, group, permissions, type) {
 
 function denormalizeGroupAndPermission(group, permission) {
   //TODO(ajax) Make seperator configurable and potentially a disallowed character in permissions and group titles
-  return group + ":" + permission;
+  return group + ':' + permission;
 }
 
 
