@@ -4,7 +4,6 @@ import { Welcome } from './components/Welcome.jsx';
 import { Login } from './components/Login.jsx';
 import { Register } from './components/Register.jsx';
 
-
 export default (() => {
   Router.public.route('/', {
     name: 'index',

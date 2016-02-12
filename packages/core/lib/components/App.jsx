@@ -1,6 +1,8 @@
 import { FlowRouter, Router } from 'meteor/meteor-gazelle:router';
-import { AuthenticatedView } from './AuthenticatedView.jsx'
-import { PublicView } from './PublicView.jsx'
+import { AuthenticatedView } from './AuthenticatedView.jsx';
+import { PublicView } from './PublicView.jsx';
+import { Login } from './Login.jsx';
+import { Home } from 'meteor/meteor-gazelle:home';
 
 export const App = React.createClass({
   mixins: [ReactMeteorData],

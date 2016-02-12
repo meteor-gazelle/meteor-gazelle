@@ -10,16 +10,11 @@ Package.onUse(function (api) {
   api.versionsFrom('1.2.0.2');
 
   var packages = [
-    'meteor-gazelle:core@0.0.1'
+    'meteor-gazelle:lib@0.0.1',
   ];
 
   api.use(packages);
   api.imply(packages);
 
-  api.addFiles([
-    'lib/components/Home.jsx',
-    'lib/routes.jsx'
-  ]);
-
-  api.export('Home');
+  api.mainModule('lib/client.js', 'client');
 });

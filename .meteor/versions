@@ -33,12 +33,14 @@ ejson@1.0.8-modules.7
 email@1.0.9-modules.7
 es5-shim@4.3.2-modules.7
 fastclick@1.0.8-modules.7
+fourseven:scss@3.4.1
 geojson-utils@1.0.5-modules.7
 hot-code-push@1.0.1-modules.7
 html-tools@1.0.6-modules.7
 htmljs@1.0.6-modules.7
 http@1.1.2-modules.7
 id-map@1.0.4
+johnantoni:meteor-normalize@0.0.1
 jquery@1.11.5-modules.7
 jsx@0.2.4
 kadira:flow-router@2.10.1
@@ -61,6 +63,7 @@ meteor-gazelle:header@0.0.1
 meteor-gazelle:home@0.0.1
 meteor-gazelle:lib@0.0.1
 meteor-gazelle:router@0.0.1
+meteor-gazelle:theme@0.0.1
 meteor-gazelle:util@0.0.1
 meteorhacks:subs-manager@1.6.3
 minifiers-js@1.1.8-modules.7
@@ -89,6 +92,7 @@ reactive-dict@1.1.4-modules.7
 reactive-var@1.0.6
 reload@1.1.5-modules.7
 retry@1.0.4
+reywood:font-awesome-sass@4.4.0_1
 routepolicy@1.0.7-modules.7
 service-configuration@1.0.6-modules.7
 sha@1.0.4
@@ -102,3 +106,5 @@ underscore@1.0.5-modules.7
 url@1.0.6-modules.7
 webapp@1.2.4-modules.7
 webapp-hashing@1.0.6-modules.7
+wolves:bourbon@3.1.0
+wolves:neat@3.1.0

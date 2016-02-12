@@ -1,4 +1,4 @@
-Home = React.createClass({
+export const Home = React.createClass({
   render () {
     return (
       <div>

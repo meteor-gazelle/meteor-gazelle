@@ -14,25 +14,16 @@ Package.onUse(function (api) {
     'meteor-gazelle:router@0.0.1',
     'meteor-gazelle:header@0.0.1',
     'meteor-gazelle:footer@0.0.1',
+    'meteor-gazelle:home@0.0.1'
     //'meteor-gazelle:users@0.0.1',
     //'meteor-gazelle:permissions@0.0.1'
   ];
 
   api.use(packages);
-  api.imply(packages);
-
-  //api.addFiles([
-  //  'lib/components/App.jsx',
-  //  'lib/components/PublicView.jsx',
-  //  'lib/components/AuthenticatedView.jsx',
-  //  'lib/components/Welcome.jsx',
-  //  'lib/components/Login.jsx',
-  //  'lib/components/Register.jsx',
-  //  'lib/routes.jsx'
-  //]);
+  //api.imply(packages);
 
   api.mainModule('lib/client.js', 'client');
 
-
+  api.export('App');
 
 });

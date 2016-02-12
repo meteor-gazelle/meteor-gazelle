@@ -10,13 +10,25 @@ Package.onUse(function (api) {
   api.versionsFrom('METEOR@1.3-modules-beta.7');
 
   var packages = [
-    'ecmascript',
-    'meteor-gazelle:test2'
+    'ecmascript'
   ];
 
   api.use(packages);
   api.imply(packages);
 
-  api.mainModule('lib/client/test.js', 'client');
-  api.mainModule('lib/server/test.js', 'server');
+  api.mainModule('lib/hello.js', 'client');
+  api.mainModule('lib/hello.js', 'server');
+});
+
+Package.onTest(function (api) {
+  var packages = [
+    'meteor-gazelle:test',
+    'practicalmeteor:mocha'
+  ];
+
+  api.use(packages);
+  api.imply(packages);
+
+  api.addFiles('tests/test.js');
+
 });
