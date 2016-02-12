@@ -12,14 +12,12 @@ Package.onUse(function (api) {
   var packages = [
     'momentjs:moment@2.10.6',
     'meteor-gazelle:lib@0.0.1',
-    'meteor-gazelle:header@0.0.1'
+    'meteor-gazelle:header@0.0.1',
+    'meteor-gazelle:util@0.0.1'
   ];
 
   api.use(packages);
-  api.addFiles([
-    'lib/components/Footer.jsx'
-  ]);
 
-  api.export('Footer');
+  api.addFiles('lib/client.js', 'client');
 
 });

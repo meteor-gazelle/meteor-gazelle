@@ -1,5 +1,9 @@
-Header = React.createClass({
+import { Util } from 'meteor/meteor-gazelle:util';
+import { UserMenu } from './UserMenu.jsx';
+import { Nav } from './Nav.jsx';
+import { SecondaryNav } from './SecondaryNav.jsx';
 
+export const Header = React.createClass({
   render () {
     return (
       <header className='main-header' role='banner'>
@@ -16,5 +20,4 @@ Header = React.createClass({
       </header>
       );
   }
-
 });

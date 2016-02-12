@@ -11,25 +11,28 @@ Package.onUse(function (api) {
 
   var packages = [
     'meteor-gazelle:lib@0.0.1',
+    'meteor-gazelle:router@0.0.1',
     'meteor-gazelle:header@0.0.1',
     'meteor-gazelle:footer@0.0.1',
-    'meteor-gazelle:users@0.0.1',
-    'meteor-gazelle:permissions@0.0.1'
+    //'meteor-gazelle:users@0.0.1',
+    //'meteor-gazelle:permissions@0.0.1'
   ];
 
   api.use(packages);
   api.imply(packages);
 
-  api.addFiles([
-    'lib/components/App.jsx',
-    'lib/components/PublicView.jsx',
-    'lib/components/AuthenticatedView.jsx',
-    'lib/components/Welcome.jsx',
-    'lib/components/Login.jsx',
-    'lib/components/Register.jsx',
-    'lib/routes.jsx'
-  ]);
+  //api.addFiles([
+  //  'lib/components/App.jsx',
+  //  'lib/components/PublicView.jsx',
+  //  'lib/components/AuthenticatedView.jsx',
+  //  'lib/components/Welcome.jsx',
+  //  'lib/components/Login.jsx',
+  //  'lib/components/Register.jsx',
+  //  'lib/routes.jsx'
+  //]);
 
-  api.export('App');
+  api.mainModule('lib/client.js', 'client');
+
+
 
 });

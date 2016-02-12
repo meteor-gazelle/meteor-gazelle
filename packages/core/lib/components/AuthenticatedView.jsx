@@ -1,4 +1,7 @@
-AuthenticatedView = React.createClass({
+import { Header } from 'meteor/meteor-gazelle:header';
+import { Footer } from 'meteor/meteor-gazelle:footer';
+
+export const AuthenticatedView = React.createClass({
   render () {
     return (
       <div className='main-container'>

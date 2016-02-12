@@ -1,4 +1,6 @@
-NavMenu = React.createClass({
+import { NavItem } from './NavItem.jsx';
+
+export const NavMenu = React.createClass({
 
   propTypes: {
     depth: React.PropTypes.number,

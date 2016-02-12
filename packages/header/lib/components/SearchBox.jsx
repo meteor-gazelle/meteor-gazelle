@@ -1,4 +1,4 @@
-SearchBox = React.createClass({
+export const SearchBox = React.createClass({
 
   propTypes: {
     placeholder: React.PropTypes.string,

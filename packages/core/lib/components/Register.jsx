@@ -1,4 +1,4 @@
-Register = React.createClass({
+export const Register = React.createClass({
   handleSubmit (e) {
     e.preventDefault();
 

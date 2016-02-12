@@ -1,4 +1,4 @@
-Welcome = React.createClass({
+export const Welcome = React.createClass({
   render () {
     return (
       <div>

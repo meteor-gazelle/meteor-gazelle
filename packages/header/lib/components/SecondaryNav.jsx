@@ -1,4 +1,6 @@
-SecondaryNav = React.createClass({
+import { SearchBox } from './SearchBox.jsx';
+
+export const SecondaryNav = React.createClass({
 
   onSignOutClick () {
     Meteor.logout((err) => {

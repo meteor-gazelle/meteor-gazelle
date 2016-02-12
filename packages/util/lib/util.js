@@ -1,4 +1,4 @@
-Util = {
+export const Util = {
   getId (doc) {
     var id = undefined;
     if ('object' === typeof doc) {
@@ -22,3 +22,4 @@ Util = {
     }), schema]).validator();
   }
 };
+

@@ -1,4 +1,4 @@
-Login = React.createClass({
+export const Login = React.createClass({
   handleSubmit (e) {
     e.preventDefault();
 

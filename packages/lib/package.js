@@ -12,27 +12,23 @@ Package.onUse(function (api) {
   api.versionsFrom('1.2.0.2');
 
   var packages = [
-    'standard-minifiers',
     'meteor-base',
     'mobile-experience',
-    'mongo',
-    'session',
-    'jquery',
-    'tracker',
-    'logging',
-    'reload',
-    'random',
-    'ejson',
-    'check',
-    'react',
+    'standard-minifiers-js',
     'ecmascript',
-    'reactive-var',
+    'es5-shim',
+    'underscore',
+    'check',
+    'mongo',
+    'tracker',
     'accounts-password',
-    'kadira:flow-router@2.10.0',
-    'kadira:react-layout@1.5.3',
-    'maxharris9:classnames',
+    'react',
+    'mdg:validated-method@1.0.1',
+    'mdg:validation-error@0.3.0',
     'aldeed:collection2@2.8.0',
     'aldeed:simple-schema@1.5.3',
+    'dburles:collection-helpers',
+    'maxharris9:classnames',
     'matb33:collection-hooks@0.8.1',
     'meteorhacks:subs-manager@1.6.3'
   ];
@@ -40,14 +36,14 @@ Package.onUse(function (api) {
   api.use(packages);
   api.imply(packages);
 
-  api.addFiles([
-    'lib/config.js',
-    'lib/util.js'
-  ]);
-
-  api.export('Router');
-  api.export('Components');
-  api.export('Util');
+  //api.addFiles([
+  //  'lib/config.js',
+  //  'lib/util.js'
+  //]);
+  //
+  //api.export('Router');
+  //api.export('Components');
+  //api.export('Util');
 
 });
 

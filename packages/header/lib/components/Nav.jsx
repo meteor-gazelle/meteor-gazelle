@@ -1,5 +1,6 @@
-// TODO(ajax) This component is used in the Footer as well. Post Meteor 1.3 update it should be made importable.
-Components.Nav = Nav = React.createClass({
+import { NavMenu } from './NavMenu.jsx';
+
+export const Nav = React.createClass({
 
   propTypes: {
     maxDepth: React.PropTypes.number

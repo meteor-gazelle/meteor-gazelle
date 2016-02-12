@@ -1,4 +1,4 @@
-Footer = React.createClass({
+export const Footer = React.createClass({
 
   getInitialState () {
     return {

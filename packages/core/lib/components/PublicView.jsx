@@ -1,4 +1,4 @@
-PublicView = React.createClass({
+export const PublicView = React.createClass({
   render () {
     return (
       <div className='main-container'>
