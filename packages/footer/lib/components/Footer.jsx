@@ -1,3 +1,6 @@
+import { Util } from 'meteor/meteor-gazelle:util';
+import { Nav } from 'meteor/meteor-gazelle:header';
+
 export const Footer = React.createClass({
 
   getInitialState () {
@@ -18,7 +21,7 @@ export const Footer = React.createClass({
         <div className='main-footer__title'>
           { Util.getSiteName() }
         </div>
-        <Components.Nav maxDepth={ 1 } />
+        <Nav maxDepth={ 1 } />
         <div className='main-footer__copyright'>
           Site &amp; Design ©
           { year } Gazelle

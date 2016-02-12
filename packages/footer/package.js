@@ -17,7 +17,8 @@ Package.onUse(function (api) {
   ];
 
   api.use(packages);
+  api.imply(packages);
 
-  api.addFiles('lib/client.js', 'client');
+  api.mainModule('lib/client.js', 'client');
 
 });
