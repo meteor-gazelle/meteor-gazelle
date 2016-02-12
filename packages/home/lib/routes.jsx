@@ -1,6 +1,5 @@
 //TODO(ajax) Should the page where the user is redirected to be configurable?
 
-//import { App } from 'meteor/meteor-gazelle:core';
 import { Router } from 'meteor/meteor-gazelle:router';
 import { Home } from './components/Home.jsx';
 

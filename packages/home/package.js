@@ -11,10 +11,10 @@ Package.onUse(function (api) {
 
   var packages = [
     'meteor-gazelle:lib@0.0.1',
+    'meteor-gazelle:router@0.0.1'
   ];
 
   api.use(packages);
-  api.imply(packages);
 
   api.mainModule('lib/client.js', 'client');
 });
