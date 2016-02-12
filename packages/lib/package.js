@@ -6,7 +6,6 @@ Package.describe({
   documentation: 'README.md'
 });
 
-
 //TODO(ajax) Go over packages and versions
 Package.onUse(function (api) {
   api.versionsFrom('1.2.0.2');
@@ -30,20 +29,12 @@ Package.onUse(function (api) {
     'dburles:collection-helpers',
     'maxharris9:classnames',
     'matb33:collection-hooks@0.8.1',
-    'meteorhacks:subs-manager@1.6.3'
+    'meteorhacks:subs-manager@1.6.3',
+    'redux'
   ];
 
   api.use(packages);
   api.imply(packages);
-
-  //api.addFiles([
-  //  'lib/config.js',
-  //  'lib/util.js'
-  //]);
-  //
-  //api.export('Router');
-  //api.export('Components');
-  //api.export('Util');
 
 });
 
