@@ -22,7 +22,7 @@ Package.onUse(function (api) {
 
   api.use(packages);
 
-  api.mainModule('lib/index.js');
+  api.mainModule('lib/redux.js', 'client');
 
-  api.export('Redux');
+  api.export('Redux', 'client');
 });

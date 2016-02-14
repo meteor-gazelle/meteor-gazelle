@@ -1,8 +1,7 @@
-import { FlowRouter, Router } from 'meteor/meteor-gazelle:router';
 import { AuthenticatedView } from './AuthenticatedView.jsx';
 import { PublicView } from './PublicView.jsx';
-import { Login } from './Login.jsx';
-import { Home } from 'meteor/meteor-gazelle:home';
+import { Components as AccountsComponents } from 'meteor/meteor-gazelle:accounts';
+import { Components as HomeComponents } from 'meteor/meteor-gazelle:home';
 
 export const App = React.createClass({
   mixins: [ReactMeteorData],
@@ -20,12 +19,12 @@ export const App = React.createClass({
         }
         // Not logged in, not public route - Render the login form.
         else if (!isLoggedIn && !isPublic) {
-          view = <PublicView yield={ <Login /> }/>;
+          view = <PublicView yield={ <AccountsComponents.Login /> }/>;
         }
         // Logged in, public route - Adjust url and render the home page.
         else if (isLoggedIn && isPublic) {
           FlowRouter.go('/');
-          view = <AuthenticatedView yield={ <Home /> }/>;
+          view = <AuthenticatedView yield={ <HomeComponents.Home /> }/>;
         }
         // Logged in, not public route - Render requested view.
         else if (isLoggedIn && !isPublic) {

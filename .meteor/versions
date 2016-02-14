@@ -57,6 +57,7 @@ meteor@1.1.11-modules.8
 meteor-base@1.0.1
 meteor-env-dev@0.0.1-modules.8
 meteor-env-prod@0.0.1-modules.8
+meteor-gazelle:accounts@0.0.1
 meteor-gazelle:core@0.0.1
 meteor-gazelle:footer@0.0.1
 meteor-gazelle:header@0.0.1
@@ -64,7 +65,6 @@ meteor-gazelle:home@0.0.1
 meteor-gazelle:lib@0.0.1
 meteor-gazelle:redux@0.0.1
 meteor-gazelle:router@0.0.1
-meteor-gazelle:test@0.0.1
 meteor-gazelle:theme@0.0.1
 meteor-gazelle:util@0.0.1
 meteorhacks:subs-manager@1.6.3

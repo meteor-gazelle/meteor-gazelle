@@ -1,11 +1,10 @@
 import { SearchBox } from './SearchBox.jsx';
+import { Actions } from 'meteor/meteor-gazelle:accounts';
 
 export const SecondaryNav = React.createClass({
 
   onSignOutClick () {
-    Meteor.logout((err) => {
-      FlowRouter.go('/');
-    });
+    Redux.store.dispatch(Actions.logoutUser());
   },
 
   render () {

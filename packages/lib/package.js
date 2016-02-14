@@ -31,7 +31,8 @@ Package.onUse(function (api) {
     'maxharris9:classnames',
     'matb33:collection-hooks@0.8.1',
     'meteorhacks:subs-manager@1.6.3',
-    'meteor-gazelle:redux'
+    'meteor-gazelle:redux',
+    'meteor-gazelle:router',
   ];
 
   api.use(packages);

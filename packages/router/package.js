@@ -19,4 +19,6 @@ Package.onUse(function (api) {
   api.imply(packages);
 
   api.mainModule('lib/router.js', 'client');
+
+  api.export('Router', 'client');
 });

@@ -1,3 +1,5 @@
+import { Actions } from 'meteor/meteor-gazelle:accounts';
+
 export const UserMenu = React.createClass({
 
   mixins: [ReactMeteorData],
@@ -27,9 +29,7 @@ export const UserMenu = React.createClass({
   },
 
   onSignOutClick () {
-    Meteor.logout((err) => {
-      FlowRouter.go('/');
-    });
+    Redux.store.dispatch(Actions.logoutUser());
   },
 
   classNames () {
