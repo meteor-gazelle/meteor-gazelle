@@ -1,4 +1,4 @@
-import { Actions } from '../actions';
+import { Actions } from '../redux.js';
 
 export const Login = React.createClass({
   handleSubmit (e) {

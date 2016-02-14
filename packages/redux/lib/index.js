@@ -8,7 +8,6 @@ Redux.store = null;
 const logger = createLogger();
 
 Redux.registerReducer = (reducer) => {
-  reducer = typeof yourVariable === 'object' ? reducer : { reducer };
   Redux._reducers = _.extend(Redux._reducers, reducer);
   const appReducer = Redux.combineReducers(Redux._reducers);
   if (Redux.store) {
