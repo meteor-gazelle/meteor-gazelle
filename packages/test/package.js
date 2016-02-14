@@ -10,14 +10,15 @@ Package.onUse(function (api) {
   api.versionsFrom('METEOR@1.3-modules-beta.7');
 
   var packages = [
-    'ecmascript'
+    'ecmascript',
+    'meteor-gazelle:redux',
+    'reactive-dict'
   ];
 
   api.use(packages);
   api.imply(packages);
 
-  api.mainModule('lib/hello.js', 'client');
-  api.mainModule('lib/hello.js', 'server');
+  api.mainModule('lib/client.js', 'client');
 });
 
 Package.onTest(function (api) {

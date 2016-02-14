@@ -1,5 +1,5 @@
 import { chai, assert } from 'meteor/practicalmeteor:chai';
-import { Hello } from '../lib/hello.js';
+import { Hello } from '../lib/client.js';
 
 
 describe('todos', () => {

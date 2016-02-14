@@ -22,6 +22,7 @@ Package.onUse(function (api) {
     'tracker',
     'accounts-password',
     'react',
+    'reactive-dict',
     'mdg:validated-method@1.0.1',
     'mdg:validation-error@0.3.0',
     'aldeed:collection2@2.8.0',
@@ -30,7 +31,7 @@ Package.onUse(function (api) {
     'maxharris9:classnames',
     'matb33:collection-hooks@0.8.1',
     'meteorhacks:subs-manager@1.6.3',
-    'redux'
+    'meteor-gazelle:redux'
   ];
 
   api.use(packages);

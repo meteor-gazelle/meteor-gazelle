@@ -62,7 +62,9 @@ meteor-gazelle:footer@0.0.1
 meteor-gazelle:header@0.0.1
 meteor-gazelle:home@0.0.1
 meteor-gazelle:lib@0.0.1
+meteor-gazelle:redux@0.0.1
 meteor-gazelle:router@0.0.1
+meteor-gazelle:test@0.0.1
 meteor-gazelle:theme@0.0.1
 meteor-gazelle:util@0.0.1
 meteorhacks:subs-manager@1.6.3
@@ -90,7 +92,6 @@ react-runtime-dev@0.14.3
 react-runtime-prod@0.14.3
 reactive-dict@1.1.4-modules.8
 reactive-var@1.0.6
-redux@0.0.1
 reload@1.1.5-modules.8
 retry@1.0.4
 reywood:font-awesome-sass@4.4.0_1
