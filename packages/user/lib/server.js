@@ -4,8 +4,8 @@ Meteor.publish('userProfile', function (userId) {
     this.error(new Meteor.Error('user-not-logged-in'));
   }
   return Meteor.users.find(userId, {
-    fields: {username: 1}
-  })
+    fields: { username: 1 }
+  });
 });
 
 // Prevent user from updating their document

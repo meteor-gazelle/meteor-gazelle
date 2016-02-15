@@ -171,13 +171,18 @@ describe('permissions', () => {
         });
 
         const user = Meteor.users.findOne(userId);
-        assert.include(user.permissionsEnabled, 'permission-group:permission-b');
-        assert.notInclude(user.permissionsEnabled, 'permission-group:permission-a');
+        assert.include(user.permissionsEnabled,
+          'permission-group:permission-b');
+        assert.notInclude(user.permissionsEnabled,
+          'permission-group:permission-a');
 
         it('Permissions.hasEnabledPermission', () => {
-          assert.notOk(Permissions.hasEnabledPermission(userId, 'permission-group', ['permission-a', 'permission-b']));
-          assert.ok(Permissions.hasEnabledPermission(userId, 'permission-group', ['permission-b']));
-          assert.notOk(Permissions.hasEnabledPermission(userId, 'permission-group', ['permission-a']));
+          assert.notOk(Permissions.hasEnabledPermission(userId,
+            'permission-group', ['permission-a', 'permission-b']));
+          assert.ok(Permissions.hasEnabledPermission(userId, 'permission-group',
+            ['permission-b']));
+          assert.notOk(Permissions.hasEnabledPermission(userId,
+            'permission-group', ['permission-a']));
         });
       });
     });

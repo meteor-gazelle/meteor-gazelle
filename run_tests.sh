@@ -49,6 +49,7 @@ function run_lint {
 
   # do the thing
   echo "Running eslint..."
+  echo "ESLint version `eslint -v`"
   eslint --ext .js --ext .jsx .
 
   echo "Running scss-lint..."

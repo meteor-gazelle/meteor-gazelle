@@ -10,7 +10,7 @@ export default (() => {
 
   Router.private.homeRoutes.route('/home', {
     name: 'home',
-    action(params, queryParams) {
+    action (params, queryParams) {
       ReactLayout.render(App, {
         yield: <Home />
       });

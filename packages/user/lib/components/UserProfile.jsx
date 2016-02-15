@@ -19,18 +19,19 @@ export const UserProfile = React.createClass({
       userId: userProfile.get('id'),
       username: userProfile.get('username'),
       error: userProfile.get('error')
-    }
+    };
   },
 
   //TODO(ajax) Not found can be made into a generic component
-  notFound() {
+  notFound () {
     return 'User not found';
   },
 
-  render() {
+  render () {
     return (
       <div>
-        { this.data.error ? this.notFound() : <Username username={ this.data.username }/> }
+        { this.data.error ?
+          this.notFound() : <Username username={ this.data.username }/> }
       </div>
     );
   }

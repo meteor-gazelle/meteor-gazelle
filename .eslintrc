@@ -30,6 +30,13 @@
     "jsx": true                                // enable JSX
   },
 
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+
   "env": {
     "browser": false,                          // browser global variables.
     "node": false,                             // Node.js global variables and Node.js-specific rules.
@@ -201,7 +208,7 @@
     "indent": [
       2,
       2,
-      {indentSwitchCase: true}
+      {"SwitchCase": 1}
     ],                               // this option sets a specific tab width for your code (off by default)
     "key-spacing": 0,                // enforces spacing between keys and values in object literal properties
     "lines-around-comment": 0,       // enforces empty lines around comments (off by default)
@@ -247,9 +254,8 @@
     ],                               // require or disallow use of semicolons instead of ASI
     "sort-vars": 0,                  // sort variables within the same declaration block (off by default)
     "space-after-function-name": 0,  // (deprecated) require a space after function names (off by default)
-    "space-after-keywords": [
-      2,
-      "always"
+    "keyword-spacing": [
+      2
     ],                               // require a space after certain keywords (off by default)
     "space-before-blocks": 0,        // require or disallow space before blocks (off by default)
     "space-before-function-paren": [

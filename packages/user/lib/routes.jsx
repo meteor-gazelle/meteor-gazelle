@@ -7,7 +7,7 @@ export default (() => {
 
   Router.private.user.route('/user/:userId', {
     name: 'profile',
-    action(params, queryParams) {
+    action (params, queryParams) {
       ReactLayout.render(App, {
         yield: <UserProfile userId={params.userId} />
       });

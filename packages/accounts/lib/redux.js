@@ -3,7 +3,7 @@ Redux.registerReducer((() => {
   const reactiveDict = new ReactiveDict('accountsState');
 
   return {
-    accounts(state, action) {
+    accounts (state, action) {
       state = state || reactiveDict;
 
       switch (action.type) {
@@ -85,7 +85,7 @@ const registerFailed = (email, username, password) => {
 
 const Actions = {
   // Log the user in
-  loginUser(username, password) {
+  loginUser (username, password) {
     return (dispatch, getState) => {
       Meteor.loginWithPassword(username, password, (err) => {
         //TODO(ajax) Improve login error handling
@@ -98,7 +98,7 @@ const Actions = {
     };
   },
   // Register a user
-  registerUser(email, username, password) {
+  registerUser (email, username, password) {
     return (dispatch, getState) => {
       Accounts.createUser({
         email: email,
@@ -115,7 +115,7 @@ const Actions = {
     };
   },
   //Log the user out
-  logoutUser() {
+  logoutUser () {
     return (dispatch, getState) => {
       dispatch(logoutUser());
     };

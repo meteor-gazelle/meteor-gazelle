@@ -3,7 +3,7 @@ export const Username = React.createClass({
     username: React.PropTypes.string.isRequired
   },
 
-  render() {
+  render () {
     return (
       <span>
         Username: {this.props.username}
