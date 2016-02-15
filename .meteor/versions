@@ -68,6 +68,7 @@ meteor-gazelle:permissions@0.0.1
 meteor-gazelle:redux@0.0.1
 meteor-gazelle:router@0.0.1
 meteor-gazelle:theme@0.0.1
+meteor-gazelle:user@0.0.1
 meteor-gazelle:util@0.0.1
 meteorhacks:subs-manager@1.6.3
 minifiers-js@1.1.8-modules.8
