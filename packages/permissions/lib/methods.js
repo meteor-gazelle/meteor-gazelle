@@ -38,24 +38,3 @@ const Methods = {
 };
 
 export { Methods };
-
-// TODO(ajax) Rate limit methods?
-
-Meteor.methods({
-  'Permissions.methods.addEnabledPermissions' (userId, group, permissions) {
-    User.checkLoggedIn(this);
-    addPermissions(userId, group, permissions, ENABLED_PERMISSIONS_FIELD);
-  },
-  'Permissions.methods.removeEnabledPermissions' (userId, group, permissions) {
-    User.checkLoggedIn(this);
-    removePermissions(userId, group, permissions, ENABLED_PERMISSIONS_FIELD);
-  },
-  'Permissions.methods.addDisabledPermissions' (userId, group, permissions) {
-    User.checkLoggedIn(this);
-    addPermissions(userId, group, permissions, DISABLED_PERMISSIONS_FIELD);
-  },
-  'Permissions.methods.removeDisabledPermissions' (userId, group, permissions) {
-    User.checkLoggedIn(this);
-    removePermissions(userId, group, permissions, DISABLED_PERMISSIONS_FIELD);
-  }
-});
