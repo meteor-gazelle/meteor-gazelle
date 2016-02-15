@@ -18,7 +18,8 @@ export const Nav = React.createClass({
     };
   },
 
-  render() {
+  render () {
+    // Render the navbar
     const { maxDepth } = this.props;
     const { menu } = this.state;
 

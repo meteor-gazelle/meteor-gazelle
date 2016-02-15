@@ -5,6 +5,7 @@ import { SecondaryNav } from './SecondaryNav.jsx';
 
 export const Header = React.createClass({
   render () {
+    // Render the header
     return (
       <header className='main-header' role='banner'>
         <div className='main-header__container'>

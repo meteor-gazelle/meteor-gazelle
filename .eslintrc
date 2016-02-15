@@ -8,12 +8,12 @@
     "arrowFunctions": true,                    // enable arrow functions
     "binaryLiterals": false,                   // enable binary literals
     "blockBindings": true,                     // enable let and const (aka block bindings)
-    "classes": false,                          // enable classes
+    "classes": true,                           // enable classes
     "defaultParams": true,                     // enable default function parameters
     "destructuring": true,                     // enable destructuring
     "forOf": true,                             // enable for-of loops
     "generators": true,                        // enable generators
-    "modules": false,                          // enable modules and global strict mode
+    "modules": true,                           // enable modules and global strict mode
     "objectLiteralComputedProperties": true,   // enable computed object literal property names
     "objectLiteralDuplicateProperties": true,  // enable duplicate object literal properties in strict mode
     "objectLiteralShorthandMethods": true,     // enable object literal shorthand methods
@@ -200,7 +200,8 @@
     "func-style": 0,                 // enforces use of function declarations or expressions (off by default)
     "indent": [
       2,
-      2
+      2,
+      {indentSwitchCase: true}
     ],                               // this option sets a specific tab width for your code (off by default)
     "key-spacing": 0,                // enforces spacing between keys and values in object literal properties
     "lines-around-comment": 0,       // enforces empty lines around comments (off by default)

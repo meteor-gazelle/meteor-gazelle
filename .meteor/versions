@@ -19,7 +19,6 @@ callback-hook@1.0.5-modules.8
 check@1.1.1-modules.8
 coffeescript@1.0.12-modules.8
 cosmos:browserify@0.9.2
-dburles:collection-helpers@1.0.4
 dburles:factory@0.4.2
 ddp@1.2.2
 ddp-client@1.2.2-modules.8

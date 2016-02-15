@@ -14,7 +14,8 @@ Redux.registerReducer = (reducer) => {
     Redux.store.replaceReducer(appReducer);
   } else {
     //TODO Look into logger options
-    Redux.store = Redux.createStore(appReducer, Redux.applyMiddleware(thunk, logger));
+    Redux.store = Redux.createStore(appReducer,
+      Redux.applyMiddleware(thunk, logger));
   }
 };
 

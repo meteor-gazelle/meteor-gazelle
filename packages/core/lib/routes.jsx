@@ -2,6 +2,7 @@ import { App } from './components/App.jsx';
 import { Welcome } from './components/Welcome.jsx';
 
 export default (() => {
+  // Main route
   Router.public.route('/', {
     name: 'index',
     action: function (params, queryParams) {
@@ -11,9 +12,10 @@ export default (() => {
     }
   });
 
+  // /welcome route
   Router.public.route('/welcome', {
     name: 'welcome',
-    action() {
+    action () {
       ReactLayout.render(App, {
         yield: <Welcome />
       });

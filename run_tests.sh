@@ -34,7 +34,7 @@ function fail {
 function run_tests {
   # ensure environment is set up
   which meteor > /dev/null || fail "meteor command not found; run 'curl https://install.meteor.com | /bin/sh' to install meteor"
-  which spacejam > /dev/null || fail "spacejam command not found; run 'npm install -g spacejam' to install spacejam"
+  # which velocity > /dev/null || fail "velocity command not found; run 'npm install -g velocity-cli' to install velocity"
   [ -f settings.json ] || fail "settings.json not found; run 'cp settings.json.template settings.json'"
 
   # do the thing
@@ -49,7 +49,7 @@ function run_lint {
 
   # do the thing
   echo "Running eslint..."
-  eslint --ext=js --ext=jsx .
+  eslint --ext .js --ext .jsx .
 
   echo "Running scss-lint..."
   scss-lint .

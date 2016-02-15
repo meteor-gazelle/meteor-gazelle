@@ -1,6 +1,7 @@
 import { AuthenticatedView } from './AuthenticatedView.jsx';
 import { PublicView } from './PublicView.jsx';
-import { Components as AccountsComponents } from 'meteor/meteor-gazelle:accounts';
+import { Components as AccountsComponents }
+  from 'meteor/meteor-gazelle:accounts';
 import { Components as HomeComponents } from 'meteor/meteor-gazelle:home';
 import { FlowRouter } from 'meteor/meteor-gazelle:router';
 
@@ -8,7 +9,8 @@ export const App = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData () {
     return {
-      // Determines which view to render based on route and logged in user. Reruns whenever user signs in or not.
+      // Determines which view to render based on route and logged in user.
+      // Reruns whenever user signs in or not.
       view: (() => {
         const isLoggedIn = !!Meteor.userId();
         // A route is public if it is part of the Router.public group.
@@ -41,6 +43,7 @@ export const App = React.createClass({
     return <div className="loading"></div>;
   },
   render () {
+    // Render the data
     return <div className="app-root">
       <div className="container">
         { this.data.isLoggingIn ? this.loading() : this.data.view }

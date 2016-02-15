@@ -27,7 +27,7 @@ export const NavMenu = React.createClass({
       <ul className={ classNames }>
         { menu.map(this.renderItem) }
       </ul>
-      );
+    );
   },
 
   renderItem (item, index) {
@@ -35,7 +35,7 @@ export const NavMenu = React.createClass({
 
     return (
       <NavItem key={ index } depth={ depth } maxDepth={ maxDepth } {...item} />
-      );
+    );
   }
 
 });

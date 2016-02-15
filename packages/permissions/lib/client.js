@@ -6,4 +6,4 @@ Tracker.autorun(() => {
   Meteor.subscribe('loggedInUserPermissions');
 });
 
-export { Permissions, Methods};
+export { Permissions, Methods };

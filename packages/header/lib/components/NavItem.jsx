@@ -76,13 +76,14 @@ export const NavItem = React.createClass({
     const linkClassNames = this.linkClassNames();
 
     return (
-      <li className={ classNames } onMouseOver={ this.onMouseOver } onMouseOut={ this.onMouseOut }>
+      <li className={ classNames } onMouseOver={ this.onMouseOver }
+          onMouseOut={ this.onMouseOut }>
         <a className={ linkClassNames } href={ url }>
           { title }
         </a>
         { this.renderSubmenu() }
       </li>
-      );
+    );
   },
 
   renderSubmenu () {
@@ -96,9 +97,10 @@ export const NavItem = React.createClass({
 
       return (
         <div className={ submenuClassNames }>
-          <NavMenu depth={ submenuDepth } maxDepth={ submenuMaxDepth } menu={ children } />
+          <NavMenu depth={ submenuDepth } maxDepth={ submenuMaxDepth }
+                   menu={ children }/>
         </div>
-        );
+      );
     }
   }
 

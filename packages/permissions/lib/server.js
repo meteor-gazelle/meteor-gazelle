@@ -13,8 +13,12 @@ Meteor.publish('loggedInUserPermissions', function () {
   if (!this.userId) {
     this.error(new Meteor.Error('user-not-logged-in'));
   }
-  return Meteor.users.find(this.userId, { fields: { permissionsEnabled : 1, permissionsDisabled: 1 }});
+  return Meteor.users.find(this.userId, {
+    fields: {
+      permissionsEnabled: 1,
+      permissionsDisabled: 1
+    }
+  });
 });
-
 
 export { Permissions, PermissionGroup, Methods };

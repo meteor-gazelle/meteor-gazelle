@@ -16,6 +16,7 @@ export const Footer = React.createClass({
     const year = now.format('YYYY');
     const date = now.format('MMM D YYYY, HH:mm');
 
+    // Render the main site footer
     return (
       <footer className='main-footer' role='contentinfo'>
         <div className='main-footer__title'>
@@ -23,7 +24,7 @@ export const Footer = React.createClass({
         </div>
         <Nav maxDepth={ 1 } />
         <div className='main-footer__copyright'>
-          Site &amp; Design ©
+          Site &amp; Design &copy;
           { year } Gazelle
         </div>
         <div className='main-footer__activity'>

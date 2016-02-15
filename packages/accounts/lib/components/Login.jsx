@@ -8,11 +8,13 @@ export const Login = React.createClass({
     var username = this.refs.username.value.trim();
     var password = this.refs.password.value.trim();
 
-    //TODO(ajax) Meteor lets users login with username or email. Gazelle only allows username. Need to prevent email login.
+    //TODO(ajax) Meteor lets users login with username or email. Gazelle only
+    // allows username. Need to prevent email login. Log the user in
     Redux.store.dispatch(Actions.loginUser(username, password));
   },
   render () {
     return (
+      // Render the login form
       <form className="loginForm" onSubmit={ this.handleSubmit }>
         <input type="text" placeholder="Username" ref="username"/>
         <input type="text" placeholder="Password" ref="password"/>

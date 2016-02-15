@@ -4,4 +4,4 @@ import './routes.jsx';
 
 const Components = { Login };
 
-export {Actions, Components};
+export { Actions, Components };

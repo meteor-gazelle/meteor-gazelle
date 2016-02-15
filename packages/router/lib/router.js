@@ -7,4 +7,4 @@ const Router = {
   })
 };
 
-export { FlowRouter, Router }
+export { FlowRouter, Router };

@@ -15,28 +15,6 @@ Package.onUse(function (api) {
 
   api.use(packages);
 
-  /*
-  api.addFiles([
-    'lib/permissionGroup.js',
-    'lib/collections.js',
-    'lib/permissions.js'
-  ]);
-
-  api.addFiles([
-    'lib/server/permissions.js',
-    'lib/server/publications.js'
-  ], 'server');
-
-  api.addFiles([
-    'lib/client/subscriptions.js'
-  ], 'client');
-
-  api.export('PermissionGroup');
-  api.export('Permissions');
-  //TODO(ajax) Does PermissionsCollection need to be exported?
-  api.export('PermissionsCollection');
-
-  */
   api.mainModule('lib/client.js', 'client');
   api.mainModule('lib/server.js', 'server');
 });
@@ -50,6 +28,10 @@ Package.onTest(function (api) {
   ];
 
   api.use(packages);
+
+  api.addFiles([
+    'tests/client.js'
+  ], 'client');
 
   api.addFiles([
     'tests/server.js'

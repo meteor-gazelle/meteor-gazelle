@@ -48,6 +48,7 @@ export const UserMenu = React.createClass({
     const { username } = this.data;
     const classNames = this.classNames();
 
+    // Render the user's perosnal menu
     return (
       <div className={ classNames } role='menu'>
         <div className='user-menu__username__container'>
@@ -63,20 +64,23 @@ export const UserMenu = React.createClass({
             <dd className='user-menu__stats__value'>XX</dd>
           </dl>
         </div>
-        <div className='user-menu__avatar__container' onClickCapture={ this.onAvatarClick }>
-          <div className='user-menu__avatar' role='button' aria-expanded={ expanded }>
+        <div className='user-menu__avatar__container'
+             onClickCapture={ this.onAvatarClick }>
+          <div className='user-menu__avatar' role='button'
+               aria-expanded={ expanded }>
             { /* TODO Avatar Img Here */ }
           </div>
           <ul className='user-menu__menu' role='menu'>
             <li className='user-menu__menu__item'>
-              <span className='user-menu__menu__item__signout' onClick={ this.onSignOutClick }>
+              <span className='user-menu__menu__item__signout'
+                    onClick={ this.onSignOutClick }>
                         Sign out
                       </span>
             </li>
           </ul>
         </div>
       </div>
-      );
+    );
   }
 
 });

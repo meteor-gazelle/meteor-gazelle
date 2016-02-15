@@ -3,6 +3,7 @@ import { Footer } from 'meteor/meteor-gazelle:footer';
 
 export const AuthenticatedView = React.createClass({
   render () {
+    // What the user sees when logged in
     return (
       <div className='main-container'>
         <Header />

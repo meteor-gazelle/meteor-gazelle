@@ -62,6 +62,7 @@ UserClasses = {
   _collection: classesCollection
 };
 
+// Get a user class from an ID
 function getUserClassById (classId) {
   let classDoc = UserClasses._collection.find({ _id: classId });
   if (!classDoc) {
@@ -96,9 +97,15 @@ Meteor.methods({
     // Error checks
     let classDoc = getUserClassById(classId);
     let classPermissions = classDoc.permissions;
-    let userClass = Meteor.users.find({ _id: userId }, { $elemMatch: { classes: classDoc.className }});
+    let userClass = Meteor.users.find({ _id: userId },
+      {
+        $elemMatch: {
+          classes: classDoc.className
+        }
+      });
     if (userClass.length > 0) {
-      throw new Meteor.Error('invalid-arguments', 'User is already a member of the class');
+      throw new Meteor.Error('invalid-arguments',
+        'User is already a member of the class');
     }
 
     // Concatenate class title and permission for storage

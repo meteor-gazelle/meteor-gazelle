@@ -1,21 +1,7 @@
 import { PermissionGroup } from './permissionGroup.js';
 import { PermissionUtils } from './permissionUtils.js';
 
-class PermisionsCollection extends Mongo.Collection {
-  /*
-   insert(doc, callback) {
-   }
-
-   update(selector, modifier) {
-   }
-
-   remove(selector) {
-   }
-   */
-}
-
-
-export const Permissions = new PermisionsCollection('permissions');
+export const Permissions = new Meteor.Collection('permissions');
 
 Permissions.schema = new SimpleSchema({
   title: {
@@ -45,7 +31,7 @@ if (Meteor.isServer) {
   Permissions.register = (permissionGroup) => {
     // Only accept argument of type PermissionGroup
     if (permissionGroup instanceof PermissionGroup) {
-      Permissions.upsert({title: permissionGroup.title}, {
+      Permissions.upsert({ title: permissionGroup.title }, {
         $set: {
           title: permissionGroup.title,
           description: permissionGroup.description,
@@ -54,7 +40,8 @@ if (Meteor.isServer) {
       });
     }
     else {
-      throw new Meteor.Error('invalid-parameter', 'Permissions.register expects a PermissionGroup');
+      throw new Meteor.Error('invalid-parameter',
+        'Permissions.register expects a PermissionGroup');
     }
   };
 }
@@ -62,18 +49,6 @@ if (Meteor.isServer) {
 
 Permissions.hasEnabledPermission = PermissionUtils.hasEnabledPermission;
 Permissions.hasDisabledPermission = PermissionUtils.hasDisabledPermission;
-
-//TODO(ajax) Need naming conventions for factories
-Factory.define('permission', Permissions, {
-  "title": "permission-group",
-  "description": "Permission group description",
-  "permissions": [
-    {
-      "title": "permission-a",
-      "description": "This is permission a"
-    }
-  ]
-});
 
 /*
 
@@ -83,11 +58,14 @@ Factory.define('permission', Permissions, {
  Users can have permissons that are enable or disabled.
  Lack of a permission does not mean it's in the enabled set.
 
- Permissions are defined server side by creating PermissionGroups and adding permissions to them.
+ Permissions are defined server side by creating PermissionGroups
+ and adding permissions to them.
  On app startup, registered permissions are stored in the database.
- Permissions are broken up into permission groups which collects a group of permissions related to their functionality.
+ Permissions are broken up into permission groups which collects a group
+ of permissions related to their functionality.
 
- The Meteor.user document is modified to store the specific user's permissions in enabled, disabled, and class permission sets.
+ The Meteor.user document is modified to store the specific user's permissions
+ in enabled, disabled, and class permission sets.
  Permission methods
  register -  Register permissions by writing them to db. - Done
  hasPermission - Check that user has a permission to perform an action.
@@ -105,7 +83,8 @@ Factory.define('permission', Permissions, {
  Classes carry a set of permissions.
  If a user has a class then they have the class permissions enabled.
 
- Class permissions need to be stored in its own set on the user document rather than the enabled permissions set.
+ Class permissions need to be stored in its own set on the user document rather
+ than the enabled permissions set.
 
  Class methods
  CRUD
@@ -114,7 +93,10 @@ Factory.define('permission', Permissions, {
  removeClassFromUser
 
  Thoughts
- Need to be diligent about changing permission related metadata since changes arent synced to the db.
- Groups are looked up by title. Permission Group and permission titles must be looked after with care.
- Should Meteor.user permissions and classes be published for caching in minimongo?
+ Need to be diligent about changing permission related metadata since changes
+ arent synced to the db.
+ Groups are looked up by title. Permission Group and permission titles must be
+ looked after with care.
+ Should Meteor.user permissions and classes be published for caching in
+ minimongo?
  */

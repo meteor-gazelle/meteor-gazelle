@@ -27,7 +27,6 @@ Package.onUse(function (api) {
     'mdg:validation-error@0.3.0',
     'aldeed:collection2@2.8.0',
     'aldeed:simple-schema@1.5.3',
-    'dburles:collection-helpers',
     'maxharris9:classnames',
     'matb33:collection-hooks@0.8.1',
     'meteorhacks:subs-manager@1.6.3',

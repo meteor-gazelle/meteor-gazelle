@@ -1,7 +1,8 @@
 User = {
   checkLoggedIn (context) {
     if (!context.userId) {
-      throw new Meteor.Error('user-not-logged-in', 'User must be logged in to access this method.');
+      throw new Meteor.Error('user-not-logged-in',
+                             'User must be logged in to access this method.');
     }
   }
 };
