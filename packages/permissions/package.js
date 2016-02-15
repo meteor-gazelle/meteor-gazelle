@@ -34,6 +34,10 @@ Package.onTest(function (api) {
   ], 'client');
 
   api.addFiles([
+    'tests/client.js'
+  ], 'client');
+
+  api.addFiles([
     'tests/server.js'
   ], 'server');
 
