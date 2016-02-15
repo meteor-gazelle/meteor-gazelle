@@ -1,8 +1,9 @@
 import { Permissions } from './permissions.js';
+import { Methods } from './methods.js';
 
 // Auto subscribe to userPermissions
 Tracker.autorun(() => {
-  Meteor.subscribe('userPermissions');
+  Meteor.subscribe('loggedInUserPermissions');
 });
 
-export { Permissions };
+export { Permissions, Methods};

@@ -1,4 +1,5 @@
-import { PermissionGroup } from './permissionGroup.js'
+import { PermissionGroup } from './permissionGroup.js';
+import { PermissionUtils } from './permissionUtils.js';
 
 class PermisionsCollection extends Mongo.Collection {
   /*
@@ -58,21 +59,13 @@ if (Meteor.isServer) {
   };
 }
 
-Meteor.startup(() => {
-  const userPermissionsSchema = new SimpleSchema({
-    permissionsEnabled: {
-      type: [String],
-      optional: true,
-      index: true
-    },
-    permissionsDisabled: {
-      type: [String],
-      optional: true,
-      index: true
-    }
-  });
 
-  Meteor.users.attachSchema(userPermissionsSchema);
+Permissions.hasEnabledPermission = PermissionUtils.hasEnabledPermission;
+Permissions.hasDisabledPermission = PermissionUtils.hasDisabledPermission;
+
+
+Meteor.startup(() => {
+
 });
 
 

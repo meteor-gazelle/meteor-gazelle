@@ -1,12 +1,13 @@
 import { Permissions } from './permissions.js';
 import { PermissionGroup } from './permissionGroup.js';
+import { Methods } from './methods.js';
 
 //TODO(ajax) Reconsider what needs to be done here
 Meteor.publish('permissions', function () {
   return Permissions.find();
 });
 
-Meteor.publish('userPermissions', function () {
+Meteor.publish('loggedInUserPermissions', function () {
   //TODO(ajax) Logged in check can become redundant, create util function.
   // Confirm user is logged in before publishing their permissions.
   if (!this.userId) {
@@ -16,4 +17,4 @@ Meteor.publish('userPermissions', function () {
 });
 
 
-export { Permissions, PermissionGroup };
+export { Permissions, PermissionGroup, Methods };

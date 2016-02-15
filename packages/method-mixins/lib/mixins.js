@@ -1,5 +1,5 @@
 const LoggedInMixin = (methodOptions) => {
-  if (methodOptions.hasOwnProperty(checkLoggedInError)) {
+  if (methodOptions.hasOwnProperty('checkLoggedInError')) {
     check(methodOptions.checkLoggedInError, Match.ObjectIncluding({
       error: String,
       message: Match.Optional(String),
@@ -24,13 +24,13 @@ LoggedInMixin._defaultError = {
   error: 'userNotLoggedIn'
 };
 
-LoggedInMixin.setDefaultError = (error) => {
-  check(methodOptions.checkLoggedInError, Match.ObjectIncluding({
+LoggedInMixin.setDefaultError = (defaultError) => {
+  check(defaultError, Match.ObjectIncluding({
     error: String,
     message: Match.Optional(String),
     reason: Match.Optional(String)
   }));
-  LoggedInMixin._defaultError = error;
+  LoggedInMixin._defaultError = defaultError;
 };
 
 
