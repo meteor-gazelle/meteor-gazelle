@@ -1,6 +1,9 @@
+import { Permissions } from './permissions.js';
+import { PermissionGroup } from './permissionGroup.js';
+
 //TODO(ajax) Reconsider what needs to be done here
 Meteor.publish('permissions', function () {
-  return PermissionsCollection.find();
+  return Permissions.find();
 });
 
 Meteor.publish('userPermissions', function () {
@@ -11,3 +14,6 @@ Meteor.publish('userPermissions', function () {
   }
   return Meteor.users.find(this.userId, { fields: { permissionsEnabled : 1, permissionsDisabled: 1 }});
 });
+
+
+export { Permissions, PermissionGroup };

@@ -9,7 +9,7 @@ function validatePermissions(permissions) {
   return permissions;
 }
 
-PermissionGroup = class PermissionGroup {
+const PermissionGroup = class PermissionGroup {
   constructor(title, description, permissions) {
     check(title, String);
     check(description, String);
@@ -44,3 +44,5 @@ PermissionGroup = class PermissionGroup {
     });
   }
 };
+
+export { PermissionGroup };

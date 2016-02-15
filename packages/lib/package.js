@@ -33,6 +33,7 @@ Package.onUse(function (api) {
     'meteorhacks:subs-manager@1.6.3',
     'meteor-gazelle:redux',
     'meteor-gazelle:router',
+    'meteor-gazelle:method-mixins'
   ];
 
   api.use(packages);

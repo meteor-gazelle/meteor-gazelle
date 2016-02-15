@@ -14,8 +14,8 @@ Package.onUse(function (api) {
   ];
 
   api.use(packages);
-  api.imply(packages);
 
+  /*
   api.addFiles([
     'lib/permissionGroup.js',
     'lib/collections.js',
@@ -35,9 +35,15 @@ Package.onUse(function (api) {
   api.export('Permissions');
   //TODO(ajax) Does PermissionsCollection need to be exported?
   api.export('PermissionsCollection');
+
+  */
+
+  api.mainModule('lib/client.js', 'client');
+  api.mainModule('lib/server.js', 'server');
 });
 
 Package.onTest(function (api) {
+  /*
   var packages = [
     'tinytest',
     'meteor-gazelle:lib',
@@ -55,4 +61,5 @@ Package.onTest(function (api) {
   api.addFiles([
     'tests/client/permissions.js'
   ]);
+  */
 });

@@ -63,6 +63,8 @@ meteor-gazelle:footer@0.0.1
 meteor-gazelle:header@0.0.1
 meteor-gazelle:home@0.0.1
 meteor-gazelle:lib@0.0.1
+meteor-gazelle:method-mixins@0.0.1
+meteor-gazelle:permissions@0.0.1
 meteor-gazelle:redux@0.0.1
 meteor-gazelle:router@0.0.1
 meteor-gazelle:theme@0.0.1
