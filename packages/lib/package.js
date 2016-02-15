@@ -33,7 +33,9 @@ Package.onUse(function (api) {
     'meteorhacks:subs-manager@1.6.3',
     'meteor-gazelle:redux',
     'meteor-gazelle:router',
-    'meteor-gazelle:method-mixins'
+    'meteor-gazelle:method-mixins',
+    'dburles:factory@0.4.2',
+    'practicalmeteor:faker@2.1.1_1'
   ];
 
   api.use(packages);

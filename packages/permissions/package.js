@@ -42,23 +42,17 @@ Package.onUse(function (api) {
 });
 
 Package.onTest(function (api) {
-  /*
   var packages = [
-    'tinytest',
     'meteor-gazelle:lib',
-    'meteor-gazelle:core',
-    'meteor-gazelle:permissions'
+    'meteor-gazelle:permissions',
+    'publication-collector',
+    'practicalmeteor:mocha'
   ];
 
   api.use(packages);
-  api.imply(packages);
 
   api.addFiles([
-    //'tests/server/permissions.js'
+    'tests/server.js'
   ], 'server');
 
-  api.addFiles([
-    'tests/client/permissions.js'
-  ]);
-  */
 });

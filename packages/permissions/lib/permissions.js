@@ -3,15 +3,15 @@ import { PermissionUtils } from './permissionUtils.js';
 
 class PermisionsCollection extends Mongo.Collection {
   /*
-  insert(doc, callback) {
-  }
+   insert(doc, callback) {
+   }
 
-  update(selector, modifier) {
-  }
+   update(selector, modifier) {
+   }
 
-  remove(selector) {
-  }
-  */
+   remove(selector) {
+   }
+   */
 }
 
 
@@ -63,12 +63,17 @@ if (Meteor.isServer) {
 Permissions.hasEnabledPermission = PermissionUtils.hasEnabledPermission;
 Permissions.hasDisabledPermission = PermissionUtils.hasDisabledPermission;
 
-
-Meteor.startup(() => {
-
+//TODO(ajax) Need naming conventions for factories
+Factory.define('permission', Permissions, {
+  "title": "permission-group",
+  "description": "Permission group description",
+  "permissions": [
+    {
+      "title": "permission-a",
+      "description": "This is permission a"
+    }
+  ]
 });
-
-
 
 /*
 
@@ -112,4 +117,4 @@ Meteor.startup(() => {
  Need to be diligent about changing permission related metadata since changes arent synced to the db.
  Groups are looked up by title. Permission Group and permission titles must be looked after with care.
  Should Meteor.user permissions and classes be published for caching in minimongo?
-*/
+ */
