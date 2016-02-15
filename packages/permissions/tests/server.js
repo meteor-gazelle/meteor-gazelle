@@ -156,6 +156,32 @@ describe('permissions', () => {
       });
     });
 
+    describe('remove enabled', () => {
+      it('removeEnabledPermission', () => {
+        Methods.addEnabledPermission._execute({ userId }, {
+          userId: userId,
+          group: 'permission-group',
+          permissions: ['permission-a', 'permission-b']
+        });
+
+        Methods.removeEnabledPermission._execute({ userId }, {
+          userId: userId,
+          group: 'permission-group',
+          permissions: ['permission-a']
+        });
+
+        const user = Meteor.users.findOne(userId);
+        assert.include(user.permissionsEnabled, 'permission-group:permission-b');
+        assert.notInclude(user.permissionsEnabled, 'permission-group:permission-a');
+
+        it('Permissions.hasEnabledPermission', () => {
+          assert.notOk(Permissions.hasEnabledPermission(userId, 'permission-group', ['permission-a', 'permission-b']));
+          assert.ok(Permissions.hasEnabledPermission(userId, 'permission-group', ['permission-b']));
+          assert.notOk(Permissions.hasEnabledPermission(userId, 'permission-group', ['permission-a']));
+        });
+      });
+    });
+
     describe('add disabled', () => {
       it('adds the disabled permission', () => {
         Methods.addDisabledPermission._execute({ userId }, {

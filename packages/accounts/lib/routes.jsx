@@ -5,7 +5,7 @@ export default (() => {
   // Login route
   Router.public.route('/login', {
     name: 'login',
-    action () {
+    action (params, queryParams) {
       ReactLayout.render(App, {
         yield: <Login />
       });
@@ -15,7 +15,7 @@ export default (() => {
   // Registration route
   Router.public.route('/register', {
     name: 'register',
-    action () {
+    action (params, queryParams) {
       ReactLayout.render(App, {
         yield: <Register />
       });
