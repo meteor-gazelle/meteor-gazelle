@@ -18,7 +18,7 @@ const Methods = {
     name: 'Permissions.methods.removeEnabledPermission',
     mixins: [LoggedInMixin],
     validate: null,
-    run (userId, group, permissions) {
+    run ({ userId, group, permissions }) {
       PermissionUtils.removePermissions(userId, group, permissions,
         PermissionUtils.ENABLED_PERMISSIONS_FIELD);
     }
@@ -28,7 +28,7 @@ const Methods = {
     name: 'Permissions.methods.addDisabledPermission',
     mixins: [LoggedInMixin],
     validate: null,
-    run (userId, group, permissions) {
+    run ({ userId, group, permissions }) {
       PermissionUtils.addPermissions(userId, group, permissions,
         PermissionUtils.DISABLED_PERMISSIONS_FIELD);
     }
@@ -38,7 +38,7 @@ const Methods = {
     name: 'Permissions.methods.removeDisabledPermission',
     mixins: [LoggedInMixin],
     validate: null,
-    run (userId, group, permissions) {
+    run ({ userId, group, permissions }) {
       PermissionUtils.removePermissions(userId, group, permissions,
         PermissionUtils.DISABLED_PERMISSIONS_FIELD);
     }

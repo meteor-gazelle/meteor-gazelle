@@ -22,7 +22,7 @@ describe('permissions', () => {
 
       Permissions.register(group);
 
-      const found = Permissions.findOne({title: 'permission-group'});
+      const found = Permissions.findOne({ title: 'permission-group' });
 
       assert.deepEqual(found.permissions[0], permissionA);
       assert.deepEqual(found.permissions[1], permissionB);
@@ -42,10 +42,11 @@ describe('permissions', () => {
       });
     });
 
-    // TODO(ajax) Write tests for removal and disabled permissions. Don't forget to test edge cases.
-    describe('enabled', () => {
+    // TODO(ajax) Write tests for removal and disabled permissions. Don't
+    // forget to test edge cases.
+    describe('add enabled', () => {
       it('addEnabledPermission', () => {
-        Methods.addEnabledPermission._execute({userId}, {
+        Methods.addEnabledPermission._execute({ userId }, {
           userId: userId,
           group: 'permission-group',
           permissions: ['permission-a', 'permission-b']
@@ -61,5 +62,79 @@ describe('permissions', () => {
       });
     });
 
+    describe('remove enabled', () => {
+      it('removeEnabledPermission', () => {
+        Methods.addEnabledPermission._execute({ userId }, {
+          userId: userId,
+          group: 'permission-group',
+          permissions: ['permission-a', 'permission-b']
+        });
+
+        Methods.removeEnabledPermission._execute({ userId }, {
+          userId: userId,
+          group: 'permission-group',
+          permissions: ['permission-a']
+        });
+
+        const user = Meteor.users.findOne(userId);
+        assert.include(user.permissionsEnabled, 'permission-group:permission-b');
+        assert.notInclude(user.permissionsEnabled, 'permission-group:permission-a');
+
+        it('Permissions.hasEnabledPermission', () => {
+          assert.notOk(Permissions.hasEnabledPermission(userId, 'permission-group', ['permission-a', 'permission-b']));
+          assert.ok(Permissions.hasEnabledPermission(userId, 'permission-group', ['permission-b']));
+          assert.notOk(Permissions.hasEnabledPermission(userId, 'permission-group', ['permission-a']));
+        });
+      });
+    });
+
+    describe('add disabled', () => {
+      it('adds the disabled permission', () => {
+        Methods.addDisabledPermission._execute({ userId }, {
+          userId: userId,
+          group: 'permission-group',
+          permissions: ['permission-a', 'permission-b']
+        });
+
+        const user = Meteor.users.findOne(userId);
+        assert.include(user.permissionsDisabled, 'permission-group:permission-a');
+        assert.include(user.permissionsDisabled, 'permission-group:permission-b');
+      });
+
+      it('Permissions.hasDisabledPermission', () => {
+        assert.ok(Permissions.hasDisabledPermission(userId, 'permission-group', ['permission-a', 'permission-b']));
+      });
+
+      it('adds a disabled permission that is currently enabled', () => {
+        before(() => {
+          // Make sure the database is clean
+          Permissions.remove({});
+        });
+
+        // Add disabled when a perm is enabled
+        Methods.addEnabledPermission._execute({ userId }, {
+          userId: userId,
+          group: 'permission-group',
+          permissions: ['permission-a', 'permission-b']
+        });
+
+        Methods.addDisabledPermission._execute({ userId }, {
+          userId: userId,
+          group: 'permission-group',
+          permissions: ['permission-a']
+        });
+
+        const user = Meteor.users.findOne(userId);
+
+        assert.include(user.permissionsDisabled, 'permission-group:permission-a');
+        assert.include(user.permissionsEnabled, 'permission-group:permission-b');
+        assert.notInclude(user.permissionsEnabled, 'permission-group:permission-a');
+
+        it('has disabled permission', () => {
+          assert.ok(Permissions.hasDisabledPermission(userId, 'permission-group', ['permission-a']));
+        });
+      });
+
+    });
   });
 });
