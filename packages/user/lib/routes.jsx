@@ -1,4 +1,4 @@
-import { UserProfile } from './components/UserProfile.jsx';
+import { UserProfile } from './components/profile/UserProfile.jsx';
 
 export default (() => {
   Router.private.user = Router.private.group({

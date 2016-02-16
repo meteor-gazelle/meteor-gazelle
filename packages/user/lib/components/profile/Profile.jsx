@@ -1,4 +1,4 @@
-import { Username } from './Username.jsx';
+import { Username } from '../Username.jsx';
 
 export const Profile = React.createClass({
   propTypes: {
