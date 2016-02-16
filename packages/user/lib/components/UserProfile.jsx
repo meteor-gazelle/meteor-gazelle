@@ -1,5 +1,5 @@
-import { Actions } from '../redux.js';
 import { Username } from './Username.jsx';
+import { Profile } from './Profile.jsx';
 
 export const UserProfile = React.createClass({
   mixins: [ReactMeteorData],
@@ -9,29 +9,28 @@ export const UserProfile = React.createClass({
   },
 
   getMeteorData () {
-    debugger;
-    const handle = Meteor.subscribe('userProfile', this.props.userId);
-    if (handle.ready()) {
-      Redux.store.dispatch(Actions.loadProfile(this.props.userId));
-    }
-    const userProfile = Redux.store.getState().userProfile;
+    const { userId } = this.props;
+    const handle = Meteor.subscribe('userProfile', userId);
+
     return {
-      userId: userProfile.get('id'),
-      username: userProfile.get('username'),
-      error: userProfile.get('error')
+      isReady: handle.ready(),
+      user: Meteor.users.findOne(userId)
     };
   },
 
-  //TODO(ajax) Not found can be made into a generic component
-  notFound () {
-    return 'User not found';
+  //TODO(ajax) Think about how to handle loading and errors throughout app.
+  loading () {
+    return 'Loading...';
+  },
+
+  content () {
+    return this.data.user ? <Profile user = {this.data.user }/> : 'User not found.';
   },
 
   render () {
     return (
       <div>
-        { this.data.error ?
-          this.notFound() : <Username username={ this.data.username }/> }
+        { this.data.isReady ? this.content() : this.loading() }
       </div>
     );
   }
