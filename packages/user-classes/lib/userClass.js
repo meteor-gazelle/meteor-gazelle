@@ -36,6 +36,7 @@ UserClass.schema = new SimpleSchema({
 UserClass.attachSchema(UserClass.schema);
 
 //TODO(ajax) Add permission check
+//TODO(ajax) Both this method and its sister can be made less redundant
 UserClass.addClassToUser = (userId, classIds) => {
   check(userId, String);
   check(classIds, [String]);
@@ -47,8 +48,9 @@ UserClass.addClassToUser = (userId, classIds) => {
     // Find classes based on passed in class ids
     const classes = UserClass.find({_id: {$in: classIds}});
     const foundClassIds = classes.map(value => value._id);
+    const permissions = classes.map(value => value.permissions);
     // Add class ids to the user's class id set
-    Meteor.users.update(user._id, {$addToSet: {classIds: foundClassIds}});
+    Meteor.users.update(user._id, {$addToSet: {classIds: foundClassIds, classPermissions: permissions}});
   }
 };
 
@@ -63,8 +65,9 @@ UserClass.removeClassFromUser = (userId, classIds) => {
     // Find classes based on passed in class ids
     const classes = UserClass.find({_id: {$in: classIds}});
     const foundClassIds = classes.map(value => value._id);
+    const permissions = classes.map(value => value.permissions);
     // Remove class ids frmo the user's class id set
-    Meteor.users.update(user._id, {$pull: {classIds: foundClassIds}});
+    Meteor.users.update(user._id, {$pull: {classIds: foundClassIds, classPermissions: permissions}});
   }
 };
 

@@ -13,7 +13,7 @@ const PermissionUtils = {
 
   // Get a group from the group title
   findGroupByTitle (group)  {
-    return Permissions.findOne({ title: group });
+    return Permissions.findOne({title: group});
   },
 
   // Validate a group and permission
@@ -73,7 +73,7 @@ const PermissionUtils = {
     //validatePermissionExists(group, permissions);
 
     // Get the user
-    const user = Meteor.users.findOne({ _id: userId });
+    const user = Meteor.users.findOne({_id: userId});
     if (!user) {
       return false;
     }
@@ -112,11 +112,11 @@ const PermissionUtils = {
       (permission) =>
         PermissionUtils.denormalizeGroupAndPermission(group, permission));
 
-    query.$addToSet[type] = { $each: denormalizedPermissions };
+    query.$addToSet[type] = {$each: denormalizedPermissions};
     // If the permission is being enabled but already exists in the disabled
     // set, remove it from the disabled set.
     query.$pull[PermissionUtils.getOppositeType(type)] =
-    { $in: denormalizedPermissions };
+    {$in: denormalizedPermissions};
 
     // Update the user's permissions
     Meteor.users.update(userId, query);
@@ -138,7 +138,7 @@ const PermissionUtils = {
       (permission) =>
         PermissionUtils.denormalizeGroupAndPermission(group, permission));
 
-    query.$pull[type] = { $in: denormalizedPermissions };
+    query.$pull[type] = {$in: denormalizedPermissions};
 
     // Update the user's permissions
     Meteor.users.update(userId, query);
@@ -148,6 +148,10 @@ const PermissionUtils = {
     //TODO(ajax) Make seperator configurable and potentially a disallowed
     // character in permissions and group titles
     return group + ':' + permission;
+  },
+  normalizePermissionString(permissionString) {
+    const split = permissionString(':');
+    return {group: split[0], permission: split[1]};
   }
 };
 

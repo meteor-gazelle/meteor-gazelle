@@ -27,11 +27,17 @@ Permissions.schema = new SimpleSchema({
   }
 });
 
+//TODO(ajax) This method can be more efficient by taking in an array of permission strings
+Permissions.exists = (permission) => {
+  const normalized = PermissionUtils.normalizePermissionString(permission);
+  return PermissionUtils.validatePermissionExists(normalized.group, normalized.permission);
+};
+
 if (Meteor.isServer) {
   Permissions.register = (permissionGroup) => {
     // Only accept argument of type PermissionGroup
     if (permissionGroup instanceof PermissionGroup) {
-      Permissions.upsert({ title: permissionGroup.title }, {
+      Permissions.upsert({title: permissionGroup.title}, {
         $set: {
           title: permissionGroup.title,
           description: permissionGroup.description,

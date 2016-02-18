@@ -1,5 +1,6 @@
 import { LoggedInMixin } from 'meteor/meteor-gazelle:method-mixins';
 import { UserClass } from './userClass.js';
+import { Permissions } from 'meteor/meteor-gazelle:permissions';
 
 //TODO(ajax) Permission checks
 export const Methods = {
@@ -8,6 +9,10 @@ export const Methods = {
     mixins: [LoggedInMixin],
     validate: null,
     run (userClass) {
+      // Check that passed in permissions are valid
+      userClass.permissions.forEach(value => {
+        Permissions.exists(value);
+      });
       UserClass.insert(userClass);
     }
   }),

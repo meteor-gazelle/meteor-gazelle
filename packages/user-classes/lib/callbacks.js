@@ -2,7 +2,6 @@ import { Hooks } from 'meteor/meteor-gazelle:hooks';
 import { UserClass } from './userClass.js';
 
 // Add default classes to user on registration
-
 const addDefaultClasses = (userId) => {
   // Find the default classes
   const defaultClasses = UserClass.find({ isDefaultClass: true });
