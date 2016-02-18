@@ -1,12 +1,8 @@
-# meteor-gazelle:util
-
-This package provides useful utility functions.
+# meteor-gazelle:hooks
 
 ### Modules
 
-#### Shared
-* Util
-  * `getId(doc)` - Get the ID of a document
-  * `getSiteName()` - Get the site name
-  * `idValidator(id)` - Validate an ID
-  * `updateValidator(schema)` - Validate an update operation
+#### Server
+* Hooks
+  * `addCallback(hook, callback)` - Add a callback.
+  * `run(hook, params)` - Runs the callbacks on a given hook passing them a params objects.
