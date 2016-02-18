@@ -20,3 +20,18 @@ Package.onUse(function (api) {
   api.mainModule('lib/client.js', 'client');
   api.mainModule('lib/server.js', 'server');
 });
+
+Package.onTest(function (api) {
+  var packages = [
+    'ecmascript',
+    'practicalmeteor:mocha',
+    'meteor-gazelle:user-classes'
+  ];
+
+  api.use(packages);
+
+  api.addFiles([
+    'tests/server.js'
+  ], 'server');
+
+});

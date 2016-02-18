@@ -14,6 +14,6 @@ const addDefaultClasses = (userId) => {
   }
 };
 
-Hooks.addCallback('userRegistered', (userId) => {
+Hooks.addCallback('userRegistered', ({ userId }) => {
   addDefaultClasses(userId);
 });
