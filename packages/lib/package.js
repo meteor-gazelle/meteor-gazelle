@@ -34,7 +34,8 @@ Package.onUse(function (api) {
     'meteor-gazelle:router',
     'meteor-gazelle:method-mixins',
     'dburles:factory@0.4.2',
-    'practicalmeteor:faker@2.1.1_1'
+    'practicalmeteor:faker@2.1.1_1',
+    'meteor-gazelle:method-mixins'
   ];
 
   api.use(packages);
