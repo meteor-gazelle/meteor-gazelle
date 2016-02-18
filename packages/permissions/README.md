@@ -12,6 +12,8 @@ This package provides a permissions system.
 * Permissions - A collection of registered permissions
   * `hasEnabledPermission(userId, group, permission)` - Check if a user has a permission enabled
   * `hasDisabledPermission(userId, group, permission)` - Check if a user has a permission disabled
+  * `exists(permission)` - Check if a permission exists. Argument follows this format `'group:permission'`.
+  
 * Methods
   * `addEnabledPermission(userId, group, permission)` - Add a permission to a user
   * `removeEnabledPermission(userId, group, permission)` - Remove a permission from a user
