@@ -18,3 +18,11 @@ This package provides base accounts functionality, such as registering a user, l
 ### Routes
 * `/login` - The login page
 * `/register` - The registration page
+
+### Permissions
+* `manage-permissions` - Allows management of a user's permissions.
+  * `edit`
+  * `view`
+
+### Hooks
+* `userRegistered` - Runs on successful user registration.
