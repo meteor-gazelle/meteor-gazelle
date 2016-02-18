@@ -12,6 +12,9 @@ This package provides base accounts functionality, such as registering a user, l
 * Components
   * Login - Render the login page
 
+#### Server
+* `RegistrationHook` - Provides hook to run callbacks after user is registered.
+
 ### Routes
 * `/login` - The login page
 * `/register` - The registration page

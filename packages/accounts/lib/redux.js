@@ -1,3 +1,5 @@
+import { Methods } from './methods.js';
+
 Redux.registerReducer((() => {
   // Create a new reducer for account states
   const reactiveDict = new ReactiveDict('accountsState');
@@ -65,7 +67,7 @@ const logoutUser = () => {
 
 // Successful registration
 const registerSuccessful = (email, username, password) => {
-  FlowRouter.go('/home');
+  FlowRouter.go('/login');
 
   return {
     type: 'REGISTER_SUCCESS',
@@ -100,7 +102,7 @@ const Actions = {
   // Register a user
   registerUser (email, username, password) {
     return (dispatch, getState) => {
-      Accounts.createUser({
+      Methods.registerUser.call({
         email: email,
         username: username,
         password: password

@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'meteor-gazelle:permissions',
+  name: 'meteor-gazelle:hooks',
   version: '0.0.1',
-  summary: 'This package handles user permissions',
+  summary: 'This package provides hooks and callbacks',
   git: 'https://github.com/meteor-gazelle/meteor-gazelle',
   documentation: 'README.md'
 });
@@ -10,28 +10,23 @@ Package.onUse(function (api) {
   api.versionsFrom('1.2.0.2');
 
   var packages = [
-    'meteor-gazelle:lib@0.0.1'
+    'ecmascript',
+    'check'
   ];
 
   api.use(packages);
 
-  api.mainModule('lib/client.js', 'client');
-  api.mainModule('lib/server.js', 'server');
+  api.mainModule('lib/hooks.js', 'server');
 });
 
 Package.onTest(function (api) {
   var packages = [
-    'meteor-gazelle:lib',
-    'meteor-gazelle:permissions',
-    'publication-collector',
-    'practicalmeteor:mocha'
+    'ecmascript',
+    'practicalmeteor:mocha',
+    'meteor-gazelle:hooks'
   ];
 
   api.use(packages);
-
-  api.addFiles([
-    'tests/client.js'
-  ], 'client');
 
   api.addFiles([
     'tests/server.js'
