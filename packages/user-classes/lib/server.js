@@ -1,5 +1,6 @@
 import './callbacks.js';
 import { Methods } from './methods.js';
+import { UserClass } from './userClass.js';
 import { Permissions, PermissionGroup } from 'meteor/meteor-gazelle:permissions';
 
 const group = new PermissionGroup('user-classes', 'Allows management of user classes', [
@@ -12,5 +13,11 @@ const group = new PermissionGroup('user-classes', 'Allows management of user cla
   }]);
 
 Permissions.register(group);
+
+
+//TODO(ajax) Add permissions and login check
+Meteor.publish('manage-user-classes', function () {
+  return UserClass.find();
+});
 
 export { Methods };
