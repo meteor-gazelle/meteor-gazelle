@@ -12,7 +12,7 @@ Redux.registerReducer((() => {
         case 'LOGIN_SUCCESS':
           // Successful login
           state.clear();
-          state.set({ username: action.username });
+          state.set({username: action.username});
           return state;
         case 'LOGIN_FAILED':
           // Failed login,log attempts
@@ -22,10 +22,11 @@ Redux.registerReducer((() => {
         case 'LOGOUT':
           // Logging out
           state.clear();
+          return state;
         case 'REGISTER_SUCCESS':
           // Successful registration
           state.clear();
-          state.set({ username: action.username });
+          state.set({username: action.username});
           return state;
         case 'REGISTER_FAILED':
           // Failed registration
