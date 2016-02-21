@@ -8,7 +8,7 @@ export const UserClassList = React.createClass({
   render () {
     return (
       <div>
-        { this.props.userClasses.map(userClass => <ManageUserClass key = { userClass._id } userClass={ userClass }/>) }
+        { this.props.userClasses.map(userClass => <ManageUserClass mode="edit" key ={userClass._id} userClass={ userClass } />) }
       </div>
     );
   }

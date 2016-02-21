@@ -2,17 +2,22 @@ import { LoggedInMixin } from 'meteor/meteor-gazelle:method-mixins';
 import { UserClass } from './userClass.js';
 import { Permissions } from 'meteor/meteor-gazelle:permissions';
 
+const checkPermissions = (userClass) => {
+  if (userClass.permissions) {
+    userClass.permissions.forEach(value => {
+      Permissions.exists(value);
+    });
+  }
+};
+
 //TODO(ajax) Permission checks
 export const Methods = {
   create: new ValidatedMethod({
     name: 'UserClass.methods.create',
     mixins: [LoggedInMixin],
-    validate: null,
+    validate: UserClass.schema.validator({clean: true}),
     run (userClass) {
-      // Check that passed in permissions are valid
-      userClass.permissions.forEach(value => {
-        Permissions.exists(value);
-      });
+      checkPermissions(userClass);
       UserClass.insert(userClass);
     }
   }),
@@ -24,12 +29,15 @@ export const Methods = {
 
     }
   }),
-  edit: new ValidatedMethod({
+  update: new ValidatedMethod({
     name: 'UserClass.methods.edit',
     mixins: [LoggedInMixin],
     validate: null,
-    run ({ classId }) {
-
+    run (userClass) {
+      checkPermissions(userClass);
+      const userClassId = userClass._id;
+      delete userClass._id;
+      UserClass.update(userClassId, {$set: userClass});
     }
-  }),
+  })
 };

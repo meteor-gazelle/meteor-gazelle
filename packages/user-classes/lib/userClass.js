@@ -2,10 +2,12 @@ export const UserClass = new Meteor.Collection('userClass');
 
 UserClass.schema = new SimpleSchema({
   title: {
-    type: String
+    type: String,
+    unique: true
   },
   shortTitle: {
-    type: String
+    type: String,
+    unique: true
   },
   description: {
     type: String

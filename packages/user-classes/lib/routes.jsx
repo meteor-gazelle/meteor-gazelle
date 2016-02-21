@@ -1,4 +1,5 @@
 import { ManageUserClasses } from './components/ManageUserClasses.jsx';
+import { ManageUserClass } from './components/ManageUserClass.jsx';
 
 export default (() => {
   Router.private.userClasses = Router.private.group({
