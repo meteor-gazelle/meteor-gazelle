@@ -25,8 +25,8 @@ export const Methods = {
     name: 'UserClass.methods.remove',
     mixins: [LoggedInMixin],
     validate: null,
-    run ({ classId }) {
-
+    run ({ _id }) {
+      UserClass.remove(_id);
     }
   }),
   update: new ValidatedMethod({

@@ -32,24 +32,29 @@ const updateClassSuccesful = () => {
 };
 
 const Actions = {
-  createClass ({title, shortTitle, description}) {
+  createClass (userClass) {
     return (dispatch, getState) => {
-      Methods.create.call({title, shortTitle, description}, (err, res) => {
+      Methods.create.call(userClass, (err, res) => {
         if (!err) {
           dispatch(createClassSuccesful());
         }
       });
     };
   },
-  updateClass ({_id, title, shortTitle, description}) {
+  updateClass (userClass) {
     return (dispatch, getState) => {
-      Methods.update.call({_id, title, shortTitle, description}, (err, res) => {
+      Methods.update.call(userClass, (err, res) => {
         if (!err) {
           dispatch(updateClassSuccesful());
         }
       });
     };
   },
+  removeClass (_id) {
+    return (dispatch, getState) => {
+      Methods.remove.call({_id});
+    };
+  }
 };
 
 export { Actions };

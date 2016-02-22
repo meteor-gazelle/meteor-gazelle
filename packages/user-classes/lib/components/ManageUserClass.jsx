@@ -1,4 +1,5 @@
 import { UserClass } from '../userClass.js';
+import { UserClassPermissions } from './UserClassPermissions.jsx';
 import { Actions } from '../redux.js';
 
 export const ManageUserClass = React.createClass({
@@ -8,57 +9,79 @@ export const ManageUserClass = React.createClass({
   },
 
   getInitialState () {
-    const state = {
+    return this.props.userClass ? this.props.userClass : {
       title: '',
       shortTitle: '',
-      description: ''
+      description: '',
+      permissions: [],
+      isDefaultClass: false,
+      level: 0,
+      sort: 0
     };
-
-    if (this.props.userClass) {
-      state.title = this.props.userClass.title;
-      state.shortTitle = this.props.userClass.shortTitle;
-      state.description = this.props.userClass.description;
-    }
 
     return state;
   },
 
-  handleSubmit (e) {
+  handleSubmit(e) {
     e.preventDefault();
 
-    const title = this.state.title;
-    const shortTitle = this.state.shortTitle;
-    const description = this.state.description;
-
     if (this.props.mode === 'create') {
-      Redux.store.dispatch(Actions.createClass({title, shortTitle, description}));
+      Redux.store.dispatch(Actions.createClass(this.state));
+      this.replaceState(this.getInitialState());
     } else if (this.props.mode === 'edit') {
-      const _id = this.props.userClass._id;
-      Redux.store.dispatch(Actions.updateClass({_id, title, shortTitle, description}));
+      Redux.store.dispatch(Actions.updateClass(this.state));
     }
   },
 
-  handleChange (e) {
-    var nextState = {};
-    nextState[e.target.name] = e.target.value;
+  handleRemove(e) {
+    Redux.store.dispatch(Actions.removeClass(this.props.userClass._id));
+  },
+
+  handleChange(e) {
+    const nextState = {};
+    if (e.target.type === 'checkbox') {
+      nextState[e.target.name] = e.target.checked;
+    } else {
+      nextState[e.target.name] = e.target.value;
+    }
+
     this.setState(nextState);
   },
 
-  form () {
-    return (
-      <form onSubmit={ this.handleSubmit }>
-        <input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.handleChange}/>
-        <input type="text" name="shortTitle" placeholder="Short Title" value={this.state.shortTitle} onChange={this.handleChange}/>
-        <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange}/>
-        <input type="submit" value={ this.props.mode === 'create' ? 'Save class' : 'Update class' }/>
-      </form>
-    );
+  handlePermissionChange(e) {
+    const target = e.target;
+    if (target.checked) {
+      const permissions = this.state.permissions;
+      permissions.push(target.id);
+      this.setState({permissions: permissions});
+    } else {
+      const index = this.state.permissions.indexOf(target.id);
+      const permissions = this.state.permissions;
+      permissions.splice(index, 1);
+      this.setState({permissions: permissions});
+    }
   },
 
-  render () {
+  render() {
     return (
       <div>
-        { this.props.mode === 'edit' ? this.form() : this.form() }
+        <form onSubmit={ this.handleSubmit }>
+          <input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.handleChange}/>
+          <input type="text" name="shortTitle" placeholder="Short Title" value={this.state.shortTitle}
+                 onChange={this.handleChange}/>
+          <input type="text" name="description" placeholder="Description" value={this.state.description}
+                 onChange={this.handleChange}/>
+          Default class: <input type="checkbox" name="isDefaultClass" checked={this.state.isDefaultClass}
+                                onChange={this.handleChange}/>
+          Level: <input type="number" name="level" min="0" value={this.state.level}
+                        onChange={this.handleChange}/>
+          Sort: <input type="number" name="sort" min="0" value={this.state.sort}
+                       onChange={this.handleChange}/>
+          <input type="submit" value={ this.props.mode === 'create' ? 'Save class' : 'Update class' }/>
+        </form>
+        { this.props.mode === 'edit' ? <button onClick={this.handleRemove}>Remove class</button> : null }
+        <UserClassPermissions handlePermissionChange={this.handlePermissionChange }
+                              classPermissions={this.state.permissions}/>
       </div>
     );
   }

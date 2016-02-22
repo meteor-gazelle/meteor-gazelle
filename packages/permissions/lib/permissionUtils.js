@@ -35,6 +35,7 @@ const PermissionUtils = {
 
   // Validate a permission exists
   validatePermissionExists (group, permissions) {
+    permissions = Array.isArray(permissions) ? permissions : [permissions];
     const doc = PermissionUtils.findGroupByTitle(group);
     if (!doc) {
       //TODO(ajax) Find standards for error messages. Expose an Errors key
@@ -150,7 +151,7 @@ const PermissionUtils = {
     return group + ':' + permission;
   },
   normalizePermissionString(permissionString) {
-    const split = permissionString(':');
+    const split = permissionString.split(':');
     return {group: split[0], permission: split[1]};
   }
 };

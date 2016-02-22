@@ -28,6 +28,8 @@ export const ManageUserClasses = React.createClass({
     return (
       <div>
         { this.data.isReady ? this.content() : this.loading() }
+        <br />
+        <br />
         <ManageUserClass mode="create" />
       </div>
     );
