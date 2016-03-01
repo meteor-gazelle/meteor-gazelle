@@ -16,8 +16,7 @@ Package.onUse(function (api) {
     'meteor-gazelle:header@0.0.1',
     'meteor-gazelle:footer@0.0.1',
     'meteor-gazelle:home@0.0.1',
-    'meteor-gazelle:accounts@0.0.1',
-    'meteor-gazelle:redux@0.0.1'
+    'meteor-gazelle:accounts@0.0.1'
   ];
 
   api.use(packages);

@@ -4,7 +4,8 @@ import { Actions } from 'meteor/meteor-gazelle:accounts';
 export const SecondaryNav = React.createClass({
 
   onSignOutClick () {
-    Redux.store.dispatch(Actions.logoutUser());
+    //TODO(ajax) Call Server side logout method
+    Meteor.logout();
   },
 
   render () {

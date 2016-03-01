@@ -1,6 +1,6 @@
 import { UserClass } from '../userClass.js';
 import { UserClassPermissions } from './UserClassPermissions.jsx';
-import { Actions } from '../redux.js';
+import { Methods } from '../methods.js';
 
 export const ManageUserClass = React.createClass({
   propTypes: {
@@ -26,15 +26,16 @@ export const ManageUserClass = React.createClass({
     e.preventDefault();
 
     if (this.props.mode === 'create') {
-      Redux.store.dispatch(Actions.createClass(this.state));
+      //TODO(ajax) Create an object from the state and pass that.
+      Methods.create.call(this.state);
       this.replaceState(this.getInitialState());
     } else if (this.props.mode === 'edit') {
-      Redux.store.dispatch(Actions.updateClass(this.state));
+      Methods.update.call(this.state);
     }
   },
 
   handleRemove(e) {
-    Redux.store.dispatch(Actions.removeClass(this.props.userClass._id));
+    Methods.remove.call({id: this.props.userClass._id});
   },
 
   handleChange(e) {

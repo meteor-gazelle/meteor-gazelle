@@ -1,5 +1,3 @@
-import { Actions } from '../redux.js';
-
 export const Login = React.createClass({
   handleSubmit (e) {
     e.preventDefault();
@@ -10,7 +8,9 @@ export const Login = React.createClass({
 
     //TODO(ajax) Meteor lets users login with username or email. Gazelle only
     // allows username. Need to prevent email login. Log the user in
-    Redux.store.dispatch(Actions.loginUser(username, password));
+    Meteor.loginWithPassword(username, password, (err) => {
+
+    });
   },
   render () {
     return (

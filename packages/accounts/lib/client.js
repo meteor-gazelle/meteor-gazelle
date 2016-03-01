@@ -1,4 +1,3 @@
-import { Actions } from './redux.js';
 import { Login } from './components/Login.jsx';
 import './routes.jsx';
 
@@ -15,4 +14,4 @@ Meteor.methods({
 });
 */
 
-export { Actions, Components };
+export { Components };

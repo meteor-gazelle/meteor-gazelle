@@ -29,7 +29,8 @@ export const UserMenu = React.createClass({
   },
 
   onSignOutClick () {
-    Redux.store.dispatch(Actions.logoutUser());
+    //TODO(ajax) Call Server side logout method
+    Meteor.logout();
   },
 
   classNames () {
