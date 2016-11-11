@@ -1,6 +1,8 @@
 Gazelle
 =======
 
+**This project has been put on hold indefinitely.** 
+
 [![Build Status](https://travis-ci.org/meteor-gazelle/meteor-gazelle.svg?branch=master)](https://travis-ci.org/meteor-gazelle/meteor-gazelle)
 
 Gazelle is a web framework geared towards private BitTorrent trackers.
