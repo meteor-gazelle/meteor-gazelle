@@ -5,3 +5,5 @@ Router.configure({
 });
 
 Router.plugin('ensureSignedIn');
+
+ApplicationController = RouteController.extend();
