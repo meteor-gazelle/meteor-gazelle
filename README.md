@@ -13,7 +13,7 @@ _Note_: This version of Gazelle is under active development.
 Contributing and Communications
 -------------------------------
 * The [Issues and Milestones](https://github.com/meteor-gazelle/meteor-gazelle/issues) contains items that need to be worked on. Check there for a general overview of what needs to be worked on.
-* Help reviewing [Pull Requests](https://github.com/meteor-gazelle/meteor-gazelle/pulls). 
+* Help reviewing [Pull Requests](https://github.com/meteor-gazelle/meteor-gazelle/pulls).
 * IRC
   * &#35;gazelle on irc.what-network.net is the official meteor-gazelle development channel.
   * If you are looking for something to work on, ping the Core team using !core <message>.
@@ -47,7 +47,7 @@ Running tests
 ------------
     # one-time setup
     curl https://install.meteor.com | /bin/sh
-    npm install -g velocity-cli eslint
+    npm install -g spacejam eslint
     gem install scss-lint
     export PATH="$HOME/.meteor:$PATH"
     cp settings.json.template settings.json

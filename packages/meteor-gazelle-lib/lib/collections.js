@@ -1,1 +1,0 @@
-Gazelle.schemas = {};

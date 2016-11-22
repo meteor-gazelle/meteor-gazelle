@@ -5,29 +5,36 @@
   // http://eslint.org/docs/rules/
 
   "ecmaFeatures": {
-    "arrowFunctions": false,                   // enable arrow functions
+    "arrowFunctions": true,                    // enable arrow functions
     "binaryLiterals": false,                   // enable binary literals
-    "blockBindings": false,                    // enable let and const (aka block bindings)
-    "classes": false,                          // enable classes
-    "defaultParams": false,                    // enable default function parameters
-    "destructuring": false,                    // enable destructuring
-    "forOf": false,                            // enable for-of loops
-    "generators": false,                       // enable generators
-    "modules": false,                          // enable modules and global strict mode
-    "objectLiteralComputedProperties": false,  // enable computed object literal property names
-    "objectLiteralDuplicateProperties": false, // enable duplicate object literal properties in strict mode
-    "objectLiteralShorthandMethods": false,    // enable object literal shorthand methods
-    "objectLiteralShorthandProperties": false, // enable object literal shorthand properties
+    "blockBindings": true,                     // enable let and const (aka block bindings)
+    "classes": true,                           // enable classes
+    "defaultParams": true,                     // enable default function parameters
+    "destructuring": true,                     // enable destructuring
+    "forOf": true,                             // enable for-of loops
+    "generators": true,                        // enable generators
+    "modules": true,                           // enable modules and global strict mode
+    "objectLiteralComputedProperties": true,   // enable computed object literal property names
+    "objectLiteralDuplicateProperties": true,  // enable duplicate object literal properties in strict mode
+    "objectLiteralShorthandMethods": true,     // enable object literal shorthand methods
+    "objectLiteralShorthandProperties": true,  // enable object literal shorthand properties
     "octalLiterals": false,                    // enable octal literals
     "regexUFlag": false,                       // enable the regular expression u flag
     "regexYFlag": false,                       // enable the regular expression y flag
-    "restParams": false,                       // enable the rest parameters
-    "spread": false,                           // enable the spread operator
+    "restParams": true,                        // enable the rest parameters
+    "spread": true,                            // enable the spread operator
     "superInFunctions": false,                 // enable super references inside of functions
-    "templateStrings": false,                  // enable template strings
-    "unicodeCodePointEscapes": false,          // enable code point escapes
+    "templateStrings": true,                   // enable template strings
+    "unicodeCodePointEscapes": true,           // enable code point escapes
     "globalReturn": false,                     // allow return statements in the global scope
-    "jsx": false                               // enable JSX
+    "jsx": true                                // enable JSX
+  },
+
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
 
   "env": {
@@ -44,7 +51,7 @@
     "meteor": true,                            // meteor global variables.
     "mongo": false,                            // mongo global variables.
     "applescript": false,                      // applescript global variables.
-    "es6": false                               // enable all ECMAScript 6 features except for modules.
+    "es6": true                                // enable all ECMAScript 6 features except for modules.
   },
 
   "globals": {
@@ -200,7 +207,8 @@
     "func-style": 0,                 // enforces use of function declarations or expressions (off by default)
     "indent": [
       2,
-      2
+      2,
+      {"SwitchCase": 1}
     ],                               // this option sets a specific tab width for your code (off by default)
     "key-spacing": 0,                // enforces spacing between keys and values in object literal properties
     "lines-around-comment": 0,       // enforces empty lines around comments (off by default)
@@ -246,9 +254,8 @@
     ],                               // require or disallow use of semicolons instead of ASI
     "sort-vars": 0,                  // sort variables within the same declaration block (off by default)
     "space-after-function-name": 0,  // (deprecated) require a space after function names (off by default)
-    "space-after-keywords": [
-      2,
-      "always"
+    "keyword-spacing": [
+      2
     ],                               // require a space after certain keywords (off by default)
     "space-before-blocks": 0,        // require or disallow space before blocks (off by default)
     "space-before-function-paren": [

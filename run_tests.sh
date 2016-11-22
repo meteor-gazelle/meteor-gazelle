@@ -34,11 +34,12 @@ function fail {
 function run_tests {
   # ensure environment is set up
   which meteor > /dev/null || fail "meteor command not found; run 'curl https://install.meteor.com | /bin/sh' to install meteor"
-  which velocity > /dev/null || fail "velocity command not found; run 'npm install -g velocity-cli' to install velocity"
+  # which velocity > /dev/null || fail "velocity command not found; run 'npm install -g velocity-cli' to install velocity"
   [ -f settings.json ] || fail "settings.json not found; run 'cp settings.json.template settings.json'"
 
   # do the thing
-  velocity test-package ./packages/* --settings settings.json --ci --release velocity:METEOR@1.1.0.3_1
+  spacejam  --settings settings.json test-packages --driver-package practicalmeteor:mocha-console-reporter
+  # velocity test-package ./packages/* --settings settings.json --ci --release velocity:METEOR@1.1.0.3_1
 }
 
 function run_lint {
@@ -48,7 +49,8 @@ function run_lint {
 
   # do the thing
   echo "Running eslint..."
-  eslint .
+  echo "ESLint version `eslint -v`"
+  eslint --ext .js --ext .jsx .
 
   echo "Running scss-lint..."
   scss-lint .
